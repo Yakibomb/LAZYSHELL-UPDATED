@@ -1,0 +1,14 @@
+﻿Flags - 1 Byte - A bitmask that represents the different options that are shown for a patch.
+			Bit 0 - Assembly Hack
+			Bit 1 - Game Hack
+			Bit 2 - Must be applied to a Fresh Rom
+The following fields are 1 Line of text (terminated with endl 0x0D 0x0A)
+	Patch Name
+	Author(s)
+	File Size
+	Release Date
+	Description
+	Extra Info
+	Image Name
+	IPS file name
+	
