@@ -1,0 +1,1365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71AABC1D-6183-4308-84E2-ADFD6DB2C881}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LAZYSHELL</RootNamespace>
+    <AssemblyName>LAZYSHELL_UPDATED_EDITION</AssemblyName>
+    <StartupObject>LAZYSHELL.Program</StartupObject>
+    <ApplicationIcon>Resources\LAZYSHELL_icon.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="!Static\BRR.cs" />
+    <Compile Include="!Static\Enums.cs" />
+    <Compile Include="!Static\Help.cs" />
+    <Compile Include="!Static\NewCursors.cs" />
+    <Compile Include="!Universal\Element.cs" />
+    <Compile Include="!Universal\History.cs" />
+    <Compile Include="!Universal\Tilemap.cs" />
+    <Compile Include="!Universal\ToolTipLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Audio\Audio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Audio\Audio.Designer.cs">
+      <DependentUpon>Audio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="!Static\Icons.cs" />
+    <Compile Include="Editor.Audio\PickInstruments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Audio\PickInstruments.Designer.cs">
+      <DependentUpon>PickInstruments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Audio\Interpreter.SPC.cs" />
+    <Compile Include="Editor.Audio\PickNativeSPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Audio\PickNativeSPC.Designer.cs">
+      <DependentUpon>PickNativeSPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Audio\SampleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Audio\SampleEditor.Designer.cs">
+      <DependentUpon>SampleEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Animations\AnimationScripts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Animations\AnimationScripts.Designer.cs">
+      <DependentUpon>AnimationScripts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Audio\BRRSample.cs" />
+    <Compile Include="Editor.Audio\SPCEditor.ScoreWriter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Audio\SPCSound.cs" />
+    <Compile Include="Editor.Audio\SPC.cs" />
+    <Compile Include="Editor.Audio\SPCTrack.cs" />
+    <Compile Include="Editor.Audio\SPCEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Audio\SPCEditor.Designer.cs">
+      <DependentUpon>SPCEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Audio\SPCCommand.cs" />
+    <Compile Include="Editor.Audio\SPCScriptEnums.cs" />
+    <Compile Include="Editor.Intro\Intro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Intro\Intro.Designer.cs">
+      <DependentUpon>Intro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Intro\Opening.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Intro\Opening.Designer.cs">
+      <DependentUpon>Opening.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Menus\MenuTexts.cs" />
+    <Compile Include="Editor.Menus\Menus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Menus\Menus.Designer.cs">
+      <DependentUpon>Menus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Menus\MenusEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Menus\MenusEditor.Designer.cs">
+      <DependentUpon>MenusEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Mini Games\MinecartData.cs" />
+    <Compile Include="Editor.Mini Games\MiniGames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Mini Games\MiniGames.Designer.cs">
+      <DependentUpon>MiniGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Mini Games\MineCart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Mini Games\MineCart.Designer.cs">
+      <DependentUpon>MineCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Mini Games\Mode7Tilemap.cs" />
+    <Compile Include="Editor.Mini Games\SideTilemap.cs" />
+    <Compile Include="Editor.Monsters\BattleScripts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Monsters\BattleScripts.Designer.cs">
+      <DependentUpon>BattleScripts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Dialogues\DTE.cs" />
+    <Compile Include="Editor.Event Scripts\EventScripts.Controls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Event Scripts\EventScripts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Event Scripts\EventScripts.Designer.cs">
+      <DependentUpon>EventScripts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.Mods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels\LevelSolidMods.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelTileMods.cs" />
+    <Compile Include="Editor.Monsters\Interpreter.Battle.cs" />
+    <Compile Include="Editor.Sprites\CoordAdjust.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Sprites\CoordAdjust.Designer.cs">
+      <DependentUpon>CoordAdjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Sprites\NPCPacket.cs" />
+    <Compile Include="Feature.Project\ProjectDB.cs" />
+    <Compile Include="Feature.Undo\UndoCommands.cs" />
+    <Compile Include="Features\AnimatedGifEncoder.cs" />
+    <Compile Include="Features\EditLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\EditLabel.Designer.cs">
+      <DependentUpon>EditLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\LZWEncoder.cs" />
+    <Compile Include="Features\NeuQuant.cs" />
+    <Compile Include="Features\NewExceptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\NewExceptionForm.Designer.cs">
+      <DependentUpon>NewExceptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\NewMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\NewMessageBox.Designer.cs">
+      <DependentUpon>NewMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ToolStripControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Features\HackingTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\HackingTools.Designer.cs">
+      <DependentUpon>HackingTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ExportImages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ExportImages.Designer.cs">
+      <DependentUpon>ExportImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\HexEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\HexEditor.designer.cs">
+      <DependentUpon>HexEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\IOArchitecture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\IOArchitecture.Designer.cs">
+      <DependentUpon>IOArchitecture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="!Universal\ListViewColumnSorter.cs" />
+    <Compile Include="Features\NewControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Features\Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\StatusCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\StatusCalculator.Designer.cs">
+      <DependentUpon>StatusCalculator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\ZoomBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ZoomBox.Designer.cs">
+      <DependentUpon>ZoomBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature.Preview\Preview.cs" />
+    <Compile Include="Editor.Allies\Allies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Allies\Allies.Designer.cs">
+      <DependentUpon>Allies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Allies\LevelUps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Allies\LevelUps.Designer.cs">
+      <DependentUpon>LevelUps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Attacks\Attacks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Attacks\Attacks.Designer.cs">
+      <DependentUpon>Attacks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Attacks\AttacksEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Attacks\AttacksEditor.Designer.cs">
+      <DependentUpon>AttacksEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Attacks\Spells.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Attacks\Spells.Designer.cs">
+      <DependentUpon>Spells.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Battlefields\SerializedBattlefield.cs" />
+    <Compile Include="!Universal\CopyBuffer.cs" />
+    <Compile Include="Editor.Allies\AlliesEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Allies\AlliesEditor.Designer.cs">
+      <DependentUpon>AlliesEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Dialogues\BattleDialogues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Dialogues\BattleDialogues.Designer.cs">
+      <DependentUpon>BattleDialogues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Dialogues\Dialogues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Dialogues\Dialogues.Designer.cs">
+      <DependentUpon>Dialogues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Dialogues\Fonts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Dialogues\Fonts.Designer.cs">
+      <DependentUpon>Fonts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Dialogues\NewFontTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Dialogues\NewFontTable.Designer.cs">
+      <DependentUpon>NewFontTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Effects\EffectMolds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Effects\EffectMolds.Designer.cs">
+      <DependentUpon>EffectMolds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Effects\Effects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Effects\Effects.Designer.cs">
+      <DependentUpon>Effects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Effects\EffectSequences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Effects\EffectSequences.Designer.cs">
+      <DependentUpon>EffectSequences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Items\Items.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Items\Items.Designer.cs">
+      <DependentUpon>Items.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Items\ItemsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Items\ItemsEditor.Designer.cs">
+      <DependentUpon>ItemsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Items\Shops.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Items\Shops.Designer.cs">
+      <DependentUpon>Shops.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Formations\FormationPacks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Formations\FormationPacks.Designer.cs">
+      <DependentUpon>FormationPacks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Formations\Formations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Formations\Formations.Designer.cs">
+      <DependentUpon>Formations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Monsters\Monsters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Monsters\Monsters.Designer.cs">
+      <DependentUpon>Monsters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Formations\FormationsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Formations\FormationsEditor.Designer.cs">
+      <DependentUpon>FormationsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="!Static\Bits.cs" />
+    <Compile Include="!Static\Comp.cs" />
+    <Compile Include="Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\IOElements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\IOElements.Designer.cs">
+      <DependentUpon>IOElements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Battlefields\Battlefields.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Battlefields\Battlefields.Designer.cs">
+      <DependentUpon>Battlefields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\GraphicEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\GraphicEditor.Designer.cs">
+      <DependentUpon>GraphicEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\LevelsSolidTiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\LevelsSolidTiles.Designer.cs">
+      <DependentUpon>LevelsSolidTiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\LevelsTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\LevelsTemplate.Designer.cs">
+      <DependentUpon>LevelsTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\TilemapEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\TilemapEditor.Designer.cs">
+      <DependentUpon>TilemapEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\TilesetEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\TilesetEditor.Designer.cs">
+      <DependentUpon>TilesetEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\PaletteEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\PaletteEditor.Designer.cs">
+      <DependentUpon>PaletteEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="!Universal\Solidity.cs" />
+    <Compile Include="Editors\TileEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\TileEditor.Designer.cs">
+      <DependentUpon>TileEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.Editors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.Events.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.Exits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.Layers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.Maps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.NPCs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.Overlaps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels\LevelOverlaps.cs" />
+    <Compile Include="Editor.Levels\Levels\NPCProperties.cs" />
+    <Compile Include="Editor.Levels\Levels\Partitions.cs" />
+    <Compile Include="Editors\SpritePartitions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\SpritePartitions.Designer.cs">
+      <DependentUpon>SpritePartitions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="!Universal\PaletteSet.cs" />
+    <Compile Include="Editor.Levels\Levels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels.designer.cs">
+      <DependentUpon>Levels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels\LevelEvents.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelExits.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelLayer.cs" />
+    <Compile Include="Editor.Battlefields\Battlefield.cs" />
+    <Compile Include="Editor.Levels\Levels\Level.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelMap.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelNPCs.cs" />
+    <Compile Include="!Universal\Overlay.cs" />
+    <Compile Include="Editor.Levels\Levels\PrioritySet.cs" />
+    <Compile Include="Editors\NPCEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\NPCEditor.Designer.cs">
+      <DependentUpon>NPCEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\SearchSolidTile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\SearchSolidTile.Designer.cs">
+      <DependentUpon>SearchSolidTile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels\SerializedLevel.cs" />
+    <Compile Include="Editor.Levels\SpaceAnalyzer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\SpaceAnalyzer.Designer.cs">
+      <DependentUpon>SpaceAnalyzer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Battlefields\BattlefieldTileset.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Editor.Levels\Levels\OverlapTileset.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelSolidMap.cs" />
+    <Compile Include="Editor.Levels\Levels\SolidityTile.cs" />
+    <Compile Include="!Universal\Tile.cs" />
+    <Compile Include="!Universal\Subtile.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelTilemap.cs" />
+    <Compile Include="!Universal\OverlapTile.cs" />
+    <Compile Include="!Universal\Tileset.cs" />
+    <Compile Include="Editor.Levels\Levels\LevelTemplate.cs" />
+    <Compile Include="!Static\Lists.cs" />
+    <Compile Include="Editor.Intro\MainTitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Intro\MainTitle.Designer.cs">
+      <DependentUpon>MainTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="!Static\Model.cs" />
+    <Compile Include="MRUManager.cs" />
+    <Compile Include="Feature.Project\Project.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature.Project\Project.Designer.cs">
+      <DependentUpon>Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature.Project\NotesDB.cs" />
+    <Compile Include="Feature.Patches\GamePatches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature.Patches\GamePatches.designer.cs">
+      <DependentUpon>GamePatches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Feature.Patches\IPSPatch.cs" />
+    <Compile Include="Feature.Patches\Patch.cs" />
+    <Compile Include="Feature.Preview\MenuTextPreview.cs" />
+    <Compile Include="Feature.Preview\Previewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Feature.Preview\Previewer.Designer.cs">
+      <DependentUpon>Previewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Sprites\NPCPackets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Sprites\NPCPackets.Designer.cs">
+      <DependentUpon>NPCPackets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgramController.cs" />
+    <Compile Include="Features\ProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ProgressBar.Designer.cs">
+      <DependentUpon>ProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="!Universal\ToolTipLabel.resx">
+      <DependentUpon>ToolTipLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="About.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Audio\Audio.resx">
+      <DependentUpon>Audio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Audio\PickInstruments.resx">
+      <DependentUpon>PickInstruments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Audio\PickNativeSPC.resx">
+      <DependentUpon>PickNativeSPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Audio\SPCEditor.resx">
+      <DependentUpon>SPCEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Intro\Intro.resx">
+      <DependentUpon>Intro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Intro\Opening.resx">
+      <DependentUpon>Opening.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Menus\Menus.resx">
+      <DependentUpon>Menus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Menus\MenusEditor.resx">
+      <DependentUpon>MenusEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Mini Games\MiniGames.resx">
+      <DependentUpon>MiniGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Mini Games\MineCart.resx">
+      <DependentUpon>MineCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.resx">
+      <DependentUpon>Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Levels\Levels.resx">
+      <DependentUpon>Levels.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\EditLabel.resx">
+      <DependentUpon>EditLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Sprites\NPCPackets.resx">
+      <DependentUpon>NPCPackets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Form1.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Sprites\Sprites.resx">
+      <DependentUpon>Sprites.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>
+      </SubType>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Features\Restore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Restore.Designer.cs">
+      <DependentUpon>Restore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Event Scripts\ActionScript.cs" />
+    <Compile Include="Editor.Animations\AnimationScript.cs" />
+    <Compile Include="Editor.Animations\AnimationCommand.cs" />
+    <Compile Include="Editor.Animations\A_ScriptEnums.cs" />
+    <Compile Include="Editor.Animations\A_ScriptIterator.cs" />
+    <Compile Include="Editor.Animations\A_TreeViewWrapper.cs">
+    </Compile>
+    <Compile Include="Editor.Animations\Interpreter.Animation.cs" />
+    <Compile Include="Editor.Monsters\BattleScript.cs" />
+    <Compile Include="Editor.Event Scripts\ActionCommand.cs" />
+    <Compile Include="Editor.Monsters\BattleCommand.cs" />
+    <Compile Include="Editor.Event Scripts\EventActionCommand.cs" />
+    <Compile Include="Editor.Event Scripts\Interpreter.Action.cs" />
+    <Compile Include="Editor.Event Scripts\Interpreter.cs" />
+    <Compile Include="Editor.Event Scripts\EventCommand.cs" />
+    <Compile Include="Editor.Event Scripts\Interpreter.Event.cs" />
+    <Compile Include="Editor.Event Scripts\ScriptIterator.cs" />
+    <Compile Include="Editor.Event Scripts\EventScript.cs" />
+    <Compile Include="Editor.Event Scripts\TreeViewWrapper.cs">
+    </Compile>
+    <Compile Include="Editor.Event Scripts\ScriptEnums.cs" />
+    <Compile Include="!Universal\Settings.cs" />
+    <Compile Include="Features\ClearElements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\ClearElements.Designer.cs">
+      <DependentUpon>ClearElements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="!Static\Do.cs" />
+    <Compile Include="Editor.Dialogues\BattleDialogueTileset.cs" />
+    <Compile Include="Editor.Dialogues\DialogueTileset.cs" />
+    <Compile Include="Editor.Effects\Effect.cs" />
+    <Compile Include="Editor.Effects\E_Animation.cs" />
+    <Compile Include="Editor.Effects\E_Mold.cs" />
+    <Compile Include="Editor.Effects\E_Sequence.cs" />
+    <Compile Include="Editor.Effects\E_Tileset.cs" />
+    <Compile Include="Editor.Sprites\SpriteMolds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Sprites\SpriteMolds.Designer.cs">
+      <DependentUpon>SpriteMolds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Sprites\SpriteSequences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Sprites\SpriteSequences.Designer.cs">
+      <DependentUpon>SpriteSequences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.World Maps\Location.cs" />
+    <Compile Include="Editor.World Maps\WorldMap.cs" />
+    <Compile Include="Editor.World Maps\WorldMaps.Locations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Menus\MenuTileset.cs" />
+    <Compile Include="Editor.Sprites\Mold.cs" />
+    <Compile Include="Editor.Sprites\Sequence.cs" />
+    <Compile Include="Editor.Sprites\Sprite.cs" />
+    <Compile Include="Editor.Sprites\ImagePacket.cs" />
+    <Compile Include="Editor.Sprites\Sprites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Sprites\Sprites.designer.cs">
+      <DependentUpon>Sprites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Sprites\Animation.cs" />
+    <Compile Include="!Static\State.cs" />
+    <Compile Include="Feature.Preview\BattleDialoguePreview.cs" />
+    <Compile Include="Feature.Preview\DescriptionPreview.cs" />
+    <Compile Include="Editor.Attacks\Attack.cs" />
+    <Compile Include="Editor.Allies\Character.cs" />
+    <Compile Include="Editor.Formations\Formation.cs" />
+    <Compile Include="Editor.Formations\FormationPack.cs" />
+    <Compile Include="Editor.Items\Item.cs" />
+    <Compile Include="Editor.Monsters\Monster.cs" />
+    <Compile Include="Editor.Items\Shop.cs" />
+    <Compile Include="Editor.Allies\Slot.cs" />
+    <Compile Include="Editor.Attacks\Spell.cs" />
+    <Compile Include="!Universal\SortedList.cs" />
+    <Compile Include="Feature.Preview\DialoguePreview.cs" />
+    <Compile Include="Editor.Dialogues\BattleDialogue.cs" />
+    <Compile Include="Editor.Dialogues\Dialogue.cs" />
+    <Compile Include="Editor.Dialogues\TextHelper.cs">
+    </Compile>
+    <Compile Include="Editor.Dialogues\TextHelperReduced.cs" />
+    <Compile Include="Editor.Dialogues\FontCharacter.cs" />
+    <Compile Include="Feature.Undo\Command.cs" />
+    <Compile Include="Feature.Undo\CommandStack.cs" />
+    <Compile Include="Feature.Undo\SolidityEdit.cs" />
+    <Compile Include="Feature.Undo\TilemapEdit.cs" />
+    <Compile Include="Editor.World Maps\WorldMaps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.World Maps\WorldMaps.Designer.cs">
+      <DependentUpon>WorldMaps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsEditor.Designer.cs">
+      <DependentUpon>SettingsEditor.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Caroboscis.png" />
+    <None Include="Resources\Editor\openPackets.gif" />
+    <None Include="Resources\Draw\switch.gif" />
+    <None Include="Resources\btn_donate_LG.gif" />
+    <None Include="Resources\Data\addFromNotes.gif" />
+    <None Include="Resources\Data\addToNotes.gif" />
+    <None Include="Resources\Dialog\keystrokes.gif" />
+    <None Include="Resources\Data\importTextAll.gif" />
+    <None Include="Resources\Data\exportTextAll.gif" />
+    <None Include="Resources\Toggle\overlapRemove.gif" />
+    <None Include="Resources\Toggle\overlapAdd.gif" />
+    <None Include="Resources\Toggle\exitRemove.gif" />
+    <None Include="Resources\Toggle\exitAdd.gif" />
+    <None Include="Resources\Toggle\eventRemove.gif" />
+    <None Include="Resources\Toggle\eventAdd.gif" />
+    <None Include="Resources\Data\camera.gif" />
+    <None Include="Resources\Data\invalid.gif" />
+    <None Include="Resources\Data\warning.gif" />
+    <None Include="Resources\Music\note16thdotted.gif" />
+    <None Include="Resources\Music\note32ndDotted.gif" />
+    <None Include="Resources\Music\note32ndTriplet.gif" />
+    <None Include="Resources\Music\note64thTriplet.gif" />
+    <None Include="Resources\Music\noteEmpty.gif" />
+    <None Include="Resources\Music\noteEmptyDotted.gif" />
+    <None Include="Resources\Music\noteEmptyTriplet.gif" />
+    <None Include="Resources\Music\noteHalfTriplet.gif" />
+    <None Include="Resources\Music\noteHead.gif" />
+    <None Include="Resources\Music\noteHeadDotted.gif" />
+    <None Include="Resources\Music\noteHeadPercussion.gif" />
+    <None Include="Resources\Music\noteHeadTriplet.gif" />
+    <None Include="Resources\Music\noteStemDown.gif" />
+    <None Include="Resources\Music\noteStemDown16th.gif" />
+    <None Include="Resources\Music\noteStemDown32nd.gif" />
+    <None Include="Resources\Music\noteStemDown64th.gif" />
+    <None Include="Resources\Music\noteStemDown8th.gif" />
+    <None Include="Resources\Music\noteStemUp.gif" />
+    <None Include="Resources\Music\noteStemUp16th.gif" />
+    <None Include="Resources\Music\noteStemUp32nd.gif" />
+    <None Include="Resources\Music\noteStemUp64th.gif" />
+    <None Include="Resources\Music\noteStemUp8th.gif" />
+    <None Include="Resources\Music\rest16thDotted.gif" />
+    <None Include="Resources\Music\rest32ndDotted.gif" />
+    <None Include="Resources\Music\rest32ndTriplet.gif" />
+    <None Include="Resources\Music\rest64thTriplet.gif" />
+    <None Include="Resources\Music\restHalfTriplet.gif" />
+    <None Include="Resources\Music\tieOver.png" />
+    <None Include="Resources\Music\tieUnder.png" />
+    <None Include="Resources\Music\vibrato.gif" />
+    <None Include="Resources\Music\tremolo.gif" />
+    <None Include="Resources\Music\volume.gif" />
+    <EmbeddedResource Include="Editor.Audio\SampleEditor.resx">
+      <DependentUpon>SampleEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Animations\AnimationScripts.resx">
+      <DependentUpon>AnimationScripts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Monsters\BattleScripts.resx">
+      <DependentUpon>BattleScripts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Event Scripts\EventScripts.resx">
+      <DependentUpon>EventScripts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Sprites\CoordAdjust.resx">
+      <DependentUpon>CoordAdjust.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\HackingTools.resx">
+      <DependentUpon>HackingTools.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ExportImages.resx">
+      <DependentUpon>ExportImages.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\HexEditor.resx">
+      <DependentUpon>HexEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\IOArchitecture.resx">
+      <DependentUpon>IOArchitecture.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\NewExceptionForm.resx">
+      <DependentUpon>NewExceptionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\NewMessageBox.resx">
+      <DependentUpon>NewMessageBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\StatusCalculator.resx">
+      <DependentUpon>StatusCalculator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ZoomBox.resx">
+      <DependentUpon>ZoomBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Allies\Allies.resx">
+      <DependentUpon>Allies.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Allies\AlliesEditor.resx">
+      <DependentUpon>AlliesEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Allies\LevelUps.resx">
+      <DependentUpon>LevelUps.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Attacks\Attacks.resx">
+      <DependentUpon>Attacks.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Attacks\AttacksEditor.resx">
+      <DependentUpon>AttacksEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Attacks\Spells.resx">
+      <DependentUpon>Spells.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Dialogues\BattleDialogues.resx">
+      <DependentUpon>BattleDialogues.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Dialogues\Dialogues.resx">
+      <DependentUpon>Dialogues.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Dialogues\Fonts.resx">
+      <DependentUpon>Fonts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Dialogues\NewFontTable.resx">
+      <DependentUpon>NewFontTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Effects\EffectMolds.resx">
+      <DependentUpon>EffectMolds.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Effects\Effects.resx">
+      <DependentUpon>Effects.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Effects\EffectSequences.resx">
+      <DependentUpon>EffectSequences.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Items\Items.resx">
+      <DependentUpon>Items.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Items\ItemsEditor.resx">
+      <DependentUpon>ItemsEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Items\Shops.resx">
+      <DependentUpon>Shops.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Formations\FormationPacks.resx">
+      <DependentUpon>FormationPacks.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Formations\Formations.resx">
+      <DependentUpon>Formations.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Monsters\Monsters.resx">
+      <DependentUpon>Monsters.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Formations\FormationsEditor.resx">
+      <DependentUpon>FormationsEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Resources\Cursors\CursorDraw.cur" />
+    <None Include="Resources\Cursors\CursorErase.cur" />
+    <EmbeddedResource Include="Features\IOElements.resx">
+      <DependentUpon>IOElements.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Battlefields\Battlefields.resx">
+      <DependentUpon>Battlefields.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\GraphicEditor.resx">
+      <DependentUpon>GraphicEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Levels\LevelsSolidTiles.resx">
+      <DependentUpon>LevelsSolidTiles.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Levels\LevelsTemplate.resx">
+      <DependentUpon>LevelsTemplate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Levels\TilemapEditor.resx">
+      <DependentUpon>TilemapEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Levels\TilesetEditor.resx">
+      <DependentUpon>TilesetEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\SpritePartitions.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SpritePartitions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\PaletteEditor.resx">
+      <DependentUpon>PaletteEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\NPCEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NPCEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Levels\SearchSolidTile.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SearchSolidTile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Levels\SpaceAnalyzer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SpaceAnalyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature.Project\Project.resx">
+      <DependentUpon>Project.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\TileEditor.resx">
+      <DependentUpon>TileEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Intro\MainTitle.resx">
+      <DependentUpon>MainTitle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature.Patches\GamePatches.resx">
+      <DependentUpon>GamePatches.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Feature.Preview\Previewer.resx">
+      <DependentUpon>Previewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ProgressBar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Resources\Cursors\CursorDropper.cur" />
+    <None Include="Resources\Cursors\CursorZoomIn.cur" />
+    <None Include="Resources\Cursors\CursorZoomOut.cur" />
+    <EmbeddedResource Include="Features\Restore.resx">
+      <DependentUpon>Restore.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\ClearElements.resx">
+      <DependentUpon>ClearElements.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Sprites\SpriteMolds.resx">
+      <DependentUpon>SpriteMolds.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Sprites\SpriteSequences.resx">
+      <DependentUpon>SpriteSequences.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Resources\Cursors\CursorTemplate.cur" />
+    <EmbeddedResource Include="Editor.World Maps\WorldMaps.resx">
+      <DependentUpon>WorldMaps.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsEditor.resx">
+      <DependentUpon>SettingsEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="bin\Debug\Lunar Compress.dll" />
+    <None Include="Resources\Cursors\CursorFill.cur" />
+    <Content Include="Feature.Patches\PatchFormat.txt" />
+    <None Include="Resources\RomPreviewBaseSave.000" />
+    <None Include="Resources\RomPreviewBaseSave.zst" />
+    <None Include="Resources\Tiles\quadBlock.gif" />
+    <None Include="Resources\Tiles\halfQuadBlock.gif" />
+    <None Include="Resources\Tiles\quadBase.gif" />
+    <None Include="Resources\Tiles\stairsUpLeftHigh.gif" />
+    <None Include="Resources\Tiles\stairsUpLeftLow.gif" />
+    <None Include="Resources\Tiles\stairsUpRightHigh.gif" />
+    <None Include="Resources\Tiles\stairsUpRightLow.gif" />
+    <None Include="Resources\Music\clefF.gif" />
+    <None Include="Resources\Music\clefG.gif" />
+    <None Include="Resources\Data\apply.gif" />
+    <None Include="Resources\Data\back.gif" />
+    <None Include="Resources\Data\baseConversion.gif" />
+    <None Include="Resources\Data\broom.gif" />
+    <None Include="Resources\Data\calculator.gif" />
+    <None Include="Resources\Data\cartridge.gif" />
+    <None Include="Resources\Data\cartridgeClose.gif" />
+    <None Include="Resources\Data\cartridgeReload.gif" />
+    <None Include="Resources\Data\clearModel.gif" />
+    <None Include="Resources\Data\clear_small.gif" />
+    <None Include="Resources\Data\deleteInstance.gif" />
+    <None Include="Resources\Data\duplicate_small.gif" />
+    <None Include="Resources\Data\edit_small.gif" />
+    <None Include="Resources\Data\exportData.gif" />
+    <None Include="Resources\Data\exportImage.gif" />
+    <None Include="Resources\Data\foward.gif" />
+    <None Include="Resources\Data\help_small.gif" />
+    <None Include="Resources\Data\hexEditor.gif" />
+    <None Include="Resources\Data\iconTools.gif" />
+    <None Include="Resources\Data\importData.gif" />
+    <None Include="Resources\Data\importImage.gif" />
+    <None Include="Resources\Data\label.gif" />
+    <None Include="Resources\Data\movedown.gif" />
+    <None Include="Resources\Data\moveup.gif" />
+    <None Include="Resources\Data\newInstance.gif" />
+    <None Include="Resources\Data\new_small.gif" />
+    <None Include="Resources\Data\notepad.gif" />
+    <None Include="Resources\Data\npcAdd.gif" />
+    <None Include="Resources\Data\npcClone.gif" />
+    <None Include="Resources\Data\npcRemove.gif" />
+    <None Include="Resources\Data\open_small.gif" />
+    <None Include="Resources\Data\play.gif" />
+    <None Include="Resources\Data\publish.gif" />
+    <None Include="Resources\Data\recentFiles.gif" />
+    <None Include="Resources\Data\romInfo.gif" />
+    <None Include="Resources\Data\saveAs_small.gif" />
+    <None Include="Resources\Data\save_small.gif" />
+    <None Include="Resources\Data\search.gif" />
+    <None Include="Resources\Data\settings.gif" />
+    <None Include="Resources\Data\signature.gif" />
+    <None Include="Resources\Data\stop.gif" />
+    <None Include="Resources\Data\tools.gif" />
+    <None Include="Resources\Data\transfer_small.gif" />
+    <None Include="Resources\Data\update.gif" />
+    <None Include="Resources\Dialog\endString.gif" />
+    <None Include="Resources\Dialog\endStringA.gif" />
+    <None Include="Resources\Dialog\insertIntoText.gif" />
+    <None Include="Resources\Dialog\keys_load.gif" />
+    <None Include="Resources\Dialog\keys_save.gif" />
+    <None Include="Resources\Dialog\newLine.gif" />
+    <None Include="Resources\Dialog\newLineA.gif" />
+    <None Include="Resources\Dialog\pageBreak.gif" />
+    <None Include="Resources\Dialog\pageBreakA.gif" />
+    <None Include="Resources\Dialog\pageDown.gif" />
+    <None Include="Resources\Dialog\pageUp.gif" />
+    <None Include="Resources\Dialog\pause60f.gif" />
+    <None Include="Resources\Dialog\pauseA.gif" />
+    <None Include="Resources\Dialog\pauseFrames.gif" />
+    <None Include="Resources\Dialog\synchronize.gif" />
+    <None Include="Resources\Dialog\textView.gif" />
+    <None Include="Resources\Draw\colorreplace.gif" />
+    <None Include="Resources\Draw\coordinator.gif" />
+    <None Include="Resources\Draw\dragSolid.gif" />
+    <None Include="Resources\Draw\copy_small.gif" />
+    <None Include="Resources\Draw\crop.gif" />
+    <None Include="Resources\Draw\cut_small.gif" />
+    <None Include="Resources\Draw\delete_small.gif" />
+    <None Include="Resources\Draw\draw_small.gif" />
+    <None Include="Resources\Draw\dropper_small.gif" />
+    <None Include="Resources\Draw\editAllLayers.gif" />
+    <None Include="Resources\Draw\erase_small.gif" />
+    <None Include="Resources\Draw\fill_small.gif" />
+    <None Include="Resources\Draw\flip_small.gif" />
+    <None Include="Resources\Draw\heightDecrease.gif" />
+    <None Include="Resources\Draw\heightIncrease.gif" />
+    <None Include="Resources\Draw\mirror_small.gif" />
+    <None Include="Resources\Draw\moveall.gif" />
+    <None Include="Resources\Draw\paste_small.gif" />
+    <None Include="Resources\Draw\redo_small.gif" />
+    <None Include="Resources\Draw\selectAll_small.gif" />
+    <None Include="Resources\Draw\select_small.gif" />
+    <None Include="Resources\Draw\snapIsometricLeft.gif" />
+    <None Include="Resources\Draw\snapIsometricRight.gif" />
+    <None Include="Resources\Draw\template_small.gif" />
+    <None Include="Resources\Draw\undo_small.gif" />
+    <None Include="Resources\Draw\widthDecrease.gif" />
+    <None Include="Resources\Draw\widthIncrease.gif" />
+    <None Include="Resources\Draw\zoomin_small.gif" />
+    <None Include="Resources\Draw\zoomout_small.gif" />
+    <None Include="Resources\Music\drumsOff.gif" />
+    <None Include="Resources\Music\drumsOn.gif" />
+    <None Include="Resources\Editor\main.gif" />
+    <None Include="Resources\Editor\mainAllies.gif" />
+    <None Include="Resources\Editor\mainAnimations.gif" />
+    <None Include="Resources\Editor\mainAttacks.gif" />
+    <None Include="Resources\Editor\mainAudio.gif" />
+    <None Include="Resources\Editor\mainBattlefields.gif" />
+    <None Include="Resources\Editor\mainBattleScripts.gif" />
+    <None Include="Resources\Editor\mainDialogues.gif" />
+    <None Include="Resources\Editor\mainEffects.gif" />
+    <None Include="Resources\Editor\mainEventScripts.gif" />
+    <None Include="Resources\Editor\mainFormations.gif" />
+    <None Include="Resources\Editor\mainItems.gif" />
+    <None Include="Resources\Editor\mainLevels.gif" />
+    <None Include="Resources\Editor\mainMainTitle.gif" />
+    <None Include="Resources\Editor\mainMenus.gif" />
+    <None Include="Resources\Editor\mainMiniGames.gif" />
+    <None Include="Resources\Editor\mainMonsters.gif" />
+    <None Include="Resources\Editor\mainNotes.gif" />
+    <None Include="Resources\Editor\mainPatches.gif" />
+    <None Include="Resources\Editor\mainSprites.gif" />
+    <None Include="Resources\Editor\mainWorldMaps.gif" />
+    <None Include="Resources\Editor\openAttacks.gif" />
+    <None Include="Resources\Editor\openBattleDialogues.gif" />
+    <None Include="Resources\Editor\openDialogues.gif" />
+    <None Include="Resources\Editor\openEffectSequences.gif" />
+    <None Include="Resources\Editor\openFonts.gif" />
+    <None Include="Resources\Editor\openGraphics.gif" />
+    <None Include="Resources\Editor\openLevelUps.gif" />
+    <None Include="Resources\Editor\openMap.gif" />
+    <None Include="Resources\Editor\openMolds.gif" />
+    <None Include="Resources\Editor\openNewFontTable.gif" />
+    <None Include="Resources\Editor\openNewGame.gif" />
+    <None Include="Resources\Editor\openNPCs.gif" />
+    <None Include="Resources\Editor\openPacks.gif" />
+    <None Include="Resources\Editor\openPalettes.gif" />
+    <None Include="Resources\Editor\openPartitions.gif" />
+    <None Include="Resources\Editor\openSequences.gif" />
+    <None Include="Resources\Editor\openShops.gif" />
+    <None Include="Resources\Editor\openSpells.gif" />
+    <None Include="Resources\Editor\openTemplates.gif" />
+    <None Include="Resources\Editor\openTileEditor.gif" />
+    <None Include="Resources\Editor\openTilesets.gif" />
+    <None Include="Resources\Editor\preview.gif" />
+    <None Include="Resources\Editor\spaceAnalyzer.gif" />
+    <None Include="Resources\Data\exportBinary.gif" />
+    <None Include="Resources\Data\exportText.gif" />
+    <None Include="Resources\Music\firstSection.gif" />
+    <None Include="Resources\Music\flat.gif" />
+    <None Include="Resources\Data\exportWAV.gif" />
+    <None Include="Resources\Forms\alwaysOnTop.gif" />
+    <None Include="Resources\Forms\closeAll.gif" />
+    <None Include="Resources\Forms\collapseAll.gif" />
+    <None Include="Resources\Forms\dock.gif" />
+    <None Include="Resources\Forms\expandAll.gif" />
+    <None Include="Resources\Forms\numerals.gif" />
+    <None Include="Resources\Forms\reset.gif" />
+    <None Include="Resources\Forms\minimizeAll.gif" />
+    <None Include="Resources\Forms\numerize.gif" />
+    <None Include="Resources\Forms\openAll.gif" />
+    <None Include="Resources\Forms\restoreAll.gif" />
+    <None Include="Resources\Forms\undock.gif" />
+    <None Include="Resources\Lunar Compress.dll" />
+    <None Include="Resources\Music\instrument.gif" />
+    <None Include="Resources\Music\loop.gif" />
+    <None Include="Resources\Music\loopInf.gif" />
+    <None Include="Resources\Music\loopEnd.gif" />
+    <None Include="Resources\Data\importBinary.gif" />
+    <None Include="Resources\Data\importText.gif" />
+    <None Include="Resources\Music\insert.gif" />
+    <None Include="Resources\Data\importWAV.gif" />
+    <None Include="Resources\LAZYSHELL_icon.ico" />
+    <None Include="Resources\Help\LAZYSHELL_css.css" />
+    <None Include="Resources\Help\LAZYSHELL_xml.xml" />
+    <None Include="Resources\Help\LAZYSHELL_xsl.xsl" />
+    <None Include="Resources\Main\about_small.gif" />
+    <None Include="Resources\Music\noteQuarter.gif" />
+    <None Include="Resources\Music\speakerBalance.gif" />
+    <None Include="Resources\Music\stave.gif" />
+    <None Include="Resources\Music\metronome.gif" />
+    <None Include="Resources\Music\sharp.gif" />
+    <None Include="Resources\Music\silence.gif" />
+    <None Include="Resources\Music\restQuarter.gif" />
+    <None Include="Resources\Music\octaveDown.gif" />
+    <None Include="Resources\Music\octaveSet.gif" />
+    <None Include="Resources\Music\octaveUp.gif" />
+    <None Include="Resources\Music\terminate.gif" />
+    <None Include="Resources\Music\portamento.gif" />
+    <None Include="Resources\Music\reverbOff.gif" />
+    <None Include="Resources\Music\reverbOn.gif" />
+    <None Include="Resources\Editor\openSamples.gif" />
+    <None Include="Resources\Editor\openSPCs.gif" />
+    <None Include="Resources\Music\note8th.gif" />
+    <None Include="Resources\Music\note8thDotted.gif" />
+    <None Include="Resources\Music\note16th.gif" />
+    <None Include="Resources\Music\note8thTriplet.gif" />
+    <None Include="Resources\Music\note32nd.gif" />
+    <None Include="Resources\Music\note16thTriplet.gif" />
+    <None Include="Resources\Music\note64th.gif" />
+    <None Include="Resources\Music\noteHalf.gif" />
+    <None Include="Resources\Music\noteHalfDotted.gif" />
+    <None Include="Resources\Music\noteWhole.gif" />
+    <None Include="Resources\Music\rest8th.gif" />
+    <None Include="Resources\Music\rest8thDotted.gif" />
+    <None Include="Resources\Music\rest16th.gif" />
+    <None Include="Resources\Music\rest8thTriplet.gif" />
+    <None Include="Resources\Music\rest32nd.gif" />
+    <None Include="Resources\Music\rest16thTriplet.gif" />
+    <None Include="Resources\Music\rest64th.gif" />
+    <None Include="Resources\Music\rest64thDotted.gif" />
+    <None Include="Resources\Music\restHalf.gif" />
+    <None Include="Resources\Music\restWhole.gif" />
+    <None Include="Resources\Music\noteQuarterTriplet.gif" />
+    <None Include="Resources\Music\restQuarterTriplet.gif" />
+    <None Include="Resources\Music\noteDotted.gif" />
+    <None Include="Resources\Music\restDotted.gif" />
+    <None Include="Resources\Music\restHalfDotted.gif" />
+    <None Include="Resources\Music\score.gif" />
+    <None Include="Resources\Music\natural.gif" />
+    <None Include="Resources\Music\staffNew.gif" />
+    <None Include="Resources\Music\staffDelete.gif" />
+    <None Include="Resources\Draw\moveToFront.gif" />
+    <None Include="Resources\Draw\sendToBack.gif" />
+    <None Include="Resources\Toggle\priority1ON.gif" />
+    <None Include="Resources\Toggle\priority1OFF.gif" />
+    <None Include="Resources\Music\notePercussion.gif" />
+    <None Include="Resources\Main\jumpTo.gif" />
+    <None Include="Resources\Main\history.gif" />
+    <None Include="Resources\Tiles\fieldBase.gif" />
+    <None Include="Resources\Tiles\fieldBlock.gif" />
+    <None Include="Resources\Toggle\buttonBoundaries.gif" />
+    <None Include="Resources\Toggle\buttonEventField.gif" />
+    <None Include="Resources\Toggle\buttonExitField.gif" />
+    <None Include="Resources\Toggle\buttonMushroom.gif" />
+    <None Include="Resources\Toggle\buttonNPC.gif" />
+    <None Include="Resources\Toggle\buttonOverlaps.gif" />
+    <None Include="Resources\Toggle\buttonPhysical.gif" />
+    <None Include="Resources\Toggle\buttonPhysicalTiles.gif" />
+    <None Include="Resources\Toggle\buttonSolidMods.gif" />
+    <None Include="Resources\Toggle\buttonSSObjects.gif" />
+    <None Include="Resources\Toggle\buttonTileMods.gif" />
+    <None Include="Resources\Toggle\buttonToggleGrid.gif" />
+    <None Include="Resources\Toggle\buttonToggleMask.gif" />
+    <None Include="Resources\Toggle\buttonToggleOrthGrid.gif" />
+    <None Include="Resources\Toggle\buttonTogglePixelGrid.gif" />
+    <None Include="Resources\Toggle\mapBanner.gif" />
+    <None Include="Resources\Toggle\mapPoint.gif" />
+    <None Include="Resources\Toggle\marioicon.gif" />
+    <None Include="Resources\Toggle\opacity.gif" />
+    <None Include="Resources\Toggle\railicon.gif" />
+    <None Include="Resources\Toggle\showMain.gif" />
+    <None Include="Resources\Toggle\tags.gif" />
+    <None Include="Resources\Toggle\zoomBox.gif" />
+    <None Include="Resources\_bg.gif" />
+    <None Include="Resources\_transparent.gif" />
+    <None Include="Resources\Main\HAMMER.gif" />
+    <None Include="Resources\Main\TITLE_FG.gif" />
+    <None Include="Resources\Main\TITLE_BG.gif" />
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
