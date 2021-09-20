@@ -88,6 +88,17 @@ namespace LAZYSHELL
                     unsorted[i] = i;
                 }
             }
+            else if (type == typeof(Character[]))
+            {
+                Character[] character = (Character[])elements;
+                names = new string[character.Length];
+                unsorted = new int[character.Length];
+                for (int i = 0; i < character.Length; i++)
+                {
+                    names[i] = new string(character[i].Name);
+                    unsorted[i] = i;
+                }
+            }
         }
         // accessors
         /// <summary>
