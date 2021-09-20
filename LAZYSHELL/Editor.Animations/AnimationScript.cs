@@ -37,6 +37,10 @@ namespace LAZYSHELL.ScriptsEditor
             0x350DA3,0x350DAF,0x350DED,0x350E38,0x350E4A,0x350E84,0x350E98,0x350EEE,
             0x350F1A,0x350F44,0x350F4A,0x350F56,0x350F6B,0x350F7A
         };
+        private readonly int[] characterOffsets = new int[] // character weapon scripts that play when character draws near monsters to attack
+        {
+            0x358916,0x3589D5,0x358A6C,0x358B57,0x358BEC 
+        };
         // constructor
         public AnimationScript(int index, int type)
         {
@@ -57,12 +61,19 @@ namespace LAZYSHELL.ScriptsEditor
                 case 5: start = 0xC992; bank = 0x350000; break;
                 case 6: start = 0xECA2; bank = 0x350000; break;
                 case 7: start = 0x816D; bank = 0x350000; break;
-                case 8: start = 0x6004; bank = 0x3A0000; break;
-                case 9: start = 0xF455; bank = 0x020000; break;
-                case 10: start = 0xF4BD; bank = 0x020000; break;
+                case 8: start = 0x8271; bank = 0x350000; break;
+                case 9: start = 0x6004; bank = 0x3A0000; break;
+                case 10: start = 0xF455; bank = 0x020000; break;
+                case 11: start = 0xF4BD; bank = 0x020000; break;
+
+                    // Be sure to add 0x0402 for additional editable script behaviors
+
             }
             if (type == 0)
                 baseOffset = behaviorOffsets[index];
+
+            else if (type == 12)
+                baseOffset = characterOffsets[index];
             else
                 baseOffset = bank + Bits.GetShort(rom, bank + start + index * 2);
             ParseScript(rom);
@@ -72,7 +83,7 @@ namespace LAZYSHELL.ScriptsEditor
         {
             int offset = baseOffset, length = 0;
             AnimationCommand temp;
-            if (type == 8)
+            if (type == 9)
             {
                 offset = baseOffset + 2;
                 if (index == 22) offset = baseOffset + 4;

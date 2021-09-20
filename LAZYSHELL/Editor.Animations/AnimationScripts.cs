@@ -31,9 +31,11 @@ namespace LAZYSHELL
                     case 5: return Model.SpellAnimAllies;
                     case 6: return Model.WeaponAnimations;
                     case 7: return Model.WeaponSoundScripts;
-                    case 8: return Model.BattleEvents;
-                    case 9: return Model.BonusMessageAnimations;
-                    case 10: return Model.ToadTutorialScript;
+                    case 8: return Model.WeaponTimedHitScripts;
+                    case 9: return Model.BattleEvents;
+                    case 10: return Model.BonusMessageAnimations;
+                    case 11: return Model.ToadTutorialScript;
+                    case 12: return Model.CharacterScripts;
                 }
                 return null;
             }
@@ -49,9 +51,11 @@ namespace LAZYSHELL
                     case 5: Model.SpellAnimAllies = value; break;
                     case 6: Model.WeaponAnimations = value; break;
                     case 7: Model.WeaponSoundScripts = value; break;
-                    case 8: Model.BattleEvents = value; break;
-                    case 9: Model.BonusMessageAnimations = value; break;
-                    case 10: Model.ToadTutorialScript = value; break;
+                    case 8: Model.WeaponTimedHitScripts = value; break;
+                    case 9: Model.BattleEvents = value; break;
+                    case 10: Model.BonusMessageAnimations = value; break;
+                    case 11: Model.ToadTutorialScript = value; break;
+                    case 12: Model.CharacterScripts = value; break;
                 }
             }
         }
@@ -81,9 +85,11 @@ namespace LAZYSHELL
             "Ally Spells",
             "Weapons Animations",
             "Weapon Miss Sounds",
+            "Weapon Timed-Hit Sounds",
             "Battle Events",
             "Flower Bonus Messages",
-            "Toad's Tutorial"});
+            "Toad's Tutorial",
+            "Character Weapon Scripts"});
             Do.AddShortcut(toolStrip4, Keys.Control | Keys.S, new EventHandler(save_Click));
             Do.AddShortcut(toolStrip4, Keys.F1, helpTips);
             Do.AddShortcut(toolStrip4, Keys.F2, baseConvertor);
@@ -232,13 +238,23 @@ namespace LAZYSHELL
                 case 8:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
+                    for (int i = 0; i < animationScripts.Length; i++)
+                        this.animationName.Items.Add(Model.ItemNames.GetUnsortedName(i));
+                    animationName.DropDownWidth = animationName.Width;
+                    animationName.DrawMode = DrawMode.OwnerDrawFixed;
+                    animationName.BackColor = SystemColors.ControlDarkDark;
+                    animationNum.Maximum = animationScripts.Length - 1;
+                    break;
+                case 9:
+                    wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
+                    animationName.Items.Clear();
                     this.animationName.Items.AddRange(Lists.Numerize(Lists.BattleEventNames));
                     animationName.DropDownWidth = 400;
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
                     animationNum.Maximum = animationScripts.Length - 1;
                     break;
-                case 9:
+                case 10:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     this.animationName.Items.AddRange(new object[] {
@@ -253,7 +269,7 @@ namespace LAZYSHELL
                     animationName.BackColor = SystemColors.Window;
                     animationNum.Maximum = animationScripts.Length - 1;
                     break;
-                case 10:
+                case 11:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     this.animationName.Items.AddRange(new object[] {
@@ -261,6 +277,16 @@ namespace LAZYSHELL
                     animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
+                    animationNum.Maximum = animationScripts.Length - 1;
+                    break;
+                case 12:
+                    wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
+                    animationName.Items.Clear();
+                    for (int i = 0; i < animationScripts.Length; i++)
+                        this.animationName.Items.Add(Model.CharacterNames.GetUnsortedName(i));
+                    animationName.DropDownWidth = animationName.Width;
+                    animationName.DrawMode = DrawMode.OwnerDrawFixed;
+                    animationName.BackColor = SystemColors.ControlDarkDark;
                     animationNum.Maximum = animationScripts.Length - 1;
                     break;
             }
@@ -1394,9 +1420,9 @@ namespace LAZYSHELL
                 animationCategory.SelectedIndex == 1 ||
                 animationCategory.SelectedIndex == 2 ||
                 animationCategory.SelectedIndex == 4 ||
-                animationCategory.SelectedIndex == 9;
+                animationCategory.SelectedIndex == 10;
             // so it won't try to load the label editor if we haven't loaded the battle events
-            labelWindow.Disable = animationCategory.SelectedIndex != 9;
+            labelWindow.Disable = animationCategory.SelectedIndex != 12;
             if (this.Updating)
                 return;
             animationNum.Value = 0;
@@ -1447,9 +1473,11 @@ namespace LAZYSHELL
                 case 5: if (e.Index < 0 || e.Index > 31) return; break;
                 case 6: if (e.Index < 0 || e.Index > 35) return; break;
                 case 7: if (e.Index < 0 || e.Index > 35) return; break;
-                case 8: if (e.Index < 0 || e.Index > 101) return; break;
-                case 9: if (e.Index < 0 || e.Index > 5) return; break;
-                case 10: if (e.Index < 0 || e.Index > 0) return; break;
+                case 8: if (e.Index < 0 || e.Index > 35) return; break;
+                case 9: if (e.Index < 0 || e.Index > 101) return; break;
+                case 10: if (e.Index < 0 || e.Index > 5) return; break;
+                case 11: if (e.Index < 0 || e.Index > 0) return; break;
+                case 12: if (e.Index < 0 || e.Index > 5) return; break;
             }
             int[] temp;
             if (animationCategory.SelectedIndex == 1 ||
@@ -1457,7 +1485,9 @@ namespace LAZYSHELL
                 animationCategory.SelectedIndex == 4 ||
                 animationCategory.SelectedIndex == 5 ||
                 animationCategory.SelectedIndex == 6 ||
-                animationCategory.SelectedIndex == 7)
+                animationCategory.SelectedIndex == 7 ||
+                animationCategory.SelectedIndex == 8 ||
+                animationCategory.SelectedIndex == 12)
             {
                 char[] name;
                 switch (animationCategory.SelectedIndex)
@@ -1484,6 +1514,14 @@ namespace LAZYSHELL
                         break;
                     case 7: // weapons miss sounds
                         name = Model.ItemNames.GetUnsortedName(e.Index).ToCharArray();
+                        temp = menuTextPreview.GetPreview(Model.FontMenu, Model.FontPaletteBattle.Palette, name, true);
+                        break;
+                    case 8: // weapons timed hit sounds
+                        name = Model.ItemNames.GetUnsortedName(e.Index).ToCharArray();
+                        temp = menuTextPreview.GetPreview(Model.FontMenu, Model.FontPaletteBattle.Palette, name, true);
+                        break;
+                    case 12: // weapons timed hit sounds
+                        name = Model.CharacterNames.GetUnsortedName(e.Index).ToCharArray();
                         temp = menuTextPreview.GetPreview(Model.FontMenu, Model.FontPaletteBattle.Palette, name, true);
                         break;
                     default:
@@ -1891,6 +1929,7 @@ namespace LAZYSHELL
                 Model.EntranceAnimations = null;
                 Model.WeaponAnimations = null;
                 Model.WeaponSoundScripts = null;
+                Model.WeaponTimedHitScripts = null;
                 Model.ToadTutorialScript = null;
             }
             else if (result == DialogResult.Cancel)
@@ -1908,6 +1947,11 @@ namespace LAZYSHELL
         }
 
         private void toolStripSeparator2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void animationCategory_Click(object sender, EventArgs e)
         {
 
         }

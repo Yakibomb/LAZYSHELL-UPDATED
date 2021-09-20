@@ -578,7 +578,7 @@ namespace LAZYSHELL
             // 
             this.animationCategory.ContextMenuStrip = null;
             this.animationCategory.DrawMode = System.Windows.Forms.DrawMode.Normal;
-            this.animationCategory.DropDownHeight = 150;
+            this.animationCategory.DropDownHeight = 164;
             this.animationCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.animationCategory.DropDownWidth = 160;
             this.animationCategory.ItemHeight = 13;
@@ -588,13 +588,14 @@ namespace LAZYSHELL
             this.animationCategory.SelectedItem = null;
             this.animationCategory.Size = new System.Drawing.Size(160, 23);
             this.animationCategory.SelectedIndexChanged += new System.EventHandler(this.animationCategory_SelectedIndexChanged);
+            this.animationCategory.Click += new System.EventHandler(this.animationCategory_Click);
             // 
             // animationName
             // 
             this.animationName.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.animationName.ContextMenuStrip = null;
             this.animationName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.animationName.DropDownHeight = 500;
+            this.animationName.DropDownHeight = 600;
             this.animationName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.animationName.DropDownWidth = 300;
             this.animationName.ItemHeight = 15;
