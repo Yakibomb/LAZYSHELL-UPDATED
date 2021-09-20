@@ -3,7 +3,9 @@ LAZYSHELL: UPDATED EDITION Source Code
 Version 1.3.1
 
 This Github is dedicated to "LAZYSHELL: UPDATED EDITION", version 1.3.1.
+
 Lazy Shell was created by Giangurgolo and Omega
+
 Lazy Shell: Updated Edition was forked by Yakibomb (author of this github).
 
 This Github is only maintained by Yakibomb.
