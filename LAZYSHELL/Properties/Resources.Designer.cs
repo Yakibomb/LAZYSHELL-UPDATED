@@ -22,7 +22,7 @@ namespace LAZYSHELL.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace LAZYSHELL.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LAZYSHELL.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace LAZYSHELL.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _bg {
+        public static System.Drawing.Bitmap _bg {
             get {
                 object obj = ResourceManager.GetObject("_bg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _switch {
+        public static System.Drawing.Bitmap _switch {
             get {
                 object obj = ResourceManager.GetObject("_switch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _transparent {
+        public static System.Drawing.Bitmap _transparent {
             get {
                 object obj = ResourceManager.GetObject("_transparent", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap about_small {
+        public static System.Drawing.Bitmap about_small {
             get {
                 object obj = ResourceManager.GetObject("about_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap addFromNotes {
+        public static System.Drawing.Bitmap addFromNotes {
             get {
                 object obj = ResourceManager.GetObject("addFromNotes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap addToNotes {
+        public static System.Drawing.Bitmap addToNotes {
             get {
                 object obj = ResourceManager.GetObject("addToNotes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap apply {
+        public static System.Drawing.Bitmap apply {
             get {
                 object obj = ResourceManager.GetObject("apply", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap back {
+        public static System.Drawing.Bitmap back {
             get {
                 object obj = ResourceManager.GetObject("back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap baseConversion {
+        public static System.Drawing.Bitmap baseConversion {
             get {
                 object obj = ResourceManager.GetObject("baseConversion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap broom {
+        public static System.Drawing.Bitmap broom {
             get {
                 object obj = ResourceManager.GetObject("broom", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonBoundaries {
+        public static System.Drawing.Bitmap buttonBoundaries {
             get {
                 object obj = ResourceManager.GetObject("buttonBoundaries", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonEventField {
+        public static System.Drawing.Bitmap buttonEventField {
             get {
                 object obj = ResourceManager.GetObject("buttonEventField", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonExitField {
+        public static System.Drawing.Bitmap buttonExitField {
             get {
                 object obj = ResourceManager.GetObject("buttonExitField", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonMushroom {
+        public static System.Drawing.Bitmap buttonMushroom {
             get {
                 object obj = ResourceManager.GetObject("buttonMushroom", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +203,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonNPC {
+        public static System.Drawing.Bitmap buttonNPC {
             get {
                 object obj = ResourceManager.GetObject("buttonNPC", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonOverlaps {
+        public static System.Drawing.Bitmap buttonOverlaps {
             get {
                 object obj = ResourceManager.GetObject("buttonOverlaps", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonPhysical {
+        public static System.Drawing.Bitmap buttonPhysical {
             get {
                 object obj = ResourceManager.GetObject("buttonPhysical", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,17 +233,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonPhysical1 {
-            get {
-                object obj = ResourceManager.GetObject("buttonPhysical1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap buttonPhysicalTiles {
+        public static System.Drawing.Bitmap buttonPhysicalTiles {
             get {
                 object obj = ResourceManager.GetObject("buttonPhysicalTiles", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +243,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonSolidMods {
+        public static System.Drawing.Bitmap buttonSolidMods {
             get {
                 object obj = ResourceManager.GetObject("buttonSolidMods", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +253,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonSSObjects {
+        public static System.Drawing.Bitmap buttonSSObjects {
             get {
                 object obj = ResourceManager.GetObject("buttonSSObjects", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +263,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonTileMods {
+        public static System.Drawing.Bitmap buttonTileMods {
             get {
                 object obj = ResourceManager.GetObject("buttonTileMods", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +273,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonToggleGrid {
+        public static System.Drawing.Bitmap buttonToggleGrid {
             get {
                 object obj = ResourceManager.GetObject("buttonToggleGrid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +283,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonToggleMask {
+        public static System.Drawing.Bitmap buttonToggleMask {
             get {
                 object obj = ResourceManager.GetObject("buttonToggleMask", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +293,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonToggleOrthGrid {
+        public static System.Drawing.Bitmap buttonToggleOrthGrid {
             get {
                 object obj = ResourceManager.GetObject("buttonToggleOrthGrid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +303,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap buttonTogglePixelGrid {
+        public static System.Drawing.Bitmap buttonTogglePixelGrid {
             get {
                 object obj = ResourceManager.GetObject("buttonTogglePixelGrid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +313,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap calculator {
+        public static System.Drawing.Bitmap calculator {
             get {
                 object obj = ResourceManager.GetObject("calculator", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +323,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap camera {
+        public static System.Drawing.Bitmap camera {
             get {
                 object obj = ResourceManager.GetObject("camera", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +333,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Caroboscis {
+        public static System.Drawing.Bitmap Caroboscis {
             get {
                 object obj = ResourceManager.GetObject("Caroboscis", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +343,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cartridge {
+        public static System.Drawing.Bitmap cartridge {
             get {
                 object obj = ResourceManager.GetObject("cartridge", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -363,7 +353,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cartridgeClose {
+        public static System.Drawing.Bitmap cartridgeClose {
             get {
                 object obj = ResourceManager.GetObject("cartridgeClose", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -373,7 +363,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cartridgeReload {
+        public static System.Drawing.Bitmap cartridgeReload {
             get {
                 object obj = ResourceManager.GetObject("cartridgeReload", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -383,7 +373,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clear_small {
+        public static System.Drawing.Bitmap clear_small {
             get {
                 object obj = ResourceManager.GetObject("clear_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -393,7 +383,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clearModel {
+        public static System.Drawing.Bitmap clearModel {
             get {
                 object obj = ResourceManager.GetObject("clearModel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -403,7 +393,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clefF {
+        public static System.Drawing.Bitmap clefF {
             get {
                 object obj = ResourceManager.GetObject("clefF", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -413,7 +403,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clefG {
+        public static System.Drawing.Bitmap clefG {
             get {
                 object obj = ResourceManager.GetObject("clefG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -423,7 +413,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap closeAll {
+        public static System.Drawing.Bitmap closeAll {
             get {
                 object obj = ResourceManager.GetObject("closeAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -433,7 +423,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap collapseAll {
+        public static System.Drawing.Bitmap collapseAll {
             get {
                 object obj = ResourceManager.GetObject("collapseAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -443,7 +433,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap colorreplace {
+        public static System.Drawing.Bitmap colorreplace {
             get {
                 object obj = ResourceManager.GetObject("colorreplace", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -453,7 +443,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap coordinator {
+        public static System.Drawing.Bitmap coordinator {
             get {
                 object obj = ResourceManager.GetObject("coordinator", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -463,7 +453,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap copy_small {
+        public static System.Drawing.Bitmap copy_small {
             get {
                 object obj = ResourceManager.GetObject("copy_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -473,7 +463,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap crop {
+        public static System.Drawing.Bitmap crop {
             get {
                 object obj = ResourceManager.GetObject("crop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -483,7 +473,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CursorDraw {
+        public static byte[] CursorDraw {
             get {
                 object obj = ResourceManager.GetObject("CursorDraw", resourceCulture);
                 return ((byte[])(obj));
@@ -493,7 +483,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CursorDropper {
+        public static byte[] CursorDropper {
             get {
                 object obj = ResourceManager.GetObject("CursorDropper", resourceCulture);
                 return ((byte[])(obj));
@@ -503,7 +493,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CursorErase {
+        public static byte[] CursorErase {
             get {
                 object obj = ResourceManager.GetObject("CursorErase", resourceCulture);
                 return ((byte[])(obj));
@@ -513,7 +503,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CursorFill {
+        public static byte[] CursorFill {
             get {
                 object obj = ResourceManager.GetObject("CursorFill", resourceCulture);
                 return ((byte[])(obj));
@@ -523,7 +513,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CursorTemplate {
+        public static byte[] CursorTemplate {
             get {
                 object obj = ResourceManager.GetObject("CursorTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -533,7 +523,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CursorZoomIn {
+        public static byte[] CursorZoomIn {
             get {
                 object obj = ResourceManager.GetObject("CursorZoomIn", resourceCulture);
                 return ((byte[])(obj));
@@ -543,7 +533,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] CursorZoomOut {
+        public static byte[] CursorZoomOut {
             get {
                 object obj = ResourceManager.GetObject("CursorZoomOut", resourceCulture);
                 return ((byte[])(obj));
@@ -553,7 +543,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cut_small {
+        public static System.Drawing.Bitmap cut_small {
             get {
                 object obj = ResourceManager.GetObject("cut_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -563,7 +553,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete_small {
+        public static System.Drawing.Bitmap delete_small {
             get {
                 object obj = ResourceManager.GetObject("delete_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -573,7 +563,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dock {
+        public static System.Drawing.Bitmap dock {
             get {
                 object obj = ResourceManager.GetObject("dock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -583,7 +573,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dragSolid {
+        public static System.Drawing.Bitmap dragSolid {
             get {
                 object obj = ResourceManager.GetObject("dragSolid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -593,7 +583,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap draw_small {
+        public static System.Drawing.Bitmap draw_small {
             get {
                 object obj = ResourceManager.GetObject("draw_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -603,7 +593,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dropper_small {
+        public static System.Drawing.Bitmap dropper_small {
             get {
                 object obj = ResourceManager.GetObject("dropper_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -613,7 +603,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap drumsOff {
+        public static System.Drawing.Bitmap drumsOff {
             get {
                 object obj = ResourceManager.GetObject("drumsOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -623,7 +613,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap drumsOn {
+        public static System.Drawing.Bitmap drumsOn {
             get {
                 object obj = ResourceManager.GetObject("drumsOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -633,7 +623,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap duplicate_small {
+        public static System.Drawing.Bitmap duplicate_small {
             get {
                 object obj = ResourceManager.GetObject("duplicate_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -643,7 +633,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap edit_small {
+        public static System.Drawing.Bitmap edit_small {
             get {
                 object obj = ResourceManager.GetObject("edit_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -653,7 +643,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap editAllLayers {
+        public static System.Drawing.Bitmap editAllLayers {
             get {
                 object obj = ResourceManager.GetObject("editAllLayers", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -663,7 +653,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap endString {
+        public static System.Drawing.Bitmap endString {
             get {
                 object obj = ResourceManager.GetObject("endString", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -673,7 +663,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap endStringA {
+        public static System.Drawing.Bitmap endStringA {
             get {
                 object obj = ResourceManager.GetObject("endStringA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -683,7 +673,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap erase_small {
+        public static System.Drawing.Bitmap erase_small {
             get {
                 object obj = ResourceManager.GetObject("erase_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -693,7 +683,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap eventAdd {
+        public static System.Drawing.Bitmap eventAdd {
             get {
                 object obj = ResourceManager.GetObject("eventAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -703,7 +693,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap eventRemove {
+        public static System.Drawing.Bitmap eventRemove {
             get {
                 object obj = ResourceManager.GetObject("eventRemove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -713,7 +703,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exitAdd {
+        public static System.Drawing.Bitmap exitAdd {
             get {
                 object obj = ResourceManager.GetObject("exitAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -723,7 +713,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exitRemove {
+        public static System.Drawing.Bitmap exitRemove {
             get {
                 object obj = ResourceManager.GetObject("exitRemove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -733,7 +723,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap expandAll {
+        public static System.Drawing.Bitmap expandAll {
             get {
                 object obj = ResourceManager.GetObject("expandAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -743,7 +733,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exportBinary {
+        public static System.Drawing.Bitmap exportBinary {
             get {
                 object obj = ResourceManager.GetObject("exportBinary", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -753,7 +743,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exportData {
+        public static System.Drawing.Bitmap exportData {
             get {
                 object obj = ResourceManager.GetObject("exportData", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -763,7 +753,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exportImage {
+        public static System.Drawing.Bitmap exportImage {
             get {
                 object obj = ResourceManager.GetObject("exportImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -773,7 +763,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exportText {
+        public static System.Drawing.Bitmap exportText {
             get {
                 object obj = ResourceManager.GetObject("exportText", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -783,7 +773,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exportTextAll {
+        public static System.Drawing.Bitmap exportTextAll {
             get {
                 object obj = ResourceManager.GetObject("exportTextAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -793,7 +783,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exportWAV {
+        public static System.Drawing.Bitmap exportWAV {
             get {
                 object obj = ResourceManager.GetObject("exportWAV", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -803,7 +793,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fieldBase {
+        public static System.Drawing.Bitmap fieldBase {
             get {
                 object obj = ResourceManager.GetObject("fieldBase", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -813,7 +803,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fieldBlock {
+        public static System.Drawing.Bitmap fieldBlock {
             get {
                 object obj = ResourceManager.GetObject("fieldBlock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -823,7 +813,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fill_small {
+        public static System.Drawing.Bitmap fill_small {
             get {
                 object obj = ResourceManager.GetObject("fill_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -833,7 +823,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap firstSection {
+        public static System.Drawing.Bitmap firstSection {
             get {
                 object obj = ResourceManager.GetObject("firstSection", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -843,7 +833,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flat {
+        public static System.Drawing.Bitmap flat {
             get {
                 object obj = ResourceManager.GetObject("flat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -853,7 +843,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flip_small {
+        public static System.Drawing.Bitmap flip_small {
             get {
                 object obj = ResourceManager.GetObject("flip_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -863,7 +853,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap foward {
+        public static System.Drawing.Bitmap foward {
             get {
                 object obj = ResourceManager.GetObject("foward", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -873,7 +863,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap halfQuadBlock {
+        public static System.Drawing.Bitmap halfQuadBlock {
             get {
                 object obj = ResourceManager.GetObject("halfQuadBlock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -883,7 +873,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap HAMMER {
+        public static System.Drawing.Bitmap HAMMER {
             get {
                 object obj = ResourceManager.GetObject("HAMMER", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -893,7 +883,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap heightDecrease {
+        public static System.Drawing.Bitmap heightDecrease {
             get {
                 object obj = ResourceManager.GetObject("heightDecrease", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -903,7 +893,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap heightIncrease {
+        public static System.Drawing.Bitmap heightIncrease {
             get {
                 object obj = ResourceManager.GetObject("heightIncrease", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -913,7 +903,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap help_small {
+        public static System.Drawing.Bitmap help_small {
             get {
                 object obj = ResourceManager.GetObject("help_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -923,7 +913,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hexEditor {
+        public static System.Drawing.Bitmap hexEditor {
             get {
                 object obj = ResourceManager.GetObject("hexEditor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -933,7 +923,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap history {
+        public static System.Drawing.Bitmap history {
             get {
                 object obj = ResourceManager.GetObject("history", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -943,7 +933,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap iconTools {
+        public static System.Drawing.Bitmap iconTools {
             get {
                 object obj = ResourceManager.GetObject("iconTools", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -953,7 +943,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap importBinary {
+        public static System.Drawing.Bitmap importBinary {
             get {
                 object obj = ResourceManager.GetObject("importBinary", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -963,7 +953,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap importData {
+        public static System.Drawing.Bitmap importData {
             get {
                 object obj = ResourceManager.GetObject("importData", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -973,7 +963,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap importImage {
+        public static System.Drawing.Bitmap importImage {
             get {
                 object obj = ResourceManager.GetObject("importImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -983,7 +973,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap importText {
+        public static System.Drawing.Bitmap importText {
             get {
                 object obj = ResourceManager.GetObject("importText", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -993,7 +983,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap importTextAll {
+        public static System.Drawing.Bitmap importTextAll {
             get {
                 object obj = ResourceManager.GetObject("importTextAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1003,7 +993,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap importWAV {
+        public static System.Drawing.Bitmap importWAV {
             get {
                 object obj = ResourceManager.GetObject("importWAV", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1013,7 +1003,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap insert {
+        public static System.Drawing.Bitmap insert {
             get {
                 object obj = ResourceManager.GetObject("insert", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1023,7 +1013,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap insertIntoText {
+        public static System.Drawing.Bitmap insertIntoText {
             get {
                 object obj = ResourceManager.GetObject("insertIntoText", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1033,7 +1023,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap instrument {
+        public static System.Drawing.Bitmap instrument {
             get {
                 object obj = ResourceManager.GetObject("instrument", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1043,7 +1033,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap invalid {
+        public static System.Drawing.Bitmap invalid {
             get {
                 object obj = ResourceManager.GetObject("invalid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1053,7 +1043,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap jumpTo {
+        public static System.Drawing.Bitmap jumpTo {
             get {
                 object obj = ResourceManager.GetObject("jumpTo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1063,7 +1053,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap keys_load {
+        public static System.Drawing.Bitmap keys_load {
             get {
                 object obj = ResourceManager.GetObject("keys_load", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1073,7 +1063,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap keys_save {
+        public static System.Drawing.Bitmap keys_save {
             get {
                 object obj = ResourceManager.GetObject("keys_save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1083,7 +1073,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap keystrokes {
+        public static System.Drawing.Bitmap keystrokes {
             get {
                 object obj = ResourceManager.GetObject("keystrokes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1093,7 +1083,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap label {
+        public static System.Drawing.Bitmap label {
             get {
                 object obj = ResourceManager.GetObject("label", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1140,7 +1130,7 @@ namespace LAZYSHELL.Properties {
         ///{
         ///	backg [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string LAZYSHELL_css {
+        public static string LAZYSHELL_css {
             get {
                 return ResourceManager.GetString("LAZYSHELL_css", resourceCulture);
             }
@@ -1149,7 +1139,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon LAZYSHELL_icon {
+        public static System.Drawing.Icon LAZYSHELL_icon {
             get {
                 object obj = ResourceManager.GetObject("LAZYSHELL_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -1165,7 +1155,7 @@ namespace LAZYSHELL.Properties {
         ///    &lt;header&gt;Read this first&lt;/header&gt;
         ///    &lt;introduction&gt;If this is your first time using Lazy Shell, please take the time to read the following advice:&lt;/introducti [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string LAZYSHELL_xml {
+        public static string LAZYSHELL_xml {
             get {
                 return ResourceManager.GetString("LAZYSHELL_xml", resourceCulture);
             }
@@ -1186,7 +1176,7 @@ namespace LAZYSHELL.Properties {
         ///            {
         /// [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string LAZYSHELL_xsl {
+        public static string LAZYSHELL_xsl {
             get {
                 return ResourceManager.GetString("LAZYSHELL_xsl", resourceCulture);
             }
@@ -1195,7 +1185,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap location {
+        public static System.Drawing.Bitmap location {
             get {
                 object obj = ResourceManager.GetObject("location", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1205,7 +1195,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Lunar_Compress {
+        public static byte[] Lunar_Compress {
             get {
                 object obj = ResourceManager.GetObject("Lunar_Compress", resourceCulture);
                 return ((byte[])(obj));
@@ -1215,7 +1205,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap main {
+        public static System.Drawing.Bitmap main {
             get {
                 object obj = ResourceManager.GetObject("main", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1225,7 +1215,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainAllies {
+        public static System.Drawing.Bitmap mainAllies {
             get {
                 object obj = ResourceManager.GetObject("mainAllies", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1235,7 +1225,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainAnimations {
+        public static System.Drawing.Bitmap mainAnimations {
             get {
                 object obj = ResourceManager.GetObject("mainAnimations", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1245,7 +1235,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainAttacks {
+        public static System.Drawing.Bitmap mainAttacks {
             get {
                 object obj = ResourceManager.GetObject("mainAttacks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1255,7 +1245,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainAudio {
+        public static System.Drawing.Bitmap mainAudio {
             get {
                 object obj = ResourceManager.GetObject("mainAudio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1265,7 +1255,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainBattlefields {
+        public static System.Drawing.Bitmap mainBattlefields {
             get {
                 object obj = ResourceManager.GetObject("mainBattlefields", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1275,7 +1265,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainBattleScripts {
+        public static System.Drawing.Bitmap mainBattleScripts {
             get {
                 object obj = ResourceManager.GetObject("mainBattleScripts", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1285,7 +1275,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainDialogues {
+        public static System.Drawing.Bitmap mainDialogues {
             get {
                 object obj = ResourceManager.GetObject("mainDialogues", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1295,7 +1285,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainEffects {
+        public static System.Drawing.Bitmap mainEffects {
             get {
                 object obj = ResourceManager.GetObject("mainEffects", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1305,7 +1295,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainEventScripts {
+        public static System.Drawing.Bitmap mainEventScripts {
             get {
                 object obj = ResourceManager.GetObject("mainEventScripts", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1315,7 +1305,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainFormations {
+        public static System.Drawing.Bitmap mainFormations {
             get {
                 object obj = ResourceManager.GetObject("mainFormations", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1325,7 +1315,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainItems {
+        public static System.Drawing.Bitmap mainItems {
             get {
                 object obj = ResourceManager.GetObject("mainItems", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1335,7 +1325,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainLevels {
+        public static System.Drawing.Bitmap mainLevels {
             get {
                 object obj = ResourceManager.GetObject("mainLevels", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1345,7 +1335,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainMainTitle {
+        public static System.Drawing.Bitmap mainMainTitle {
             get {
                 object obj = ResourceManager.GetObject("mainMainTitle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1355,7 +1345,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainMenus {
+        public static System.Drawing.Bitmap mainMenus {
             get {
                 object obj = ResourceManager.GetObject("mainMenus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1365,7 +1355,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainMiniGames {
+        public static System.Drawing.Bitmap mainMiniGames {
             get {
                 object obj = ResourceManager.GetObject("mainMiniGames", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1375,7 +1365,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainMonsters {
+        public static System.Drawing.Bitmap mainMonsters {
             get {
                 object obj = ResourceManager.GetObject("mainMonsters", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1385,7 +1375,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainNotes {
+        public static System.Drawing.Bitmap mainNotes {
             get {
                 object obj = ResourceManager.GetObject("mainNotes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1395,7 +1385,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainPatches {
+        public static System.Drawing.Bitmap mainPatches {
             get {
                 object obj = ResourceManager.GetObject("mainPatches", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1405,7 +1395,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainSprites {
+        public static System.Drawing.Bitmap mainSprites {
             get {
                 object obj = ResourceManager.GetObject("mainSprites", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1415,7 +1405,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mainWorldMaps {
+        public static System.Drawing.Bitmap mainWorldMaps {
             get {
                 object obj = ResourceManager.GetObject("mainWorldMaps", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1425,7 +1415,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mapBanner {
+        public static System.Drawing.Bitmap mapBanner {
             get {
                 object obj = ResourceManager.GetObject("mapBanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1435,7 +1425,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap marioicon {
+        public static System.Drawing.Bitmap marioicon {
             get {
                 object obj = ResourceManager.GetObject("marioicon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1445,7 +1435,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap metronome {
+        public static System.Drawing.Bitmap metronome {
             get {
                 object obj = ResourceManager.GetObject("metronome", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1455,7 +1445,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap minimizeAll {
+        public static System.Drawing.Bitmap minimizeAll {
             get {
                 object obj = ResourceManager.GetObject("minimizeAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1465,7 +1455,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mirror_small {
+        public static System.Drawing.Bitmap mirror_small {
             get {
                 object obj = ResourceManager.GetObject("mirror_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1475,7 +1465,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap moveall {
+        public static System.Drawing.Bitmap moveall {
             get {
                 object obj = ResourceManager.GetObject("moveall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1485,7 +1475,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap movedown {
+        public static System.Drawing.Bitmap movedown {
             get {
                 object obj = ResourceManager.GetObject("movedown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1495,7 +1485,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap moveToFront {
+        public static System.Drawing.Bitmap moveToFront {
             get {
                 object obj = ResourceManager.GetObject("moveToFront", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1505,7 +1495,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap moveup {
+        public static System.Drawing.Bitmap moveup {
             get {
                 object obj = ResourceManager.GetObject("moveup", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1515,7 +1505,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap natural {
+        public static System.Drawing.Bitmap natural {
             get {
                 object obj = ResourceManager.GetObject("natural", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1525,7 +1515,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap new_small {
+        public static System.Drawing.Bitmap new_small {
             get {
                 object obj = ResourceManager.GetObject("new_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1535,7 +1525,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap newInstance {
+        public static System.Drawing.Bitmap newInstance {
             get {
                 object obj = ResourceManager.GetObject("newInstance", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1545,7 +1535,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap newLine {
+        public static System.Drawing.Bitmap newLine {
             get {
                 object obj = ResourceManager.GetObject("newLine", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1555,7 +1545,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap newLineA {
+        public static System.Drawing.Bitmap newLineA {
             get {
                 object obj = ResourceManager.GetObject("newLineA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1565,7 +1555,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note16th {
+        public static System.Drawing.Bitmap note16th {
             get {
                 object obj = ResourceManager.GetObject("note16th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1575,7 +1565,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note16thDotted {
+        public static System.Drawing.Bitmap note16thDotted {
             get {
                 object obj = ResourceManager.GetObject("note16thDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1585,7 +1575,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note16thTriplet {
+        public static System.Drawing.Bitmap note16thTriplet {
             get {
                 object obj = ResourceManager.GetObject("note16thTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1595,7 +1585,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note32nd {
+        public static System.Drawing.Bitmap note32nd {
             get {
                 object obj = ResourceManager.GetObject("note32nd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1605,7 +1595,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note32ndDotted {
+        public static System.Drawing.Bitmap note32ndDotted {
             get {
                 object obj = ResourceManager.GetObject("note32ndDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1615,7 +1605,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note32ndTriplet {
+        public static System.Drawing.Bitmap note32ndTriplet {
             get {
                 object obj = ResourceManager.GetObject("note32ndTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1625,7 +1615,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note64th {
+        public static System.Drawing.Bitmap note64th {
             get {
                 object obj = ResourceManager.GetObject("note64th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1635,7 +1625,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note64thTriplet {
+        public static System.Drawing.Bitmap note64thTriplet {
             get {
                 object obj = ResourceManager.GetObject("note64thTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1645,7 +1635,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note8th {
+        public static System.Drawing.Bitmap note8th {
             get {
                 object obj = ResourceManager.GetObject("note8th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1655,7 +1645,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note8thDotted {
+        public static System.Drawing.Bitmap note8thDotted {
             get {
                 object obj = ResourceManager.GetObject("note8thDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1665,7 +1655,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap note8thTriplet {
+        public static System.Drawing.Bitmap note8thTriplet {
             get {
                 object obj = ResourceManager.GetObject("note8thTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1675,7 +1665,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteDotted {
+        public static System.Drawing.Bitmap noteDotted {
             get {
                 object obj = ResourceManager.GetObject("noteDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1685,7 +1675,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteEmpty {
+        public static System.Drawing.Bitmap noteEmpty {
             get {
                 object obj = ResourceManager.GetObject("noteEmpty", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1695,7 +1685,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteEmptyDotted {
+        public static System.Drawing.Bitmap noteEmptyDotted {
             get {
                 object obj = ResourceManager.GetObject("noteEmptyDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1705,7 +1695,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteEmptyTriplet {
+        public static System.Drawing.Bitmap noteEmptyTriplet {
             get {
                 object obj = ResourceManager.GetObject("noteEmptyTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1715,7 +1705,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteHalf {
+        public static System.Drawing.Bitmap noteHalf {
             get {
                 object obj = ResourceManager.GetObject("noteHalf", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1725,7 +1715,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteHalfDotted {
+        public static System.Drawing.Bitmap noteHalfDotted {
             get {
                 object obj = ResourceManager.GetObject("noteHalfDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1735,7 +1725,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteHalfTriplet {
+        public static System.Drawing.Bitmap noteHalfTriplet {
             get {
                 object obj = ResourceManager.GetObject("noteHalfTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1745,7 +1735,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteHead {
+        public static System.Drawing.Bitmap noteHead {
             get {
                 object obj = ResourceManager.GetObject("noteHead", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1755,7 +1745,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteHeadDotted {
+        public static System.Drawing.Bitmap noteHeadDotted {
             get {
                 object obj = ResourceManager.GetObject("noteHeadDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1765,7 +1755,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteHeadPercussion {
+        public static System.Drawing.Bitmap noteHeadPercussion {
             get {
                 object obj = ResourceManager.GetObject("noteHeadPercussion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1775,7 +1765,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteHeadTriplet {
+        public static System.Drawing.Bitmap noteHeadTriplet {
             get {
                 object obj = ResourceManager.GetObject("noteHeadTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1785,7 +1775,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap notepad {
+        public static System.Drawing.Bitmap notepad {
             get {
                 object obj = ResourceManager.GetObject("notepad", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1795,7 +1785,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap notePercussion {
+        public static System.Drawing.Bitmap notePercussion {
             get {
                 object obj = ResourceManager.GetObject("notePercussion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1805,7 +1795,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteQuarter {
+        public static System.Drawing.Bitmap noteQuarter {
             get {
                 object obj = ResourceManager.GetObject("noteQuarter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1815,7 +1805,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteQuarterTriplet {
+        public static System.Drawing.Bitmap noteQuarterTriplet {
             get {
                 object obj = ResourceManager.GetObject("noteQuarterTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1825,7 +1815,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemDown {
+        public static System.Drawing.Bitmap noteStemDown {
             get {
                 object obj = ResourceManager.GetObject("noteStemDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1835,7 +1825,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemDown16th {
+        public static System.Drawing.Bitmap noteStemDown16th {
             get {
                 object obj = ResourceManager.GetObject("noteStemDown16th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1845,7 +1835,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemDown32nd {
+        public static System.Drawing.Bitmap noteStemDown32nd {
             get {
                 object obj = ResourceManager.GetObject("noteStemDown32nd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1855,7 +1845,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemDown64th {
+        public static System.Drawing.Bitmap noteStemDown64th {
             get {
                 object obj = ResourceManager.GetObject("noteStemDown64th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1865,7 +1855,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemDown8th {
+        public static System.Drawing.Bitmap noteStemDown8th {
             get {
                 object obj = ResourceManager.GetObject("noteStemDown8th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1875,7 +1865,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemUp {
+        public static System.Drawing.Bitmap noteStemUp {
             get {
                 object obj = ResourceManager.GetObject("noteStemUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1885,7 +1875,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemUp16th {
+        public static System.Drawing.Bitmap noteStemUp16th {
             get {
                 object obj = ResourceManager.GetObject("noteStemUp16th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1895,7 +1885,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemUp32nd {
+        public static System.Drawing.Bitmap noteStemUp32nd {
             get {
                 object obj = ResourceManager.GetObject("noteStemUp32nd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1905,7 +1895,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemUp64th {
+        public static System.Drawing.Bitmap noteStemUp64th {
             get {
                 object obj = ResourceManager.GetObject("noteStemUp64th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1915,7 +1905,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteStemUp8th {
+        public static System.Drawing.Bitmap noteStemUp8th {
             get {
                 object obj = ResourceManager.GetObject("noteStemUp8th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1925,7 +1915,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap noteWhole {
+        public static System.Drawing.Bitmap noteWhole {
             get {
                 object obj = ResourceManager.GetObject("noteWhole", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1935,7 +1925,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap npcAdd {
+        public static System.Drawing.Bitmap npcAdd {
             get {
                 object obj = ResourceManager.GetObject("npcAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1945,7 +1935,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap npcClone {
+        public static System.Drawing.Bitmap npcClone {
             get {
                 object obj = ResourceManager.GetObject("npcClone", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1955,7 +1945,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap npcRemove {
+        public static System.Drawing.Bitmap npcRemove {
             get {
                 object obj = ResourceManager.GetObject("npcRemove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1965,7 +1955,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap numerals {
+        public static System.Drawing.Bitmap numerals {
             get {
                 object obj = ResourceManager.GetObject("numerals", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1975,7 +1965,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap numerize {
+        public static System.Drawing.Bitmap numerize {
             get {
                 object obj = ResourceManager.GetObject("numerize", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1985,7 +1975,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap octaveDown {
+        public static System.Drawing.Bitmap octaveDown {
             get {
                 object obj = ResourceManager.GetObject("octaveDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -1995,7 +1985,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap octaveSet {
+        public static System.Drawing.Bitmap octaveSet {
             get {
                 object obj = ResourceManager.GetObject("octaveSet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2005,7 +1995,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap octaveUp {
+        public static System.Drawing.Bitmap octaveUp {
             get {
                 object obj = ResourceManager.GetObject("octaveUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2015,7 +2005,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap opacity {
+        public static System.Drawing.Bitmap opacity {
             get {
                 object obj = ResourceManager.GetObject("opacity", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2025,7 +2015,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap open_small {
+        public static System.Drawing.Bitmap open_small {
             get {
                 object obj = ResourceManager.GetObject("open_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2035,7 +2025,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openAll {
+        public static System.Drawing.Bitmap openAll {
             get {
                 object obj = ResourceManager.GetObject("openAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2045,7 +2035,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openAttacks {
+        public static System.Drawing.Bitmap openAttacks {
             get {
                 object obj = ResourceManager.GetObject("openAttacks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2055,7 +2045,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openBattleDialogues {
+        public static System.Drawing.Bitmap openBattleDialogues {
             get {
                 object obj = ResourceManager.GetObject("openBattleDialogues", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2065,7 +2055,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openDialogues {
+        public static System.Drawing.Bitmap openDialogues {
             get {
                 object obj = ResourceManager.GetObject("openDialogues", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2075,7 +2065,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openEffectSequences {
+        public static System.Drawing.Bitmap openEffectSequences {
             get {
                 object obj = ResourceManager.GetObject("openEffectSequences", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2085,7 +2075,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openFonts {
+        public static System.Drawing.Bitmap openFonts {
             get {
                 object obj = ResourceManager.GetObject("openFonts", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2095,7 +2085,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openGraphics {
+        public static System.Drawing.Bitmap openGraphics {
             get {
                 object obj = ResourceManager.GetObject("openGraphics", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2105,7 +2095,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openLevelUps {
+        public static System.Drawing.Bitmap openLevelUps {
             get {
                 object obj = ResourceManager.GetObject("openLevelUps", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2115,7 +2105,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openMap {
+        public static System.Drawing.Bitmap openMap {
             get {
                 object obj = ResourceManager.GetObject("openMap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2125,7 +2115,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openMolds {
+        public static System.Drawing.Bitmap openMolds {
             get {
                 object obj = ResourceManager.GetObject("openMolds", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2135,7 +2125,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openNewFontTable {
+        public static System.Drawing.Bitmap openNewFontTable {
             get {
                 object obj = ResourceManager.GetObject("openNewFontTable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2145,7 +2135,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openNewGame {
+        public static System.Drawing.Bitmap openNewGame {
             get {
                 object obj = ResourceManager.GetObject("openNewGame", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2155,7 +2145,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openNPCs {
+        public static System.Drawing.Bitmap openNPCs {
             get {
                 object obj = ResourceManager.GetObject("openNPCs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2165,7 +2155,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openPackets {
+        public static System.Drawing.Bitmap openPackets {
             get {
                 object obj = ResourceManager.GetObject("openPackets", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2175,7 +2165,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openPacks {
+        public static System.Drawing.Bitmap openPacks {
             get {
                 object obj = ResourceManager.GetObject("openPacks", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2185,7 +2175,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openPalettes {
+        public static System.Drawing.Bitmap openPalettes {
             get {
                 object obj = ResourceManager.GetObject("openPalettes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2195,7 +2185,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openPartitions {
+        public static System.Drawing.Bitmap openPartitions {
             get {
                 object obj = ResourceManager.GetObject("openPartitions", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2205,7 +2195,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openSamples {
+        public static System.Drawing.Bitmap openSamples {
             get {
                 object obj = ResourceManager.GetObject("openSamples", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2215,7 +2205,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openSequences {
+        public static System.Drawing.Bitmap openSequences {
             get {
                 object obj = ResourceManager.GetObject("openSequences", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2225,7 +2215,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openShops {
+        public static System.Drawing.Bitmap openShops {
             get {
                 object obj = ResourceManager.GetObject("openShops", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2235,7 +2225,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openSPCs {
+        public static System.Drawing.Bitmap openSPCs {
             get {
                 object obj = ResourceManager.GetObject("openSPCs", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2245,7 +2235,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openSpells {
+        public static System.Drawing.Bitmap openSpells {
             get {
                 object obj = ResourceManager.GetObject("openSpells", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2255,7 +2245,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openTemplates {
+        public static System.Drawing.Bitmap openTemplates {
             get {
                 object obj = ResourceManager.GetObject("openTemplates", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2265,7 +2255,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openTileEditor {
+        public static System.Drawing.Bitmap openTileEditor {
             get {
                 object obj = ResourceManager.GetObject("openTileEditor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2275,7 +2265,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap openTilesets {
+        public static System.Drawing.Bitmap openTilesets {
             get {
                 object obj = ResourceManager.GetObject("openTilesets", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2285,7 +2275,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap overlapAdd {
+        public static System.Drawing.Bitmap overlapAdd {
             get {
                 object obj = ResourceManager.GetObject("overlapAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2295,7 +2285,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap overlapRemove {
+        public static System.Drawing.Bitmap overlapRemove {
             get {
                 object obj = ResourceManager.GetObject("overlapRemove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2305,7 +2295,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pageBreak {
+        public static System.Drawing.Bitmap pageBreak {
             get {
                 object obj = ResourceManager.GetObject("pageBreak", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2315,7 +2305,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pageBreakA {
+        public static System.Drawing.Bitmap pageBreakA {
             get {
                 object obj = ResourceManager.GetObject("pageBreakA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2325,7 +2315,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pageDown {
+        public static System.Drawing.Bitmap pageDown {
             get {
                 object obj = ResourceManager.GetObject("pageDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2335,7 +2325,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pageUp {
+        public static System.Drawing.Bitmap pageUp {
             get {
                 object obj = ResourceManager.GetObject("pageUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2345,7 +2335,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap paste_small {
+        public static System.Drawing.Bitmap paste_small {
             get {
                 object obj = ResourceManager.GetObject("paste_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2355,7 +2345,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pause60f {
+        public static System.Drawing.Bitmap pause60f {
             get {
                 object obj = ResourceManager.GetObject("pause60f", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2365,7 +2355,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pauseA {
+        public static System.Drawing.Bitmap pauseA {
             get {
                 object obj = ResourceManager.GetObject("pauseA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2375,7 +2365,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pauseFrames {
+        public static System.Drawing.Bitmap pauseFrames {
             get {
                 object obj = ResourceManager.GetObject("pauseFrames", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2385,7 +2375,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap play {
+        public static System.Drawing.Bitmap play {
             get {
                 object obj = ResourceManager.GetObject("play", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2395,7 +2385,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap portamento {
+        public static System.Drawing.Bitmap portamento {
             get {
                 object obj = ResourceManager.GetObject("portamento", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2405,7 +2395,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap preview {
+        public static System.Drawing.Bitmap preview {
             get {
                 object obj = ResourceManager.GetObject("preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2415,7 +2405,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap priority1OFF {
+        public static System.Drawing.Bitmap priority1OFF {
             get {
                 object obj = ResourceManager.GetObject("priority1OFF", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2425,7 +2415,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap priority1ON {
+        public static System.Drawing.Bitmap priority1ON {
             get {
                 object obj = ResourceManager.GetObject("priority1ON", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2435,7 +2425,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap publish {
+        public static System.Drawing.Bitmap publish {
             get {
                 object obj = ResourceManager.GetObject("publish", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2445,7 +2435,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap quadBase {
+        public static System.Drawing.Bitmap quadBase {
             get {
                 object obj = ResourceManager.GetObject("quadBase", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2455,7 +2445,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap quadBlock {
+        public static System.Drawing.Bitmap quadBlock {
             get {
                 object obj = ResourceManager.GetObject("quadBlock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2465,7 +2455,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap railicon {
+        public static System.Drawing.Bitmap railicon {
             get {
                 object obj = ResourceManager.GetObject("railicon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2475,7 +2465,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap recentFiles {
+        public static System.Drawing.Bitmap recentFiles {
             get {
                 object obj = ResourceManager.GetObject("recentFiles", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2485,7 +2475,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap redo_small {
+        public static System.Drawing.Bitmap redo_small {
             get {
                 object obj = ResourceManager.GetObject("redo_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2495,7 +2485,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap repeatEnd {
+        public static System.Drawing.Bitmap repeatEnd {
             get {
                 object obj = ResourceManager.GetObject("repeatEnd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2505,7 +2495,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap repeatInf {
+        public static System.Drawing.Bitmap repeatInf {
             get {
                 object obj = ResourceManager.GetObject("repeatInf", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2515,7 +2505,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap repeatStart {
+        public static System.Drawing.Bitmap repeatStart {
             get {
                 object obj = ResourceManager.GetObject("repeatStart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2525,7 +2515,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap reset {
+        public static System.Drawing.Bitmap reset {
             get {
                 object obj = ResourceManager.GetObject("reset", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2535,7 +2525,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest16th {
+        public static System.Drawing.Bitmap rest16th {
             get {
                 object obj = ResourceManager.GetObject("rest16th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2545,7 +2535,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest16thDotted {
+        public static System.Drawing.Bitmap rest16thDotted {
             get {
                 object obj = ResourceManager.GetObject("rest16thDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2555,7 +2545,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest16thTriplet {
+        public static System.Drawing.Bitmap rest16thTriplet {
             get {
                 object obj = ResourceManager.GetObject("rest16thTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2565,7 +2555,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest32nd {
+        public static System.Drawing.Bitmap rest32nd {
             get {
                 object obj = ResourceManager.GetObject("rest32nd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2575,7 +2565,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest32ndDotted {
+        public static System.Drawing.Bitmap rest32ndDotted {
             get {
                 object obj = ResourceManager.GetObject("rest32ndDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2585,7 +2575,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest32ndTriplet {
+        public static System.Drawing.Bitmap rest32ndTriplet {
             get {
                 object obj = ResourceManager.GetObject("rest32ndTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2595,7 +2585,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest64th {
+        public static System.Drawing.Bitmap rest64th {
             get {
                 object obj = ResourceManager.GetObject("rest64th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2605,7 +2595,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest64thDotted {
+        public static System.Drawing.Bitmap rest64thDotted {
             get {
                 object obj = ResourceManager.GetObject("rest64thDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2615,7 +2605,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest64thTriplet {
+        public static System.Drawing.Bitmap rest64thTriplet {
             get {
                 object obj = ResourceManager.GetObject("rest64thTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2625,7 +2615,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest8th {
+        public static System.Drawing.Bitmap rest8th {
             get {
                 object obj = ResourceManager.GetObject("rest8th", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2635,7 +2625,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest8thDotted {
+        public static System.Drawing.Bitmap rest8thDotted {
             get {
                 object obj = ResourceManager.GetObject("rest8thDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2645,7 +2635,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rest8thTriplet {
+        public static System.Drawing.Bitmap rest8thTriplet {
             get {
                 object obj = ResourceManager.GetObject("rest8thTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2655,7 +2645,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restDotted {
+        public static System.Drawing.Bitmap restDotted {
             get {
                 object obj = ResourceManager.GetObject("restDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2665,7 +2655,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restHalf {
+        public static System.Drawing.Bitmap restHalf {
             get {
                 object obj = ResourceManager.GetObject("restHalf", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2675,7 +2665,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restHalfDotted {
+        public static System.Drawing.Bitmap restHalfDotted {
             get {
                 object obj = ResourceManager.GetObject("restHalfDotted", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2685,7 +2675,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restHalfTriplet {
+        public static System.Drawing.Bitmap restHalfTriplet {
             get {
                 object obj = ResourceManager.GetObject("restHalfTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2695,7 +2685,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restoreAll {
+        public static System.Drawing.Bitmap restoreAll {
             get {
                 object obj = ResourceManager.GetObject("restoreAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2705,7 +2695,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restQuarter {
+        public static System.Drawing.Bitmap restQuarter {
             get {
                 object obj = ResourceManager.GetObject("restQuarter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2715,7 +2705,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restQuarterTriplet {
+        public static System.Drawing.Bitmap restQuarterTriplet {
             get {
                 object obj = ResourceManager.GetObject("restQuarterTriplet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2725,7 +2715,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restWhole {
+        public static System.Drawing.Bitmap restWhole {
             get {
                 object obj = ResourceManager.GetObject("restWhole", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2735,7 +2725,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap reverbOff {
+        public static System.Drawing.Bitmap reverbOff {
             get {
                 object obj = ResourceManager.GetObject("reverbOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2745,7 +2735,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap reverbOn {
+        public static System.Drawing.Bitmap reverbOn {
             get {
                 object obj = ResourceManager.GetObject("reverbOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2755,7 +2745,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap romInfo {
+        public static System.Drawing.Bitmap romInfo {
             get {
                 object obj = ResourceManager.GetObject("romInfo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2765,7 +2755,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] RomPreviewBaseSave {
+        public static byte[] RomPreviewBaseSave {
             get {
                 object obj = ResourceManager.GetObject("RomPreviewBaseSave", resourceCulture);
                 return ((byte[])(obj));
@@ -2775,7 +2765,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] RomPreviewBaseSave1 {
+        public static byte[] RomPreviewBaseSave1 {
             get {
                 object obj = ResourceManager.GetObject("RomPreviewBaseSave1", resourceCulture);
                 return ((byte[])(obj));
@@ -2785,7 +2775,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap save_small {
+        public static System.Drawing.Bitmap save_small {
             get {
                 object obj = ResourceManager.GetObject("save_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2795,7 +2785,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap saveAs_small {
+        public static System.Drawing.Bitmap saveAs_small {
             get {
                 object obj = ResourceManager.GetObject("saveAs_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2805,7 +2795,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap scoreView {
+        public static System.Drawing.Bitmap scoreView {
             get {
                 object obj = ResourceManager.GetObject("scoreView", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2815,7 +2805,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap scoreWriter {
+        public static System.Drawing.Bitmap scoreWriter {
             get {
                 object obj = ResourceManager.GetObject("scoreWriter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2825,7 +2815,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap search {
+        public static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2835,7 +2825,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap select_small {
+        public static System.Drawing.Bitmap select_small {
             get {
                 object obj = ResourceManager.GetObject("select_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2845,7 +2835,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap selectAll_small {
+        public static System.Drawing.Bitmap selectAll_small {
             get {
                 object obj = ResourceManager.GetObject("selectAll_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2855,7 +2845,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sendToBack {
+        public static System.Drawing.Bitmap sendToBack {
             get {
                 object obj = ResourceManager.GetObject("sendToBack", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2865,7 +2855,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap settings {
+        public static System.Drawing.Bitmap settings {
             get {
                 object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2875,7 +2865,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sharp {
+        public static System.Drawing.Bitmap sharp {
             get {
                 object obj = ResourceManager.GetObject("sharp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2885,7 +2875,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap showMain {
+        public static System.Drawing.Bitmap showMain {
             get {
                 object obj = ResourceManager.GetObject("showMain", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2895,7 +2885,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap signature {
+        public static System.Drawing.Bitmap signature {
             get {
                 object obj = ResourceManager.GetObject("signature", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2905,7 +2895,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snapIsometricLeft {
+        public static System.Drawing.Bitmap snapIsometricLeft {
             get {
                 object obj = ResourceManager.GetObject("snapIsometricLeft", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2915,7 +2905,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snapIsometricRight {
+        public static System.Drawing.Bitmap snapIsometricRight {
             get {
                 object obj = ResourceManager.GetObject("snapIsometricRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2925,7 +2915,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap spaceAnalyzer {
+        public static System.Drawing.Bitmap spaceAnalyzer {
             get {
                 object obj = ResourceManager.GetObject("spaceAnalyzer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2935,7 +2925,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap speakerBalance {
+        public static System.Drawing.Bitmap speakerBalance {
             get {
                 object obj = ResourceManager.GetObject("speakerBalance", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2945,7 +2935,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap staffDelete {
+        public static System.Drawing.Bitmap staffDelete {
             get {
                 object obj = ResourceManager.GetObject("staffDelete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2955,7 +2945,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap staffNew {
+        public static System.Drawing.Bitmap staffNew {
             get {
                 object obj = ResourceManager.GetObject("staffNew", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2965,7 +2955,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stairsUpLeftHigh {
+        public static System.Drawing.Bitmap stairsUpLeftHigh {
             get {
                 object obj = ResourceManager.GetObject("stairsUpLeftHigh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2975,7 +2965,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stairsUpLeftLow {
+        public static System.Drawing.Bitmap stairsUpLeftLow {
             get {
                 object obj = ResourceManager.GetObject("stairsUpLeftLow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2985,7 +2975,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stairsUpRightHigh {
+        public static System.Drawing.Bitmap stairsUpRightHigh {
             get {
                 object obj = ResourceManager.GetObject("stairsUpRightHigh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -2995,7 +2985,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stairsUpRightLow {
+        public static System.Drawing.Bitmap stairsUpRightLow {
             get {
                 object obj = ResourceManager.GetObject("stairsUpRightLow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3005,7 +2995,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stop {
+        public static System.Drawing.Bitmap stop {
             get {
                 object obj = ResourceManager.GetObject("stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3015,7 +3005,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap synchronize {
+        public static System.Drawing.Bitmap synchronize {
             get {
                 object obj = ResourceManager.GetObject("synchronize", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3025,7 +3015,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tags {
+        public static System.Drawing.Bitmap tags {
             get {
                 object obj = ResourceManager.GetObject("tags", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3035,7 +3025,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap template_small {
+        public static System.Drawing.Bitmap template_small {
             get {
                 object obj = ResourceManager.GetObject("template_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3045,7 +3035,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap terminate {
+        public static System.Drawing.Bitmap terminate {
             get {
                 object obj = ResourceManager.GetObject("terminate", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3055,7 +3045,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap textView {
+        public static System.Drawing.Bitmap textView {
             get {
                 object obj = ResourceManager.GetObject("textView", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3065,7 +3055,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tieOver {
+        public static System.Drawing.Bitmap tieOver {
             get {
                 object obj = ResourceManager.GetObject("tieOver", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3075,7 +3065,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tieUnder {
+        public static System.Drawing.Bitmap tieUnder {
             get {
                 object obj = ResourceManager.GetObject("tieUnder", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3085,7 +3075,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TITLE_BG {
+        public static System.Drawing.Bitmap TITLE_BG {
             get {
                 object obj = ResourceManager.GetObject("TITLE_BG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3095,7 +3085,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap TITLE_FG {
+        public static System.Drawing.Bitmap TITLE_FG {
             get {
                 object obj = ResourceManager.GetObject("TITLE_FG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3105,7 +3095,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tools {
+        public static System.Drawing.Bitmap tools {
             get {
                 object obj = ResourceManager.GetObject("tools", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3115,7 +3105,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap transfer_small {
+        public static System.Drawing.Bitmap transfer_small {
             get {
                 object obj = ResourceManager.GetObject("transfer_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3125,7 +3115,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tremolo {
+        public static System.Drawing.Bitmap tremolo {
             get {
                 object obj = ResourceManager.GetObject("tremolo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3135,7 +3125,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap undo_small {
+        public static System.Drawing.Bitmap undo_small {
             get {
                 object obj = ResourceManager.GetObject("undo_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3145,7 +3135,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap update {
+        public static System.Drawing.Bitmap update {
             get {
                 object obj = ResourceManager.GetObject("update", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3155,7 +3145,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap vibrato {
+        public static System.Drawing.Bitmap vibrato {
             get {
                 object obj = ResourceManager.GetObject("vibrato", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3165,7 +3155,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap volume {
+        public static System.Drawing.Bitmap volume {
             get {
                 object obj = ResourceManager.GetObject("volume", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3175,7 +3165,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap warning {
+        public static System.Drawing.Bitmap warning {
             get {
                 object obj = ResourceManager.GetObject("warning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3185,7 +3175,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap widthDecrease {
+        public static System.Drawing.Bitmap widthDecrease {
             get {
                 object obj = ResourceManager.GetObject("widthDecrease", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3195,7 +3185,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap widthIncrease {
+        public static System.Drawing.Bitmap widthIncrease {
             get {
                 object obj = ResourceManager.GetObject("widthIncrease", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3205,7 +3195,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zoomBox {
+        public static System.Drawing.Bitmap zoomBox {
             get {
                 object obj = ResourceManager.GetObject("zoomBox", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3215,7 +3205,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zoomin_small {
+        public static System.Drawing.Bitmap zoomin_small {
             get {
                 object obj = ResourceManager.GetObject("zoomin_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -3225,7 +3215,7 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap zoomout_small {
+        public static System.Drawing.Bitmap zoomout_small {
             get {
                 object obj = ResourceManager.GetObject("zoomout_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
