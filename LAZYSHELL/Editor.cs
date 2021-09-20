@@ -197,7 +197,7 @@ namespace LAZYSHELL
         }
         public void UpdateRomInfo()
         {
-            this.loadRomTextBox.Text = Model.FileName;
+            this.loadRomTextBox.Text = Model.GetFileNameWithoutPath();
             this.romInfo.Text =
                 AppControl.GetRomName() + "\n" +
                 AppControl.HeaderPresent() + "\n" +
@@ -315,7 +315,7 @@ namespace LAZYSHELL
             if (saveToolStripMenuItem.Enabled)
                 FinalizeAndSave(null, 0);
             if (!cancelAnotherLoad)
-                Open(loadRomTextBox.Text);
+                Open(Model.FileName);
         }
         private void closeROM_Click(object sender, EventArgs e)
         {
@@ -606,5 +606,10 @@ namespace LAZYSHELL
         }
         #endregion
 
+
+        private void loadRomTextBox_Click(object sender, EventArgs e)
+        {
+            this.loadRomTextBox.Text = Model.FileName;
+        }
     }
 }

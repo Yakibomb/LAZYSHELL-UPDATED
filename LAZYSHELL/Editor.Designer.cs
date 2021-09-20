@@ -186,6 +186,7 @@ namespace LAZYSHELL
             this.loadRomTextBox.Name = "loadRomTextBox";
             this.loadRomTextBox.ReadOnly = true;
             this.loadRomTextBox.Size = new System.Drawing.Size(433, 25);
+            this.loadRomTextBox.Click += new System.EventHandler(this.loadRomTextBox_Click);
             // 
             // toolStrip2
             // 
@@ -219,7 +220,7 @@ namespace LAZYSHELL
             this.toolStrip2.Location = new System.Drawing.Point(0, 100);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(96, 485);
+            this.toolStrip2.Size = new System.Drawing.Size(96, 452);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -230,7 +231,7 @@ namespace LAZYSHELL
             this.openAllies.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openAllies.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openAllies.Name = "openAllies";
-            this.openAllies.Size = new System.Drawing.Size(94, 22);
+            this.openAllies.Size = new System.Drawing.Size(94, 20);
             this.openAllies.Text = "Allies";
             this.openAllies.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openAllies.ToolTipText = "Edit new game stats and level-ups for allies";
@@ -243,7 +244,7 @@ namespace LAZYSHELL
             this.openAnimations.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openAnimations.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openAnimations.Name = "openAnimations";
-            this.openAnimations.Size = new System.Drawing.Size(94, 22);
+            this.openAnimations.Size = new System.Drawing.Size(94, 20);
             this.openAnimations.Text = "Animations";
             this.openAnimations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openAnimations.ToolTipText = "Edit battle animations for battle events, spells, attacks, sprites";
@@ -256,7 +257,7 @@ namespace LAZYSHELL
             this.openAttacks.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openAttacks.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openAttacks.Name = "openAttacks";
-            this.openAttacks.Size = new System.Drawing.Size(94, 22);
+            this.openAttacks.Size = new System.Drawing.Size(94, 20);
             this.openAttacks.Text = "Attacks";
             this.openAttacks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openAttacks.ToolTipText = "Edit monster attacks, spells, and ally spells";
@@ -269,7 +270,7 @@ namespace LAZYSHELL
             this.openAudio.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openAudio.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openAudio.Name = "openAudio";
-            this.openAudio.Size = new System.Drawing.Size(94, 22);
+            this.openAudio.Size = new System.Drawing.Size(94, 20);
             this.openAudio.Text = "Audio";
             this.openAudio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openAudio.ToolTipText = "Edit audio samples and SPC instruments and tracks";
@@ -282,7 +283,7 @@ namespace LAZYSHELL
             this.openBattlefields.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openBattlefields.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openBattlefields.Name = "openBattlefields";
-            this.openBattlefields.Size = new System.Drawing.Size(94, 22);
+            this.openBattlefields.Size = new System.Drawing.Size(94, 20);
             this.openBattlefields.Text = "Battlefields";
             this.openBattlefields.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openBattlefields.ToolTipText = "Edit battle / monster formation backgrounds";
@@ -295,7 +296,7 @@ namespace LAZYSHELL
             this.openDialogues.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openDialogues.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openDialogues.Name = "openDialogues";
-            this.openDialogues.Size = new System.Drawing.Size(94, 22);
+            this.openDialogues.Size = new System.Drawing.Size(94, 20);
             this.openDialogues.Text = "Dialogues";
             this.openDialogues.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openDialogues.ToolTipText = "Edit overworld dialogue scripts, battle dialogues, and fonts";
@@ -308,7 +309,7 @@ namespace LAZYSHELL
             this.openEffects.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openEffects.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openEffects.Name = "openEffects";
-            this.openEffects.Size = new System.Drawing.Size(94, 22);
+            this.openEffects.Size = new System.Drawing.Size(94, 20);
             this.openEffects.Text = "Effects";
             this.openEffects.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openEffects.ToolTipText = "Edit spell effect animations, palettes, and graphics";
@@ -321,7 +322,7 @@ namespace LAZYSHELL
             this.openEventScripts.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openEventScripts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openEventScripts.Name = "openEventScripts";
-            this.openEventScripts.Size = new System.Drawing.Size(94, 22);
+            this.openEventScripts.Size = new System.Drawing.Size(94, 20);
             this.openEventScripts.Text = "Event Scripts";
             this.openEventScripts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openEventScripts.ToolTipText = "Edit event scripts and their respective command collections";
@@ -334,7 +335,7 @@ namespace LAZYSHELL
             this.openFormations.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openFormations.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openFormations.Name = "openFormations";
-            this.openFormations.Size = new System.Drawing.Size(94, 22);
+            this.openFormations.Size = new System.Drawing.Size(94, 20);
             this.openFormations.Text = "Formations";
             this.openFormations.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openFormations.ToolTipText = "Edit monster battle formations, formations properties, and packs";
@@ -347,7 +348,7 @@ namespace LAZYSHELL
             this.openMainTitle.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openMainTitle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openMainTitle.Name = "openMainTitle";
-            this.openMainTitle.Size = new System.Drawing.Size(94, 22);
+            this.openMainTitle.Size = new System.Drawing.Size(94, 20);
             this.openMainTitle.Text = "Intro";
             this.openMainTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openMainTitle.ToolTipText = "Edit the main title logo and backgrounds";
@@ -360,7 +361,7 @@ namespace LAZYSHELL
             this.openItems.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openItems.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openItems.Name = "openItems";
-            this.openItems.Size = new System.Drawing.Size(94, 22);
+            this.openItems.Size = new System.Drawing.Size(94, 20);
             this.openItems.Text = "Items";
             this.openItems.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openItems.ToolTipText = "Edit items, equipment, and shops";
@@ -373,7 +374,7 @@ namespace LAZYSHELL
             this.openLevels.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openLevels.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openLevels.Name = "openLevels";
-            this.openLevels.Size = new System.Drawing.Size(94, 22);
+            this.openLevels.Size = new System.Drawing.Size(94, 20);
             this.openLevels.Text = "Levels";
             this.openLevels.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openLevels.ToolTipText = "Edit level / location maps, NPCs, exits and event fields,  etc.";
@@ -386,7 +387,7 @@ namespace LAZYSHELL
             this.openMenus.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openMenus.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openMenus.Name = "openMenus";
-            this.openMenus.Size = new System.Drawing.Size(94, 22);
+            this.openMenus.Size = new System.Drawing.Size(94, 20);
             this.openMenus.Text = "Menus";
             this.openMenus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openMenus.ToolTipText = "Edit the overworld and new game menus";
@@ -399,7 +400,7 @@ namespace LAZYSHELL
             this.openMiniGames.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openMiniGames.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openMiniGames.Name = "openMiniGames";
-            this.openMiniGames.Size = new System.Drawing.Size(94, 22);
+            this.openMiniGames.Size = new System.Drawing.Size(94, 20);
             this.openMiniGames.Text = "Mini-games";
             this.openMiniGames.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openMiniGames.ToolTipText = "Edit the mine cart mini-game tracks";
@@ -412,7 +413,7 @@ namespace LAZYSHELL
             this.openMonsters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openMonsters.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openMonsters.Name = "openMonsters";
-            this.openMonsters.Size = new System.Drawing.Size(94, 22);
+            this.openMonsters.Size = new System.Drawing.Size(94, 20);
             this.openMonsters.Text = "Monsters";
             this.openMonsters.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openMonsters.ToolTipText = "Edit monster battle statistics and properties";
@@ -425,7 +426,7 @@ namespace LAZYSHELL
             this.openSprites.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openSprites.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openSprites.Name = "openSprites";
-            this.openSprites.Size = new System.Drawing.Size(94, 22);
+            this.openSprites.Size = new System.Drawing.Size(94, 20);
             this.openSprites.Text = "Sprites";
             this.openSprites.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openSprites.ToolTipText = "Edit sprite animations, palettes, and graphics";
@@ -438,7 +439,7 @@ namespace LAZYSHELL
             this.openWorldMaps.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openWorldMaps.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openWorldMaps.Name = "openWorldMaps";
-            this.openWorldMaps.Size = new System.Drawing.Size(94, 22);
+            this.openWorldMaps.Size = new System.Drawing.Size(94, 20);
             this.openWorldMaps.Text = "World Maps";
             this.openWorldMaps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openWorldMaps.ToolTipText = "Edit world maps, locations, palettes, and graphics";
@@ -451,7 +452,7 @@ namespace LAZYSHELL
             this.openProject.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openProject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openProject.Name = "openProject";
-            this.openProject.Size = new System.Drawing.Size(94, 22);
+            this.openProject.Size = new System.Drawing.Size(94, 20);
             this.openProject.Text = "Project";
             this.openProject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openProject.ToolTipText = "Open the project manager";
@@ -464,7 +465,7 @@ namespace LAZYSHELL
             this.openPatches.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openPatches.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openPatches.Name = "openPatches";
-            this.openPatches.Size = new System.Drawing.Size(94, 22);
+            this.openPatches.Size = new System.Drawing.Size(94, 20);
             this.openPatches.Text = "Patches";
             this.openPatches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openPatches.ToolTipText = "Apply a hack from the patch HTTP server";
@@ -485,13 +486,13 @@ namespace LAZYSHELL
             this.panel2.AllowDrop = true;
             this.panel2.AutoScroll = true;
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.webBrowser1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(96, 125);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(432, 460);
+            this.panel2.Size = new System.Drawing.Size(432, 427);
             this.panel2.TabIndex = 4;
             // 
             // webBrowser1
@@ -500,7 +501,7 @@ namespace LAZYSHELL
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(428, 456);
+            this.webBrowser1.Size = new System.Drawing.Size(428, 423);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Visible = false;
             // 
@@ -538,7 +539,7 @@ namespace LAZYSHELL
             this.recentFiles.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.recentFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.recentFiles.Name = "recentFiles";
-            this.recentFiles.Size = new System.Drawing.Size(31, 22);
+            this.recentFiles.Size = new System.Drawing.Size(29, 22);
             this.recentFiles.ToolTipText = "Recent ROM Files";
             // 
             // refreshROM
@@ -678,11 +679,11 @@ namespace LAZYSHELL
             // 
             // info
             // 
-            this.info.Image = global::LAZYSHELL.Properties.Resources.main;
+            this.info.Image = global::LAZYSHELL.Properties.Resources.mapBanner;
             this.info.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.info.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.info.Name = "info";
-            this.info.Size = new System.Drawing.Size(23, 22);
+            this.info.Size = new System.Drawing.Size(36, 22);
             this.info.ToolTipText = "About";
             this.info.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -805,7 +806,7 @@ namespace LAZYSHELL
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 585);
+            this.ClientSize = new System.Drawing.Size(528, 552);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip3);
             this.Controls.Add(this.toolStrip2);

@@ -118,13 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="richTextBox3.Text" xml:space="preserve">
-    <value>Lazy Shell, Version 3.19.0
+    <value>Lazy Shell: UPDATED EDITION, Version 1.3.1
+Based off source code of Lazy Shell, Version 3.19.0
 
+Lazy Shell, and Lazy Shell's source code,
 Copyright © 2007-2013  giangurgolo &amp; Omega
 
-Created by Omega &amp; giangurgolo
+Lazy Shell, Created by Omega &amp; giangurgolo
+Lazy Shell: UPDATED EDITION, Created by Yakibomb
 
-Main Contributors and Supporters:
+
+Lazy Shell's Main Contributors and Supporters:
+
 ElementalPowerStar -  notable donator, principle bug-finder, positive feedback
 Yakibomb - principle bug-finder and tester, positive feedback
 Ryan H. - donator, supporter
@@ -149,6 +154,17 @@ romhacking community - various feedback</value>
   </data>
   <data name="changeslog1.Text" xml:space="preserve">
     <value>===========================
+=======V1.3.1 CHANGELOG=======
+===========================
+MAIN
+- Updated all icons to those of Lazy Shell 4.0.0
+- File path for ROM now shows just the ROM file's name. (Click the ROM file name to reveal full path)
+
+ANIMATIONS
+- Added Weapon Timed-Hit Sounds (for when a weapon is timed correctly)
+- Added Character Weapon Scripts (for when characters draw near to attack a monster)
+
+===========================
 =======V1.3.0 CHANGELOG=======
 ===========================
 ANIMATIONS
