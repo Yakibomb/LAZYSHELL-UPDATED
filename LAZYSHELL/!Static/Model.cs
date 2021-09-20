@@ -1281,8 +1281,10 @@ namespace LAZYSHELL
         private static AnimationScript[] entranceAnimations;
         private static AnimationScript[] weaponAnimations;
         private static AnimationScript[] weaponSoundScripts;
+        private static AnimationScript[] weaponTimedHitScripts;
         private static AnimationScript[] bonusMessageAnimations;
         private static AnimationScript[] toadTutorialScript;
+        private static AnimationScript[] characterScripts;
         public static BattleScript[] BattleScripts
         {
             get
@@ -1403,7 +1405,7 @@ namespace LAZYSHELL
                 {
                     battleEvents = new AnimationScript[102];
                     for (int i = 0; i < battleEvents.Length; i++)
-                        battleEvents[i] = new AnimationScript(i, 8);
+                        battleEvents[i] = new AnimationScript(i, 9);
                 }
                 return battleEvents;
             }
@@ -1465,6 +1467,20 @@ namespace LAZYSHELL
             }
             set { weaponSoundScripts = value; }
         }
+        public static AnimationScript[] WeaponTimedHitScripts
+        {
+            get
+            {
+                if (weaponTimedHitScripts == null)
+                {
+                    weaponTimedHitScripts = new AnimationScript[36];
+                    for (int i = 0; i < weaponTimedHitScripts.Length; i++)
+                        weaponTimedHitScripts[i] = new AnimationScript(i, 8);
+                }
+                return weaponTimedHitScripts;
+            }
+            set { weaponTimedHitScripts = value; }
+        }
         public static AnimationScript[] BonusMessageAnimations
         {
             get
@@ -1473,7 +1489,7 @@ namespace LAZYSHELL
                 {
                     bonusMessageAnimations = new AnimationScript[6];
                     for (int i = 0; i < bonusMessageAnimations.Length; i++)
-                        bonusMessageAnimations[i] = new AnimationScript(i, 9);
+                        bonusMessageAnimations[i] = new AnimationScript(i, 10);
                 }
                 return bonusMessageAnimations;
             }
@@ -1487,11 +1503,25 @@ namespace LAZYSHELL
                 {
                     toadTutorialScript = new AnimationScript[1];
                     for (int i = 0; i < toadTutorialScript.Length; i++)
-                        ToadTutorialScript[i] = new AnimationScript(i, 10);
+                        ToadTutorialScript[i] = new AnimationScript(i, 11);
                 }
                 return toadTutorialScript;
             }
             set { toadTutorialScript = value; }
+        }
+        public static AnimationScript[] CharacterScripts
+        {
+            get
+            {
+                if (characterScripts == null)
+                {
+                    characterScripts = new AnimationScript[5];
+                    for (int i = 0; i < characterScripts.Length; i++)
+                        characterScripts[i] = new AnimationScript(i, 12);
+                }
+                return characterScripts;
+            }
+            set { characterScripts = value; }
         }
         #endregion
         #region Sprites
@@ -1740,6 +1770,7 @@ namespace LAZYSHELL
         private static SortedList spellNames;
         private static SortedList attackNames;
         private static SortedList itemNames;
+        private static SortedList characterNames;
         public static SortedList MonsterNames
         {
             get
@@ -1810,6 +1841,24 @@ namespace LAZYSHELL
                 itemNames = value;
                 if (itemNames != null)
                     itemNames.SortAlphabetically();
+            }
+        }
+        public static SortedList CharacterNames
+        {
+            get
+            {
+                if (characterNames == null)
+                {
+                    characterNames = new SortedList(Characters);
+                    characterNames.SortAlphabetically();
+                }
+                return characterNames;
+            }
+            set
+            {
+                characterNames = value;
+                if (characterNames != null)
+                    characterNames.SortAlphabetically();
             }
         }
         #endregion
@@ -2507,6 +2556,7 @@ namespace LAZYSHELL
             dummy = GraphicSets[0];
             dummy = ItemAnimations;
             dummy = ItemNames;
+            dummy = CharacterNames;
             dummy = Items;
             dummy = LevelMaps;
             dummy = Levels;
@@ -2578,6 +2628,8 @@ namespace LAZYSHELL
             dummy = ToadTutorialScript;
             dummy = WeaponAnimations;
             dummy = WeaponSoundScripts;
+            dummy = WeaponTimedHitScripts;
+            dummy = CharacterScripts;
             dummy = WorldMapGraphics;
             dummy = WorldMapPalettes;
             dummy = WorldMaps;
@@ -2634,6 +2686,7 @@ namespace LAZYSHELL
             graphicSets[0] = null;
             itemAnimations = null;
             itemNames = null;
+            characterNames = null;
             items = null;
             levelMaps = null;
             levels = null;
@@ -2700,9 +2753,11 @@ namespace LAZYSHELL
             titleSpriteGraphics = null;
             titleSpritePalettes = null;
             titleTileSet = null;
-            ToadTutorialScript = null;
+            toadTutorialScript = null;
             weaponAnimations = null;
             weaponSoundScripts = null;
+            weaponTimedHitScripts = null;
+            characterScripts = null;
             worldMapGraphics = null;
             worldMapPalettes = null;
             worldMaps = null;
