@@ -32,7 +32,6 @@ namespace LAZYSHELL
             this.buttonApply = new System.Windows.Forms.Button();
             this.visualThemeSystem = new System.Windows.Forms.RadioButton();
             this.visualThemeStandard = new System.Windows.Forms.RadioButton();
-            this.patchHTTPServer = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.romDirectory = new System.Windows.Forms.RadioButton();
@@ -40,16 +39,14 @@ namespace LAZYSHELL
             this.buttonCustomDirectory = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.ColumnWidth = 214;
             this.checkedListBox1.FormattingEnabled = true;
@@ -65,23 +62,23 @@ namespace LAZYSHELL
             this.checkedListBox1.Location = new System.Drawing.Point(12, 12);
             this.checkedListBox1.MultiColumn = true;
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(454, 68);
+            this.checkedListBox1.Size = new System.Drawing.Size(454, 84);
             this.checkedListBox1.TabIndex = 0;
             // 
             // customDirectoryTextBox
             // 
-            this.customDirectoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.customDirectoryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.customDirectoryTextBox.Location = new System.Drawing.Point(123, 35);
             this.customDirectoryTextBox.Name = "customDirectoryTextBox";
             this.customDirectoryTextBox.ReadOnly = true;
-            this.customDirectoryTextBox.Size = new System.Drawing.Size(292, 21);
+            this.customDirectoryTextBox.Size = new System.Drawing.Size(199, 21);
             this.customDirectoryTextBox.TabIndex = 2;
             // 
             // buttonDefault
             // 
             this.buttonDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonDefault.Location = new System.Drawing.Point(12, 220);
+            this.buttonDefault.Location = new System.Drawing.Point(12, 176);
             this.buttonDefault.Name = "buttonDefault";
             this.buttonDefault.Size = new System.Drawing.Size(75, 23);
             this.buttonDefault.TabIndex = 7;
@@ -92,7 +89,7 @@ namespace LAZYSHELL
             // buttonApply
             // 
             this.buttonApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonApply.Location = new System.Drawing.Point(391, 220);
+            this.buttonApply.Location = new System.Drawing.Point(391, 176);
             this.buttonApply.Name = "buttonApply";
             this.buttonApply.Size = new System.Drawing.Size(75, 23);
             this.buttonApply.TabIndex = 10;
@@ -122,20 +119,11 @@ namespace LAZYSHELL
             this.visualThemeStandard.Text = "Standard";
             this.visualThemeStandard.UseVisualStyleBackColor = true;
             // 
-            // patchHTTPServer
-            // 
-            this.patchHTTPServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.patchHTTPServer.Location = new System.Drawing.Point(6, 24);
-            this.patchHTTPServer.Name = "patchHTTPServer";
-            this.patchHTTPServer.Size = new System.Drawing.Size(349, 21);
-            this.patchHTTPServer.TabIndex = 4;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.visualThemeSystem);
             this.groupBox1.Controls.Add(this.visualThemeStandard);
-            this.groupBox1.Location = new System.Drawing.Point(12, 154);
+            this.groupBox1.Location = new System.Drawing.Point(12, 106);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(87, 60);
             this.groupBox1.TabIndex = 2;
@@ -144,15 +132,13 @@ namespace LAZYSHELL
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.romDirectory);
             this.groupBox2.Controls.Add(this.customDirectory);
             this.groupBox2.Controls.Add(this.customDirectoryTextBox);
             this.groupBox2.Controls.Add(this.buttonCustomDirectory);
-            this.groupBox2.Location = new System.Drawing.Point(12, 86);
+            this.groupBox2.Location = new System.Drawing.Point(105, 106);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(454, 62);
+            this.groupBox2.Size = new System.Drawing.Size(361, 60);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Back-up ROM location";
@@ -182,7 +168,7 @@ namespace LAZYSHELL
             // buttonCustomDirectory
             // 
             this.buttonCustomDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCustomDirectory.Location = new System.Drawing.Point(421, 35);
+            this.buttonCustomDirectory.Location = new System.Drawing.Point(328, 35);
             this.buttonCustomDirectory.Name = "buttonCustomDirectory";
             this.buttonCustomDirectory.Size = new System.Drawing.Size(27, 21);
             this.buttonCustomDirectory.TabIndex = 3;
@@ -193,7 +179,7 @@ namespace LAZYSHELL
             // buttonClose
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClose.Location = new System.Drawing.Point(310, 220);
+            this.buttonClose.Location = new System.Drawing.Point(310, 176);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(75, 23);
             this.buttonClose.TabIndex = 9;
@@ -204,7 +190,7 @@ namespace LAZYSHELL
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(229, 220);
+            this.buttonOK.Location = new System.Drawing.Point(229, 176);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 8;
@@ -212,24 +198,11 @@ namespace LAZYSHELL
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.patchHTTPServer);
-            this.groupBox5.Location = new System.Drawing.Point(105, 154);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(361, 60);
-            this.groupBox5.TabIndex = 5;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Patch HTTP Server";
-            // 
             // SettingsEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 255);
-            this.Controls.Add(this.groupBox5);
+            this.ClientSize = new System.Drawing.Size(478, 211);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.groupBox2);
@@ -240,14 +213,13 @@ namespace LAZYSHELL
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
             this.Name = "SettingsEditor";
-            this.Text = "LAZY SHELL - Settings";
+            this.Text = "Settings - LAZYSHELL++";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
+
         }
         #endregion
         private System.Windows.Forms.CheckedListBox checkedListBox1;
@@ -256,7 +228,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.Button buttonApply;
         private System.Windows.Forms.RadioButton visualThemeSystem;
         private System.Windows.Forms.RadioButton visualThemeStandard;
-        private System.Windows.Forms.TextBox patchHTTPServer;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton romDirectory;
@@ -264,6 +235,5 @@ namespace LAZYSHELL
         private System.Windows.Forms.Button buttonCustomDirectory;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Button buttonOK;
-        private System.Windows.Forms.GroupBox groupBox5;
     }
 }

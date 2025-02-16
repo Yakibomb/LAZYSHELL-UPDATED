@@ -35,8 +35,8 @@ namespace LAZYSHELL
         private EventScripts eventScripts; public EventScripts EventScripts { get { return eventScripts; } }
         private Sprites sprites; public Sprites Sprites { get { return sprites; } }
         private WorldMaps worldMaps; public WorldMaps WorldMaps { get { return worldMaps; } }
-        private GamePatches patches;
         private Project project; public Project Project { get { return project; } }
+        private GamePatches patches; public GamePatches Patches { get { return patches; } }
         private Editor editor
         {
             get
@@ -83,8 +83,8 @@ namespace LAZYSHELL
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = settings.LastRomPath;
             openFileDialog1.Title = "Select a SMRPG ROM";
-            openFileDialog1.Filter = "SMC files (*.SMC)|*.SMC|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.Filter = "SMC/SFC files (*.SMC; *.SFC)|*.SMC;*.SFC|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
             //
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
@@ -126,8 +126,8 @@ namespace LAZYSHELL
         public bool SaveRomFileAs()
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "SMC files (*.SMC)|*.SMC|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.Filter = "SMC/SFC files (*.SMC; *.SFC)|*.SMC;*.SFC|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.RestoreDirectory = true;
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -210,8 +210,11 @@ namespace LAZYSHELL
                 else
                     allies.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonAllies.Checked = true;
             }
             allies.KeyDown += new KeyEventHandler(editor_KeyDown);
+            allies.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             allies.BringToFront();
         }
         public void CreateAnimationsWindow()
@@ -225,8 +228,11 @@ namespace LAZYSHELL
                 else
                     animations.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonAnimations.Checked = true;
             }
             animations.KeyDown += new KeyEventHandler(editor_KeyDown);
+            animations.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             animations.BringToFront();
         }
         public void CreateAttacksWindow()
@@ -240,8 +246,11 @@ namespace LAZYSHELL
                 else
                     attacks.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonAttacks.Checked = true;
             }
             attacks.KeyDown += new KeyEventHandler(editor_KeyDown);
+            attacks.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             attacks.BringToFront();
         }
         public void CreateAudioWindow()
@@ -255,8 +264,11 @@ namespace LAZYSHELL
                 else
                     audio.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonAudio.Checked = true;
             }
             audio.KeyDown += new KeyEventHandler(editor_KeyDown);
+            audio.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             audio.BringToFront();
         }
         public void CreateBattlefieldsWindow()
@@ -270,8 +282,11 @@ namespace LAZYSHELL
                 else
                     battlefields.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonBattlefields.Checked = true;
             }
             battlefields.KeyDown += new KeyEventHandler(editor_KeyDown);
+            battlefields.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             battlefields.BringToFront();
         }
         public void CreateDialoguesWindow()
@@ -285,8 +300,11 @@ namespace LAZYSHELL
                 else
                     dialogues.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonDialogues.Checked = true;
             }
             dialogues.KeyDown += new KeyEventHandler(editor_KeyDown);
+            dialogues.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             dialogues.BringToFront();
         }
         public void CreateEffectsWindow()
@@ -300,8 +318,11 @@ namespace LAZYSHELL
                 else
                     effects.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonEffects.Checked = true;
             }
             effects.KeyDown += new KeyEventHandler(editor_KeyDown);
+            effects.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             effects.BringToFront();
         }
         public void CreateEventScriptsWindow()
@@ -315,8 +336,11 @@ namespace LAZYSHELL
                 else
                     eventScripts.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonEventScripts.Checked = true;
             }
             eventScripts.KeyDown += new KeyEventHandler(editor_KeyDown);
+            eventScripts.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             eventScripts.BringToFront();
         }
         public void CreateFormationsWindow()
@@ -330,8 +354,11 @@ namespace LAZYSHELL
                 else
                     formations.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonFormations.Checked = true;
             }
             formations.KeyDown += new KeyEventHandler(editor_KeyDown);
+            formations.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             formations.BringToFront();
         }
         public void CreateItemsWindow()
@@ -345,8 +372,11 @@ namespace LAZYSHELL
                 else
                     items.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonItems.Checked = true;
             }
             items.KeyDown += new KeyEventHandler(editor_KeyDown);
+            items.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             items.BringToFront();
         }
         public void CreateLevelsWindow()
@@ -360,8 +390,11 @@ namespace LAZYSHELL
                 else
                     levels.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonLevels.Checked = true;
             }
             levels.KeyDown += new KeyEventHandler(editor_KeyDown);
+            levels.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             levels.BringToFront();
         }
         public void CreateMonstersWindow()
@@ -375,8 +408,11 @@ namespace LAZYSHELL
                 else
                     monsters.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonMonsters.Checked = true;
             }
             monsters.KeyDown += new KeyEventHandler(editor_KeyDown);
+            monsters.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             monsters.BringToFront();
         }
         public void CreateIntroWindow()
@@ -390,8 +426,11 @@ namespace LAZYSHELL
                 else
                     intro.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonIntro.Checked = true;
             }
             intro.KeyDown += new KeyEventHandler(editor_KeyDown);
+            intro.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             intro.BringToFront();
         }
         public void CreateMenusWindow()
@@ -405,8 +444,11 @@ namespace LAZYSHELL
                 else
                     menus.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonMenus.Checked = true;
             }
             menus.KeyDown += new KeyEventHandler(editor_KeyDown);
+            menus.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             menus.BringToFront();
         }
         public void CreateMiniGamesWindow()
@@ -420,8 +462,11 @@ namespace LAZYSHELL
                 else
                     miniGames.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonMiniGames.Checked = true;
             }
             miniGames.KeyDown += new KeyEventHandler(editor_KeyDown);
+            miniGames.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             miniGames.BringToFront();
         }
         public void CreateSpritesWindow()
@@ -435,8 +480,11 @@ namespace LAZYSHELL
                 else
                     sprites.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonSprites.Checked = true;
             }
             sprites.KeyDown += new KeyEventHandler(editor_KeyDown);
+            sprites.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             sprites.BringToFront();
         }
         public void CreateWorldMapsWindow()
@@ -450,20 +498,60 @@ namespace LAZYSHELL
                 else
                     worldMaps.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonWorldMaps.Checked = true;
             }
             worldMaps.KeyDown += new KeyEventHandler(editor_KeyDown);
+            worldMaps.FormClosed += new FormClosedEventHandler(editor_FormClosed);
             worldMaps.BringToFront();
         }
         public void CreatePatchesWindow()
         {
-            if ((levels != null && levels.Visible) ||
+            string patchURLs = "";
+            foreach (string patchURL in settings.PatchServerURLs)
+                patchURLs += patchURL + "\r\n";
+            if (patchURLs == "")
+                patchURLs = "- Error: No links specified. Will not connect to internet.";
+
+            string MessageInfo = "";
+            if (!settings.OpenPatchesFirstTime)
+            {
+                settings.OpenPatchesFirstTime = true;
+                settings.Save();
+                MessageInfo = "\"Patches\" connects to an internet server, which stores SMRPG patches in one easily accessible place.\n" +
+                "You can choose to add or remove web servers it tries to connect to in the Patches window.\n\n";
+            }
+            DialogResult dialogueResult = MessageBox.Show(
+                MessageInfo +
+                "Do you want to connect to the patch server(s)?\nThis will attempt connection to:\n\n" +
+                patchURLs,
+                "LAZYSHELL++ - Patch Server(s) Information", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+
+            if (dialogueResult == DialogResult.Cancel)
+                return;
+
+            if ((allies != null && allies.Visible) ||
+                (animations != null && animations.Visible) ||
+                (attacks != null && attacks.Visible) ||
+                (battlefields != null && battlefields.Visible) ||
+                (dialogues != null && dialogues.Visible) ||
+                (effects != null && effects.Visible) ||
                 (eventScripts != null && eventScripts.Visible) ||
-                (sprites != null && sprites.Visible))
+                (formations != null && formations.Visible) ||
+                (items != null && items.Visible) ||
+                (levels != null && levels.Visible) ||
+                (monsters != null && monsters.Visible) ||
+                (sprites != null && sprites.Visible) ||
+                (intro != null && intro.Visible) ||
+                (menus != null && menus.Visible) ||
+                (miniGames != null && miniGames.Visible) ||
+                (worldMaps != null && worldMaps.Visible) ||
+                (project != null && project.Visible))
             {
                 DialogResult result = MessageBox.Show(
                     "It is highly recommended that you close and save any editor windows before patching.\n\n" +
                     "Would you like to save and close all current windows?",
-                    "LAZY SHELL", MessageBoxButtons.YesNoCancel);
+                    "LAZYSHELL++", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                     CloseAll();
                 else
@@ -473,11 +561,13 @@ namespace LAZYSHELL
             if (patches == null || !patches.Visible)
             {
                 Cursor.Current = Cursors.WaitCursor;
-                patches = new GamePatches();
+                patches = new GamePatches(dialogueResult);
                 patches.Show();
-                patches.StartDownloadingPatches();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonPatches.Checked = true;
             }
+            patches.FormClosed += new FormClosedEventHandler(editor_FormClosed);
         }
         public void CreateProjectWindow()
         {
@@ -487,7 +577,10 @@ namespace LAZYSHELL
                 project = new Project();
                 project.Show();
                 Cursor.Current = Cursors.Arrow;
+                //
+                editor.buttonProject.Checked = true;
             }
+            project.FormClosed += new FormClosedEventHandler(editor_FormClosed);
         }
         #endregion
         // editor managing
@@ -584,6 +677,7 @@ namespace LAZYSHELL
             CreateMonstersWindow();
             CreateSpritesWindow();
             CreateWorldMapsWindow();
+            CreateProjectWindow();
         }
         public void MinimizeAll()
         {
@@ -621,6 +715,8 @@ namespace LAZYSHELL
                 sprites.WindowState = FormWindowState.Minimized;
             if (worldMaps != null && worldMaps.Visible)
                 worldMaps.WindowState = FormWindowState.Minimized;
+            if (project != null && project.Visible)
+                project.WindowState = FormWindowState.Minimized;
         }
         public void RestoreAll()
         {
@@ -658,6 +754,8 @@ namespace LAZYSHELL
                 sprites.WindowState = FormWindowState.Normal;
             if (worldMaps != null && worldMaps.Visible)
                 worldMaps.WindowState = FormWindowState.Normal;
+            if (project != null && project.Visible)
+                project.WindowState = FormWindowState.Normal;
         }
         public bool CloseAll()
         {
@@ -695,6 +793,8 @@ namespace LAZYSHELL
                 miniGames.Close();
             if (worldMaps != null && worldMaps.Visible)
                 worldMaps.Close();
+            if (project != null && project.Visible)
+                project.Close();
             if ((allies != null && allies.Visible) ||
                 (animations != null && animations.Visible) ||
                 (attacks != null && attacks.Visible) ||
@@ -710,7 +810,8 @@ namespace LAZYSHELL
                 (intro != null && intro.Visible) ||
                 (menus != null && menus.Visible) ||
                 (miniGames != null && miniGames.Visible) ||
-                (worldMaps != null && worldMaps.Visible))
+                (worldMaps != null && worldMaps.Visible) ||
+                (project != null && project.Visible))
                 return true;
             return false;
         }
@@ -727,6 +828,48 @@ namespace LAZYSHELL
             Form editor = (Form)sender;
             if (e.KeyData == Keys.F3)
                 Do.CaptureScreens(editor);
+        }
+        private void editor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form openEditor = (Form)sender;
+            if (openEditor == allies)
+                editor.buttonAllies.Checked = false;
+            else if (openEditor == animations)
+                editor.buttonAnimations.Checked = false;
+            else if (openEditor == attacks)
+                editor.buttonAttacks.Checked = false;
+            else if (openEditor == audio)
+                editor.buttonAudio.Checked = false;
+            else if (openEditor == battlefields)
+                editor.buttonBattlefields.Checked = false;
+            else if (openEditor == dialogues)
+                editor.buttonDialogues.Checked = false;
+            else if (openEditor == effects)
+                editor.buttonEffects.Checked = false;
+            else if (openEditor == eventScripts)
+                editor.buttonEventScripts.Checked = false;
+            else if (openEditor == formations)
+                editor.buttonFormations.Checked = false;
+            else if (openEditor == intro)
+                editor.buttonIntro.Checked = false;
+            else if (openEditor == items)
+                editor.buttonItems.Checked = false;
+            else if (openEditor == levels)
+                editor.buttonLevels.Checked = false;
+            else if (openEditor == menus)
+                editor.buttonMenus.Checked = false;
+            else if (openEditor == miniGames)
+                editor.buttonMiniGames.Checked = false;
+            else if (openEditor == monsters)
+                editor.buttonMonsters.Checked = false;
+            else if (openEditor == sprites)
+                editor.buttonSprites.Checked = false;
+            else if (openEditor == worldMaps)
+                editor.buttonWorldMaps.Checked = false;
+            else if (openEditor == project)
+                editor.buttonProject.Checked = false;
+            else if (openEditor == patches)
+                editor.buttonPatches.Checked = false;
         }
     }
 }

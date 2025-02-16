@@ -125,7 +125,7 @@ namespace LAZYSHELL
         {
             // Ask to save rom
             if (MessageBox.Show("Publishing a ROM requires saving. Save and publish this rom now?",
-                "LAZY SHELL", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                "LAZYSHELL++", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 return App.SaveRomFileAs(); // Save
             return false;
         }

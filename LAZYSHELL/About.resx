@@ -112,48 +112,152 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox3.Text" xml:space="preserve">
-    <value>Lazy Shell: UPDATED EDITION, Version 1.3.1
-Based off source code of Lazy Shell, Version 3.19.0
-
-Lazy Shell, and Lazy Shell's source code,
-Copyright © 2007-2013  giangurgolo &amp; Omega
-
-Lazy Shell, Created by Omega &amp; giangurgolo
-Lazy Shell: UPDATED EDITION, Created by Yakibomb
-
-
-Lazy Shell's Main Contributors and Supporters:
-
-ElementalPowerStar -  notable donator, principle bug-finder, positive feedback
-Yakibomb - principle bug-finder and tester, positive feedback
-Ryan H. - donator, supporter
-
-Special Thanks:
-Alex Farber - MRU list manager
-Bregalad - source code for BRR encoding and decoding
-CrispyYoshi - feedback, beta testing, documentation for audio editor
-FuSoYa - for permission to use Lunar Compress.dll
-Kevin Weiner - animated GIF encoder class
-KP9000 - beta testing, discovered many bugs with pre-release version
-MathOnNapkins - helped with some coding
-Serge Meunier - image processing function code
-spel werdz rite - original resolution for running program under a 64-bit OS
-romhacking community - various feedback</value>
-  </data>
-  <data name="richTextBox5.Text" xml:space="preserve">
-    <value>- INTRO: Add checkbox option to change the whether the screen X/Y position changes when you see Exor intro
-- INTRO: Can't save Sprite Graphics
-- ANIMATIONS: Fix dropdown menu index for Play Music/Sound (AB,AE,B0,B1).
-- DIALOGUES: Fix memory loading/saving corruption errors</value>
-  </data>
   <data name="changeslog1.Text" xml:space="preserve">
     <value>===========================
+=======V2.0.0 CHANGELOG========
+===========================
+MAIN
+ - Updated icons across all editors (using LS4.0 icons+outsourced+custom)
+ --LS 4.0 icons by giangurgolo
+ --New icons outsourced from led24.de/iconset/
+ --New icons outsourced from fatcow.com/free-icons
+ --New icons outsourced from p.yusukekamiyamane.com/
+ --New, custom icons by Yaki
+ --- (All LS 3.19.0 icons still in solution on Github)
+ - Added jumbo icons layout option
+ -- As a bonus, can hold "alt" to drag+drop editor icons on main editor window
+ - Fixed "Close ROM" not closing the HEX editor
+ - Fixed "Project Database" not asking to save if closing full editor
+ - Ally name changes are reflected in lists
+ - Updated toolbar layout across all editors
+ -- Help, Base Converter, and window changing icons are on the right of the toolbar
+ - Included ".SFC" ROM file types to be loaded/saved
+ - Error message window Abort Application now always closes editor (credit jpmac26)
+ - Updated .NET Framework from 2.0 to 4.8
+ - Updated readme.xml
+
+TOOLS
+ - Palette Editor: Fixed throw for HTML, either not being hex, or being greater than $F8F8F8
+ - Palette Editor: Fixed window resolution being slightly smaller than intended
+ - Graphics Editor: Fixed not being able to reset or undo because palette editor was updated
+ - ZoomBox: Fixed being able to close it using Alt-F4 in Sprites.
+ - Hex Editor: Fixed "Jump To Offset" jumping to offset prior to the one searched for
+ - Hex Editor: Added way to search backwards or forwards from offset
+ - Hex Editor: Added button to highlight recent changes in ROM
+ - Hex Editor: Added buttons to jump (forwards or backwards) to recent changes in ROM
+ - Restore: Menus now includes imports for just Text, Graphics, Tilesets, and Misc.
+
+PREVIEWER
+ - Rerouted all PreviewROMs to the emulator path. (ZSNES typically likes to have all saves in a certain folder as it, a setting it defaults to)
+ - Fixed editor generating a backup for PreviewROMs
+ - Added previewer for Sprites and Effects editors
+ - Added warning if no emulator is selected
+
+PROJECT DATABASE
+ - Fixed error where file is "being used by another process" if notes were loaded then saved
+ - Fixed editor buttons not becoming disabled if there were no notes loaded
+ - Added warning for "Close Project" button
+ - Fixed bug with "Close Project" button where the file directory would not reset, causing errors
+ - Added "Reload Project Database" to refresh notes for any reason
+ - Added Auto-Update feature
+
+PATCHES
+ - Now works! Explore ROM patches in a sleek layout, and patch your ROM on-the-fly if you desire. (Just make sure to backup your ROM before patching!)
+ - Host server is Yaki's github by default. Can use one or several sites to connect to.
+ =&gt; Instructions on how to host your own patch server is in the default patch server link on github
+ - Added HelpTips to Patches
+
+LEVELS
+ - Added "Solidity Flat Mode" (Hotkey "R"). Flat Mode reduces the height of all tiles to zero so you can actually see what you're doing.
+ - Updated color codes for solidity tiles
+ - Added new color codes on solidity tiles for Stairs, Doors, Conveyerbelts
+ - Corrected icons for Solid Mods and Tile Mods
+ - Made Priority1 yellow on Solidity Tiles transparent at while opacity set to 100%
+ - Fixed bug where editor would not ask to save if changing area music only then closing
+ - Added Palette offset under "?" level info icon
+ - Renamed a couple levels to more accurately describe them
+
+ATTACKS
+ - Fixed "Damage Modifiers" box not disappearing for non-ally spells
+ - Changed "Clear element" option to reset to NONE (instead of just zero)
+ - Added checkbox for unused Berserk status (doesn't work unless ASM enables it)
+
+ITEMS
+ - Added feature to change how a list sorts itself (Alphabetically, w/ or w/out icons, and sorts DUMMY to the bottom)
+ - Changed "Clear element" option to reset to NONE (instead of just zero)
+ - Added checkbox for unused Berserk status (doesn't work unless ASM enables it)
+ - Renamed "Element Weaknesses" to "Element Halving"
+ - Ally names in Checkboxes update to the ally names in the ROM
+ - Updated HelpTips to reflect new changes
+
+ANIMATIONS
+ - Changed command list to have hex number prefix, instead of decimal
+ -- Additionally for the list, removed names for unused commands
+ - Fixed "Timing for single button inputs" (0xCE, 0xCF) from reversing params when hitting apply
+ - Added blue color highlight for Jump to Address commands (0xCE, 0xCF, 0xD0, 0xD8)
+ - Fixed potential crash selecting command menu child (like Monster's list) for the first time
+
+BATTLEFIELDS
+ - Added "Show/Hide Allies (P)" button, similar to the button in FORMATIONS editor
+ - Added "Screen" button to display a SNES resolution screen (256 x 224)
+ - Fixed bug where copying a selection, then changing battlefield #, would paste the selection in the prior battlefield
+
+DIALOGUES
+ - Fixed dialogues from saving incorrectly, corrupting them. (Thank you Doomsday31415!)
+ - Fixed bug where going above index 5 (or something) in battle messages would break the UI
+
+EVENTS 
+ - Fixed Edit Label window not writing to event label
+ - Added more event names, including complete list of "Intro Demo" (Courtesy of Sukasa of now-defunct Acmlm Kafuka BoardII)
+
+FORMATIONS
+ - Fixed preview ally portraits from being mirrored horizonally
+
+MENUS
+ - Can now edit Foreground and Background using tools found in other editors
+ - Added "Overworld Menu - Star Pieces" to view and edit palettes and tilesets for this menu
+ - Added editable overworld menu list
+ - Fixed bug where menu palettes would carry over from previously loaded ROMs.
+ - Updated HelpTips to reflect new changes
+
+MONSTERS
+ - Fixed typo in battle scripts "Set Target Invicibilty"
+
+WORLD MAPS
+ - Added edit-able Sprite Graphics (yippie!)
+ - Added edit-able Sprite Palettes (yippie!!)
+ - Mario's Overworld sprite can be previewed by clicking the Banners button
+ - Fixed bug where tile editing was enabled when Banners and/or Locations were on
+
+SPRITES
+ - Updated the following names:
+97 - "Toadstool's Parachute" -&gt; "Snifit's Parachute"
+135 - "Mine Cart (bad palette)" -&gt; "Mine Cart (Seq7 Overworld Sprite)"
+144 - "Red Dot?" -&gt; "Apple (Yo'ster Isle intro sequence)"
+174- "Small Candy Cloud" -&gt; "Mario on Nimbus Busman (Bowser's Keep cutscene)"
+222 - "banana peel" -&gt; "Toadstool Marrymore Accessories"
+521 - "light blue stars" -&gt; "Battle stars (on hit)"
+526 - "yellow mist / stream" -&gt; "Geno's Star Form (Ending Credits)"
+527 - "yellow mist / stream forms into small star" -&gt; "Geno's Bullets and Star Gun"
+786 - "Wind Crystal" -&gt; "Wind Crystal and Fire Crystal"
+789 - "Water Crystal" -&gt; "Water Crystal and Earth Crystal"
+956 - "normal yellow 5-pronged star" -&gt; "Geno in Star Form (Ending Credits)"
+957 - "brown object dissipating" -&gt; "The End background (Ending Credits)"
+958 -&gt; "tiny glowing pixel" -&gt; "Geno's Star's glow effect (Ending Credits)"
+
+
+===========================
+=======V1.3.2 CHANGELOG=======
+===========================
+MONSTERS
+- Fixed flower bonus % not saving
+
+===========================
 =======V1.3.1 CHANGELOG=======
 ===========================
 MAIN
@@ -299,5 +403,39 @@ ITEMS
 
 WORLD MAPS
 - Added ability to view (not edit) Mario's map sprite</value>
+  </data>
+  <data name="richTextBox3.Text" xml:space="preserve">
+    <value>LAZYSHELL++ v2.0.0, based off source code of Lazy Shell v3.19.0
+Source code and software maintained 2021-2025, by Yaki
+
+Lazy Shell, and Lazy Shell's source code,
+Copyright © 2007-2013  giangurgolo &amp; Omega
+
+
+Yaki's Special Thanks
+Pidgezero_one, SMRPG Randomizer Team - Feedback, bug finders
+Doomsday31415 - Released source code to fix Dialogues editor save corruptions
+Will319 - Positive feedback, bug finder, feature requests (flat mode in particular)
+jpmac26 - For their LazyShell 4.0 source code fork
+AnAxemRanger - Bug finder, positive feedback
+
+
+Lazy Shell's Main Contributors and Supporters:
+
+ElementalPowerStar - notable donator, principle bug-finder, positive feedback
+Yaki - principle bug-finder and tester, positive feedback
+Ryan H. - donator, supporter
+
+Special Thanks:
+Alex Farber - MRU list manager
+Bregalad - source code for BRR encoding and decoding
+CrispyYoshi - feedback, beta testing, documentation for audio editor
+FuSoYa - for permission to use Lunar Compress.dll
+Kevin Weiner - animated GIF encoder class
+KP9000 - beta testing, discovered many bugs with pre-release version
+MathOnNapkins - helped with some coding
+Serge Meunier - image processing function code
+spel werdz rite - original resolution for running program under a 64-bit OS
+romhacking community - various feedback</value>
   </data>
 </root>

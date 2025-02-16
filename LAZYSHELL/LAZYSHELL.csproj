@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -9,16 +9,18 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LAZYSHELL</RootNamespace>
-    <AssemblyName>LAZYSHELL_UPDATED_EDITION</AssemblyName>
+    <AssemblyName>LAZYSHELL++</AssemblyName>
     <StartupObject>LAZYSHELL.Program</StartupObject>
-    <ApplicationIcon>Resources\LAZYSHELL_icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -33,7 +35,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +47,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,6 +59,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -64,6 +67,9 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -116,7 +122,6 @@
     </Compile>
     <Compile Include="Editor.Audio\SPCSound.cs" />
     <Compile Include="Editor.Audio\SPC.cs" />
-    <Compile Include="Editor.Audio\SPCTrack.cs" />
     <Compile Include="Editor.Audio\SPCEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +130,7 @@
     </Compile>
     <Compile Include="Editor.Audio\SPCCommand.cs" />
     <Compile Include="Editor.Audio\SPCScriptEnums.cs" />
+    <Compile Include="Editor.Audio\SPCTrack.cs" />
     <Compile Include="Editor.Intro\Intro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,18 +144,19 @@
       <DependentUpon>Opening.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor.Menus\MenuTexts.cs" />
-    <Compile Include="Editor.Menus\Menus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editor.Menus\Menus.Designer.cs">
-      <DependentUpon>Menus.cs</DependentUpon>
-    </Compile>
     <Compile Include="Editor.Menus\MenusEditor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editor.Menus\MenusEditor.Designer.cs">
       <DependentUpon>MenusEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editor.Menus\MenusBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Menus\MenusBox.Designer.cs">
+      <DependentUpon>MenusBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Menus\MenuBox.cs" />
     <Compile Include="Editor.Mini Games\MinecartData.cs" />
     <Compile Include="Editor.Mini Games\MiniGames.cs">
       <SubType>Form</SubType>
@@ -606,11 +613,12 @@
     <EmbeddedResource Include="Editor.Intro\Opening.resx">
       <DependentUpon>Opening.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editor.Menus\Menus.resx">
-      <DependentUpon>Menus.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Editor.Menus\MenusEditor.resx">
       <DependentUpon>MenusEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Menus\MenusBox.resx">
+      <DependentUpon>MenusBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.Mini Games\MiniGames.resx">
       <DependentUpon>MiniGames.cs</DependentUpon>
@@ -634,11 +642,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Form1.resx">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.Sprites\Sprites.resx">
       <DependentUpon>Sprites.cs</DependentUpon>
@@ -670,7 +673,6 @@
     <Compile Include="Editor.Animations\AnimationScript.cs" />
     <Compile Include="Editor.Animations\AnimationCommand.cs" />
     <Compile Include="Editor.Animations\A_ScriptEnums.cs" />
-    <Compile Include="Editor.Animations\A_ScriptIterator.cs" />
     <Compile Include="Editor.Animations\A_TreeViewWrapper.cs">
     </Compile>
     <Compile Include="Editor.Animations\Interpreter.Animation.cs" />
@@ -769,56 +771,389 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Caroboscis.png" />
-    <None Include="Resources\Editor\openPackets.gif" />
-    <None Include="Resources\Draw\switch.gif" />
-    <None Include="Resources\btn_donate_LG.gif" />
-    <None Include="Resources\Data\addFromNotes.gif" />
-    <None Include="Resources\Data\addToNotes.gif" />
-    <None Include="Resources\Dialog\keystrokes.gif" />
-    <None Include="Resources\Data\importTextAll.gif" />
-    <None Include="Resources\Data\exportTextAll.gif" />
-    <None Include="Resources\Toggle\overlapRemove.gif" />
-    <None Include="Resources\Toggle\overlapAdd.gif" />
-    <None Include="Resources\Toggle\exitRemove.gif" />
-    <None Include="Resources\Toggle\exitAdd.gif" />
-    <None Include="Resources\Toggle\eventRemove.gif" />
-    <None Include="Resources\Toggle\eventAdd.gif" />
-    <None Include="Resources\Data\camera.gif" />
-    <None Include="Resources\Data\invalid.gif" />
-    <None Include="Resources\Data\warning.gif" />
-    <None Include="Resources\Music\note16thdotted.gif" />
-    <None Include="Resources\Music\note32ndDotted.gif" />
-    <None Include="Resources\Music\note32ndTriplet.gif" />
-    <None Include="Resources\Music\note64thTriplet.gif" />
-    <None Include="Resources\Music\noteEmpty.gif" />
-    <None Include="Resources\Music\noteEmptyDotted.gif" />
-    <None Include="Resources\Music\noteEmptyTriplet.gif" />
-    <None Include="Resources\Music\noteHalfTriplet.gif" />
-    <None Include="Resources\Music\noteHead.gif" />
-    <None Include="Resources\Music\noteHeadDotted.gif" />
-    <None Include="Resources\Music\noteHeadPercussion.gif" />
-    <None Include="Resources\Music\noteHeadTriplet.gif" />
-    <None Include="Resources\Music\noteStemDown.gif" />
-    <None Include="Resources\Music\noteStemDown16th.gif" />
-    <None Include="Resources\Music\noteStemDown32nd.gif" />
-    <None Include="Resources\Music\noteStemDown64th.gif" />
-    <None Include="Resources\Music\noteStemDown8th.gif" />
-    <None Include="Resources\Music\noteStemUp.gif" />
-    <None Include="Resources\Music\noteStemUp16th.gif" />
-    <None Include="Resources\Music\noteStemUp32nd.gif" />
-    <None Include="Resources\Music\noteStemUp64th.gif" />
-    <None Include="Resources\Music\noteStemUp8th.gif" />
-    <None Include="Resources\Music\rest16thDotted.gif" />
-    <None Include="Resources\Music\rest32ndDotted.gif" />
-    <None Include="Resources\Music\rest32ndTriplet.gif" />
-    <None Include="Resources\Music\rest64thTriplet.gif" />
-    <None Include="Resources\Music\restHalfTriplet.gif" />
-    <None Include="Resources\Music\tieOver.png" />
-    <None Include="Resources\Music\tieUnder.png" />
-    <None Include="Resources\Music\vibrato.gif" />
-    <None Include="Resources\Music\tremolo.gif" />
-    <None Include="Resources\Music\volume.gif" />
+    <Content Include="Resources\Arrows\heightDecrease.png" />
+    <Content Include="Resources\Arrows\heightIncrease.png" />
+    <Content Include="Resources\Arrows\insert.png" />
+    <None Include="Resources\Arrows\jumpToRight.png" />
+    <None Include="Resources\Arrows\jumpToLeft.png" />
+    <Content Include="Resources\Arrows\moveall.png" />
+    <Content Include="Resources\Arrows\moveDown.png" />
+    <None Include="Resources\Arrows\moveLeft.png" />
+    <None Include="Resources\Arrows\moveRight.png" />
+    <Content Include="Resources\Arrows\moveUp.png" />
+    <Content Include="Resources\Arrows\widthDecrease.png" />
+    <Content Include="Resources\Arrows\widthIncrease.png" />
+    <Content Include="Resources\Cursors\CursorDraw.cur" />
+    <Content Include="Resources\Cursors\CursorDropper.cur" />
+    <Content Include="Resources\Cursors\CursorErase.cur" />
+    <Content Include="Resources\Cursors\CursorFill.cur" />
+    <Content Include="Resources\Cursors\CursorTemplate.cur" />
+    <Content Include="Resources\Cursors\CursorZoomIn.cur" />
+    <Content Include="Resources\Cursors\CursorZoomOut.cur" />
+    <Content Include="Resources\Data\about_small.png" />
+    <None Include="Resources\Data\addToNotes.png" />
+    <None Include="Resources\Data\addFromNotes.png" />
+    <Content Include="Resources\Data\alwaysOnTop.png" />
+    <Content Include="Resources\Data\apply.png" />
+    <Content Include="Resources\Data\broom.png" />
+    <Content Include="Resources\Data\checkAll.png" />
+    <Content Include="Resources\Data\clear_small.png" />
+    <Content Include="Resources\Data\copy_small.png" />
+    <Content Include="Resources\Data\delete_small.png" />
+    <None Include="Resources\Data\download.png" />
+    <Content Include="Resources\Data\duplicate_small.png" />
+    <None Include="Resources\Data\edit-list.png" />
+    <Content Include="Resources\Data\edit_small.png" />
+    <Content Include="Resources\Data\exportBinary.png" />
+    <Content Include="Resources\Data\exportData.png" />
+    <Content Include="Resources\Data\exportImage.png" />
+    <Content Include="Resources\Data\exportText.png" />
+    <Content Include="Resources\Data\exportTextAll.png" />
+    <Content Include="Resources\Data\exportWAV.png" />
+    <Content Include="Resources\Data\importBinary.png" />
+    <Content Include="Resources\Data\importData.png" />
+    <Content Include="Resources\Data\importImage.png" />
+    <Content Include="Resources\Data\importText.png" />
+    <Content Include="Resources\Data\importTextAll.png" />
+    <Content Include="Resources\Data\importWAV.png" />
+    <Content Include="Resources\Data\invalid.png" />
+    <Content Include="Resources\Data\jumpTo.png" />
+    <Content Include="Resources\Data\label.png" />
+    <Content Include="Resources\Data\newInstance.png" />
+    <Content Include="Resources\Data\new_small.png" />
+    <Content Include="Resources\Data\notepad.png" />
+    <Content Include="Resources\Data\numerize.png" />
+    <Content Include="Resources\Data\open.png" />
+    <Content Include="Resources\Data\paste_small.png" />
+    <Content Include="Resources\Data\publish.png" />
+    <Content Include="Resources\Data\redo_small.png" />
+    <Content Include="Resources\Data\reset.png" />
+    <Content Include="Resources\Data\saveAs_small.png" />
+    <Content Include="Resources\Data\save_small.png" />
+    <Content Include="Resources\Data\search.png" />
+    <Content Include="Resources\Data\sendToBack.png" />
+    <Content Include="Resources\Data\settings.png" />
+    <Content Include="Resources\Data\signature.png" />
+    <Content Include="Resources\Data\statistics.png" />
+    <Content Include="Resources\Data\synchronize.png" />
+    <Content Include="Resources\Data\tags.png" />
+    <Content Include="Resources\Data\template_small.png" />
+    <Content Include="Resources\Data\terminate.png" />
+    <Content Include="Resources\Data\transfer_small.png" />
+    <Content Include="Resources\Data\uncheckAll.png" />
+    <Content Include="Resources\Data\undo_small.png" />
+    <Content Include="Resources\Data\update.png" />
+    <Content Include="Resources\Data\warning.png" />
+    <Content Include="Resources\Dock\collapseAll.png" />
+    <Content Include="Resources\Dock\dock.png" />
+    <Content Include="Resources\Dock\expandAll.png" />
+    <Content Include="Resources\Dock\minimizeAll.png" />
+    <Content Include="Resources\Dock\openAll.png" />
+    <Content Include="Resources\Dock\restoreAll.png" />
+    <Content Include="Resources\Draw\buttonBoundaries.png" />
+    <None Include="Resources\Draw\checkerboard.png" />
+    <Content Include="Resources\Draw\colorreplace.gif" />
+    <Content Include="Resources\Draw\coordinator.gif" />
+    <Content Include="Resources\Draw\crop.png" />
+    <Content Include="Resources\Draw\cut_small.png" />
+    <Content Include="Resources\Draw\draw_small.png" />
+    <Content Include="Resources\Draw\dropper_small.png" />
+    <Content Include="Resources\Draw\erase_small.png" />
+    <Content Include="Resources\Draw\fill_small.png" />
+    <Content Include="Resources\Draw\flip_small.png" />
+    <Content Include="Resources\Draw\mirror_small.png" />
+    <Content Include="Resources\Draw\selectAll_small.png" />
+    <Content Include="Resources\Draw\select_small.png" />
+    <Content Include="Resources\Draw\zoomBox.png" />
+    <Content Include="Resources\Draw\zoomin_small.png" />
+    <Content Include="Resources\Draw\zoomout_small.png" />
+    <Content Include="Resources\Draw\_bg.png" />
+    <Content Include="Resources\Draw\_transparent.png" />
+    <Content Include="Resources\Editor.About\TITLE_BG.gif" />
+    <Content Include="Resources\Editor.About\TITLE_FG.gif" />
+    <Content Include="Resources\Editor.Animations\back.png" />
+    <Content Include="Resources\Editor.Animations\foward.png" />
+    <Content Include="Resources\Editor.Animations\play.png" />
+    <Content Include="Resources\Editor.Animations\stop.png" />
+    <Content Include="Resources\Editor.Audio\clefF.gif" />
+    <Content Include="Resources\Editor.Audio\clefG.gif" />
+    <Content Include="Resources\Editor.Audio\drumsOff.gif" />
+    <Content Include="Resources\Editor.Audio\drumsOn.gif" />
+    <Content Include="Resources\Editor.Audio\firstSection.gif" />
+    <Content Include="Resources\Editor.Audio\flat.gif" />
+    <Content Include="Resources\Editor.Audio\insert.gif" />
+    <Content Include="Resources\Editor.Audio\instrument.gif" />
+    <Content Include="Resources\Editor.Audio\instrument.png" />
+    <Content Include="Resources\Editor.Audio\loop.gif" />
+    <Content Include="Resources\Editor.Audio\loopEnd.gif" />
+    <Content Include="Resources\Editor.Audio\loopInf.gif" />
+    <Content Include="Resources\Editor.Audio\metronome.gif" />
+    <Content Include="Resources\Editor.Audio\metronome.png" />
+    <Content Include="Resources\Editor.Audio\natural.gif" />
+    <Content Include="Resources\Editor.Audio\note16th.gif" />
+    <Content Include="Resources\Editor.Audio\note16thdotted.gif" />
+    <Content Include="Resources\Editor.Audio\note16thTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\note32nd.gif" />
+    <Content Include="Resources\Editor.Audio\note32ndDotted.gif" />
+    <Content Include="Resources\Editor.Audio\note32ndTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\note64th.gif" />
+    <Content Include="Resources\Editor.Audio\note64thTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\note8th.gif" />
+    <Content Include="Resources\Editor.Audio\note8thDotted.gif" />
+    <Content Include="Resources\Editor.Audio\note8thTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\noteDotted.gif" />
+    <Content Include="Resources\Editor.Audio\noteEmpty.gif" />
+    <Content Include="Resources\Editor.Audio\noteEmptyDotted.gif" />
+    <Content Include="Resources\Editor.Audio\noteEmptyTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\noteHalf.gif" />
+    <Content Include="Resources\Editor.Audio\noteHalfDotted.gif" />
+    <Content Include="Resources\Editor.Audio\noteHalfTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\noteHead.gif" />
+    <Content Include="Resources\Editor.Audio\noteHeadDotted.gif" />
+    <Content Include="Resources\Editor.Audio\noteHeadPercussion.gif" />
+    <Content Include="Resources\Editor.Audio\noteHeadTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\notePercussion.gif" />
+    <Content Include="Resources\Editor.Audio\noteQuarter.gif" />
+    <Content Include="Resources\Editor.Audio\noteQuarterTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemDown.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemDown16th.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemDown32nd.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemDown64th.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemDown8th.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemUp.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemUp16th.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemUp32nd.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemUp64th.gif" />
+    <Content Include="Resources\Editor.Audio\noteStemUp8th.gif" />
+    <Content Include="Resources\Editor.Audio\noteWhole.gif" />
+    <Content Include="Resources\Editor.Audio\octaveDown.gif" />
+    <Content Include="Resources\Editor.Audio\octaveSet.gif" />
+    <Content Include="Resources\Editor.Audio\octaveUp.gif" />
+    <Content Include="Resources\Editor.Audio\portamento.gif" />
+    <Content Include="Resources\Editor.Audio\rest16th.gif" />
+    <Content Include="Resources\Editor.Audio\rest16thDotted.gif" />
+    <Content Include="Resources\Editor.Audio\rest16thTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\rest32nd.gif" />
+    <Content Include="Resources\Editor.Audio\rest32ndDotted.gif" />
+    <Content Include="Resources\Editor.Audio\rest32ndTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\rest64th.gif" />
+    <Content Include="Resources\Editor.Audio\rest64thDotted.gif" />
+    <Content Include="Resources\Editor.Audio\rest64thTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\rest8th.gif" />
+    <Content Include="Resources\Editor.Audio\rest8thDotted.gif" />
+    <Content Include="Resources\Editor.Audio\rest8thTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\restDotted.gif" />
+    <Content Include="Resources\Editor.Audio\restHalf.gif" />
+    <Content Include="Resources\Editor.Audio\restHalfDotted.gif" />
+    <Content Include="Resources\Editor.Audio\restHalfTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\restQuarter.gif" />
+    <Content Include="Resources\Editor.Audio\restQuarterTriplet.gif" />
+    <Content Include="Resources\Editor.Audio\restWhole.gif" />
+    <Content Include="Resources\Editor.Audio\reverbOff.gif" />
+    <Content Include="Resources\Editor.Audio\reverbOn.gif" />
+    <Content Include="Resources\Editor.Audio\scoreView.gif" />
+    <Content Include="Resources\Editor.Audio\scoreView.png" />
+    <Content Include="Resources\Editor.Audio\scoreWriter.png" />
+    <Content Include="Resources\Editor.Audio\sharp.gif" />
+    <Content Include="Resources\Editor.Audio\silence.gif" />
+    <Content Include="Resources\Editor.Audio\silence.png" />
+    <Content Include="Resources\Editor.Audio\speakerBalance.gif" />
+    <Content Include="Resources\Editor.Audio\speakerBalance.png" />
+    <Content Include="Resources\Editor.Audio\staffDelete.gif" />
+    <Content Include="Resources\Editor.Audio\staffDelete.png" />
+    <Content Include="Resources\Editor.Audio\staffNew.gif" />
+    <Content Include="Resources\Editor.Audio\staffNew.png" />
+    <Content Include="Resources\Editor.Audio\terminate.gif" />
+    <Content Include="Resources\Editor.Audio\tieOver.png" />
+    <Content Include="Resources\Editor.Audio\tieUnder.png" />
+    <Content Include="Resources\Editor.Audio\tremolo.gif" />
+    <Content Include="Resources\Editor.Audio\vibrato.gif" />
+    <Content Include="Resources\Editor.Audio\volume.gif" />
+    <Content Include="Resources\Editor.Audio\volume.png" />
+    <Content Include="Resources\Editor.Battlefields\snapIsometricLeft.png" />
+    <Content Include="Resources\Editor.Battlefields\snapIsometricRight.png" />
+    <Content Include="Resources\Editor.Dialogues\endString.png" />
+    <Content Include="Resources\Editor.Dialogues\endStringA.png" />
+    <Content Include="Resources\Editor.Dialogues\insertIntoText.png" />
+    <Content Include="Resources\Editor.Dialogues\keystrokes.png" />
+    <Content Include="Resources\Editor.Dialogues\keys_load.png" />
+    <Content Include="Resources\Editor.Dialogues\keys_save.png" />
+    <Content Include="Resources\Editor.Dialogues\newLine.png" />
+    <Content Include="Resources\Editor.Dialogues\newLineA.png" />
+    <None Include="Resources\Editor.Dialogues\numerals.gif" />
+    <Content Include="Resources\Editor.Dialogues\pageBreak.png" />
+    <Content Include="Resources\Editor.Dialogues\pageBreakA.png" />
+    <Content Include="Resources\Editor.Dialogues\pageDown.png" />
+    <Content Include="Resources\Editor.Dialogues\pageUp.png" />
+    <Content Include="Resources\Editor.Dialogues\pause60f.png" />
+    <Content Include="Resources\Editor.Dialogues\pauseA.png" />
+    <Content Include="Resources\Editor.Dialogues\pauseFrames.png" />
+    <Content Include="Resources\Editor.Dialogues\textView.png" />
+    <Content Include="Resources\Editor.Levels\buttonEventField.png" />
+    <Content Include="Resources\Editor.Levels\buttonExitField.png" />
+    <Content Include="Resources\Editor.Levels\buttonNPC.png" />
+    <Content Include="Resources\Editor.Levels\buttonOverlaps.png" />
+    <Content Include="Resources\Editor.Levels\buttonPhysical.png" />
+    <Content Include="Resources\Editor.Levels\buttonPhysicalTiles.png" />
+    <None Include="Resources\Editor.Levels\buttonTileMods.gif" />
+    <None Include="Resources\Editor.Levels\buttonToggleLevelsFlatMode.png" />
+    <None Include="Resources\Editor.Levels\buttonToggleMask.gif" />
+    <None Include="Resources\Editor.Levels\buttonSolidMods.png" />
+    <Content Include="Resources\Editor.Levels\dragSolid.gif" />
+    <Content Include="Resources\Editor.Levels\editAllLayers.png" />
+    <Content Include="Resources\Editor.Levels\eventAdd.png" />
+    <Content Include="Resources\Editor.Levels\eventRemove.png" />
+    <Content Include="Resources\Editor.Levels\exitAdd.png" />
+    <Content Include="Resources\Editor.Levels\exitRemove.png" />
+    <Content Include="Resources\Editor.Levels\npcAdd.png" />
+    <Content Include="Resources\Editor.Levels\npcClone.png" />
+    <Content Include="Resources\Editor.Levels\npcRemove.png" />
+    <Content Include="Resources\Editor.Levels\opacity.png" />
+    <Content Include="Resources\Editor.Levels\openTilesets.png" />
+    <Content Include="Resources\Editor.Levels\overlapAdd.png" />
+    <Content Include="Resources\Editor.Levels\overlapRemove.png" />
+    <Content Include="Resources\Editor.Levels\spaceAnalyzer.png" />
+    <None Include="Resources\Editor.MiniGames\buttonMushroom.gif" />
+    <None Include="Resources\Editor.MiniGames\buttonSSObjects.gif" />
+    <Content Include="Resources\Editor.Patches\No_Image_Image.png" />
+    <None Include="Resources\Editor.Patches\star.png" />
+    <None Include="Resources\Editor.Patches\star-empty.png" />
+    <None Include="Resources\Editor.Patches\shield-question.png" />
+    <None Include="Resources\Editor.Patches\shield-check.png" />
+    <Content Include="Resources\Editor.SubEditors\calculator.png" />
+    <Content Include="Resources\Editor.SubEditors\camera.png" />
+    <Content Include="Resources\Editor.SubEditors\hexEditor.gif" />
+    <Content Include="Resources\Editor.SubEditors\openAnimationsBehaviors.png" />
+    <Content Include="Resources\Editor.SubEditors\openAnimationsMisc.png" />
+    <Content Include="Resources\Editor.SubEditors\openAttacks.png" />
+    <Content Include="Resources\Editor.SubEditors\openBattleDialogues.png" />
+    <Content Include="Resources\Editor.SubEditors\openBonusFlower.png" />
+    <Content Include="Resources\Editor.SubEditors\openDialogues.png" />
+    <Content Include="Resources\Editor.SubEditors\openEffectSequences.png" />
+    <Content Include="Resources\Editor.SubEditors\openFlunkie.png" />
+    <Content Include="Resources\Editor.SubEditors\openFonts.png" />
+    <Content Include="Resources\Editor.SubEditors\openGraphics.png" />
+    <Content Include="Resources\Editor.SubEditors\openLevelUps.png" />
+    <Content Include="Resources\Editor.SubEditors\openMap.png" />
+    <Content Include="Resources\Editor.SubEditors\openMolds.png" />
+    <Content Include="Resources\Editor.SubEditors\openMonsterBehaviors.png" />
+    <Content Include="Resources\Editor.SubEditors\openMonsterEntrances.png" />
+    <Content Include="Resources\Editor.SubEditors\openNewFontTable.png" />
+    <Content Include="Resources\Editor.SubEditors\openNewGame.png" />
+    <Content Include="Resources\Editor.SubEditors\openNPCs.png" />
+    <Content Include="Resources\Editor.SubEditors\openPackets.png" />
+    <Content Include="Resources\Editor.SubEditors\openPacks.png" />
+    <Content Include="Resources\Editor.SubEditors\openPalettes.png" />
+    <Content Include="Resources\Editor.SubEditors\openPartitions.png" />
+    <Content Include="Resources\Editor.SubEditors\openSamples.png" />
+    <Content Include="Resources\Editor.SubEditors\openSequences.png" />
+    <Content Include="Resources\Editor.SubEditors\openShops.png" />
+    <Content Include="Resources\Editor.SubEditors\openSPCs.png" />
+    <Content Include="Resources\Editor.SubEditors\openSpells.png" />
+    <Content Include="Resources\Editor.SubEditors\openTemplates.png" />
+    <Content Include="Resources\Editor.SubEditors\openTileEditor.png" />
+    <Content Include="Resources\Editor.SubEditors\openToadTutorial.png" />
+    <Content Include="Resources\Editor.SubEditors\openWeapons.png" />
+    <Content Include="Resources\Editor.SubEditors\preview.png" />
+    <Content Include="Resources\Editor.SubEditors\showMain.png" />
+    <Content Include="Resources\Editor.SubEditors\tools.png" />
+    <Content Include="Resources\Editor\baseConversion.png" />
+    <Content Include="Resources\Editor\btn_donate_LG.gif" />
+    <Content Include="Resources\Editor\cartridge.png" />
+    <Content Include="Resources\Editor\cartridgeClose.png" />
+    <Content Include="Resources\Editor\cartridgeReload.png" />
+    <Content Include="Resources\Editor\help.png" />
+    <Content Include="Resources\Editor\history.png" />
+    <Content Include="Resources\Editor\main.gif" />
+    <Content Include="Resources\Editor\mainAllies.png" />
+    <Content Include="Resources\Editor\mainAlliesBig.png" />
+    <Content Include="Resources\Editor\mainAllies_ico.ico" />
+    <Content Include="Resources\Editor\mainAnimations.png" />
+    <Content Include="Resources\Editor\mainAnimationsBig.png" />
+    <Content Include="Resources\Editor\mainAnimationsBig_2.png" />
+    <Content Include="Resources\Editor\mainAnimations_2_ico.ico" />
+    <Content Include="Resources\Editor\mainAnimations_ico.ico" />
+    <Content Include="Resources\Editor\mainAttacks.png" />
+    <Content Include="Resources\Editor\mainAttacksBig.png" />
+    <Content Include="Resources\Editor\mainAttacksBig_2.png" />
+    <Content Include="Resources\Editor\mainAttacks_2_ico.ico" />
+    <Content Include="Resources\Editor\mainAudio.png" />
+    <Content Include="Resources\Editor\mainAudioBig.png" />
+    <Content Include="Resources\Editor\mainAudio_ico.ico" />
+    <Content Include="Resources\Editor\mainBattlefields.png" />
+    <Content Include="Resources\Editor\mainBattlefieldsBig.png" />
+    <Content Include="Resources\Editor\mainBattlefields_ico.ico" />
+    <Content Include="Resources\Editor\mainBattleScripts.png" />
+    <None Include="Resources\Editor\mainBig.png" />
+    <Content Include="Resources\Editor\mainDialogues.png" />
+    <Content Include="Resources\Editor\mainDialoguesBig.png" />
+    <Content Include="Resources\Editor\mainDialoguesBig_2.png" />
+    <Content Include="Resources\Editor\mainDialogues_2_ico.ico" />
+    <Content Include="Resources\Editor\mainDialogues_ico.ico" />
+    <Content Include="Resources\Editor\mainEffects.png" />
+    <Content Include="Resources\Editor\mainEffectsBig.png" />
+    <Content Include="Resources\Editor\mainEffectsBig_2.png" />
+    <Content Include="Resources\Editor\mainEffects_2_ico.ico" />
+    <Content Include="Resources\Editor\mainEffects_ico.ico" />
+    <Content Include="Resources\Editor\mainEventScripts.png" />
+    <None Include="Resources\Editor\mainEventScriptsBig_2.png" />
+    <None Include="Resources\Editor\mainEventScripts_2_ico.ico" />
+    <None Include="Resources\Editor\mainEventScriptsBig.png" />
+    <Content Include="Resources\Editor\mainEventScripts_ico.ico" />
+    <Content Include="Resources\Editor\mainFormations.png" />
+    <Content Include="Resources\Editor\mainFormationsBig.png" />
+    <Content Include="Resources\Editor\mainFormations_ico.ico" />
+    <Content Include="Resources\Editor\mainItems.png" />
+    <Content Include="Resources\Editor\mainItemsBig.png" />
+    <Content Include="Resources\Editor\mainItemsBig_2.png" />
+    <Content Include="Resources\Editor\mainItemsBig_3.png" />
+    <Content Include="Resources\Editor\mainItems_2_ico.ico" />
+    <Content Include="Resources\Editor\mainItems_3_ico.ico" />
+    <Content Include="Resources\Editor\mainItems_ico.ico" />
+    <Content Include="Resources\Editor\mainLevels.png" />
+    <Content Include="Resources\Editor\mainLevelsBig.png" />
+    <Content Include="Resources\Editor\mainLevelsBig_2.png" />
+    <None Include="Resources\Editor\mainLevelsBig_3.png" />
+    <Content Include="Resources\Editor\mainLevels_2_ico.ico" />
+    <None Include="Resources\Editor\mainLevels_3_ico.ico" />
+    <Content Include="Resources\Editor\mainLevels_ico.ico" />
+    <Content Include="Resources\Editor\mainMainTitle.png" />
+    <Content Include="Resources\Editor\mainMainTitle_ico.ico" />
+    <None Include="Resources\Editor\mainMarioBig.png" />
+    <None Include="Resources\Editor\mainMario_ico.ico" />
+    <Content Include="Resources\Editor\mainMenus.png" />
+    <Content Include="Resources\Editor\mainMenusBig.png" />
+    <Content Include="Resources\Editor\mainMenus_ico.ico" />
+    <Content Include="Resources\Editor\mainMiniGames.png" />
+    <Content Include="Resources\Editor\mainMiniGamesBig.png" />
+    <Content Include="Resources\Editor\mainMinigames_ico.ico" />
+    <Content Include="Resources\Editor\mainMonsters.png" />
+    <Content Include="Resources\Editor\mainMonstersBig.png" />
+    <Content Include="Resources\Editor\mainMonsters_ico.ico" />
+    <Content Include="Resources\Editor\mainNotes.png" />
+    <Content Include="Resources\Editor\mainPatches.png" />
+    <None Include="Resources\Editor\mainProjectBig.png" />
+    <None Include="Resources\Editor\mainProject.png" />
+    <None Include="Resources\Editor\mainProject_ico.ico" />
+    <None Include="Resources\Editor\mainPatchesBig.png" />
+    <Content Include="Resources\Editor\mainSprites.png" />
+    <Content Include="Resources\Editor\mainSpritesBig.png" />
+    <Content Include="Resources\Editor\mainSpritesBig_2.png" />
+    <Content Include="Resources\Editor\mainSprites_2_ico.ico" />
+    <Content Include="Resources\Editor\mainSprites_ico.ico" />
+    <Content Include="Resources\Editor\mainMainTitleBig.png" />
+    <Content Include="Resources\Editor\mainWorldMaps.png" />
+    <Content Include="Resources\Editor\mainWorldMapsBig.png" />
+    <Content Include="Resources\Editor\mainWorldMaps_ico.ico" />
+    <Content Include="Resources\Editor\recentFiles.png" />
+    <Content Include="Resources\Editor\romInfo.png" />
+    <Content Include="Resources\Editor\_switch.png" />
+    <None Include="Resources\Toggle\buttonToggleGrid.png" />
+    <None Include="Resources\Toggle\buttonToggleOrthGrid.png" />
+    <None Include="Resources\Toggle\buttonTogglePixelGrid.png" />
+    <None Include="Resources\Dock\closeAll.png" />
+    <Content Include="Resources\Icons\LAZYSHELL_icon.ico" />
+    <Content Include="Resources\Lunar Compress.dll" />
     <EmbeddedResource Include="Editor.Audio\SampleEditor.resx">
       <DependentUpon>SampleEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -955,8 +1290,6 @@
       <DependentUpon>FormationsEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Resources\Cursors\CursorDraw.cur" />
-    <None Include="Resources\Cursors\CursorErase.cur" />
     <EmbeddedResource Include="Features\IOElements.resx">
       <DependentUpon>IOElements.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1029,9 +1362,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>ProgressBar.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Resources\Cursors\CursorDropper.cur" />
-    <None Include="Resources\Cursors\CursorZoomIn.cur" />
-    <None Include="Resources\Cursors\CursorZoomOut.cur" />
     <EmbeddedResource Include="Features\Restore.resx">
       <DependentUpon>Restore.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1048,17 +1378,19 @@
       <DependentUpon>SpriteSequences.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Resources\Cursors\CursorTemplate.cur" />
     <EmbeddedResource Include="Editor.World Maps\WorldMaps.resx">
       <DependentUpon>WorldMaps.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsEditor.resx">
       <DependentUpon>SettingsEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="bin\Debug\Lunar Compress.dll" />
-    <None Include="Resources\Cursors\CursorFill.cur" />
     <Content Include="Feature.Patches\PatchFormat.txt" />
     <None Include="Resources\RomPreviewBaseSave.000" />
     <None Include="Resources\RomPreviewBaseSave.zst" />
@@ -1069,256 +1401,17 @@
     <None Include="Resources\Tiles\stairsUpLeftLow.gif" />
     <None Include="Resources\Tiles\stairsUpRightHigh.gif" />
     <None Include="Resources\Tiles\stairsUpRightLow.gif" />
-    <None Include="Resources\Music\clefF.gif" />
-    <None Include="Resources\Music\clefG.gif" />
-    <None Include="Resources\Data\apply.gif" />
-    <None Include="Resources\Data\back.gif" />
-    <None Include="Resources\Data\baseConversion.gif" />
-    <None Include="Resources\Data\broom.gif" />
-    <None Include="Resources\Data\calculator.gif" />
-    <None Include="Resources\Data\cartridge.gif" />
-    <None Include="Resources\Data\cartridgeClose.gif" />
-    <None Include="Resources\Data\cartridgeReload.gif" />
-    <None Include="Resources\Data\clearModel.gif" />
-    <None Include="Resources\Data\clear_small.gif" />
-    <None Include="Resources\Data\deleteInstance.gif" />
-    <None Include="Resources\Data\duplicate_small.gif" />
-    <None Include="Resources\Data\edit_small.gif" />
-    <None Include="Resources\Data\exportData.gif" />
-    <None Include="Resources\Data\exportImage.gif" />
-    <None Include="Resources\Data\foward.gif" />
-    <None Include="Resources\Data\help_small.gif" />
-    <None Include="Resources\Data\hexEditor.gif" />
-    <None Include="Resources\Data\iconTools.gif" />
-    <None Include="Resources\Data\importData.gif" />
-    <None Include="Resources\Data\importImage.gif" />
-    <None Include="Resources\Data\label.gif" />
-    <None Include="Resources\Data\movedown.gif" />
-    <None Include="Resources\Data\moveup.gif" />
-    <None Include="Resources\Data\newInstance.gif" />
-    <None Include="Resources\Data\new_small.gif" />
-    <None Include="Resources\Data\notepad.gif" />
-    <None Include="Resources\Data\npcAdd.gif" />
-    <None Include="Resources\Data\npcClone.gif" />
-    <None Include="Resources\Data\npcRemove.gif" />
-    <None Include="Resources\Data\open_small.gif" />
-    <None Include="Resources\Data\play.gif" />
-    <None Include="Resources\Data\publish.gif" />
-    <None Include="Resources\Data\recentFiles.gif" />
-    <None Include="Resources\Data\romInfo.gif" />
-    <None Include="Resources\Data\saveAs_small.gif" />
-    <None Include="Resources\Data\save_small.gif" />
-    <None Include="Resources\Data\search.gif" />
-    <None Include="Resources\Data\settings.gif" />
-    <None Include="Resources\Data\signature.gif" />
-    <None Include="Resources\Data\stop.gif" />
-    <None Include="Resources\Data\tools.gif" />
-    <None Include="Resources\Data\transfer_small.gif" />
-    <None Include="Resources\Data\update.gif" />
-    <None Include="Resources\Dialog\endString.gif" />
-    <None Include="Resources\Dialog\endStringA.gif" />
-    <None Include="Resources\Dialog\insertIntoText.gif" />
-    <None Include="Resources\Dialog\keys_load.gif" />
-    <None Include="Resources\Dialog\keys_save.gif" />
-    <None Include="Resources\Dialog\newLine.gif" />
-    <None Include="Resources\Dialog\newLineA.gif" />
-    <None Include="Resources\Dialog\pageBreak.gif" />
-    <None Include="Resources\Dialog\pageBreakA.gif" />
-    <None Include="Resources\Dialog\pageDown.gif" />
-    <None Include="Resources\Dialog\pageUp.gif" />
-    <None Include="Resources\Dialog\pause60f.gif" />
-    <None Include="Resources\Dialog\pauseA.gif" />
-    <None Include="Resources\Dialog\pauseFrames.gif" />
-    <None Include="Resources\Dialog\synchronize.gif" />
-    <None Include="Resources\Dialog\textView.gif" />
-    <None Include="Resources\Draw\colorreplace.gif" />
-    <None Include="Resources\Draw\coordinator.gif" />
-    <None Include="Resources\Draw\dragSolid.gif" />
-    <None Include="Resources\Draw\copy_small.gif" />
-    <None Include="Resources\Draw\crop.gif" />
-    <None Include="Resources\Draw\cut_small.gif" />
-    <None Include="Resources\Draw\delete_small.gif" />
-    <None Include="Resources\Draw\draw_small.gif" />
-    <None Include="Resources\Draw\dropper_small.gif" />
-    <None Include="Resources\Draw\editAllLayers.gif" />
-    <None Include="Resources\Draw\erase_small.gif" />
-    <None Include="Resources\Draw\fill_small.gif" />
-    <None Include="Resources\Draw\flip_small.gif" />
-    <None Include="Resources\Draw\heightDecrease.gif" />
-    <None Include="Resources\Draw\heightIncrease.gif" />
-    <None Include="Resources\Draw\mirror_small.gif" />
-    <None Include="Resources\Draw\moveall.gif" />
-    <None Include="Resources\Draw\paste_small.gif" />
-    <None Include="Resources\Draw\redo_small.gif" />
-    <None Include="Resources\Draw\selectAll_small.gif" />
-    <None Include="Resources\Draw\select_small.gif" />
-    <None Include="Resources\Draw\snapIsometricLeft.gif" />
-    <None Include="Resources\Draw\snapIsometricRight.gif" />
-    <None Include="Resources\Draw\template_small.gif" />
-    <None Include="Resources\Draw\undo_small.gif" />
-    <None Include="Resources\Draw\widthDecrease.gif" />
-    <None Include="Resources\Draw\widthIncrease.gif" />
-    <None Include="Resources\Draw\zoomin_small.gif" />
-    <None Include="Resources\Draw\zoomout_small.gif" />
-    <None Include="Resources\Music\drumsOff.gif" />
-    <None Include="Resources\Music\drumsOn.gif" />
-    <None Include="Resources\Editor\main.gif" />
-    <None Include="Resources\Editor\mainAllies.gif" />
-    <None Include="Resources\Editor\mainAnimations.gif" />
-    <None Include="Resources\Editor\mainAttacks.gif" />
-    <None Include="Resources\Editor\mainAudio.gif" />
-    <None Include="Resources\Editor\mainBattlefields.gif" />
-    <None Include="Resources\Editor\mainBattleScripts.gif" />
-    <None Include="Resources\Editor\mainDialogues.gif" />
-    <None Include="Resources\Editor\mainEffects.gif" />
-    <None Include="Resources\Editor\mainEventScripts.gif" />
-    <None Include="Resources\Editor\mainFormations.gif" />
-    <None Include="Resources\Editor\mainItems.gif" />
-    <None Include="Resources\Editor\mainLevels.gif" />
-    <None Include="Resources\Editor\mainMainTitle.gif" />
-    <None Include="Resources\Editor\mainMenus.gif" />
-    <None Include="Resources\Editor\mainMiniGames.gif" />
-    <None Include="Resources\Editor\mainMonsters.gif" />
-    <None Include="Resources\Editor\mainNotes.gif" />
-    <None Include="Resources\Editor\mainPatches.gif" />
-    <None Include="Resources\Editor\mainSprites.gif" />
-    <None Include="Resources\Editor\mainWorldMaps.gif" />
-    <None Include="Resources\Editor\openAttacks.gif" />
-    <None Include="Resources\Editor\openBattleDialogues.gif" />
-    <None Include="Resources\Editor\openDialogues.gif" />
-    <None Include="Resources\Editor\openEffectSequences.gif" />
-    <None Include="Resources\Editor\openFonts.gif" />
-    <None Include="Resources\Editor\openGraphics.gif" />
-    <None Include="Resources\Editor\openLevelUps.gif" />
-    <None Include="Resources\Editor\openMap.gif" />
-    <None Include="Resources\Editor\openMolds.gif" />
-    <None Include="Resources\Editor\openNewFontTable.gif" />
-    <None Include="Resources\Editor\openNewGame.gif" />
-    <None Include="Resources\Editor\openNPCs.gif" />
-    <None Include="Resources\Editor\openPacks.gif" />
-    <None Include="Resources\Editor\openPalettes.gif" />
-    <None Include="Resources\Editor\openPartitions.gif" />
-    <None Include="Resources\Editor\openSequences.gif" />
-    <None Include="Resources\Editor\openShops.gif" />
-    <None Include="Resources\Editor\openSpells.gif" />
-    <None Include="Resources\Editor\openTemplates.gif" />
-    <None Include="Resources\Editor\openTileEditor.gif" />
-    <None Include="Resources\Editor\openTilesets.gif" />
-    <None Include="Resources\Editor\preview.gif" />
-    <None Include="Resources\Editor\spaceAnalyzer.gif" />
-    <None Include="Resources\Data\exportBinary.gif" />
-    <None Include="Resources\Data\exportText.gif" />
-    <None Include="Resources\Music\firstSection.gif" />
-    <None Include="Resources\Music\flat.gif" />
-    <None Include="Resources\Data\exportWAV.gif" />
-    <None Include="Resources\Forms\alwaysOnTop.gif" />
-    <None Include="Resources\Forms\closeAll.gif" />
-    <None Include="Resources\Forms\collapseAll.gif" />
-    <None Include="Resources\Forms\dock.gif" />
-    <None Include="Resources\Forms\expandAll.gif" />
-    <None Include="Resources\Forms\numerals.gif" />
-    <None Include="Resources\Forms\reset.gif" />
-    <None Include="Resources\Forms\minimizeAll.gif" />
-    <None Include="Resources\Forms\numerize.gif" />
-    <None Include="Resources\Forms\openAll.gif" />
-    <None Include="Resources\Forms\restoreAll.gif" />
-    <None Include="Resources\Forms\undock.gif" />
-    <None Include="Resources\Lunar Compress.dll" />
-    <None Include="Resources\Music\instrument.gif" />
-    <None Include="Resources\Music\loop.gif" />
-    <None Include="Resources\Music\loopInf.gif" />
-    <None Include="Resources\Music\loopEnd.gif" />
-    <None Include="Resources\Data\importBinary.gif" />
-    <None Include="Resources\Data\importText.gif" />
-    <None Include="Resources\Music\insert.gif" />
-    <None Include="Resources\Data\importWAV.gif" />
-    <None Include="Resources\LAZYSHELL_icon.ico" />
     <None Include="Resources\Help\LAZYSHELL_css.css" />
     <None Include="Resources\Help\LAZYSHELL_xml.xml" />
     <None Include="Resources\Help\LAZYSHELL_xsl.xsl" />
-    <None Include="Resources\Main\about_small.gif" />
-    <None Include="Resources\Music\noteQuarter.gif" />
-    <None Include="Resources\Music\speakerBalance.gif" />
-    <None Include="Resources\Music\stave.gif" />
-    <None Include="Resources\Music\metronome.gif" />
-    <None Include="Resources\Music\sharp.gif" />
-    <None Include="Resources\Music\silence.gif" />
-    <None Include="Resources\Music\restQuarter.gif" />
-    <None Include="Resources\Music\octaveDown.gif" />
-    <None Include="Resources\Music\octaveSet.gif" />
-    <None Include="Resources\Music\octaveUp.gif" />
-    <None Include="Resources\Music\terminate.gif" />
-    <None Include="Resources\Music\portamento.gif" />
-    <None Include="Resources\Music\reverbOff.gif" />
-    <None Include="Resources\Music\reverbOn.gif" />
-    <None Include="Resources\Editor\openSamples.gif" />
-    <None Include="Resources\Editor\openSPCs.gif" />
-    <None Include="Resources\Music\note8th.gif" />
-    <None Include="Resources\Music\note8thDotted.gif" />
-    <None Include="Resources\Music\note16th.gif" />
-    <None Include="Resources\Music\note8thTriplet.gif" />
-    <None Include="Resources\Music\note32nd.gif" />
-    <None Include="Resources\Music\note16thTriplet.gif" />
-    <None Include="Resources\Music\note64th.gif" />
-    <None Include="Resources\Music\noteHalf.gif" />
-    <None Include="Resources\Music\noteHalfDotted.gif" />
-    <None Include="Resources\Music\noteWhole.gif" />
-    <None Include="Resources\Music\rest8th.gif" />
-    <None Include="Resources\Music\rest8thDotted.gif" />
-    <None Include="Resources\Music\rest16th.gif" />
-    <None Include="Resources\Music\rest8thTriplet.gif" />
-    <None Include="Resources\Music\rest32nd.gif" />
-    <None Include="Resources\Music\rest16thTriplet.gif" />
-    <None Include="Resources\Music\rest64th.gif" />
-    <None Include="Resources\Music\rest64thDotted.gif" />
-    <None Include="Resources\Music\restHalf.gif" />
-    <None Include="Resources\Music\restWhole.gif" />
-    <None Include="Resources\Music\noteQuarterTriplet.gif" />
-    <None Include="Resources\Music\restQuarterTriplet.gif" />
-    <None Include="Resources\Music\noteDotted.gif" />
-    <None Include="Resources\Music\restDotted.gif" />
-    <None Include="Resources\Music\restHalfDotted.gif" />
-    <None Include="Resources\Music\score.gif" />
-    <None Include="Resources\Music\natural.gif" />
-    <None Include="Resources\Music\staffNew.gif" />
-    <None Include="Resources\Music\staffDelete.gif" />
-    <None Include="Resources\Draw\moveToFront.gif" />
-    <None Include="Resources\Draw\sendToBack.gif" />
     <None Include="Resources\Toggle\priority1ON.gif" />
     <None Include="Resources\Toggle\priority1OFF.gif" />
-    <None Include="Resources\Music\notePercussion.gif" />
-    <None Include="Resources\Main\jumpTo.gif" />
-    <None Include="Resources\Main\history.gif" />
     <None Include="Resources\Tiles\fieldBase.gif" />
     <None Include="Resources\Tiles\fieldBlock.gif" />
-    <None Include="Resources\Toggle\buttonBoundaries.gif" />
-    <None Include="Resources\Toggle\buttonEventField.gif" />
-    <None Include="Resources\Toggle\buttonExitField.gif" />
-    <None Include="Resources\Toggle\buttonMushroom.gif" />
-    <None Include="Resources\Toggle\buttonNPC.gif" />
-    <None Include="Resources\Toggle\buttonOverlaps.gif" />
-    <None Include="Resources\Toggle\buttonPhysical.gif" />
-    <None Include="Resources\Toggle\buttonPhysicalTiles.gif" />
-    <None Include="Resources\Toggle\buttonSolidMods.gif" />
-    <None Include="Resources\Toggle\buttonSSObjects.gif" />
-    <None Include="Resources\Toggle\buttonTileMods.gif" />
-    <None Include="Resources\Toggle\buttonToggleGrid.gif" />
-    <None Include="Resources\Toggle\buttonToggleMask.gif" />
-    <None Include="Resources\Toggle\buttonToggleOrthGrid.gif" />
-    <None Include="Resources\Toggle\buttonTogglePixelGrid.gif" />
     <None Include="Resources\Toggle\mapBanner.gif" />
     <None Include="Resources\Toggle\mapPoint.gif" />
     <None Include="Resources\Toggle\marioicon.gif" />
-    <None Include="Resources\Toggle\opacity.gif" />
     <None Include="Resources\Toggle\railicon.gif" />
-    <None Include="Resources\Toggle\showMain.gif" />
-    <None Include="Resources\Toggle\tags.gif" />
-    <None Include="Resources\Toggle\zoomBox.gif" />
-    <None Include="Resources\_bg.gif" />
-    <None Include="Resources\_transparent.gif" />
-    <None Include="Resources\Main\HAMMER.gif" />
-    <None Include="Resources\Main\TITLE_FG.gif" />
-    <None Include="Resources\Main\TITLE_BG.gif" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
