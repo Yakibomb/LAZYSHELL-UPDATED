@@ -1,6 +1,6 @@
 LAZYSHELL++ (formerly "LAZY SHELL: UPDATED EDITION")
-Lazy Shell 2.0.0 Source Code
 Version 2.0.0
+made from Lazy Shell 3.19.0 Source Code
 
 This Github is dedicated to "LAZYSHELL++" (formerly "LAZY SHELL: UPDATED EDITION").
 
