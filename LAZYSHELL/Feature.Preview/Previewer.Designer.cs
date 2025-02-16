@@ -164,8 +164,8 @@ namespace LAZYSHELL
             // 
             // emuPathTextBox
             // 
-            this.emuPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.emuPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.emuPathTextBox.Location = new System.Drawing.Point(89, 18);
             this.emuPathTextBox.Name = "emuPathTextBox";
             this.emuPathTextBox.ReadOnly = true;
@@ -174,8 +174,8 @@ namespace LAZYSHELL
             // 
             // romPathTextBox
             // 
-            this.romPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.romPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.romPathTextBox.Location = new System.Drawing.Point(89, 39);
             this.romPathTextBox.Name = "romPathTextBox";
             this.romPathTextBox.ReadOnly = true;
@@ -184,8 +184,8 @@ namespace LAZYSHELL
             // 
             // zsnesArgs
             // 
-            this.zsnesArgs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.zsnesArgs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.zsnesArgs.Location = new System.Drawing.Point(89, 81);
             this.zsnesArgs.Name = "zsnesArgs";
             this.zsnesArgs.Size = new System.Drawing.Size(433, 21);
@@ -266,8 +266,8 @@ namespace LAZYSHELL
             // 
             // snes9xArgs
             // 
-            this.snes9xArgs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.snes9xArgs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.snes9xArgs.Location = new System.Drawing.Point(89, 60);
             this.snes9xArgs.Name = "snes9xArgs";
             this.snes9xArgs.Size = new System.Drawing.Size(433, 21);
@@ -645,8 +645,8 @@ namespace LAZYSHELL
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.baseConvertor,
-            this.helpTips});
+            this.helpTips,
+            this.baseConvertor});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -656,6 +656,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
@@ -666,6 +667,7 @@ namespace LAZYSHELL
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -686,7 +688,7 @@ namespace LAZYSHELL
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
             this.Name = "Previewer";
-            this.Text = "PREVIEWER - Lazy Shell";
+            this.Text = "PREVIEWER - LAZYSHELL++";
             ((System.ComponentModel.ISupportInitialize)(this.selectIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustY)).EndInit();

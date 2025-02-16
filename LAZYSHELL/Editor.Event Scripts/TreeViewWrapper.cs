@@ -199,7 +199,7 @@ namespace LAZYSHELL.ScriptsEditor
                         {
                             MessageBox.Show(
                                 "Cannot insert an action command outside of an action queue.",
-                                "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
                     }
@@ -215,7 +215,7 @@ namespace LAZYSHELL.ScriptsEditor
                         {
                             MessageBox.Show(
                                 "Could not add any more action commands to the queue.",
-                                "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
                         esc.Param1 += (byte)asc.Length;
@@ -227,7 +227,7 @@ namespace LAZYSHELL.ScriptsEditor
                         {
                             MessageBox.Show(
                                 "Could not add any more action commands to the queue.",
-                                "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
                         esc.Param2 += (byte)asc.Length;
@@ -550,7 +550,7 @@ namespace LAZYSHELL.ScriptsEditor
                             MessageBox.Show(
                                 "Cannot create a copy buffer that contains both event and action\n" +
                                 "commands. Please uncheck all action OR event commands.",
-                                "LAZY SHELL");
+                                "LAZYSHELL++");
                             commandCopies = null;
                             return;
                         }
@@ -566,7 +566,7 @@ namespace LAZYSHELL.ScriptsEditor
                         MessageBox.Show(
                             "Cannot create a copy buffer that contains both event and action\n" +
                             "commands. Please uncheck all action OR event commands.",
-                            "LAZY SHELL");
+                            "LAZYSHELL++");
                         commandCopies = null;
                         return;
                     }
@@ -624,7 +624,7 @@ namespace LAZYSHELL.ScriptsEditor
                     }
                     else
                     {
-                        MessageBox.Show("You cannot paste action commands outside of an action queue.", "LAZY SHELL");
+                        MessageBox.Show("You cannot paste action commands outside of an action queue.", "LAZYSHELL++");
                         return;
                     }
                 }
@@ -642,7 +642,7 @@ namespace LAZYSHELL.ScriptsEditor
                 }
                 catch
                 {
-                    MessageBox.Show("You cannot paste event commands inside of an action queue.", "LAZY SHELL");
+                    MessageBox.Show("You cannot paste event commands inside of an action queue.", "LAZYSHELL++");
                     return;
                 }
             }

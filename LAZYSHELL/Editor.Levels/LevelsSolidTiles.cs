@@ -89,7 +89,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current solidity tile. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             solidityTile = new SolidityTile(index);
             physicalTileNum_ValueChanged(null, null);
@@ -196,60 +196,80 @@ namespace LAZYSHELL
             if (this.Updating)
                 return;
             solidityTile.SolidNWEdge = solidEdgeNW.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void solidEdgeNE_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.SolidNEEdge = solidEdgeNE.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void solidEdgeSW_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.SolidSWEdge = solidEdgeSW.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void solidEdgeSE_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.SolidSEEdge = solidEdgeSE.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void p3OnEdge_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.P3ObjectOnEdge = p3OnEdge.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void p3OverEdge_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.P3ObjectAboveEdge = p3OverEdge.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void p3OnTile_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.P3ObjectOnTile = p3OnTile.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void conveyor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.ConveryorBeltDirection = (byte)conveyor.SelectedIndex;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void conveyorBeltFast_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.ConveyorBeltFast = conveyorBeltFast.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void conveyorBeltNormal_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             solidityTile.ConveyorBeltNormal = conveyorBeltNormal.SelectedIndex == 1;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void stairs_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -272,6 +292,8 @@ namespace LAZYSHELL
             if (this.Updating)
                 return;
             solidityTile.Door = (byte)doorFormat.SelectedIndex;
+            SetSolidTileImage();
+            update.DynamicInvoke();
         }
         private void unknownBits_SelectedIndexChanged(object sender, EventArgs e)
         {

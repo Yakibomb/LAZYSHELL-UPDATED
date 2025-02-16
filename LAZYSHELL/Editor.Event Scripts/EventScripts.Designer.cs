@@ -28,6 +28,7 @@ namespace LAZYSHELL
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventScripts));
             this.evtNameA2 = new System.Windows.Forms.ComboBox();
             this.evtNumA4 = new System.Windows.Forms.NumericUpDown();
             this.evtNameA1 = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,6 @@ namespace LAZYSHELL
             this.evtNumC1 = new System.Windows.Forms.NumericUpDown();
             this.buttonInsertEvent = new System.Windows.Forms.Button();
             this.buttonApplyEvent = new System.Windows.Forms.Button();
-            this.commandTree = new LAZYSHELL.NewTreeView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panelCommands = new LAZYSHELL.NewPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -76,7 +76,6 @@ namespace LAZYSHELL
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.label1 = new System.Windows.Forms.ToolStripLabel();
             this.eventHexText = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.save = new System.Windows.Forms.ToolStripButton();
@@ -99,7 +98,10 @@ namespace LAZYSHELL
             this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.hexEditor = new System.Windows.Forms.ToolStripButton();
             this.autoPointerUpdate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.EventPreview = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addThisToNotesDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,6 +121,7 @@ namespace LAZYSHELL
             this.EvtScrExpandAll = new System.Windows.Forms.ToolStripButton();
             this.EvtScrCollapseAll = new System.Windows.Forms.ToolStripButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.commandTree = new LAZYSHELL.NewTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA2)).BeginInit();
@@ -367,26 +370,6 @@ namespace LAZYSHELL
             this.buttonApplyEvent.UseCompatibleTextRendering = true;
             this.buttonApplyEvent.UseVisualStyleBackColor = false;
             this.buttonApplyEvent.Click += new System.EventHandler(this.buttonApplyEvent_Click);
-            // 
-            // commandTree
-            // 
-            this.commandTree.CheckBoxes = true;
-            this.commandTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commandTree.FullRowSelect = true;
-            this.commandTree.HideSelection = false;
-            this.commandTree.HotTracking = true;
-            treeNode1.Name = "";
-            treeNode1.Text = "";
-            this.commandTree.LastNode = treeNode1;
-            this.commandTree.Location = new System.Drawing.Point(0, 50);
-            this.commandTree.Name = "commandTree";
-            this.commandTree.Size = new System.Drawing.Size(520, 598);
-            this.commandTree.TabIndex = 2;
-            this.commandTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.commandTree_AfterCheck);
-            this.commandTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.commandTree_AfterSelect);
-            this.commandTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.commandTree_NodeMouseClick);
-            this.commandTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.commandTree_KeyDown);
-            this.commandTree.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.commandTree_MouseDoubleClick);
             // 
             // panel8
             // 
@@ -637,6 +620,7 @@ namespace LAZYSHELL
             // 
             // eventLabel
             // 
+            this.eventLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.eventLabel.Name = "eventLabel";
             this.eventLabel.ReadOnly = true;
             this.eventLabel.Size = new System.Drawing.Size(280, 25);
@@ -733,6 +717,7 @@ namespace LAZYSHELL
             // 
             // searchBox
             // 
+            this.searchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(100, 25);
             // 
@@ -761,11 +746,6 @@ namespace LAZYSHELL
             this.eventHexText.ReadOnly = true;
             this.eventHexText.Size = new System.Drawing.Size(125, 25);
             // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -780,14 +760,16 @@ namespace LAZYSHELL
             this.toolStripSeparator4,
             this.import,
             this.export,
-            this.clear,
+            this.toolStripSeparator11,
             this.reset,
+            this.clear,
             this.toolStripSeparator2,
             this.helpTips,
             this.baseConvertor,
-            this.hexEditor,
             this.autoPointerUpdate,
-            this.toolStripSeparator6,
+            this.toolStripButton1,
+            this.toolStripSeparator10,
+            this.hexEditor,
             this.EventPreview});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
@@ -820,7 +802,7 @@ namespace LAZYSHELL
             this.import.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.import.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.import.Name = "import";
-            this.import.Size = new System.Drawing.Size(27, 22);
+            this.import.Size = new System.Drawing.Size(29, 22);
             // 
             // importEventScriptsToolStripMenuItem
             // 
@@ -852,14 +834,14 @@ namespace LAZYSHELL
             this.export.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.export.Name = "export";
-            this.export.Size = new System.Drawing.Size(27, 22);
+            this.export.Size = new System.Drawing.Size(29, 22);
             // 
             // exportEventScriptsToolStripMenuItem
             // 
             this.exportEventScriptsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportData;
             this.exportEventScriptsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportEventScriptsToolStripMenuItem.Name = "exportEventScriptsToolStripMenuItem";
-            this.exportEventScriptsToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.exportEventScriptsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.exportEventScriptsToolStripMenuItem.Text = "Export Event Scripts...";
             this.exportEventScriptsToolStripMenuItem.Click += new System.EventHandler(this.exportEventScriptsToolStripMenuItem_Click);
             // 
@@ -868,7 +850,7 @@ namespace LAZYSHELL
             this.exportActionScriptsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportData;
             this.exportActionScriptsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportActionScriptsToolStripMenuItem.Name = "exportActionScriptsToolStripMenuItem";
-            this.exportActionScriptsToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.exportActionScriptsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.exportActionScriptsToolStripMenuItem.Text = "Export Action Scripts...";
             this.exportActionScriptsToolStripMenuItem.Click += new System.EventHandler(this.exportActionScriptsToolStripMenuItem_Click);
             // 
@@ -882,7 +864,7 @@ namespace LAZYSHELL
             this.dumpEventScriptTextToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportText;
             this.dumpEventScriptTextToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.dumpEventScriptTextToolStripMenuItem.Name = "dumpEventScriptTextToolStripMenuItem";
-            this.dumpEventScriptTextToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.dumpEventScriptTextToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.dumpEventScriptTextToolStripMenuItem.Text = "Dump Event Script Text...";
             this.dumpEventScriptTextToolStripMenuItem.Click += new System.EventHandler(this.dumpEventScriptTextToolStripMenuItem_Click);
             // 
@@ -891,7 +873,7 @@ namespace LAZYSHELL
             this.dumpActionScriptTextToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportText;
             this.dumpActionScriptTextToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.dumpActionScriptTextToolStripMenuItem.Name = "dumpActionScriptTextToolStripMenuItem";
-            this.dumpActionScriptTextToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+            this.dumpActionScriptTextToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.dumpActionScriptTextToolStripMenuItem.Text = "Dump Action Script Text...";
             this.dumpActionScriptTextToolStripMenuItem.Click += new System.EventHandler(this.dumpActionScriptTextToolStripMenuItem_Click);
             // 
@@ -904,7 +886,7 @@ namespace LAZYSHELL
             this.clear.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.clear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(28, 22);
+            this.clear.Size = new System.Drawing.Size(29, 22);
             // 
             // clearEventScriptsToolStripMenuItem
             // 
@@ -942,6 +924,7 @@ namespace LAZYSHELL
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
             this.helpTips.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -952,6 +935,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
             this.baseConvertor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -983,6 +967,11 @@ namespace LAZYSHELL
             this.autoPointerUpdate.Size = new System.Drawing.Size(23, 22);
             this.autoPointerUpdate.ToolTipText = "Auto Pointer Update";
             // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
+            // 
             // EventPreview
             // 
             this.EventPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -993,6 +982,24 @@ namespace LAZYSHELL
             this.EventPreview.Size = new System.Drawing.Size(23, 22);
             this.EventPreview.Text = "Open Previewer";
             this.EventPreview.Click += new System.EventHandler(this.EventPreview_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.CheckOnClick = true;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::LAZYSHELL.Properties.Resources.synchronize;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Auto Update Pointer";
+            this.toolStripButton1.Visible = false;
+            this.toolStripButton1.Click += new System.EventHandler(this.eventPointer_UpdatePointer);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripSeparator12
             // 
@@ -1062,7 +1069,7 @@ namespace LAZYSHELL
             // EvtScrMoveUp
             // 
             this.EvtScrMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EvtScrMoveUp.Image = global::LAZYSHELL.Properties.Resources.moveup;
+            this.EvtScrMoveUp.Image = global::LAZYSHELL.Properties.Resources.moveUp;
             this.EvtScrMoveUp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EvtScrMoveUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EvtScrMoveUp.Name = "EvtScrMoveUp";
@@ -1073,7 +1080,7 @@ namespace LAZYSHELL
             // EvtScrMoveDown
             // 
             this.EvtScrMoveDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EvtScrMoveDown.Image = global::LAZYSHELL.Properties.Resources.movedown;
+            this.EvtScrMoveDown.Image = global::LAZYSHELL.Properties.Resources.moveDown;
             this.EvtScrMoveDown.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.EvtScrMoveDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EvtScrMoveDown.Name = "EvtScrMoveDown";
@@ -1183,6 +1190,26 @@ namespace LAZYSHELL
             // 
             this.toolTip1.Active = false;
             // 
+            // commandTree
+            // 
+            this.commandTree.CheckBoxes = true;
+            this.commandTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.commandTree.FullRowSelect = true;
+            this.commandTree.HideSelection = false;
+            this.commandTree.HotTracking = true;
+            treeNode1.Name = "";
+            treeNode1.Text = "";
+            this.commandTree.LastNode = treeNode1;
+            this.commandTree.Location = new System.Drawing.Point(0, 50);
+            this.commandTree.Name = "commandTree";
+            this.commandTree.Size = new System.Drawing.Size(520, 598);
+            this.commandTree.TabIndex = 2;
+            this.commandTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.commandTree_AfterCheck);
+            this.commandTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.commandTree_AfterSelect);
+            this.commandTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.commandTree_NodeMouseClick);
+            this.commandTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.commandTree_KeyDown);
+            this.commandTree.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.commandTree_MouseDoubleClick);
+            // 
             // EventScripts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1194,12 +1221,12 @@ namespace LAZYSHELL
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolStrip4);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainEventScripts_2_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "EventScripts";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "EVENT SCRIPTS - Lazy Shell";
+            this.Text = "EVENT SCRIPTS - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventScripts_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA3)).EndInit();
@@ -1249,7 +1276,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.Label labelEvtA3;
         private System.Windows.Forms.Label labelEvtA2;
         private System.Windows.Forms.ComboBox evtNameA2;
-        private LAZYSHELL.NewTreeView commandTree;
         private System.Windows.Forms.Panel panel8;
         private LAZYSHELL.NewPanel panelCommands;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -1259,7 +1285,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton EvtScrEditCommand;
         private System.Windows.Forms.ToolStripButton EvtScrExpandAll;
         private System.Windows.Forms.ToolStripButton EvtScrCollapseAll;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton EvtScrMoveUp;
         private System.Windows.Forms.ToolStripButton EvtScrMoveDown;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
@@ -1274,9 +1299,7 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripDropDownButton export;
         private System.Windows.Forms.ToolStripDropDownButton clear;
         private System.Windows.Forms.ToolStripComboBox eventName;
-        private ToolStripNumericUpDown eventNum;
         private System.Windows.Forms.ToolStripButton searchLabels;
-        private System.Windows.Forms.ListBox commands;
         private System.Windows.Forms.ToolStripTextBox searchBox;
         private System.Windows.Forms.ToolStripTextBox eventHexText;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -1304,7 +1327,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton reset;
         private System.Windows.Forms.ToolStripButton navigateBck;
         private System.Windows.Forms.ToolStripButton navigateFwd;
-        private System.Windows.Forms.ToolStripTextBox gotoAddress;
         private System.Windows.Forms.GroupBox groupBoxA;
         private System.Windows.Forms.GroupBox groupBoxB;
         private System.Windows.Forms.GroupBox groupBoxC;
@@ -1323,5 +1345,12 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton undo;
         private System.Windows.Forms.ToolStripButton redo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ListBox commands;
+        private ToolStripNumericUpDown eventNum;
+        private System.Windows.Forms.ToolStripTextBox gotoAddress;
+        private NewTreeView commandTree;
     }
 }

@@ -22,7 +22,7 @@ namespace LAZYSHELL
         {
             this.form = form;
             if (form.Name == "Editor")
-                Do.AddHistory("LOADED LAZY SHELL APPLICATION");
+                Do.AddHistory("LOADED LAZYSHELL++ APPLICATION");
             else if (form.Name != "SpritePartitions" &&
                 form.Name != "PaletteEditor" &&
                 form.Name != "GraphicEditor" &&
@@ -38,7 +38,7 @@ namespace LAZYSHELL
             this.form = form;
             this.includeChildForms = includeChildForms;
             if (form.Name == "Editor")
-                Do.AddHistory("LOADED LAZY SHELL APPLICATION");
+                Do.AddHistory("LOADED LAZYSHELL++ APPLICATION");
             else if (form.Name != "SpritePartitions" &&
                 form.Name != "PaletteEditor" &&
                 form.Name != "GraphicEditor" &&
@@ -55,7 +55,7 @@ namespace LAZYSHELL
             this.name = name;
             this.number = number;
             if (form.Name == "Editor")
-                Do.AddHistory("LOADED LAZY SHELL APPLICATION");
+                Do.AddHistory("LOADED LAZYSHELL++ APPLICATION");
             else if (form.Name != "SpritePartitions" &&
                 form.Name != "PaletteEditor" &&
                 form.Name != "GraphicEditor" &&

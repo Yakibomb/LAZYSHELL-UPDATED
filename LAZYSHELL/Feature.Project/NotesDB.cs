@@ -14,7 +14,6 @@ namespace LAZYSHELL
         private ArrayList levels; public ArrayList Levels { get { return levels; } set { levels = value; } }
         private ArrayList eventScripts; public ArrayList EventScripts { get { return eventScripts; } set { eventScripts = value; } }
         private ArrayList actionScripts; public ArrayList ActionScripts { get { return actionScripts; } set { actionScripts = value; } }
-        private ArrayList battleScripts; public ArrayList BattleScripts { get { return battleScripts; } set { battleScripts = value; } }
         private ArrayList sprites; public ArrayList Sprites { get { return sprites; } set { sprites = value; } }
         private ArrayList effects; public ArrayList Effects { get { return effects; } set { effects = value; } }
         private ArrayList dialogues; public ArrayList Dialogues { get { return dialogues; } set { dialogues = value; } }
@@ -25,6 +24,8 @@ namespace LAZYSHELL
         private ArrayList attacks; public ArrayList Attacks { get { return attacks; } set { attacks = value; } }
         private ArrayList items; public ArrayList Items { get { return items; } set { items = value; } }
         private ArrayList shops; public ArrayList Shops { get { return shops; } set { shops = value; } }
+        private ArrayList monsterBehaviorAnims; public ArrayList MonsterBehaviorAnims { get { return monsterBehaviorAnims; } set { monsterBehaviorAnims = value; } }
+        private ArrayList battleEvents; public ArrayList BattleEvents { get { return battleEvents; } set { shops = battleEvents; } }
         //
         private ArrayList memoryBits; public ArrayList MemoryBits { get { return memoryBits; } }
         // constructor
@@ -34,7 +35,7 @@ namespace LAZYSHELL
             levels = new ArrayList();
             eventScripts = new ArrayList();
             actionScripts = new ArrayList();
-            battleScripts = new ArrayList();
+            battleEvents = new ArrayList();
             memoryBits = new ArrayList();
             sprites = new ArrayList();
             effects = new ArrayList();
@@ -46,6 +47,7 @@ namespace LAZYSHELL
             attacks = new ArrayList();
             items = new ArrayList();
             shops = new ArrayList();
+            monsterBehaviorAnims = new ArrayList();
         }
         // public functions
         public void AddIndex(int index, ArrayList arrayList)

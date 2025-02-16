@@ -35,6 +35,7 @@ namespace LAZYSHELL
         private bool effectPoison;
         private bool effectFear;
         private bool effectMushroom;
+        private bool effectBerserk;
         private bool effectScarecrow;
         private bool effectInvincible;
         private bool changeAttack;
@@ -118,6 +119,7 @@ namespace LAZYSHELL
         public bool EffectSleep { get { return this.effectSleep; } set { this.effectSleep = value; } }
         public bool EffectPoison { get { return this.effectPoison; } set { this.effectPoison = value; } }
         public bool EffectFear { get { return this.effectFear; } set { this.effectFear = value; } }
+        public bool EffectBerserk { get { return this.effectBerserk; } set { this.effectBerserk = value; } }
         public bool EffectMushroom { get { return this.effectMushroom; } set { this.effectMushroom = value; } }
         public bool EffectScarecrow { get { return this.effectScarecrow; } set { this.effectScarecrow = value; } }
         public bool EffectInvincible { get { return this.effectInvincible; } set { this.effectInvincible = value; } }
@@ -250,6 +252,7 @@ namespace LAZYSHELL
             effectSleep = (temp & 0x02) == 0x02;		// Sleep
             effectPoison = (temp & 0x04) == 0x04;		// Poison
             effectFear = (temp & 0x08) == 0x08;		// Fear
+            effectBerserk = (temp & 0x10) == 0x10;	// Unused Berserk status
             effectMushroom = (temp & 0x20) == 0x20;	// Mushroom
             effectScarecrow = (temp & 0x40) == 0x40;	// Scarecrow
             effectInvincible = (temp & 0x80) == 0x80;	// Invincible
@@ -373,6 +376,7 @@ namespace LAZYSHELL
             Bits.SetBit(rom, offset, 1, effectSleep);
             Bits.SetBit(rom, offset, 2, effectPoison);
             Bits.SetBit(rom, offset, 3, effectFear);
+            Bits.SetBit(rom, offset, 4, effectBerserk);
             Bits.SetBit(rom, offset, 5, effectMushroom);
             Bits.SetBit(rom, offset, 6, effectScarecrow);
             Bits.SetBit(rom, offset++, 7, effectInvincible);
@@ -446,14 +450,15 @@ namespace LAZYSHELL
             magicAttack = 0;
             magicDefense = 0;
             attackRange = 0;
-            attackType = 0;
-            elemAttack = 0;
+            attackType = 3;
+            elemAttack = 4;
             hideDigits = false;
             inflictionAmount = 0;
             effectMute = false;
             effectSleep = false;
             effectPoison = false;
             effectFear = false;
+            effectBerserk = false;
             effectMushroom = false;
             effectScarecrow = false;
             effectInvincible = false;
@@ -488,7 +493,7 @@ namespace LAZYSHELL
             targetNotSelf = false;
             itemType = 0;
             cursorBehavior = 0;
-            inflictFunction = 0;
+            inflictFunction = 8;
         }
     }
 }

@@ -455,6 +455,11 @@ namespace LAZYSHELL
             this.zoomBox = new ZoomBox(zoomBoxZoom);
             this.SetStyle(ControlStyles.Selectable, true);
             this.TabStop = true;
+            ZoomBox.FormClosing += new FormClosingEventHandler(ZoomBox_FormClosing);
+        }
+        private void ZoomBox_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;//fixes being able to close the ZoomBox using alt-F4
         }
         // functions
         public void ZoomIn(int x, int y)
@@ -526,7 +531,7 @@ namespace LAZYSHELL
         }
         public void RefreshZoomBox()
         {
-            if (zoomBoxEnabled && zoomBox != null)
+            if (zoomBoxEnabled && zoomBox != null && !zoomBox.IsDisposed)
             {
                 zoomBox.Location = new Point(
                     MousePosition.X + zoomBoxPosition.X,

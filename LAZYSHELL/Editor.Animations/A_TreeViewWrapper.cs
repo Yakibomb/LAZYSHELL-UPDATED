@@ -56,14 +56,35 @@ namespace LAZYSHELL.ScriptsEditor
                 case 0x07:
                 case 0x11:
                 case 0x5E:
-                    node.BackColor = Color.FromArgb(255, 255, 255, 160);
+                    node.BackColor = Color.FromArgb(255, 255, 224, 224);
                     break;
                 case 0x09:
                 case 0x10:
+                case 0x38:
+                case 0x47:
+                case 0x50:
+                case 0x51:
                 case 0x5D:
                 case 0x64:
                 case 0x68:
+                case 0xA2:
+                case 0xCE:
+                case 0xCF:
+                case 0xD0:
+                case 0xD8:
                     node.BackColor = Color.FromArgb(255, 192, 224, 255);
+                    AddNode(command, node);
+                    break;
+                case 0x04:
+                case 0x0A:
+                case 0x40:
+                case 0x41:
+                case 0x4E:
+                case 0x74:
+                case 0x75:
+                case 0x7B:
+                case 0x97:
+                    node.BackColor = Color.FromArgb(255, 255, 255, 160);
                     AddNode(command, node);
                     break;
                 default:
@@ -89,14 +110,35 @@ namespace LAZYSHELL.ScriptsEditor
                     case 0x07:
                     case 0x11:
                     case 0x5E:
-                        childNode.BackColor = Color.FromArgb(255, 255, 255, 160);
+                        childNode.BackColor = Color.FromArgb(255, 255, 224, 224);
                         break;
                     case 0x09:
                     case 0x10:
+                    case 0x38:
+                    case 0x47:
+                    case 0x50:
+                    case 0x51:
                     case 0x5D:
                     case 0x64:
                     case 0x68:
+                    case 0xA2:
+                    case 0xCE:
+                    case 0xCF:
+                    case 0xD0:
+                    case 0xD8:
                         childNode.BackColor = Color.FromArgb(255, 192, 224, 255);
+                        AddNode(childCommand, childNode);
+                        break;
+                    case 0x04:
+                    case 0x0A:
+                    case 0x40:
+                    case 0x41:
+                    case 0x4E:
+                    case 0x74:
+                    case 0x75:
+                    case 0x7B:
+                    case 0x97:
+                        childNode.BackColor = Color.FromArgb(255, 255, 255, 160);
                         AddNode(childCommand, childNode);
                         break;
                     default:

@@ -93,7 +93,7 @@ namespace LAZYSHELL
             state.Fill = false;
             state.TileGrid = false;
             DialogResult result;
-            result = MessageBox.Show("Mini-games have not been saved.\n\nWould you like to save changes?", "LAZY SHELL", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            result = MessageBox.Show("Mini-games have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
             else if (result == DialogResult.No)
@@ -123,7 +123,7 @@ namespace LAZYSHELL
         private void resetAllObjectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Doing this will erase all changes to the object data for all stages since the last save, including mushrooms, coins, and screens. Continue?",
-                "LAZY SHELL", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                "LAZYSHELL++", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             Model.MinecartObjects = null;
             minecart.MinecartData = new MinecartData(Model.MinecartObjects);
@@ -132,7 +132,7 @@ namespace LAZYSHELL
         private void resetCurrentTilesetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Doing this will erase all changes to the tileset since the last save. Continue?",
-                "LAZY SHELL", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                "LAZYSHELL++", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             if (minecart.Index < 2)
             {
@@ -146,7 +146,7 @@ namespace LAZYSHELL
         private void resetCurrentTilemapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Doing this will erase all changes to the tilemap since the last save. Continue?",
-                "LAZY SHELL", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                "LAZYSHELL++", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
             if (minecart.Index == 0)
                 Model.MinecartM7TilemapA = null;

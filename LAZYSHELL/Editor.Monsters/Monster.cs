@@ -46,6 +46,7 @@ namespace LAZYSHELL
         private bool effectNullSleep;
         private bool effectNullPoison;
         private bool effectNullFear;
+        private bool effectNullBerserk;
         private bool effectNullMushroom;
         private bool effectNullScarecrow;
         private bool effectNullInvincible;
@@ -130,6 +131,7 @@ namespace LAZYSHELL
         public bool EffectNullSleep { get { return this.effectNullSleep; } set { this.effectNullSleep = value; } }
         public bool EffectNullPoison { get { return this.effectNullPoison; } set { this.effectNullPoison = value; } }
         public bool EffectNullFear { get { return this.effectNullFear; } set { this.effectNullFear = value; } }
+        public bool EffectNullBerserk { get { return this.effectNullBerserk; } set { this.effectNullBerserk = value; } }
         public bool EffectNullMushroom { get { return this.effectNullMushroom; } set { this.effectNullMushroom = value; } }
         public bool EffectNullScarecrow { get { return this.effectNullScarecrow; } set { this.effectNullScarecrow = value; } }
         public bool EffectNullInvincible { get { return this.effectNullInvincible; } set { this.effectNullInvincible = value; } }
@@ -246,6 +248,7 @@ namespace LAZYSHELL
             effectNullSleep = (status & Status.Sleep) == Status.Sleep;
             effectNullPoison = (status & Status.Poison) == Status.Poison;
             effectNullFear = (status & Status.Fear) == Status.Fear;
+            effectNullBerserk = (status & Status.Berserk) == Status.Berserk;
             effectNullMushroom = (status & Status.Mushroom) == Status.Mushroom;
             effectNullScarecrow = (status & Status.Scarecrow) == Status.Scarecrow;
             effectNullInvincible = (status & Status.Invincible) == Status.Invincible;
@@ -264,7 +267,7 @@ namespace LAZYSHELL
             // flower bonus
             offset = index + 0x39BB44;
             flowerBonus = (byte)(rom[offset] & 0x0F);
-            flowerOdds = (byte)Math.Min(10, (temp & 0xF0) >> 4);
+            flowerOdds = (byte)Math.Min(10, (rom[0x39BB44 + index] & 0xF0) >> 4);
             // death animation
             offset = index * 2 + 0x350202;
             switch (Bits.GetShort(rom, offset))
@@ -344,6 +347,7 @@ namespace LAZYSHELL
             Bits.SetBit(rom, offset, 1, effectNullSleep);
             Bits.SetBit(rom, offset, 2, effectNullPoison);
             Bits.SetBit(rom, offset, 3, effectNullFear);
+            Bits.SetBit(rom, offset, 4, effectNullBerserk);
             Bits.SetBit(rom, offset, 5, effectNullMushroom);
             Bits.SetBit(rom, offset, 6, effectNullScarecrow);
             Bits.SetBit(rom, offset++, 7, effectNullInvincible);
@@ -417,6 +421,7 @@ namespace LAZYSHELL
             effectNullSleep = false;
             effectNullPoison = false;
             effectNullFear = false;
+            effectNullBerserk = false;
             effectNullMushroom = false;
             effectNullScarecrow = false;
             effectNullInvincible = false;

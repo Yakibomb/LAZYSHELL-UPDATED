@@ -67,7 +67,9 @@ namespace LAZYSHELL
             int offset = 0;
             percussives = new List<Percussives>();
             while (spcData[offset] != 0xFF)
+            {
                 percussives.Add(new Percussives(spcData[offset++], spcData[offset++], spcData[offset++], spcData[offset++], spcData[offset++]));
+            }
             offset++;
             // now disassemble the scripts for each channel
             activeChannels = new bool[8];

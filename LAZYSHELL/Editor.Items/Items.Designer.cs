@@ -26,8 +26,9 @@ namespace LAZYSHELL
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Items));
             this.pictureBoxItemDesc = new System.Windows.Forms.PictureBox();
-            this.itemElemWeak = new System.Windows.Forms.CheckedListBox();
+            this.itemElemResist = new System.Windows.Forms.CheckedListBox();
             this.itemStatusEffect = new System.Windows.Forms.CheckedListBox();
             this.itemStatusChange = new System.Windows.Forms.CheckedListBox();
             this.itemElemNull = new System.Windows.Forms.CheckedListBox();
@@ -66,10 +67,6 @@ namespace LAZYSHELL
             this.itemNum = new LAZYSHELL.ToolStripNumericUpDown();
             this.itemNameIcon = new LAZYSHELL.ToolStripComboBox();
             this.textBoxItemName = new System.Windows.Forms.ToolStripTextBox();
-            this.hexitem = new System.Windows.Forms.ToolStripDropDownButton();
-            this.hexitemEditNames = new System.Windows.Forms.ToolStripMenuItem();
-            this.hexitemEditStats = new System.Windows.Forms.ToolStripMenuItem();
-            this.hexitemEditPrice = new System.Windows.Forms.ToolStripMenuItem();
             this.label158 = new System.Windows.Forms.Label();
             this.lvl2TimingEnd = new System.Windows.Forms.NumericUpDown();
             this.lvl1TimingStart = new System.Windows.Forms.NumericUpDown();
@@ -92,6 +89,7 @@ namespace LAZYSHELL
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxItemDesc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemAttack)).BeginInit();
@@ -123,7 +121,7 @@ namespace LAZYSHELL
             // 
             // pictureBoxItemDesc
             // 
-            this.pictureBoxItemDesc.BackgroundImage = global::LAZYSHELL.Properties.Resources._transparent;
+            this.pictureBoxItemDesc.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxItemDesc.BackgroundImage")));
             this.pictureBoxItemDesc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxItemDesc.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxItemDesc.Name = "pictureBoxItemDesc";
@@ -132,21 +130,21 @@ namespace LAZYSHELL
             this.pictureBoxItemDesc.TabStop = false;
             this.pictureBoxItemDesc.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxItemDesc_Paint);
             // 
-            // itemElemWeak
+            // itemElemResist
             // 
-            this.itemElemWeak.CheckOnClick = true;
-            this.itemElemWeak.ColumnWidth = 80;
-            this.itemElemWeak.Items.AddRange(new object[] {
+            this.itemElemResist.CheckOnClick = true;
+            this.itemElemResist.ColumnWidth = 80;
+            this.itemElemResist.Items.AddRange(new object[] {
             "Ice",
             "Fire",
             "Thunder",
             "Jump"});
-            this.itemElemWeak.Location = new System.Drawing.Point(6, 20);
-            this.itemElemWeak.MultiColumn = true;
-            this.itemElemWeak.Name = "itemElemWeak";
-            this.itemElemWeak.Size = new System.Drawing.Size(173, 36);
-            this.itemElemWeak.TabIndex = 0;
-            this.itemElemWeak.SelectedIndexChanged += new System.EventHandler(this.itemElemWeak_SelectedIndexChanged);
+            this.itemElemResist.Location = new System.Drawing.Point(6, 20);
+            this.itemElemResist.MultiColumn = true;
+            this.itemElemResist.Name = "itemElemResist";
+            this.itemElemResist.Size = new System.Drawing.Size(173, 36);
+            this.itemElemResist.TabIndex = 0;
+            this.itemElemResist.SelectedIndexChanged += new System.EventHandler(this.itemElemResist_SelectedIndexChanged);
             // 
             // itemStatusEffect
             // 
@@ -157,6 +155,7 @@ namespace LAZYSHELL
             "Sleep",
             "Poison",
             "Fear",
+            "Berserk",
             "Mushroom",
             "Scarecrow",
             "Invincible"});
@@ -608,9 +607,9 @@ namespace LAZYSHELL
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemName,
             this.itemNum,
+            this.toolStripSeparator1,
             this.itemNameIcon,
-            this.textBoxItemName,
-            this.hexitem});
+            this.textBoxItemName});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -630,7 +629,7 @@ namespace LAZYSHELL
             this.itemName.Name = "itemName";
             this.itemName.SelectedIndex = -1;
             this.itemName.SelectedItem = null;
-            this.itemName.Size = new System.Drawing.Size(154, 23);
+            this.itemName.Size = new System.Drawing.Size(170, 23);
             this.itemName.SelectedIndexChanged += new System.EventHandler(this.itemName_SelectedIndexChanged);
             this.itemName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.itemName_DrawItem);
             // 
@@ -643,7 +642,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.itemNum.Location = new System.Drawing.Point(163, 2);
+            this.itemNum.Location = new System.Drawing.Point(179, 2);
             this.itemNum.Maximum = new decimal(new int[] {
             255,
             0,
@@ -674,7 +673,7 @@ namespace LAZYSHELL
             this.itemNameIcon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.itemNameIcon.DropDownWidth = 40;
             this.itemNameIcon.ItemHeight = 15;
-            this.itemNameIcon.Location = new System.Drawing.Point(204, 2);
+            this.itemNameIcon.Location = new System.Drawing.Point(226, 2);
             this.itemNameIcon.Name = "itemNameIcon";
             this.itemNameIcon.SelectedIndex = -1;
             this.itemNameIcon.SelectedItem = null;
@@ -684,51 +683,11 @@ namespace LAZYSHELL
             // 
             // textBoxItemName
             // 
+            this.textBoxItemName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textBoxItemName.MaxLength = 14;
             this.textBoxItemName.Name = "textBoxItemName";
-            this.textBoxItemName.Size = new System.Drawing.Size(140, 26);
+            this.textBoxItemName.Size = new System.Drawing.Size(143, 26);
             this.textBoxItemName.TextChanged += new System.EventHandler(this.textBoxItemName_TextChanged);
-            // 
-            // hexitem
-            // 
-            this.hexitem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.hexitem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hexitemEditNames,
-            this.hexitemEditStats,
-            this.hexitemEditPrice});
-            this.hexitem.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
-            this.hexitem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.hexitem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.hexitem.Margin = new System.Windows.Forms.Padding(0);
-            this.hexitem.Name = "hexitem";
-            this.hexitem.Size = new System.Drawing.Size(29, 26);
-            // 
-            // hexitemEditNames
-            // 
-            this.hexitemEditNames.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
-            this.hexitemEditNames.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.hexitemEditNames.Name = "hexitemEditNames";
-            this.hexitemEditNames.Size = new System.Drawing.Size(180, 22);
-            this.hexitemEditNames.Text = "Hex Edit Names";
-            this.hexitemEditNames.Click += new System.EventHandler(this.showitem_hexname);
-            // 
-            // hexitemEditStats
-            // 
-            this.hexitemEditStats.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
-            this.hexitemEditStats.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.hexitemEditStats.Name = "hexitemEditStats";
-            this.hexitemEditStats.Size = new System.Drawing.Size(180, 22);
-            this.hexitemEditStats.Text = "Hex Edit Stats";
-            this.hexitemEditStats.Click += new System.EventHandler(this.showitem_hexstats);
-            // 
-            // hexitemEditPrice
-            // 
-            this.hexitemEditPrice.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
-            this.hexitemEditPrice.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.hexitemEditPrice.Name = "hexitemEditPrice";
-            this.hexitemEditPrice.Size = new System.Drawing.Size(180, 22);
-            this.hexitemEditPrice.Text = "Hex Edit Price";
-            this.hexitemEditPrice.Click += new System.EventHandler(this.showitem_hexprice);
             // 
             // label158
             // 
@@ -814,7 +773,7 @@ namespace LAZYSHELL
             // 
             this.textView.CheckOnClick = true;
             this.textView.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.textView.Image = global::LAZYSHELL.Properties.Resources.textView;
+            this.textView.Image = ((System.Drawing.Image)(resources.GetObject("textView.Image")));
             this.textView.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.textView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.textView.Name = "textView";
@@ -829,7 +788,7 @@ namespace LAZYSHELL
             // newLine
             // 
             this.newLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newLine.Image = global::LAZYSHELL.Properties.Resources.newLine;
+            this.newLine.Image = ((System.Drawing.Image)(resources.GetObject("newLine.Image")));
             this.newLine.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.newLine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newLine.Name = "newLine";
@@ -840,7 +799,7 @@ namespace LAZYSHELL
             // endString
             // 
             this.endString.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.endString.Image = global::LAZYSHELL.Properties.Resources.endString;
+            this.endString.Image = ((System.Drawing.Image)(resources.GetObject("endString.Image")));
             this.endString.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.endString.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.endString.Name = "endString";
@@ -933,13 +892,13 @@ namespace LAZYSHELL
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.itemElemWeak);
+            this.groupBox7.Controls.Add(this.itemElemResist);
             this.groupBox7.Location = new System.Drawing.Point(226, 196);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(185, 62);
             this.groupBox7.TabIndex = 8;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Element Weaknesses";
+            this.groupBox7.Text = "Element Resistance";
             // 
             // groupBox8
             // 
@@ -997,6 +956,11 @@ namespace LAZYSHELL
             this.groupBox11.TabIndex = 5;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Weapon Damage Timing";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 26);
             // 
             // Items
             // 
@@ -1062,7 +1026,7 @@ namespace LAZYSHELL
         }
         #endregion
         private System.Windows.Forms.PictureBox pictureBoxItemDesc;
-        private System.Windows.Forms.CheckedListBox itemElemWeak;
+        private System.Windows.Forms.CheckedListBox itemElemResist;
         private System.Windows.Forms.CheckedListBox itemStatusEffect;
         private System.Windows.Forms.CheckedListBox itemStatusChange;
         private System.Windows.Forms.CheckedListBox itemElemNull;
@@ -1097,7 +1061,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private LAZYSHELL.ToolStripComboBox itemName;
         private LAZYSHELL.ToolStripComboBox itemNameIcon;
         private System.Windows.Forms.ToolStripTextBox textBoxItemName;
         private System.Windows.Forms.Label label158;
@@ -1123,9 +1086,7 @@ namespace LAZYSHELL
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripDropDownButton hexitem;
-        private System.Windows.Forms.ToolStripMenuItem hexitemEditNames;
-        private System.Windows.Forms.ToolStripMenuItem hexitemEditStats;
-        private System.Windows.Forms.ToolStripMenuItem hexitemEditPrice;
+        private ToolStripComboBox itemName;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

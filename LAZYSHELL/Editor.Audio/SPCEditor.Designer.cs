@@ -289,6 +289,9 @@ namespace LAZYSHELL
             this.importMMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSPCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tESTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.decayFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.delayTime)).BeginInit();
@@ -339,6 +342,7 @@ namespace LAZYSHELL
             this.trackNum,
             this.import,
             this.export,
+            this.toolStripDropDownButton1,
             this.clear,
             this.toolStripSeparator5,
             this.reset,
@@ -390,7 +394,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.trackNum.Location = new System.Drawing.Point(332, 2);
+            this.trackNum.Location = new System.Drawing.Point(334, 2);
             this.trackNum.Maximum = new decimal(new int[] {
             73,
             0,
@@ -421,14 +425,14 @@ namespace LAZYSHELL
             this.import.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.import.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.import.Name = "import";
-            this.import.Size = new System.Drawing.Size(27, 22);
+            this.import.Size = new System.Drawing.Size(29, 22);
             // 
             // importSPC
             // 
             this.importSPC.Image = global::LAZYSHELL.Properties.Resources.importData;
             this.importSPC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importSPC.Name = "importSPC";
-            this.importSPC.Size = new System.Drawing.Size(141, 24);
+            this.importSPC.Size = new System.Drawing.Size(141, 22);
             this.importSPC.Text = "Import SPC...";
             this.importSPC.Click += new System.EventHandler(this.importTrack_Click);
             // 
@@ -437,7 +441,7 @@ namespace LAZYSHELL
             this.importMML.Image = global::LAZYSHELL.Properties.Resources.importText;
             this.importMML.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importMML.Name = "importMML";
-            this.importMML.Size = new System.Drawing.Size(141, 24);
+            this.importMML.Size = new System.Drawing.Size(141, 22);
             this.importMML.Text = "Import MML...";
             this.importMML.Click += new System.EventHandler(this.importMML_Click);
             // 
@@ -451,14 +455,14 @@ namespace LAZYSHELL
             this.export.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.export.Name = "export";
-            this.export.Size = new System.Drawing.Size(27, 22);
+            this.export.Size = new System.Drawing.Size(29, 22);
             // 
             // exportSPC
             // 
             this.exportSPC.Image = global::LAZYSHELL.Properties.Resources.exportData;
             this.exportSPC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportSPC.Name = "exportSPC";
-            this.exportSPC.Size = new System.Drawing.Size(139, 24);
+            this.exportSPC.Size = new System.Drawing.Size(139, 22);
             this.exportSPC.Text = "Export SPC...";
             this.exportSPC.Click += new System.EventHandler(this.exportTrack_Click);
             // 
@@ -467,7 +471,7 @@ namespace LAZYSHELL
             this.exportMML.Image = global::LAZYSHELL.Properties.Resources.exportText;
             this.exportMML.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportMML.Name = "exportMML";
-            this.exportMML.Size = new System.Drawing.Size(139, 24);
+            this.exportMML.Size = new System.Drawing.Size(139, 22);
             this.exportMML.Text = "Export MML...";
             this.exportMML.Click += new System.EventHandler(this.exportMML_Click);
             // 
@@ -652,8 +656,8 @@ namespace LAZYSHELL
             // 
             // groupBoxPR
             // 
-            this.groupBoxPR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxPR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxPR.Controls.Add(this.toolStrip3);
             this.groupBoxPR.Controls.Add(this.label8);
             this.groupBoxPR.Controls.Add(this.label7);
@@ -836,8 +840,8 @@ namespace LAZYSHELL
             // 
             // groupBoxI
             // 
-            this.groupBoxI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxI.Controls.Add(this.label2);
             this.groupBoxI.Controls.Add(this.label1);
             this.groupBoxI.Location = new System.Drawing.Point(0, 0);
@@ -849,8 +853,8 @@ namespace LAZYSHELL
             // 
             // groupBoxCT
             // 
-            this.groupBoxCT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxCT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxCT.Controls.Add(this.panel1);
             this.groupBoxCT.Controls.Add(this.toolStrip4);
             this.groupBoxCT.Controls.Add(this.toolStrip2);
@@ -864,9 +868,9 @@ namespace LAZYSHELL
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.channelTracks);
             this.panel1.Controls.Add(this.hScrollBarCT);
@@ -901,7 +905,7 @@ namespace LAZYSHELL
             this.clearChannel});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(191, 82);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(200, 76);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // exportScript
@@ -909,7 +913,7 @@ namespace LAZYSHELL
             this.exportScript.Image = global::LAZYSHELL.Properties.Resources.exportText;
             this.exportScript.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportScript.Name = "exportScript";
-            this.exportScript.Size = new System.Drawing.Size(190, 24);
+            this.exportScript.Size = new System.Drawing.Size(199, 22);
             this.exportScript.Text = "Export Channel Script...";
             this.exportScript.Click += new System.EventHandler(this.exportScript_Click);
             // 
@@ -918,21 +922,21 @@ namespace LAZYSHELL
             this.importScript.Image = global::LAZYSHELL.Properties.Resources.importText;
             this.importScript.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importScript.Name = "importScript";
-            this.importScript.Size = new System.Drawing.Size(190, 24);
+            this.importScript.Size = new System.Drawing.Size(199, 22);
             this.importScript.Text = "Import Channel Script...";
             this.importScript.Click += new System.EventHandler(this.importScript_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(196, 6);
             // 
             // clearChannel
             // 
             this.clearChannel.Image = global::LAZYSHELL.Properties.Resources.clear_small;
             this.clearChannel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.clearChannel.Name = "clearChannel";
-            this.clearChannel.Size = new System.Drawing.Size(190, 24);
+            this.clearChannel.Size = new System.Drawing.Size(199, 22);
             this.clearChannel.Text = "Clear Channel";
             this.clearChannel.Click += new System.EventHandler(this.clearChannel_Click);
             // 
@@ -1382,9 +1386,9 @@ namespace LAZYSHELL
             // 
             // groupBoxSV
             // 
-            this.groupBoxSV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSV.Controls.Add(this.panel2);
             this.groupBoxSV.Controls.Add(this.rToolStripAct);
             this.groupBoxSV.Controls.Add(this.rToolStripNote);
@@ -1411,13 +1415,13 @@ namespace LAZYSHELL
             // 
             // scoreViewPanel
             // 
-            this.scoreViewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.scoreViewPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.scoreViewPanel.AutoScroll = true;
             this.scoreViewPanel.Controls.Add(this.scoreViewPicture);
             this.scoreViewPanel.Location = new System.Drawing.Point(0, 0);
-            this.scoreViewPanel.Name = "panel3";
+            this.scoreViewPanel.Name = "scoreViewPanel";
             this.scoreViewPanel.Size = new System.Drawing.Size(502, 362);
             this.scoreViewPanel.TabIndex = 0;
             // 
@@ -1427,22 +1431,23 @@ namespace LAZYSHELL
             this.scoreViewPicture.Dock = System.Windows.Forms.DockStyle.Top;
             this.scoreViewPicture.Location = new System.Drawing.Point(0, 0);
             this.scoreViewPicture.Name = "scoreViewPicture";
-            this.scoreViewPicture.Size = new System.Drawing.Size(486, 768);
+            this.scoreViewPicture.Size = new System.Drawing.Size(485, 768);
             this.scoreViewPicture.TabIndex = 2;
             this.scoreViewPicture.TabStop = false;
+
             this.scoreViewPicture.ZoomEnabled = false;
+            this.scoreViewPicture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scoreViewPicture_KeyDown);
             this.scoreViewPicture.Paint += new System.Windows.Forms.PaintEventHandler(this.scoreViewPicture_Paint);
             this.scoreViewPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.scoreViewPicture_MouseDown);
             this.scoreViewPicture.MouseEnter += new System.EventHandler(this.scoreViewPicture_MouseEnter);
             this.scoreViewPicture.MouseLeave += new System.EventHandler(this.scoreViewPicture_MouseLeave);
             this.scoreViewPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.scoreViewPicture_MouseMove);
             this.scoreViewPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.scoreViewPicture_MouseUp);
-            this.scoreViewPicture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scoreViewPicture_KeyDown);
             // 
             // hScrollBarSV
             // 
-            this.hScrollBarSV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.hScrollBarSV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.hScrollBarSV.LargeChange = 100;
             this.hScrollBarSV.Location = new System.Drawing.Point(0, 362);
             this.hScrollBarSV.Name = "hScrollBarSV";
@@ -1454,8 +1459,8 @@ namespace LAZYSHELL
             // 
             // labelRNote
             // 
-            this.labelRNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelRNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelRNote.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRNote.Location = new System.Drawing.Point(0, 378);
             this.labelRNote.Name = "labelRNote";
@@ -1494,7 +1499,7 @@ namespace LAZYSHELL
             this.rDraw.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rDraw.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rDraw.Name = "rDraw";
-            this.rDraw.Size = new System.Drawing.Size(21, 17);
+            this.rDraw.Size = new System.Drawing.Size(21, 20);
             this.rDraw.Text = "Draw (D)";
             this.rDraw.CheckedChanged += new System.EventHandler(this.rDraw_CheckedChanged);
             // 
@@ -1506,7 +1511,7 @@ namespace LAZYSHELL
             this.rErase.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rErase.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rErase.Name = "rErase";
-            this.rErase.Size = new System.Drawing.Size(21, 17);
+            this.rErase.Size = new System.Drawing.Size(21, 20);
             this.rErase.Text = "Erase (E)";
             this.rErase.CheckedChanged += new System.EventHandler(this.rErase_CheckedChanged);
             // 
@@ -1518,7 +1523,7 @@ namespace LAZYSHELL
             this.rSelect.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rSelect.Name = "rSelect";
-            this.rSelect.Size = new System.Drawing.Size(21, 17);
+            this.rSelect.Size = new System.Drawing.Size(21, 20);
             this.rSelect.Text = "Select (S)";
             this.rSelect.CheckedChanged += new System.EventHandler(this.rSelect_CheckedChanged);
             // 
@@ -1534,7 +1539,7 @@ namespace LAZYSHELL
             this.rCut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rCut.Name = "rCut";
-            this.rCut.Size = new System.Drawing.Size(21, 17);
+            this.rCut.Size = new System.Drawing.Size(21, 20);
             this.rCut.Text = "Cut (Ctrl+X)";
             this.rCut.Click += new System.EventHandler(this.rCut_Click);
             // 
@@ -1545,7 +1550,7 @@ namespace LAZYSHELL
             this.rCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rCopy.Name = "rCopy";
-            this.rCopy.Size = new System.Drawing.Size(21, 17);
+            this.rCopy.Size = new System.Drawing.Size(21, 20);
             this.rCopy.Text = "Copy (Ctrl+C)";
             this.rCopy.Click += new System.EventHandler(this.rCopy_Click);
             // 
@@ -1557,7 +1562,7 @@ namespace LAZYSHELL
             this.rPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rPaste.Name = "rPaste";
-            this.rPaste.Size = new System.Drawing.Size(21, 17);
+            this.rPaste.Size = new System.Drawing.Size(21, 20);
             this.rPaste.Text = "Paste (Ctrl+V)";
             this.rPaste.CheckedChanged += new System.EventHandler(this.rPaste_CheckedChanged);
             // 
@@ -1568,7 +1573,7 @@ namespace LAZYSHELL
             this.rDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rDelete.Name = "rDelete";
-            this.rDelete.Size = new System.Drawing.Size(21, 15);
+            this.rDelete.Size = new System.Drawing.Size(21, 20);
             this.rDelete.Text = "Delete (Del)";
             this.rDelete.Click += new System.EventHandler(this.rDelete_Click);
             // 
@@ -1584,7 +1589,7 @@ namespace LAZYSHELL
             this.rUndo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rUndo.Name = "rUndo";
-            this.rUndo.Size = new System.Drawing.Size(21, 12);
+            this.rUndo.Size = new System.Drawing.Size(21, 20);
             this.rUndo.Text = "Undo (Ctrl+Z)";
             this.rUndo.Click += new System.EventHandler(this.undo_Click);
             // 
@@ -1595,7 +1600,7 @@ namespace LAZYSHELL
             this.rRedo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.rRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rRedo.Name = "rRedo";
-            this.rRedo.Size = new System.Drawing.Size(21, 12);
+            this.rRedo.Size = new System.Drawing.Size(21, 20);
             this.rRedo.Text = "Redo (Ctrl+Y)";
             this.rRedo.Click += new System.EventHandler(this.redo_Click);
             // 
@@ -1864,7 +1869,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.rTicksNoteValue.Location = new System.Drawing.Point(439, 2);
+            this.rTicksNoteValue.Location = new System.Drawing.Point(441, 2);
             this.rTicksNoteValue.Maximum = new decimal(new int[] {
             255,
             0,
@@ -1896,7 +1901,7 @@ namespace LAZYSHELL
             this.rRestWhole.Image = global::LAZYSHELL.Properties.Resources.restWhole;
             this.rRestWhole.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.rRestWhole.Name = "rRestWhole";
-            this.rRestWhole.Size = new System.Drawing.Size(23, 22);
+            this.rRestWhole.Size = new System.Drawing.Size(23, 20);
             this.rRestWhole.Text = "Whole Rest";
             this.rRestWhole.Click += new System.EventHandler(this.reader_Click);
             // 
@@ -2054,7 +2059,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.rTicksRestValue.Location = new System.Drawing.Point(1, 297);
+            this.rTicksRestValue.Location = new System.Drawing.Point(1, 320);
             this.rTicksRestValue.Maximum = new decimal(new int[] {
             255,
             0,
@@ -2113,7 +2118,7 @@ namespace LAZYSHELL
             "Treble",
             "Bass"});
             this.clefSV.Name = "clefSV";
-            this.clefSV.Size = new System.Drawing.Size(70, 21);
+            this.clefSV.Size = new System.Drawing.Size(70, 23);
             this.clefSV.ToolTipText = "Clef";
             this.clefSV.SelectedIndexChanged += new System.EventHandler(this.clefSV_SelectedIndexChanged);
             // 
@@ -2160,7 +2165,7 @@ namespace LAZYSHELL
             "Eb minor",
             "Ab minor"});
             this.keySV.Name = "keySV";
-            this.keySV.Size = new System.Drawing.Size(70, 21);
+            this.keySV.Size = new System.Drawing.Size(70, 23);
             this.keySV.ToolTipText = "Key";
             this.keySV.SelectedIndexChanged += new System.EventHandler(this.keySV_SelectedIndexChanged);
             // 
@@ -2181,7 +2186,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.timeBeatsSV.Location = new System.Drawing.Point(239, 2);
+            this.timeBeatsSV.Location = new System.Drawing.Point(241, 2);
             this.timeBeatsSV.Maximum = new decimal(new int[] {
             64,
             0,
@@ -2213,7 +2218,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.timeValueSV.Location = new System.Drawing.Point(279, 2);
+            this.timeValueSV.Location = new System.Drawing.Point(281, 2);
             this.timeValueSV.Maximum = new decimal(new int[] {
             64,
             0,
@@ -2256,7 +2261,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.staffHeightSV.Location = new System.Drawing.Point(393, 2);
+            this.staffHeightSV.Location = new System.Drawing.Point(395, 2);
             this.staffHeightSV.Maximum = new decimal(new int[] {
             256,
             0,
@@ -2321,7 +2326,7 @@ namespace LAZYSHELL
             this.showRests.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.showRests.Name = "showRests";
             this.showRests.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            this.showRests.Size = new System.Drawing.Size(86, 21);
+            this.showRests.Size = new System.Drawing.Size(89, 23);
             this.showRests.Text = "Show Rests";
             this.showRests.CheckedChanged += new System.EventHandler(this.showRests_CheckedChanged);
             // 
@@ -2370,9 +2375,9 @@ namespace LAZYSHELL
             // 
             // groupBoxSW
             // 
-            this.groupBoxSW.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSW.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSW.Controls.Add(this.wToolStripAct);
             this.groupBoxSW.Controls.Add(this.labelWNote);
             this.groupBoxSW.Controls.Add(this.scoreWriterPanel);
@@ -2418,7 +2423,7 @@ namespace LAZYSHELL
             this.wDraw.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wDraw.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wDraw.Name = "wDraw";
-            this.wDraw.Size = new System.Drawing.Size(21, 17);
+            this.wDraw.Size = new System.Drawing.Size(21, 20);
             this.wDraw.Text = "Draw Note (D)";
             this.wDraw.CheckedChanged += new System.EventHandler(this.wDraw_CheckedChanged);
             // 
@@ -2430,7 +2435,7 @@ namespace LAZYSHELL
             this.wErase.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wErase.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wErase.Name = "wErase";
-            this.wErase.Size = new System.Drawing.Size(21, 17);
+            this.wErase.Size = new System.Drawing.Size(21, 20);
             this.wErase.Text = "Erase (E)";
             this.wErase.CheckedChanged += new System.EventHandler(this.wErase_CheckedChanged);
             // 
@@ -2442,7 +2447,7 @@ namespace LAZYSHELL
             this.wSelect.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wSelect.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wSelect.Name = "wSelect";
-            this.wSelect.Size = new System.Drawing.Size(21, 17);
+            this.wSelect.Size = new System.Drawing.Size(21, 20);
             this.wSelect.Text = "Select (S)";
             this.wSelect.CheckedChanged += new System.EventHandler(this.wSelect_CheckedChanged);
             // 
@@ -2458,7 +2463,7 @@ namespace LAZYSHELL
             this.wCut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wCut.Name = "wCut";
-            this.wCut.Size = new System.Drawing.Size(21, 17);
+            this.wCut.Size = new System.Drawing.Size(21, 20);
             this.wCut.Text = "Cut (Ctrl+X)";
             this.wCut.Click += new System.EventHandler(this.wCut_Click);
             // 
@@ -2469,7 +2474,7 @@ namespace LAZYSHELL
             this.wCopy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wCopy.Name = "wCopy";
-            this.wCopy.Size = new System.Drawing.Size(21, 17);
+            this.wCopy.Size = new System.Drawing.Size(21, 20);
             this.wCopy.Text = "Copy (Ctrl+C)";
             this.wCopy.Click += new System.EventHandler(this.wCopy_Click);
             // 
@@ -2481,7 +2486,7 @@ namespace LAZYSHELL
             this.wPaste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wPaste.Name = "wPaste";
-            this.wPaste.Size = new System.Drawing.Size(21, 17);
+            this.wPaste.Size = new System.Drawing.Size(21, 20);
             this.wPaste.Text = "Paste (Ctrl+V)";
             this.wPaste.CheckedChanged += new System.EventHandler(this.wPaste_CheckedChanged);
             // 
@@ -2492,7 +2497,7 @@ namespace LAZYSHELL
             this.wDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wDelete.Name = "wDelete";
-            this.wDelete.Size = new System.Drawing.Size(21, 15);
+            this.wDelete.Size = new System.Drawing.Size(21, 20);
             this.wDelete.Text = "Delete (Del)";
             this.wDelete.Click += new System.EventHandler(this.wDelete_Click);
             // 
@@ -2509,7 +2514,7 @@ namespace LAZYSHELL
             this.undo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.undo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.undo.Name = "undo";
-            this.undo.Size = new System.Drawing.Size(21, 12);
+            this.undo.Size = new System.Drawing.Size(21, 20);
             this.undo.Text = "Undo (Ctrl+Z)";
             this.undo.Click += new System.EventHandler(this.undo_Click);
             // 
@@ -2521,14 +2526,14 @@ namespace LAZYSHELL
             this.redo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.redo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.redo.Name = "redo";
-            this.redo.Size = new System.Drawing.Size(21, 12);
+            this.redo.Size = new System.Drawing.Size(21, 20);
             this.redo.Text = "Redo (Ctrl+Y)";
             this.redo.Click += new System.EventHandler(this.redo_Click);
             // 
             // labelWNote
             // 
-            this.labelWNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelWNote.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelWNote.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelWNote.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWNote.Location = new System.Drawing.Point(29, 446);
@@ -2540,14 +2545,14 @@ namespace LAZYSHELL
             // 
             // scoreWriterPanel
             // 
-            this.scoreWriterPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.scoreWriterPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.scoreWriterPanel.AutoScroll = true;
             this.scoreWriterPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.scoreWriterPanel.Controls.Add(this.scoreWriterPicture);
             this.scoreWriterPanel.Location = new System.Drawing.Point(29, 67);
-            this.scoreWriterPanel.Name = "panel4";
+            this.scoreWriterPanel.Name = "scoreWriterPanel";
             this.scoreWriterPanel.Size = new System.Drawing.Size(881, 361);
             this.scoreWriterPanel.TabIndex = 2;
             // 
@@ -2557,22 +2562,23 @@ namespace LAZYSHELL
             this.scoreWriterPicture.Dock = System.Windows.Forms.DockStyle.Top;
             this.scoreWriterPicture.Location = new System.Drawing.Point(0, 0);
             this.scoreWriterPicture.Name = "scoreWriterPicture";
-            this.scoreWriterPicture.Size = new System.Drawing.Size(861, 700);
+            this.scoreWriterPicture.Size = new System.Drawing.Size(860, 700);
             this.scoreWriterPicture.TabIndex = 0;
             this.scoreWriterPicture.TabStop = false;
+
             this.scoreWriterPicture.ZoomEnabled = false;
+            this.scoreWriterPicture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scoreWriterPicture_KeyDown);
             this.scoreWriterPicture.Paint += new System.Windows.Forms.PaintEventHandler(this.scoreWriterPicture_Paint);
             this.scoreWriterPicture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.scoreWriterPicture_MouseDown);
             this.scoreWriterPicture.MouseEnter += new System.EventHandler(this.scoreWriterPicture_MouseEnter);
             this.scoreWriterPicture.MouseLeave += new System.EventHandler(this.scoreWriterPicture_MouseLeave);
             this.scoreWriterPicture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.scoreWriterPicture_MouseMove);
             this.scoreWriterPicture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.scoreWriterPicture_MouseUp);
-            this.scoreWriterPicture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scoreWriterPicture_KeyDown);
             // 
             // hScrollBarSW
             // 
-            this.hScrollBarSW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.hScrollBarSW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.hScrollBarSW.LargeChange = 100;
             this.hScrollBarSW.Location = new System.Drawing.Point(29, 428);
             this.hScrollBarSW.Name = "hScrollBarSW";
@@ -2847,7 +2853,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.ticksNoteValue.Location = new System.Drawing.Point(439, 2);
+            this.ticksNoteValue.Location = new System.Drawing.Point(441, 2);
             this.ticksNoteValue.Maximum = new decimal(new int[] {
             255,
             0,
@@ -3037,7 +3043,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.ticksRestValue.Location = new System.Drawing.Point(823, 2);
+            this.ticksRestValue.Location = new System.Drawing.Point(825, 2);
             this.ticksRestValue.Maximum = new decimal(new int[] {
             255,
             0,
@@ -3126,7 +3132,7 @@ namespace LAZYSHELL
             this.exportScoreFiles.Image = global::LAZYSHELL.Properties.Resources.exportText;
             this.exportScoreFiles.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportScoreFiles.Name = "exportScoreFiles";
-            this.exportScoreFiles.Size = new System.Drawing.Size(194, 24);
+            this.exportScoreFiles.Size = new System.Drawing.Size(194, 22);
             this.exportScoreFiles.Text = "Export Staffs to Scripts...";
             this.exportScoreFiles.Click += new System.EventHandler(this.exportScoreFiles_Click);
             // 
@@ -3135,7 +3141,7 @@ namespace LAZYSHELL
             this.exportStaffsMML.Image = global::LAZYSHELL.Properties.Resources.exportText;
             this.exportStaffsMML.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportStaffsMML.Name = "exportStaffsMML";
-            this.exportStaffsMML.Size = new System.Drawing.Size(194, 24);
+            this.exportStaffsMML.Size = new System.Drawing.Size(194, 22);
             this.exportStaffsMML.Text = "Export Staffs to MML...";
             this.exportStaffsMML.Click += new System.EventHandler(this.exportStaffsMML_Click);
             // 
@@ -3171,7 +3177,7 @@ namespace LAZYSHELL
             // 
             this.wStaffMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.wStaffMoveUp.Enabled = false;
-            this.wStaffMoveUp.Image = global::LAZYSHELL.Properties.Resources.moveup;
+            this.wStaffMoveUp.Image = global::LAZYSHELL.Properties.Resources.moveUp;
             this.wStaffMoveUp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wStaffMoveUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wStaffMoveUp.Name = "wStaffMoveUp";
@@ -3183,7 +3189,7 @@ namespace LAZYSHELL
             // 
             this.wStaffMoveDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.wStaffMoveDown.Enabled = false;
-            this.wStaffMoveDown.Image = global::LAZYSHELL.Properties.Resources.movedown;
+            this.wStaffMoveDown.Image = global::LAZYSHELL.Properties.Resources.moveDown;
             this.wStaffMoveDown.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.wStaffMoveDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.wStaffMoveDown.Name = "wStaffMoveDown";
@@ -3212,7 +3218,7 @@ namespace LAZYSHELL
             "Treble",
             "Bass"});
             this.clef.Name = "clef";
-            this.clef.Size = new System.Drawing.Size(70, 21);
+            this.clef.Size = new System.Drawing.Size(70, 23);
             this.clef.ToolTipText = "Clef";
             this.clef.SelectedIndexChanged += new System.EventHandler(this.clef_SelectedIndexChanged);
             // 
@@ -3260,7 +3266,7 @@ namespace LAZYSHELL
             "Eb minor",
             "Ab minor"});
             this.keySW.Name = "keySW";
-            this.keySW.Size = new System.Drawing.Size(70, 21);
+            this.keySW.Size = new System.Drawing.Size(70, 23);
             this.keySW.ToolTipText = "Key";
             this.keySW.SelectedIndexChanged += new System.EventHandler(this.keySW_SelectedIndexChanged);
             // 
@@ -3281,7 +3287,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.timeBeatsSW.Location = new System.Drawing.Point(418, 2);
+            this.timeBeatsSW.Location = new System.Drawing.Point(420, 2);
             this.timeBeatsSW.Maximum = new decimal(new int[] {
             64,
             0,
@@ -3313,7 +3319,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.timeValueSW.Location = new System.Drawing.Point(458, 2);
+            this.timeValueSW.Location = new System.Drawing.Point(460, 2);
             this.timeValueSW.Maximum = new decimal(new int[] {
             64,
             0,
@@ -3356,7 +3362,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.staffHeightSW.Location = new System.Drawing.Point(569, 2);
+            this.staffHeightSW.Location = new System.Drawing.Point(571, 2);
             this.staffHeightSW.Maximum = new decimal(new int[] {
             512,
             0,
@@ -3394,7 +3400,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.noteSpacingSW.Location = new System.Drawing.Point(706, 2);
+            this.noteSpacingSW.Location = new System.Drawing.Point(708, 2);
             this.noteSpacingSW.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -3596,9 +3602,9 @@ namespace LAZYSHELL
             // 
             // panelSPC
             // 
-            this.panelSPC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelSPC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSPC.Controls.Add(this.groupBoxSV);
             this.panelSPC.Controls.Add(this.groupBoxRV);
             this.panelSPC.Controls.Add(this.groupBoxPR);
@@ -3637,6 +3643,34 @@ namespace LAZYSHELL
             this.exportMMLToolStripMenuItem.Name = "exportMMLToolStripMenuItem";
             this.exportMMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportMMLToolStripMenuItem.Text = "Export MML";
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearToolStripMenuItem,
+            this.tESTToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = global::LAZYSHELL.Properties.Resources.clear_small;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearToolStripMenuItem.Text = "Clear...";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clear_Click);
+            // 
+            // tESTToolStripMenuItem
+            // 
+            this.tESTToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
+            this.tESTToolStripMenuItem.Name = "tESTToolStripMenuItem";
+            this.tESTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tESTToolStripMenuItem.Text = "Clear Percussion";
+            this.tESTToolStripMenuItem.Click += new System.EventHandler(this.tESTToolStripMenuItem_Click);
             // 
             // SPCEditor
             // 
@@ -3972,5 +4006,8 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
         private System.Windows.Forms.ToolStripLabel toolStripLabel10;
         private System.Windows.Forms.ToolStripComboBox clefSV;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tESTToolStripMenuItem;
     }
 }

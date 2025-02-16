@@ -14,17 +14,22 @@ namespace LAZYSHELL
         private Settings settings = Settings.Default;
         private Shop[] shops { get { return Model.Shops; } set { Model.Shops = value; } }
         private Shop shop { get { return shops[index]; } set { shops[index] = value; } }
+
         public Shop Shop { get { return shop; } set { shop = value; } }
-                private int index { get { return (int)shopName.SelectedIndex; } set { shopName.SelectedIndex = value; } }
+        private int index { get { return (int)shopName.SelectedIndex; } set { shopName.SelectedIndex = value; } }
         public int Index { get { return index; } set { index = value; } }
-        private ComboBox[] shopItems = new ComboBox[15];
+        public ComboBox[] shopItems = new ComboBox[15];
         private ComboBox selectedItem;
-        private ItemsEditor itemsEditor;
+        private ItemsEditor itemsEditorParent;
+        private Items itemsEditor;
         private EditLabel labelWindow;
+
         // Constructor
-        public Shops(ItemsEditor itemsEditor)
+        public Shops(ItemsEditor itemsEditorParent, Items itemsEditor)
         {
-            this.itemsEditor = itemsEditor;
+            this.itemsEditorParent = itemsEditorParent;
+            this.itemsEditor = itemsEditorParent.itemsEditor;
+
             InitializeComponent();
             for (int i = 0; i < 15; i++)
             {
@@ -44,10 +49,13 @@ namespace LAZYSHELL
                 this.shopItems[i].SelectedIndexChanged += new System.EventHandler(this.shopItem_SelectedIndexChanged);
                 this.shopItems[i].Click += new System.EventHandler(this.shopItem_Click);
                 this.groupBoxItems.Controls.Add(this.shopItems[i]);
+                this.shopItems[i].Items.Add("");
+                //this.shopItems[i].KeyDown += new System.Windows.Forms.KeyEventHandler(this.itemsEditor.keyData_KeyDown);
+                //this.shopItems[i].Click += new System.EventHandler(this.itemsEditor.keyData_Click);
             }
             InitializeStrings();
             index = 0;
-            RefreshShops();
+         //   RefreshShops();
             labelWindow = new EditLabel(shopName, null, "Shops", true);
             //
             this.History = new History(this, shopName, null);
@@ -62,11 +70,47 @@ namespace LAZYSHELL
                 shopItems[i].Items.AddRange(Model.ItemNames.Names);
             }
         }
-        public void ResortStrings()
+        public void ResortStrings(int index)
         {
+
+            if (itemsEditor == null)
+            {
+                if (itemsEditorParent.itemsEditor != null)
+                    itemsEditor = itemsEditorParent.itemsEditor;
+                else
+                {
+                    this.Updating = false;
+                    return;
+                }
+            }
+
             this.Updating = true;
-            for (int i = 0; i < shopItems.Length; i++)
-                shopItems[i].SelectedIndex = Model.ItemNames.GetSortedIndex(shop.Items[i]);
+
+            if (index == -2) { }
+            else if (index > -1)
+                for (int i = 0; i < shopItems.Length; i++)
+                {
+                    if (shopItems[i].SelectedIndex == index)
+                    {
+                        shopItems[i].Items.Clear();
+                        shopItems[i].Items.AddRange(Model.ItemNames.Names);
+                    }
+                }
+            else
+                for (int i = 0; i < shopItems.Length; i++)
+                {
+                    shopItems[i].Items.Clear();
+                    shopItems[i].Items.AddRange(Model.ItemNames.Names);
+                }
+
+            if (settings.ItemsSortItemList)
+                for (int i = 0; i < shopItems.Length; i++)
+                    shopItems[i].SelectedIndex = Model.ItemNames.GetSortedIndex(shop.Items[i]);
+            else
+                for (int i = 0; i < shopItems.Length; i++)
+                    shopItems[i].SelectedIndex = Model.ItemNames.GetUnsortedIndex(shop.Items[i]);
+
+
             this.Updating = false;
         }
         public void RefreshShops()
@@ -74,8 +118,7 @@ namespace LAZYSHELL
             if (this.Updating)
                 return;
             this.Updating = true;
-            for (int i = 0; i < shopItems.Length; i++)
-                shopItems[i].SelectedIndex = Model.ItemNames.GetSortedIndex(shop.Items[i]);
+
             this.shopBuyOptions.SetItemChecked(0, shop.BuyFrogCoinOne);
             this.shopBuyOptions.SetItemChecked(1, shop.BuyFrogCoin);
             this.shopBuyOptions.SetItemChecked(2, shop.BuyOnlyA);
@@ -84,6 +127,9 @@ namespace LAZYSHELL
             this.shopDiscounts.SetItemChecked(1, shop.Discount12);
             this.shopDiscounts.SetItemChecked(2, shop.Discount25);
             this.shopDiscounts.SetItemChecked(3, shop.Discount50);
+
+            ResortStrings(-2);
+
             this.Updating = false;
         }
         #region Event Handlers
@@ -132,7 +178,7 @@ namespace LAZYSHELL
         {
             if (selectedItem == null)
             {
-                MessageBox.Show("Must select an item first.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Must select an item first.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             int index = Convert.ToInt32(selectedItem.Name.Substring(8));
@@ -142,14 +188,14 @@ namespace LAZYSHELL
             shop.Items[index - 1] = shop.Items[index];
             shop.Items[index] = (byte)temp;
             selectedItem = (ComboBox)this.Controls.Find("shopItem" + (index - 1).ToString(), true)[0];
-            RefreshShops();
+            ResortStrings(-2);
             selectedItem.Focus();
         }
         private void moveDown_Click(object sender, EventArgs e)
         {
             if (selectedItem == null)
             {
-                MessageBox.Show("Must select an item first.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Must select an item first.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             int index = Convert.ToInt32(selectedItem.Name.Substring(8));
@@ -159,7 +205,7 @@ namespace LAZYSHELL
             shop.Items[index + 1] = shop.Items[index];
             shop.Items[index] = (byte)temp;
             selectedItem = (ComboBox)this.Controls.Find("shopItem" + (index + 1).ToString(), true)[0];
-            RefreshShops();
+            ResortStrings(-2);
             selectedItem.Focus();
         }
         #endregion

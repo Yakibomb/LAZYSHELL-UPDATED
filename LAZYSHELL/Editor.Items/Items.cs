@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
+using System.Runtime;
 using System.Text;
 using System.Windows.Forms;
 using LAZYSHELL.Properties;
+using LAZYSHELL.ScriptsEditor;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
+using static LAZYSHELL.NotesDB;
 
 namespace LAZYSHELL
 {
@@ -13,7 +18,7 @@ namespace LAZYSHELL
     {
         #region Variables
         private Settings settings = Settings.Default;
-                private Item[] items { get { return Model.Items; } set { Model.Items = value; } }
+        private Item[] items { get { return Model.Items; } set { Model.Items = value; } }
         private Item item { get { return items[index]; } set { items[index] = value; } }
         public Item Item { get { return item; } set { item = value; } }
         private int index { get { return (int)itemNum.Value; } set { itemNum.Value = value; } }
@@ -24,33 +29,72 @@ namespace LAZYSHELL
         private Bitmap descriptionText;
         private MenuDescriptionPreview menuDescPreview = new MenuDescriptionPreview();
         private TextHelperReduced textHelper = TextHelperReduced.Instance;
-        private Shops shopsEditor;
+        private ItemsEditor itemsEditorParent;
+
+        private Shops ShopsEditor;
+        public Shops shopsEditor
+        {
+            get
+            {
+                if (ShopsEditor == null)
+                    ShopsEditor = itemsEditorParent.shopsEditor;
+                return ShopsEditor;
+            }
+            set { ShopsEditor = value; }
+        }
         private EditLabel labelWindow;
+
+        private string[] itemNames;
+        public string[] ItemsList
+        {
+            get
+            {
+                if (itemNames == null)
+                    itemNames = new string[items.Length];
+                for (int a = 0; a < items.Length; a++)
+                    itemNames[a] = this.itemName.Items[a].ToString();
+                return itemNames;
+            }
+            set
+            {
+                itemNames = value;
+            }
+        }
+
         #endregion
         // constructor
-        public Items(Shops shopsEditor)
+        public Items(ItemsEditor itemsEditorParent)
         {
-            this.shopsEditor = shopsEditor;
+            this.itemsEditorParent = itemsEditorParent;
+            //this.shopsEditor = shopsEditor;
+
             InitializeComponent();
             itemName.BackgroundImage = Model.MenuBG;
             labelWindow = new EditLabel(itemName, itemNum, "Items", false);
+
+
             InitializeStrings();
-            RefreshItems();
-            if (settings.RememberLastIndex)
-                index = settings.LastItem;
-            //
             this.History = new History(this, itemName, itemNum);
         }
         #region Functions
         private void InitializeStrings()
         {
-            this.itemName.Items.Clear();
-            this.itemName.Items.AddRange(Model.ItemNames.Names);
             string[] temp = new string[96];
             for (int i = 0; i < 96; i++)
                 temp[i] = i.ToString();
             this.itemNameIcon.Items.Clear();
             this.itemNameIcon.Items.AddRange(temp);
+
+            RefreshItemList();
+
+            RefreshItems();
+
+            this.itemWhoEquip.Items.Clear();
+            for (int i = 0; i < Model.Characters.Length; i++)
+                this.itemWhoEquip.Items.Add(Model.CharacterNames.GetUnsortedName(i));
+
+            if (settings.RememberLastIndex)
+                index = settings.LastItem;
         }
         public void RefreshItems()
         {
@@ -58,7 +102,8 @@ namespace LAZYSHELL
             if (this.Updating)
                 return;
             this.Updating = true;
-            this.itemName.SelectedIndex = Model.ItemNames.GetSortedIndex(index);
+
+            this.itemName.SelectedIndex = settings.ItemsSortItemList ? Model.ItemNames.GetSortedIndex(index) : index;
             this.itemName.Invalidate();
             this.itemCoinValue.Value = item.Price;
             this.itemSpeed.Value = item.Speed;
@@ -70,26 +115,29 @@ namespace LAZYSHELL
             this.itemPower.Value = item.InflictionAmount;
             this.itemNameIcon.SelectedIndex = (int)(item.Name[0] - 0x20);
             this.itemNameIcon.Invalidate();
+
             this.textBoxItemName.Text = Do.RawToASCII(item.Name, Lists.KeystrokesMenu).Substring(1);
+
             if (this.itemNum.Value > 0xB0)
             {
                 this.textBoxItemDescription.Text = " This item[1] cannot have a[1] description";
                 if (item.RawDescription == null)
                     this.textBoxItemDescription_TextChanged(null, null);
-                this.groupBox11.Enabled = false;
+                this.groupBox10.Enabled = false;
             }
             else
             {
                 this.textBoxItemDescription.Text = item.GetDescription(byteView);
-                this.groupBox11.Enabled = true;
+                this.groupBox10.Enabled = true;
             }
             this.itemStatusEffect.SetItemChecked(0, item.EffectMute);
             this.itemStatusEffect.SetItemChecked(1, item.EffectSleep);
             this.itemStatusEffect.SetItemChecked(2, item.EffectPoison);
             this.itemStatusEffect.SetItemChecked(3, item.EffectFear);
-            this.itemStatusEffect.SetItemChecked(4, item.EffectMushroom);
-            this.itemStatusEffect.SetItemChecked(5, item.EffectScarecrow);
-            this.itemStatusEffect.SetItemChecked(6, item.EffectInvincible);
+            this.itemStatusEffect.SetItemChecked(4, item.EffectBerserk);
+            this.itemStatusEffect.SetItemChecked(5, item.EffectMushroom);
+            this.itemStatusEffect.SetItemChecked(6, item.EffectScarecrow);
+            this.itemStatusEffect.SetItemChecked(7, item.EffectInvincible);
             this.itemStatusChange.SetItemChecked(0, item.ChangeAttack);
             this.itemStatusChange.SetItemChecked(1, item.ChangeDefense);
             this.itemStatusChange.SetItemChecked(2, item.ChangeMagicAttack);
@@ -98,10 +146,10 @@ namespace LAZYSHELL
             this.itemElemNull.SetItemChecked(1, item.ElemNullFire);
             this.itemElemNull.SetItemChecked(2, item.ElemNullThunder);
             this.itemElemNull.SetItemChecked(3, item.ElemNullJump);
-            this.itemElemWeak.SetItemChecked(0, item.ElemWeakIce);
-            this.itemElemWeak.SetItemChecked(1, item.ElemWeakFire);
-            this.itemElemWeak.SetItemChecked(2, item.ElemWeakThunder);
-            this.itemElemWeak.SetItemChecked(3, item.ElemWeakJump);
+            this.itemElemResist.SetItemChecked(0, item.ElemWeakIce);
+            this.itemElemResist.SetItemChecked(1, item.ElemWeakFire);
+            this.itemElemResist.SetItemChecked(2, item.ElemWeakThunder);
+            this.itemElemResist.SetItemChecked(3, item.ElemWeakJump);
             this.itemWhoEquip.SetItemChecked(0, item.EquipMario);
             this.itemWhoEquip.SetItemChecked(1, item.EquipToadstool);
             this.itemWhoEquip.SetItemChecked(2, item.EquipBowser);
@@ -206,8 +254,51 @@ namespace LAZYSHELL
             item.SetDescription(new string(newText), byteView);
             textBoxItemDescription.Text = item.GetDescription(byteView);
         }
+        public void RefreshItemList()
+        {
+            /*
+            Cursor.Current = Cursors.WaitCursor;
+            if (this.Updating)
+                return;
+            this.Updating = true;
+            */
+
+            this.itemNames = null;
+            Model.ItemNames = null;
+            this.itemName.Items.Clear();
+            this.itemName.Items.AddRange(Model.ItemNames.Names);
+
+            /*
+            this.Updating = false;
+            Cursor.Current = Cursors.Arrow;
+            */
+        }
+
         #endregion
         #region Event Handlers
+        private void itemName_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+            Do.DrawName(
+                sender, e, new BattleDialoguePreview(), Model.ItemNames, Model.FontMenu,
+                Model.FontPaletteMenu.Palettes[0], 8, 10, 0, 128, false, false, Model.MenuBG_);
+        }
+        private void itemName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /*
+                int offset = (index * 18) + 0x3A014D;
+                item.BaseOffsetStats = offset;
+                offset = 0x3A46EF + (index * 15);
+                item.BaseOffsetName = offset;
+                offset = (index * 2) + 0x3A40F2;
+                item.BaseOffsetPrice = offset;
+            */
+            if (this.Updating)
+                return;
+
+            this.itemNum.Value = settings.ItemsSortItemList ? Model.ItemNames.GetUnsortedIndex(itemName.SelectedIndex) : itemName.SelectedIndex;
+        }
         private void itemNum_ValueChanged(object sender, EventArgs e)
         {
             RefreshItems();
@@ -218,57 +309,50 @@ namespace LAZYSHELL
             item.BaseOffsetName = offset;
             offset = (index * 2) + 0x3A40F2;
             item.BaseOffsetPrice = offset;
-        }
-        private void itemName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int offset = (index * 18) + 0x3A014D;
-            item.BaseOffsetStats = offset;
-            offset = 0x3A46EF + (index * 15);
-            item.BaseOffsetName = offset;
-            offset = (index * 2) + 0x3A40F2;
-            item.BaseOffsetPrice = offset;
-            itemNum.Value = Model.ItemNames.GetUnsortedIndex(itemName.SelectedIndex);
-        }
-        private void itemName_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0)
-                return;
-            Do.DrawName(
-                sender, e, new BattleDialoguePreview(), Model.ItemNames, Model.FontMenu,
-                Model.FontPaletteMenu.Palettes[0], 8, 10, 0, 128, false, false, Model.MenuBG_);
+
         }
         private void textBoxItemName_TextChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             char[] raw = new char[15];
             char[] temp = Do.ASCIIToRaw(this.textBoxItemName.Text, Lists.KeystrokesMenu, 14);
+
             for (int i = 0; i < 14; i++)
                 raw[i + 1] = temp[i];
             raw[0] = (char)(itemNameIcon.SelectedIndex + 32);
+
             if (item.Name != raw)
             {
                 item.Name = raw;
-                Model.ItemNames.SetName(
-                    item.Index,
-                    new string(item.Name));
-                Model.ItemNames.SortAlphabetically();
-                this.itemName.Items.Clear();
-                this.itemName.Items.AddRange(Model.ItemNames.Names);
-                this.itemName.SelectedIndex = Model.ItemNames.GetSortedIndex(item.Index);
-                shopsEditor.ResortStrings();
+
+                int startIndex = settings.ItemsDrawItemIconsOnList ? 0 : 1;
+                int index = settings.ItemsSortItemList ? Model.ItemNames.GetSortedIndex(item.Index) : item.Index;
+
+                Model.ItemNames.SetName(index, new string(item.Name).Substring(startIndex));
+                RefreshItemList();
+                index = settings.ItemsSortItemList ? Model.ItemNames.GetSortedIndex(item.Index) : item.Index;
+                this.itemName.SelectedIndex = index;
+                shopsEditor.ResortStrings(index);
             }
         }
         private void itemNameIcon_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             item.Name[0] = (char)(itemNameIcon.SelectedIndex + 0x20);
-            if (Model.ItemNames.GetUnsortedName(index).CompareTo(this.textBoxItemName.Text) != 0)
-            {
-                Model.ItemNames.SetName(
-                    item.Index, new string(item.Name));
-                Model.ItemNames.SortAlphabetically();
-                this.itemName.Items.Clear();
-                this.itemName.Items.AddRange(Model.ItemNames.Names);
-                this.itemName.SelectedIndex = Model.ItemNames.GetSortedIndex(item.Index);
-            }
+
+            if (this.itemName.Items[item.Index].ToString().CompareTo(this.textBoxItemName.Text) == 0)
+                return;
+
+            int startIndex = settings.ItemsDrawItemIconsOnList ? 0 : 1;
+            int index = settings.ItemsSortItemList ? Model.ItemNames.GetSortedIndex(item.Index) : item.Index;
+
+            Model.ItemNames.SetName(index, new string(item.Name).Substring(startIndex));
+            RefreshItemList();
+            this.itemName.SelectedIndex = index;
+            shopsEditor.ResortStrings(index);
+
         }
         private void itemNameIcon_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -337,9 +421,10 @@ namespace LAZYSHELL
             item.EffectSleep = itemStatusEffect.GetItemChecked(1);
             item.EffectPoison = itemStatusEffect.GetItemChecked(2);
             item.EffectFear = itemStatusEffect.GetItemChecked(3);
-            item.EffectMushroom = itemStatusEffect.GetItemChecked(4);
-            item.EffectScarecrow = itemStatusEffect.GetItemChecked(5);
-            item.EffectInvincible = itemStatusEffect.GetItemChecked(6);
+            item.EffectBerserk = itemStatusEffect.GetItemChecked(4);
+            item.EffectMushroom = itemStatusEffect.GetItemChecked(5);
+            item.EffectScarecrow = itemStatusEffect.GetItemChecked(6);
+            item.EffectInvincible = itemStatusEffect.GetItemChecked(7);
         }
         private void itemElemNull_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -348,12 +433,12 @@ namespace LAZYSHELL
             item.ElemNullThunder = itemElemNull.GetItemChecked(2);
             item.ElemNullJump = itemElemNull.GetItemChecked(3);
         }
-        private void itemElemWeak_SelectedIndexChanged(object sender, EventArgs e)
+        private void itemElemResist_SelectedIndexChanged(object sender, EventArgs e)
         {
-            item.ElemWeakIce = itemElemWeak.GetItemChecked(0);
-            item.ElemWeakFire = itemElemWeak.GetItemChecked(1);
-            item.ElemWeakThunder = itemElemWeak.GetItemChecked(2);
-            item.ElemWeakJump = itemElemWeak.GetItemChecked(3);
+            item.ElemWeakIce = itemElemResist.GetItemChecked(0);
+            item.ElemWeakFire = itemElemResist.GetItemChecked(1);
+            item.ElemWeakThunder = itemElemResist.GetItemChecked(2);
+            item.ElemWeakJump = itemElemResist.GetItemChecked(3);
         }
         private void itemStatusChange_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -467,25 +552,32 @@ namespace LAZYSHELL
         {
             item.WeaponEndLevel1 = (byte)this.lvl1TimingEnd.Value;
         }
-        // hex editor jump to offset
-        private void showitem_hexname(object sender, EventArgs e)
+
+        public void keyData_Click(object sender, EventArgs e)
         {
-            Model.HexEditor.SetOffset(item.BaseOffsetName);
-            Model.HexEditor.Compare();
-            Model.HexEditor.Show();
+            settings.ItemsDrawItemIconsOnList = false;
+
+            if (sender == this.itemName)
+            {
+                RefreshItemList();
+                RefreshItems();
+            }
+            else
+                for (int i = 0; i < shopsEditor.shopItems.Length; i++)
+                {
+                    if (sender != shopsEditor.shopItems[i])
+                        continue;
+                    shopsEditor.shopItems[i].Items.Clear();
+                    shopsEditor.shopItems[i].Items.AddRange(Model.ItemNames.Names);
+                    if (settings.ItemsSortItemList)
+                        shopsEditor.shopItems[i].SelectedIndex = Model.ItemNames.GetSortedIndex(shopsEditor.Shop.Items[i]);
+                    else
+                        shopsEditor.shopItems[i].SelectedIndex = Model.ItemNames.GetUnsortedIndex(shopsEditor.Shop.Items[i]);
+                    break;
+                }
         }
-        private void showitem_hexstats(object sender, EventArgs e)
-        {
-            Model.HexEditor.SetOffset(item.BaseOffsetStats);
-            Model.HexEditor.Compare();
-            Model.HexEditor.Show();
-        }
-        private void showitem_hexprice(object sender, EventArgs e)
-        {
-            Model.HexEditor.SetOffset(item.BaseOffsetPrice);
-            Model.HexEditor.Compare();
-            Model.HexEditor.Show();
-        }
+
+
         #endregion
     }
 }

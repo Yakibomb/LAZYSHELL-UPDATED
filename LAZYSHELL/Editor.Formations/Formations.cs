@@ -256,7 +256,7 @@ namespace LAZYSHELL
                 statImages[i] = Do.PixelsToImage(pixels, 128, 24);
                 //
                 palette = Model.Sprites[Model.NPCProperties[i].Sprite].Palette;
-                pixels = Model.Sprites[i + 40].GetPixels(true, false, 0, 0, palette, true, false, ref size);
+                pixels = Model.Sprites[i + 40].GetPixels(true, false, 0, 0, palette, false, false, ref size);
                 portraits[i] = Do.PixelsToImage(pixels, 256, 256);
             }
         }
@@ -787,6 +787,7 @@ namespace LAZYSHELL
             {
                 case Keys.G: isometricGrid.PerformClick(); break;
                 case Keys.S: select.PerformClick(); break;
+                case Keys.P: toggleAllies.PerformClick(); break;
                 case Keys.Control | Keys.Z: undo.PerformClick(); break;
                 case Keys.Control | Keys.Y: redo.PerformClick(); break;
             }

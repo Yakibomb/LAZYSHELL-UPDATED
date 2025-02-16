@@ -405,7 +405,7 @@ namespace LAZYSHELL
             {
                 MessageBox.Show(
                     "The dimensions of the imported image must be exactly 256 x 512.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             int[] importL1pixels = Do.ImageToPixels(importL1, new Size(256, 512), new Rectangle(0, 0, 256, 512));
@@ -420,7 +420,7 @@ namespace LAZYSHELL
             {
                 MessageBox.Show(
                     "The dimensions of the imported image must be exactly 256 x 512.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             int[] importL2pixels = Do.ImageToPixels(importL2, new Size(256, 512), new Rectangle(0, 0, 256, 512));
@@ -467,7 +467,7 @@ namespace LAZYSHELL
             {
                 MessageBox.Show(
                     "The dimensions of the imported image must be 256 x 96.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             byte[] graphics = new byte[0x3000];
@@ -521,7 +521,7 @@ namespace LAZYSHELL
                 return;
             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
             Rectangle rdst = new Rectangle(0, 0, 256, height);
-            if (buttonToggleBG.Checked)
+            if (!buttonToggleBG.Checked)
                 e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(paletteSet.Palette[16])), rdst);
             e.Graphics.DrawImage(tilesetImage, rdst, 0, 0, 256, height, GraphicsUnit.Pixel);
             if (moving && selection != null)

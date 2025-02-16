@@ -27,6 +27,7 @@ namespace LAZYSHELL
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Fonts));
             this.panel30 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
             this.panelCharacter = new System.Windows.Forms.Panel();
@@ -151,7 +152,7 @@ namespace LAZYSHELL
             this.insertIntoBattleDialogueToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(199, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(210, 120);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // importToolStripMenuItem
@@ -159,48 +160,48 @@ namespace LAZYSHELL
             this.importToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importImage;
             this.importToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.importToolStripMenuItem.Text = "Import...";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
-            this.exportToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportBinary;
+            this.exportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportToolStripMenuItem.Image")));
             this.exportToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.exportToolStripMenuItem.Text = "Export...";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // saveImageAsToolStripMenuItem
             // 
-            this.saveImageAsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportImage;
+            this.saveImageAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveImageAsToolStripMenuItem.Image")));
             this.saveImageAsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.saveImageAsToolStripMenuItem.Text = "Save Image As...";
             this.saveImageAsToolStripMenuItem.Click += new System.EventHandler(this.saveImageAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(206, 6);
             // 
             // insertIntoTextToolStripMenuItem
             // 
-            this.insertIntoTextToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.notepad;
+            this.insertIntoTextToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("insertIntoTextToolStripMenuItem.Image")));
             this.insertIntoTextToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.insertIntoTextToolStripMenuItem.Name = "insertIntoTextToolStripMenuItem";
-            this.insertIntoTextToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.insertIntoTextToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.insertIntoTextToolStripMenuItem.Text = "Insert into dialogue";
             this.insertIntoTextToolStripMenuItem.Click += new System.EventHandler(this.insertIntoTextToolStripMenuItem_Click);
             // 
             // insertIntoBattleDialogueToolStripMenuItem
             // 
-            this.insertIntoBattleDialogueToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.notepad;
+            this.insertIntoBattleDialogueToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("insertIntoBattleDialogueToolStripMenuItem.Image")));
             this.insertIntoBattleDialogueToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.insertIntoBattleDialogueToolStripMenuItem.Name = "insertIntoBattleDialogueToolStripMenuItem";
-            this.insertIntoBattleDialogueToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.insertIntoBattleDialogueToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.insertIntoBattleDialogueToolStripMenuItem.Text = "Insert into battle dialogue";
             this.insertIntoBattleDialogueToolStripMenuItem.Click += new System.EventHandler(this.insertIntoBattleDialogueToolStripMenuItem_Click);
             // 
@@ -232,7 +233,7 @@ namespace LAZYSHELL
             // reset
             // 
             this.reset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.reset.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.reset.Image = ((System.Drawing.Image)(resources.GetObject("reset.Image")));
             this.reset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.reset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.reset.Name = "reset";
@@ -262,7 +263,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.fontWidth.Location = new System.Drawing.Point(75, 3);
+            this.fontWidth.Location = new System.Drawing.Point(77, 3);
             this.fontWidth.Maximum = new decimal(new int[] {
             16,
             0,
@@ -303,7 +304,7 @@ namespace LAZYSHELL
             // 
             this.toggleKeystrokes.CheckOnClick = true;
             this.toggleKeystrokes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toggleKeystrokes.Image = global::LAZYSHELL.Properties.Resources.keystrokes;
+            this.toggleKeystrokes.Image = ((System.Drawing.Image)(resources.GetObject("toggleKeystrokes.Image")));
             this.toggleKeystrokes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toggleKeystrokes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toggleKeystrokes.Name = "toggleKeystrokes";
@@ -401,7 +402,7 @@ namespace LAZYSHELL
             this.numeralGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
             this.numeralGraphicsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.numeralGraphicsToolStripMenuItem.Name = "numeralGraphicsToolStripMenuItem";
-            this.numeralGraphicsToolStripMenuItem.Size = new System.Drawing.Size(178, 24);
+            this.numeralGraphicsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.numeralGraphicsToolStripMenuItem.Text = "Numeral Graphics";
             this.numeralGraphicsToolStripMenuItem.Click += new System.EventHandler(this.numeralGraphicsToolStripMenuItem_Click);
             // 
@@ -410,7 +411,7 @@ namespace LAZYSHELL
             this.battleMenuGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
             this.battleMenuGraphicsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.battleMenuGraphicsToolStripMenuItem.Name = "battleMenuGraphicsToolStripMenuItem";
-            this.battleMenuGraphicsToolStripMenuItem.Size = new System.Drawing.Size(178, 24);
+            this.battleMenuGraphicsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.battleMenuGraphicsToolStripMenuItem.Text = "Battle Menu Graphics";
             this.battleMenuGraphicsToolStripMenuItem.Click += new System.EventHandler(this.battleMenuGraphicsToolStripMenuItem_Click);
             // 
@@ -419,7 +420,7 @@ namespace LAZYSHELL
             this.numeralPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.numeralPalettesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.numeralPalettesToolStripMenuItem.Name = "numeralPalettesToolStripMenuItem";
-            this.numeralPalettesToolStripMenuItem.Size = new System.Drawing.Size(178, 24);
+            this.numeralPalettesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.numeralPalettesToolStripMenuItem.Text = "Numeral Palettes";
             this.numeralPalettesToolStripMenuItem.Click += new System.EventHandler(this.numeralPalettesToolStripMenuItem_Click);
             // 
@@ -428,7 +429,7 @@ namespace LAZYSHELL
             this.battleMenuPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.battleMenuPalettesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.battleMenuPalettesToolStripMenuItem.Name = "battleMenuPalettesToolStripMenuItem";
-            this.battleMenuPalettesToolStripMenuItem.Size = new System.Drawing.Size(178, 24);
+            this.battleMenuPalettesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.battleMenuPalettesToolStripMenuItem.Text = "Battle Menu Palettes";
             this.battleMenuPalettesToolStripMenuItem.Click += new System.EventHandler(this.battleMenuPalettesToolStripMenuItem_Click);
             // 
@@ -457,6 +458,7 @@ namespace LAZYSHELL
             this.toolStrip7.ResumeLayout(false);
             this.toolStrip7.PerformLayout();
             this.ResumeLayout(false);
+
         }
         #endregion
         private System.Windows.Forms.Panel panel30;

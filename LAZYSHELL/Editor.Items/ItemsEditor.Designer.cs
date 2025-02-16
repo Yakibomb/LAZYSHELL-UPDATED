@@ -37,19 +37,28 @@ namespace LAZYSHELL
             this.export = new System.Windows.Forms.ToolStripDropDownButton();
             this.exportItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportShopsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.resetItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetShopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clear = new System.Windows.Forms.ToolStripDropDownButton();
             this.clearItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearShopsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
             this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.showItems = new System.Windows.Forms.ToolStripButton();
             this.showShops = new System.Windows.Forms.ToolStripButton();
+            this.showItems = new System.Windows.Forms.ToolStripButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.jumpToItemStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jumpToItemStatsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.jumpToItemPriceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toggleSortedList = new System.Windows.Forms.ToolStripDropDownButton();
+            this.optionSortItemList = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionDrawItemIconsOnList = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionFilterOutDUMMY = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,14 +80,17 @@ namespace LAZYSHELL
             this.toolStripSeparator4,
             this.import,
             this.export,
+            this.toolStripSeparator1,
             this.toolStripDropDownButton1,
             this.clear,
-            this.toolStripSeparator1,
             this.helpTips,
             this.baseConvertor,
             this.toolStripSeparator2,
+            this.showShops,
             this.showItems,
-            this.showShops});
+            this.toolStripSeparator3,
+            this.toolStripDropDownButton2,
+            this.toggleSortedList});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -110,7 +122,7 @@ namespace LAZYSHELL
             this.import.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.import.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.import.Name = "import";
-            this.import.Size = new System.Drawing.Size(27, 22);
+            this.import.Size = new System.Drawing.Size(29, 22);
             // 
             // importItemsToolStripMenuItem
             // 
@@ -139,7 +151,7 @@ namespace LAZYSHELL
             this.export.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.export.Name = "export";
-            this.export.Size = new System.Drawing.Size(27, 22);
+            this.export.Size = new System.Drawing.Size(29, 22);
             // 
             // exportItemsToolStripMenuItem
             // 
@@ -159,6 +171,11 @@ namespace LAZYSHELL
             this.exportShopsToolStripMenuItem.Text = "Export Shops...";
             this.exportShopsToolStripMenuItem.Click += new System.EventHandler(this.exportShopsToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -169,7 +186,7 @@ namespace LAZYSHELL
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
             // 
             // resetItemToolStripMenuItem
             // 
@@ -198,7 +215,7 @@ namespace LAZYSHELL
             this.clear.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.clear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(28, 22);
+            this.clear.Size = new System.Drawing.Size(29, 22);
             // 
             // clearItemsToolStripMenuItem
             // 
@@ -218,13 +235,9 @@ namespace LAZYSHELL
             this.clearShopsToolStripMenuItem.Text = "Clear Shops...";
             this.clearShopsToolStripMenuItem.Click += new System.EventHandler(this.clearShopsToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -236,6 +249,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
@@ -247,24 +261,13 @@ namespace LAZYSHELL
             // 
             // toolStripSeparator2
             // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // showItems
-            // 
-            this.showItems.Checked = true;
-            this.showItems.CheckOnClick = true;
-            this.showItems.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showItems.Image = global::LAZYSHELL.Properties.Resources.mainItems;
-            this.showItems.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showItems.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.showItems.Name = "showItems";
-            this.showItems.Size = new System.Drawing.Size(23, 22);
-            this.showItems.ToolTipText = "Items";
-            this.showItems.Click += new System.EventHandler(this.showItems_Click);
-            // 
             // showShops
             // 
+            this.showShops.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.showShops.Checked = true;
             this.showShops.CheckOnClick = true;
             this.showShops.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -276,9 +279,108 @@ namespace LAZYSHELL
             this.showShops.ToolTipText = "Shops";
             this.showShops.Click += new System.EventHandler(this.showShops_Click);
             // 
+            // showItems
+            // 
+            this.showItems.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.showItems.Checked = true;
+            this.showItems.CheckOnClick = true;
+            this.showItems.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showItems.Image = global::LAZYSHELL.Properties.Resources.mainItems;
+            this.showItems.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showItems.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.showItems.Name = "showItems";
+            this.showItems.Size = new System.Drawing.Size(23, 22);
+            this.showItems.ToolTipText = "Items";
+            this.showItems.Click += new System.EventHandler(this.showItems_Click);
+            // 
             // toolTip1
             // 
             this.toolTip1.Active = false;
+            // 
+            // toolStripDropDownButton2
+            // 
+            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jumpToItemStatsToolStripMenuItem,
+            this.jumpToItemStatsToolStripMenuItem1,
+            this.jumpToItemPriceToolStripMenuItem});
+            this.toolStripDropDownButton2.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
+            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
+            // 
+            // jumpToItemStatsToolStripMenuItem
+            // 
+            this.jumpToItemStatsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
+            this.jumpToItemStatsToolStripMenuItem.Name = "jumpToItemStatsToolStripMenuItem";
+            this.jumpToItemStatsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jumpToItemStatsToolStripMenuItem.Text = "Jump to Item Name";
+            this.jumpToItemStatsToolStripMenuItem.Click += new System.EventHandler(this.showitem_hexname);
+            // 
+            // jumpToItemStatsToolStripMenuItem1
+            // 
+            this.jumpToItemStatsToolStripMenuItem1.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
+            this.jumpToItemStatsToolStripMenuItem1.Name = "jumpToItemStatsToolStripMenuItem1";
+            this.jumpToItemStatsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.jumpToItemStatsToolStripMenuItem1.Text = "Jump to Item Stats";
+            this.jumpToItemStatsToolStripMenuItem1.Click += new System.EventHandler(this.showitem_hexstats);
+            // 
+            // jumpToItemPriceToolStripMenuItem
+            // 
+            this.jumpToItemPriceToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
+            this.jumpToItemPriceToolStripMenuItem.Name = "jumpToItemPriceToolStripMenuItem";
+            this.jumpToItemPriceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jumpToItemPriceToolStripMenuItem.Text = "Jump to Item Price";
+            this.jumpToItemPriceToolStripMenuItem.Click += new System.EventHandler(this.showitem_hexprice);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toggleSortedList
+            // 
+            this.toggleSortedList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toggleSortedList.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionSortItemList,
+            this.optionDrawItemIconsOnList,
+            this.optionFilterOutDUMMY});
+            this.toggleSortedList.Image = global::LAZYSHELL.Properties.Resources.settings;
+            this.toggleSortedList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toggleSortedList.Name = "toggleSortedList";
+            this.toggleSortedList.Size = new System.Drawing.Size(29, 22);
+            this.toggleSortedList.Text = "toolStripButton1";
+            // 
+            // optionSortItemList
+            // 
+            this.optionSortItemList.Checked = true;
+            this.optionSortItemList.CheckOnClick = true;
+            this.optionSortItemList.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.optionSortItemList.Name = "optionSortItemList";
+            this.optionSortItemList.Size = new System.Drawing.Size(216, 22);
+            this.optionSortItemList.Text = "Item List Sort Alphabetically";
+            this.optionSortItemList.Click += new System.EventHandler(this.optionSortItemList_Click);
+            // 
+            // optionDrawItemIconsOnList
+            // 
+            this.optionDrawItemIconsOnList.Checked = true;
+            this.optionDrawItemIconsOnList.CheckOnClick = true;
+            this.optionDrawItemIconsOnList.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.optionDrawItemIconsOnList.Name = "optionDrawItemIconsOnList";
+            this.optionDrawItemIconsOnList.Size = new System.Drawing.Size(216, 22);
+            this.optionDrawItemIconsOnList.Text = "Item List Draw Icons";
+            this.optionDrawItemIconsOnList.Click += new System.EventHandler(this.optionDrawItemIconsOnList_Click);
+            // 
+            // optionFilterOutDUMMY
+            // 
+            this.optionFilterOutDUMMY.Checked = true;
+            this.optionFilterOutDUMMY.CheckOnClick = true;
+            this.optionFilterOutDUMMY.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.optionFilterOutDUMMY.Name = "optionFilterOutDUMMY";
+            this.optionFilterOutDUMMY.Size = new System.Drawing.Size(216, 22);
+            this.optionFilterOutDUMMY.Text = "Item List Filter Out \"DUMMY\"";
+            this.optionFilterOutDUMMY.Click += new System.EventHandler(this.optionFilterOutDUMMY_Click);
             // 
             // ItemsEditor
             // 
@@ -288,17 +390,18 @@ namespace LAZYSHELL
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip3);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainItems_3_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "ItemsEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "ITEMS - Lazy Shell";
+            this.Text = "ITEMS - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ItemsEditor_FormClosing);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.Panel panel1;
@@ -324,5 +427,14 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem resetItemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetShopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
+        private System.Windows.Forms.ToolStripMenuItem jumpToItemStatsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jumpToItemStatsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem jumpToItemPriceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripDropDownButton toggleSortedList;
+        private System.Windows.Forms.ToolStripMenuItem optionSortItemList;
+        private System.Windows.Forms.ToolStripMenuItem optionDrawItemIconsOnList;
+        private System.Windows.Forms.ToolStripMenuItem optionFilterOutDUMMY;
     }
 }

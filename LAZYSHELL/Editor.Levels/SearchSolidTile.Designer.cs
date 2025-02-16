@@ -881,7 +881,7 @@ namespace LAZYSHELL
             this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
             this.MaximizeBox = false;
             this.Name = "SearchSolidTile";
-            this.Text = "SOLID TILE SEARCH - Lazy Shell";
+            this.Text = "SOLID TILE SEARCH - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SearchPhysicalTile_FormClosing);
             this.panel1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);

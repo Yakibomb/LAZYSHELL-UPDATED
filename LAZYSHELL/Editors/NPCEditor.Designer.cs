@@ -643,7 +643,7 @@ namespace LAZYSHELL
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NPCEditor";
-            this.Text = "NPCS - Lazy Shell";
+            this.Text = "NPCS - LAZYSHELL++";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NPCEditor_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.spritePictureBox)).EndInit();

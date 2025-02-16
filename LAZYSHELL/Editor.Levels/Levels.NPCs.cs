@@ -540,11 +540,11 @@ namespace LAZYSHELL
                 }
                 else
                     MessageBox.Show("Could not insert any more NPCs. The maximum number of NPCs plus NPC clones allowed per level is 28.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("Could not insert the NPC. " + MaximumSpaceExceeded("NPCs"),
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void AddNewClone()
         {
@@ -583,11 +583,11 @@ namespace LAZYSHELL
                 }
                 else
                     MessageBox.Show("Could not insert any more NPCs. The maximum number of NPCs plus NPC clones allowed is 28.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("Could not insert the NPC. " + MaximumSpaceExceeded("NPCs"),
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void AddNewNPC(NPC e)
         {
@@ -621,11 +621,11 @@ namespace LAZYSHELL
                 }
                 else
                     MessageBox.Show("Could not insert any more NPCs. The maximum number of NPCs plus NPC clones allowed is 28.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("Could not insert the NPC. " + MaximumSpaceExceeded("NPCs"),
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void AddNewClone(NPC.Clone e)
         {
@@ -664,11 +664,11 @@ namespace LAZYSHELL
                 }
                 else
                     MessageBox.Show("Could not insert any more NPCs. The maximum number of NPCs plus NPC clones allowed is 28.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("Could not insert the NPC. " + MaximumSpaceExceeded("NPCs"),
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
         #region Event Handlers
@@ -1203,7 +1203,7 @@ namespace LAZYSHELL
             catch //(Exception ex)
             {
                 MessageBox.Show("Cannot paste an NPC into another NPC's clone collection.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //new NewExceptionForm(ex).ShowDialog();
             }
         }

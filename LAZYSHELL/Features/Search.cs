@@ -203,7 +203,7 @@ namespace LAZYSHELL
         private void replaceAllButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You are about to replace all occurrences of the specified text in all 4096 dialogues.\n\n" +
-                "Are you sure you want to do this?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                "Are you sure you want to do this?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
             if (richTextBox.Enabled)
                 this.function.DynamicInvoke(richTextBox, stringComparison, matchWholeWord.Checked, true, replaceWithText.Text);

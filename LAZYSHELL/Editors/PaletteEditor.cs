@@ -90,7 +90,7 @@ namespace LAZYSHELL
             }
             this.pictureBoxPalette.Height = Math.Min((count * 8) - (startRow * 8), max * 8);
             this.panel7.Height = Math.Min((count * 8 + 4) - (startRow * 8), max * 8 + 4);
-            this.Height = Math.Max(446, 446 + panel7.Height - 60);
+            this.Height = Math.Max(446, 446 + panel7.Height - 40);
             InitializeColor();
             SetColorMapImage();
             SetPaletteImage();
@@ -518,7 +518,7 @@ namespace LAZYSHELL
         //    }
         //    catch
         //    {
-        //        MessageBox.Show("There was a problem loading the file.", "LAZY SHELL");
+        //        MessageBox.Show("There was a problem loading the file.", "LAZYSHELL++");
         //        return;
         //    }
         //}
@@ -711,15 +711,33 @@ namespace LAZYSHELL
             SetPaletteImage();
             currentBlue.Focus();
         }
+        private bool IsHex(IEnumerable<char> chars)
+        {
+            bool isHex;
+            foreach (var c in chars)
+            {
+                isHex = ((c >= '0' && c <= '9') ||
+                         (c >= 'a' && c <= 'f') ||
+                         (c >= 'A' && c <= 'F'));
+
+                if (!isHex)
+                    return false;
+            }
+            return true;
+        }
         private void currentHTML_TextChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             if (currentHTML.Text.Length != 6)
                 return;
-            paletteSet.Reds[currentColor] = Int32.Parse(currentHTML.Text.Substring(0, 2), NumberStyles.AllowHexSpecifier);
-            paletteSet.Greens[currentColor] = Int32.Parse(currentHTML.Text.Substring(2, 2), NumberStyles.AllowHexSpecifier);
-            paletteSet.Blues[currentColor] = Int32.Parse(currentHTML.Text.Substring(4, 2), NumberStyles.AllowHexSpecifier);
+            if (!IsHex(currentHTML.Text))
+                return;
+
+            paletteSet.Reds[currentColor] = Int32.Parse(currentHTML.Text.Substring(0, 2), NumberStyles.AllowHexSpecifier) & 0xF8;
+            paletteSet.Greens[currentColor] = Int32.Parse(currentHTML.Text.Substring(2, 2), NumberStyles.AllowHexSpecifier) & 0xF8;
+            paletteSet.Blues[currentColor] = Int32.Parse(currentHTML.Text.Substring(4, 2), NumberStyles.AllowHexSpecifier) & 0xF8;
+
             paletteSetBackup.Reds[currentColor] = paletteSet.Reds[currentColor];
             paletteSetBackup.Greens[currentColor] = paletteSet.Greens[currentColor];
             paletteSetBackup.Blues[currentColor] = paletteSet.Blues[currentColor];
@@ -999,7 +1017,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("There was a problem loading the file.", "LAZY SHELL");
+                MessageBox.Show("There was a problem loading the file.", "LAZYSHELL++");
                 return;
             }
             if (autoUpdate.Checked)
@@ -1072,6 +1090,7 @@ namespace LAZYSHELL
             this.Updating = false;
             DoAdjustment();
         }
+
         private void invertSelectedCols_CheckedChanged(object sender, EventArgs e)
         {
             this.Updating = true;

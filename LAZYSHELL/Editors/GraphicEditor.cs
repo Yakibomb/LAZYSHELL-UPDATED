@@ -187,13 +187,13 @@ namespace LAZYSHELL
             this.length = length;
             this.startRow = startRow;
             this.currentPalette = startRow;
-            if (!Bits.Compare(graphics, graphicsBackup))
-                graphicsBackup = Bits.Copy(graphics);
+            //if (!Bits.Compare(graphics, graphicsBackup))
+            //    graphicsBackup = Bits.Copy(graphics);
             this.graphics = graphics;
             this.paletteSet = paletteSet;
             this.format = format;
-            this.overlay = new Overlay();
-            this.commandStack = new CommandStack(true);
+            //this.overlay = new Overlay();
+            //this.commandStack = new CommandStack(true);
             //
             ResizePalettes();
             SetCoordsLabel();
@@ -215,14 +215,14 @@ namespace LAZYSHELL
             this.startRow = startRow;
             this.startCol = startCol;
             this.currentPalette = startRow;
-            if (!Bits.Compare(character.Graphics, graphicsBackup))
-                graphicsBackup = Bits.Copy(character.Graphics);
+            //if (!Bits.Compare(character.Graphics, graphicsBackup))
+            //    graphicsBackup = Bits.Copy(character.Graphics);
             this.character = character;
             this.graphics = character.Graphics;
             this.paletteSet = paletteSet;
             this.format = format;
-            this.overlay = new Overlay();
-            this.commandStack = new CommandStack(true);
+            //this.overlay = new Overlay();
+            //this.commandStack = new CommandStack(true);
             //
             ResizePalettes();
             //
@@ -556,7 +556,7 @@ namespace LAZYSHELL
         // picture boxes
         private void pictureBoxPalette_Paint(object sender, PaintEventArgs e)
         {
-            for (int i = 0; showBG.Checked && i < paletteSet.Palettes.Length - startRow; i++)
+            for (int i = 0; !showBG.Checked && i < paletteSet.Palettes.Length - startRow; i++)
             {
                 Brush brush = new SolidBrush(Color.FromArgb(paletteSet.Palettes[i + startRow][0]));
                 e.Graphics.FillRectangle(brush, new Rectangle(0, i * 8, pictureBoxPalette.Width, 8));
@@ -592,7 +592,7 @@ namespace LAZYSHELL
             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
             //
-            if (showBG.Checked)
+            if (!showBG.Checked)
                 e.Graphics.FillRectangle(new SolidBrush(bgcolor), e.ClipRectangle);
             e.Graphics.DrawImage(graphicsImage, rdst, rsrc, GraphicsUnit.Pixel);
             //
@@ -746,7 +746,7 @@ namespace LAZYSHELL
             else if (action == Drawing.Erase)
             {
                 Draw(g, x, y, color, colorBack);
-                if (!showBG.Checked)
+                if (showBG.Checked)
                     pictureBoxGraphicSet.Erase(hoverBox);
                 else
                     pictureBoxGraphicSet.Draw(hoverBox, bgcolor);
@@ -843,7 +843,7 @@ namespace LAZYSHELL
         }
         private void pictureBoxColor_Paint(object sender, PaintEventArgs e)
         {
-            if (!showBG.Checked && currentColor == startCol)
+            if (showBG.Checked && currentColor == startCol)
                 return;
             int color = paletteSet.Palettes[currentPalette][currentColor];
             SolidBrush brush = new SolidBrush(Color.FromArgb(color));
@@ -851,7 +851,7 @@ namespace LAZYSHELL
         }
         private void pictureBoxColorBack_Paint(object sender, PaintEventArgs e)
         {
-            if (!showBG.Checked && currentColorBack == startCol)
+            if (showBG.Checked && currentColorBack == startCol)
                 return;
             int color = paletteSet.Palettes[currentPalette][currentColorBack];
             SolidBrush brush = new SolidBrush(Color.FromArgb(color));
@@ -948,7 +948,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("There was a problem exporting the graphic block.", "LAZY SHELL");
+                MessageBox.Show("There was a problem exporting the graphic block.", "LAZYSHELL++");
             }
         }
         private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1345,6 +1345,7 @@ namespace LAZYSHELL
             this.target.Refresh();
             this.Activate();
         }
+
         private void alwaysOnTop_CheckedChanged(object sender, EventArgs e)
         {
             this.TopMost = alwaysOnTop.Checked;

@@ -175,11 +175,11 @@ namespace LAZYSHELL
                 }
                 else
                     MessageBox.Show("Could not insert any more event fields. The maximum number of event fields allowed per level is 28.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("Could not insert the field. " + MaximumSpaceExceeded("events"),
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         #endregion
         #region Event Handlers
@@ -296,11 +296,11 @@ namespace LAZYSHELL
                 }
                 else
                     MessageBox.Show("Could not insert any more event fields. The maximum number of event fields allowed per level is 28.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("Could not insert the field. " + MaximumSpaceExceeded("events"),
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void eventsDeleteField_Click(object sender, EventArgs e)
         {

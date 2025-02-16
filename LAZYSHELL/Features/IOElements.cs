@@ -197,7 +197,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("File not a level data file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("File not a level data file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     Model.Levels[currentIndex].Layer = sLevel.LevelLayer;
@@ -239,7 +239,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("One or more files not a level data file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("One or more files not a level data file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     for (int i = 0; i < sLevels.Length; i++)
@@ -304,7 +304,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("File not a battlefield data file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("File not a battlefield data file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     Model.TilesetsBF[battlefields[currentIndex].TileSet] = battlefield.tileset;
@@ -327,7 +327,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("One or more files not a battlefield data file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("One or more files not a battlefield data file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     for (int i = 0; i < battlefield.Length; i++)
@@ -375,7 +375,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("Error importing .brr file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("Error importing .brr file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                 }
@@ -388,7 +388,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("Error importing .brr file(s).", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("Error importing .brr file(s).", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     int i = 0;
@@ -429,7 +429,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("Error encoding .wav file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("Error encoding .wav file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                 }
@@ -442,7 +442,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("Error encoding .wav file(s).", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("Error encoding .wav file(s).", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     int i = 0;
@@ -474,7 +474,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("File not an SPC data file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("File not an SPC data file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     spc.CreateCommands();
@@ -491,7 +491,7 @@ namespace LAZYSHELL
                     }
                     catch
                     {
-                        MessageBox.Show("One or more files not an SPC data file.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("One or more files not an SPC data file.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     for (int i = 0; i < spcs.Length; i++)
@@ -532,7 +532,7 @@ namespace LAZYSHELL
                         }
                         catch
                         {
-                            MessageBox.Show("Incorrect data file type.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            MessageBox.Show("Incorrect data file type.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             return;
                         }
                         array[currentIndex].Index = currentIndex;
@@ -545,7 +545,7 @@ namespace LAZYSHELL
                         }
                         catch
                         {
-                            MessageBox.Show("One or more files incorrect data file type.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            MessageBox.Show("One or more files incorrect data file type.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             return;
                         }
                         int i = 0;

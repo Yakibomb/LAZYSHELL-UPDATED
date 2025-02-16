@@ -40,6 +40,7 @@ namespace LAZYSHELL
             this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importIntoTilemapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.draw = new System.Windows.Forms.ToolStripButton();
             this.erase = new System.Windows.Forms.ToolStripButton();
@@ -136,10 +137,11 @@ namespace LAZYSHELL
             this.bringToFrontToolStripMenuItem,
             this.sendToBackToolStripMenuItem,
             this.toolStripSeparator11,
-            this.saveImageAsToolStripMenuItem});
+            this.saveImageAsToolStripMenuItem,
+            this.importIntoTilemapToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 242);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 242);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // cutToolStripMenuItem
@@ -147,7 +149,7 @@ namespace LAZYSHELL
             this.cutToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.cut_small;
             this.cutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cut_Click);
             // 
@@ -156,7 +158,7 @@ namespace LAZYSHELL
             this.copyToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.copy_small;
             this.copyToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copy_Click);
             // 
@@ -165,7 +167,7 @@ namespace LAZYSHELL
             this.pasteToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.paste_small;
             this.pasteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
@@ -174,21 +176,21 @@ namespace LAZYSHELL
             this.deleteToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.delete_small;
             this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.delete_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(160, 6);
             // 
             // mirrorToolStripMenuItem
             // 
             this.mirrorToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.mirror_small;
             this.mirrorToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mirrorToolStripMenuItem.Name = "mirrorToolStripMenuItem";
-            this.mirrorToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.mirrorToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.mirrorToolStripMenuItem.Text = "Mirror";
             this.mirrorToolStripMenuItem.Click += new System.EventHandler(this.mirror_Click);
             // 
@@ -197,21 +199,21 @@ namespace LAZYSHELL
             this.invertToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.flip_small;
             this.invertToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.invertToolStripMenuItem.Name = "invertToolStripMenuItem";
-            this.invertToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.invertToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.invertToolStripMenuItem.Text = "Invert";
             this.invertToolStripMenuItem.Click += new System.EventHandler(this.invert_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(160, 6);
             // 
             // bringToFrontToolStripMenuItem
             // 
-            this.bringToFrontToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.moveToFront;
+            this.bringToFrontToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.alwaysOnTop;
             this.bringToFrontToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.bringToFrontToolStripMenuItem.Name = "bringToFrontToolStripMenuItem";
-            this.bringToFrontToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.bringToFrontToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.bringToFrontToolStripMenuItem.Text = "Bring to Front";
             this.bringToFrontToolStripMenuItem.Click += new System.EventHandler(this.bringToFrontToolStripMenuItem_Click);
             // 
@@ -220,23 +222,32 @@ namespace LAZYSHELL
             this.sendToBackToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.sendToBack;
             this.sendToBackToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.sendToBackToolStripMenuItem.Name = "sendToBackToolStripMenuItem";
-            this.sendToBackToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.sendToBackToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.sendToBackToolStripMenuItem.Text = "Send to Back";
             this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(160, 6);
             // 
             // saveImageAsToolStripMenuItem
             // 
             this.saveImageAsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportImage;
             this.saveImageAsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.saveImageAsToolStripMenuItem.Text = "Save Image As...";
             this.saveImageAsToolStripMenuItem.Click += new System.EventHandler(this.saveImageAsToolStripMenuItem_Click);
+            // 
+            // importIntoTilemapToolStripMenuItem
+            // 
+            this.importIntoTilemapToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importImage;
+            this.importIntoTilemapToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.importIntoTilemapToolStripMenuItem.Name = "importIntoTilemapToolStripMenuItem";
+            this.importIntoTilemapToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.importIntoTilemapToolStripMenuItem.Text = "Import Mold(s)...";
+            this.importIntoTilemapToolStripMenuItem.Click += new System.EventHandler(this.importIntoTilemap_Click);
             // 
             // toolStrip4
             // 
@@ -274,7 +285,7 @@ namespace LAZYSHELL
             this.draw.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.draw.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.draw.Name = "draw";
-            this.draw.Size = new System.Drawing.Size(22, 17);
+            this.draw.Size = new System.Drawing.Size(22, 20);
             this.draw.Text = "Draw (D)";
             this.draw.Click += new System.EventHandler(this.draw_Click);
             // 
@@ -286,7 +297,7 @@ namespace LAZYSHELL
             this.erase.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.erase.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.erase.Name = "erase";
-            this.erase.Size = new System.Drawing.Size(22, 17);
+            this.erase.Size = new System.Drawing.Size(22, 20);
             this.erase.Text = "Erase (E)";
             this.erase.Click += new System.EventHandler(this.erase_Click);
             // 
@@ -298,7 +309,7 @@ namespace LAZYSHELL
             this.select.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.select.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.select.Name = "select";
-            this.select.Size = new System.Drawing.Size(22, 17);
+            this.select.Size = new System.Drawing.Size(22, 20);
             this.select.Text = "Select (S)";
             this.select.Click += new System.EventHandler(this.select_Click);
             // 
@@ -309,7 +320,7 @@ namespace LAZYSHELL
             this.selectAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.selectAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.selectAll.Name = "selectAll";
-            this.selectAll.Size = new System.Drawing.Size(22, 17);
+            this.selectAll.Size = new System.Drawing.Size(22, 20);
             this.selectAll.Text = "Select All";
             this.selectAll.Click += new System.EventHandler(this.selectAll_Click);
             // 
@@ -325,7 +336,7 @@ namespace LAZYSHELL
             this.cut.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cut.Name = "cut";
-            this.cut.Size = new System.Drawing.Size(22, 17);
+            this.cut.Size = new System.Drawing.Size(22, 20);
             this.cut.Text = "Cut (Ctrl+X)";
             this.cut.Click += new System.EventHandler(this.cut_Click);
             // 
@@ -336,7 +347,7 @@ namespace LAZYSHELL
             this.copy.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.copy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copy.Name = "copy";
-            this.copy.Size = new System.Drawing.Size(22, 17);
+            this.copy.Size = new System.Drawing.Size(22, 20);
             this.copy.Text = "Copy (Ctrl+C)";
             this.copy.Click += new System.EventHandler(this.copy_Click);
             // 
@@ -347,7 +358,7 @@ namespace LAZYSHELL
             this.paste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.paste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.paste.Name = "paste";
-            this.paste.Size = new System.Drawing.Size(22, 17);
+            this.paste.Size = new System.Drawing.Size(22, 20);
             this.paste.Text = "Paste (Ctrl+V)";
             this.paste.Click += new System.EventHandler(this.paste_Click);
             // 
@@ -358,7 +369,7 @@ namespace LAZYSHELL
             this.delete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.delete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(22, 15);
+            this.delete.Size = new System.Drawing.Size(22, 20);
             this.delete.Text = "Delete (Del)";
             this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
@@ -374,7 +385,7 @@ namespace LAZYSHELL
             this.mirror.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.mirror.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.mirror.Name = "mirror";
-            this.mirror.Size = new System.Drawing.Size(22, 15);
+            this.mirror.Size = new System.Drawing.Size(22, 20);
             this.mirror.Text = "Mirror Selection";
             this.mirror.Click += new System.EventHandler(this.mirror_Click);
             // 
@@ -385,7 +396,7 @@ namespace LAZYSHELL
             this.invert.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.invert.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.invert.Name = "invert";
-            this.invert.Size = new System.Drawing.Size(22, 17);
+            this.invert.Size = new System.Drawing.Size(22, 20);
             this.invert.Text = "Invert Selection";
             this.invert.Click += new System.EventHandler(this.invert_Click);
             // 
@@ -401,7 +412,7 @@ namespace LAZYSHELL
             this.undo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.undo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.undo.Name = "undo";
-            this.undo.Size = new System.Drawing.Size(22, 12);
+            this.undo.Size = new System.Drawing.Size(23, 20);
             this.undo.Text = "Undo (Ctrl+Z)";
             this.undo.Click += new System.EventHandler(this.undo_Click);
             // 
@@ -412,7 +423,7 @@ namespace LAZYSHELL
             this.redo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.redo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.redo.Name = "redo";
-            this.redo.Size = new System.Drawing.Size(22, 12);
+            this.redo.Size = new System.Drawing.Size(23, 20);
             this.redo.Text = "Redo (Ctrl+Y)";
             this.redo.Click += new System.EventHandler(this.redo_Click);
             // 
@@ -481,7 +492,7 @@ namespace LAZYSHELL
             this.exportToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuStrip2.Size = new System.Drawing.Size(159, 70);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(160, 48);
             this.contextMenuStrip2.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip2_Opening);
             // 
             // importToolStripMenuItem
@@ -489,7 +500,7 @@ namespace LAZYSHELL
             this.importToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importImage;
             this.importToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.importToolStripMenuItem.Text = "Import Tileset...";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -498,7 +509,7 @@ namespace LAZYSHELL
             this.exportToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportImage;
             this.exportToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.exportToolStripMenuItem.Text = "Save Image As...";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
@@ -612,13 +623,14 @@ namespace LAZYSHELL
             // 
             // showBG
             // 
+            this.showBG.Checked = true;
             this.showBG.CheckOnClick = true;
-            this.showBG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showBG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showBG.Image = global::LAZYSHELL.Properties.Resources.checkerboard;
             this.showBG.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.showBG.Name = "showBG";
             this.showBG.Size = new System.Drawing.Size(23, 22);
-            this.showBG.Text = "BG";
-            this.showBG.ToolTipText = "BG Color (B)";
+            this.showBG.ToolTipText = "Background Transparency (B)";
             this.showBG.Click += new System.EventHandler(this.showBG_Click);
             // 
             // toolStripSeparator3
@@ -673,8 +685,8 @@ namespace LAZYSHELL
             // 
             // labelCoords
             // 
-            this.labelCoords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCoords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCoords.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelCoords.Location = new System.Drawing.Point(101, 285);
             this.labelCoords.Name = "labelCoords";
@@ -686,9 +698,9 @@ namespace LAZYSHELL
             // 
             // panelMoldImage
             // 
-            this.panelMoldImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelMoldImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMoldImage.AutoScroll = true;
             this.panelMoldImage.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panelMoldImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -711,6 +723,7 @@ namespace LAZYSHELL
             this.pictureBoxMold.ZoomBoxEnabled = true;
             this.pictureBoxMold.ZoomBoxPosition = new System.Drawing.Point(32, 32);
             this.pictureBoxMold.ZoomBoxZoom = 4;
+            this.pictureBoxMold.ZoomEnabled = true;
             this.pictureBoxMold.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxMold_Paint);
             this.pictureBoxMold.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMold_MouseDown);
             this.pictureBoxMold.MouseEnter += new System.EventHandler(this.pictureBoxMold_MouseEnter);
@@ -863,6 +876,7 @@ namespace LAZYSHELL
             this.pictureBoxTileset.ZoomBoxEnabled = true;
             this.pictureBoxTileset.ZoomBoxPosition = new System.Drawing.Point(32, 32);
             this.pictureBoxTileset.ZoomBoxZoom = 4;
+            this.pictureBoxTileset.ZoomEnabled = true;
             this.pictureBoxTileset.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxTileset_Paint);
             this.pictureBoxTileset.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxTileset_MouseDown);
             this.pictureBoxTileset.MouseLeave += new System.EventHandler(this.pictureBoxTileset_MouseLeave);
@@ -927,7 +941,7 @@ namespace LAZYSHELL
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(24, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
             // 
             // newTile
             // 
@@ -1007,6 +1021,7 @@ namespace LAZYSHELL
             this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private LAZYSHELL.NewPanel panelMoldImage;
@@ -1053,6 +1068,7 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripMenuItem invertToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem saveImageAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importIntoTilemapToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toggleZoomBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton invert;

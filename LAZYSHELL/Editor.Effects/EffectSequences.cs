@@ -170,7 +170,7 @@ namespace LAZYSHELL
                 }
                 else
                 {
-                    //MessageBox.Show("Mold for frame #" + i.ToString() + " is not valid. Change to lower value.", "LAZY SHELL");
+                    //MessageBox.Show("Mold for frame #" + i.ToString() + " is not valid. Change to lower value.", "LAZYSHELL++");
                     sequenceImages.Add(new Bitmap(256, 256));
                 }
                 i++;
@@ -184,7 +184,7 @@ namespace LAZYSHELL
         {
             if (frames.Tag == null)
                 return;
-            if (molds.ShowBG)
+            if (!molds.ShowBG)
                 e.Graphics.Clear(Color.FromArgb(animation.PaletteSet.Palette[0]));
             if (sequenceImage != null)
                 e.Graphics.DrawImage(sequenceImage, 0, 0);
@@ -200,7 +200,7 @@ namespace LAZYSHELL
             PictureBox frame = (PictureBox)sender;
             if ((int)frame.Tag >= sequenceImages.Count)
                 return;
-            if (molds.ShowBG)
+            if (!molds.ShowBG)
                 e.Graphics.Clear(Color.FromArgb(animation.PaletteSet.Palette[0]));
             Rectangle dst = new Rectangle(0, 0, frame.Width, frame.Height);
             Rectangle src = new Rectangle(0, 0, width, height);
@@ -334,7 +334,7 @@ namespace LAZYSHELL
         {
             if (sequence.Frames.Count == 256)
             {
-                MessageBox.Show("Sequences cannot contain more than 256 frames total.", "LAZY SHELL",
+                MessageBox.Show("Sequences cannot contain more than 256 frames total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -409,7 +409,7 @@ namespace LAZYSHELL
         private void reverseFrames_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You are about to reverse the order of all frames in the effect sequence.\n\n" +
-                "Continue with process?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                "Continue with process?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
             for (int i = 1; i < sequence.Frames.Count; i++)
             {

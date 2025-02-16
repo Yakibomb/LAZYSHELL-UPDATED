@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using LAZYSHELL.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LAZYSHELL
 {
@@ -65,6 +66,8 @@ namespace LAZYSHELL
         private Search searchWindow;
         private EditLabel labelWindow;
         private NPCPackets npcPackets;
+        //
+        private Previewer previewer;
         // special controls
         #endregion
         #region Methods
@@ -199,7 +202,7 @@ namespace LAZYSHELL
                 offset += animations[i].BUFFER.Length;
             }
             if (i < 42)
-                MessageBox.Show("The available space for animation data in bank 0x250000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 41 were not saved. Please make sure the available animation bytes is not negative.", "LAZY SHELL");
+                MessageBox.Show("The available space for animation data in bank 0x250000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 41 were not saved. Please make sure the available animation bytes is not negative.", "LAZYSHELL++");
             offset = 0x260000;
             for (; i < 107 && offset < 0x26FFFF; i++, pointer += 3)
             {
@@ -211,7 +214,7 @@ namespace LAZYSHELL
                 offset += animations[i].BUFFER.Length;
             }
             if (i < 107)
-                MessageBox.Show("The available space for animation data in bank 0x260000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 107 were not saved. Please make sure the available animation bytes is not negative.", "LAZY SHELL");
+                MessageBox.Show("The available space for animation data in bank 0x260000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 107 were not saved. Please make sure the available animation bytes is not negative.", "LAZYSHELL++");
             offset = 0x270000;
             for (; i < 249 && offset < 0x27FFFF; i++, pointer += 3)
             {
@@ -223,7 +226,7 @@ namespace LAZYSHELL
                 offset += animations[i].BUFFER.Length;
             }
             if (i < 249)
-                MessageBox.Show("The available space for animation data in bank 0x270000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 249 will not saved. Please make sure the available animation bytes is not negative.", "LAZY SHELL");
+                MessageBox.Show("The available space for animation data in bank 0x270000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 249 will not saved. Please make sure the available animation bytes is not negative.", "LAZYSHELL++");
             offset = 0x360000;
             for (; i < 444 && offset < 0x36FFFF; i++, pointer += 3)
             {
@@ -235,7 +238,7 @@ namespace LAZYSHELL
                 offset += animations[i].BUFFER.Length;
             }
             if (i < 444)
-                MessageBox.Show("The available space for animation data in bank 0x360000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 444 will not saved. Please make sure the available animation bytes is not negative.", "LAZY SHELL");
+                MessageBox.Show("The available space for animation data in bank 0x360000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 444 will not saved. Please make sure the available animation bytes is not negative.", "LAZYSHELL++");
             foreach (Sprite s in sprites)
                 s.Assemble();
             foreach (ImagePacket gp in images)
@@ -354,7 +357,7 @@ namespace LAZYSHELL
             if (!this.Modified && !molds.Modified && !sequences.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
-                "Sprites have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Sprites have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -541,7 +544,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current sprite and animation index. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             animation = new Animation(sprite.AnimationPacket);
             image = new ImagePacket(sprite.Image);
@@ -564,6 +567,18 @@ namespace LAZYSHELL
         }
         private void allSequenceImagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+        }
+        private void previewer_Click(object sender, EventArgs e)
+        {
+            settings.PreviewSprites = Index;
+            if (previewer == null || !previewer.Visible)
+                previewer = new Previewer(Index, false, EType.Sprites);
+            else
+                previewer.Reload(Index, EType.Sprites);
+            if (previewer.IsDisposed)
+                return;
+            previewer.Show();
+            previewer.BringToFront();
         }
         #endregion
     }

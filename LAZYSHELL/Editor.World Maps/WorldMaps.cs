@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Printing;
 using System.Text;
+using System.Timers;
 using System.Windows.Forms;
 using LAZYSHELL.Properties;
 using LAZYSHELL.Undo;
@@ -18,20 +21,112 @@ namespace LAZYSHELL
         // main
         private delegate void Function();
         private int index { get { return (int)worldMapName.SelectedIndex; } }
+        private WorldMap worldMap { get { return worldMaps[index]; } set { worldMaps[index] = value; } }
         private WorldMap[] worldMaps { get { return Model.WorldMaps; } set { Model.WorldMaps = value; } }
         private PaletteSet palettes { get { return Model.Palettes; } set { Model.Palettes = value; } }
-        private WorldMap worldMap { get { return worldMaps[index]; } set { worldMaps[index] = value; } }
+        
+        private byte[] WorldMapBackground { get { return Model.WorldMapBackgroundGraphics; } set { Model.WorldMapBackgroundGraphics = value; } }
+        private PaletteSet worldMapBackground { get { return Model.WorldMapBackgroundPalette; } set { Model.WorldMapBackgroundPalette = value; } }
+
+        private Tileset tilesetBG;
+        private Bitmap tilesetImageBG;
         private PaletteSet logoPalette { get { return Model.WorldMapLogoPalette; } set { Model.WorldMapLogoPalette = value; } }
-        private PaletteSet spritePalette { get { return Model.WorldMapSpritePalette; } set { Model.WorldMapSpritePalette = value; } }
+        private PaletteSet marioPalette { get { return Model.WorldMapSpritesMarioPalette; } set { Model.WorldMapSpritesMarioPalette = value; } }
+
+        private PaletteSet locationPalette { get { return Model.WorldMapSpritesLocationPalette; } set { Model.WorldMapSpritesLocationPalette = value; } }
+
+        private bool SpritesEdited = false;
+        private PaletteSet SpritesPalette;
+        private PaletteSet spritesPalettes
+        {
+            get
+            {
+                if (SpritesPalette != null)
+                    return SpritesPalette;
+                SpritesPalette = new PaletteSet(Model.ROM, 0, 0x3E99BF, 2, 16, 32);
+
+                for (int a = 0; a < 16; a++)
+                {
+                    SpritesPalette.Greens[a] = marioPalette.Greens[a];
+                    SpritesPalette.Blues[a] = marioPalette.Blues[a];
+                    SpritesPalette.Reds[a] = marioPalette.Reds[a];
+                }
+                int index = 0;
+                for (int a = 16; a < 32; a++)
+                {
+                    SpritesPalette.Greens[a] = locationPalette.Greens[index];
+                    SpritesPalette.Blues[a] = locationPalette.Blues[index];
+                    SpritesPalette.Reds[a] = locationPalette.Reds[index];
+                    index++;
+                }
+
+                return SpritesPalette;
+            }
+            set
+            {
+                SyncSpritePalettes(value);
+            }
+        }
+
+
         private Tileset tileset;
         private byte[] tileset_bytes { get { return Model.WorldMapTilesets[worldMap.Tileset]; } }
         private Tileset logoTileset;
-        private Tileset spriteTileset;
+        
         private Overlay overlay = new Overlay();
         private Bitmap tilesetImage;
         private Bitmap locationImage;
         private Bitmap locationImage_S;
+        private Cursor marioImageCursor
+        {
+            get
+            {
+                if (marioImage != null)
+                {
+                    return new Cursor(marioImage.GetHicon());
+                }
+                return Cursors.Arrow;
+            }
+        }
         private Bitmap marioImage;
+        private Bitmap marioImage1;
+        private Bitmap marioImage2;
+        private Bitmap marioImage3;
+
+        private int currentFrame = 0;
+        private static System.Timers.Timer aTimer;
+        private void SetCursorAsAnimatedMario()
+        {
+            if (aTimer != null)
+            {
+                aTimer.Stop();
+                aTimer.Dispose();
+            }
+            this.showCharacter.Image = marioImage1;
+            SyncSpritePalettes();
+            CreateMarioImages(1);
+
+            OnTimedEvent(null,null);
+            // Create a timer with a two second interval.
+            aTimer = new System.Timers.Timer(125);
+            // Hook up the Elapsed event for the timer. 
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
+        }
+        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            switch (currentFrame)
+            {
+                case 0: marioImage = marioImage1; currentFrame = 1; break;
+                case 1: marioImage = marioImage2; currentFrame = 2; break;
+                case 2: marioImage = marioImage1; currentFrame = 3; break;
+                case 3: marioImage = marioImage3; currentFrame = 0; break;
+            }
+            this.pictureBoxTileset.Cursor = marioImageCursor;
+            //this.showCharacter.Image = marioImage;
+        }
+
         private Bitmap logoImage;
         private Bitmap locationText;
         private Settings settings = Settings.Default;
@@ -54,6 +149,8 @@ namespace LAZYSHELL
         private GraphicEditor spriteGraphicEditor;
         private PaletteEditor logoPaletteEditor;
         private PaletteEditor spritePaletteEditor;
+        private GraphicEditor backgroundGraphicsEditor;
+        private PaletteEditor backgroundPaletteEditor;
         // buffers and stacks
         private Bitmap selection;
         private CopyBuffer draggedTiles;
@@ -92,6 +189,11 @@ namespace LAZYSHELL
             LoadTileEditor();
             new ToolTipLabel(this, baseConvertor, helpTips);
             this.History = new History(this, worldMapName, null);
+            //
+            this.showCharacter.Image = Do.PixelsToImage(GetMarioPixels(0), 16, 32);
+            foreach (ToolStripItem image in toolStrip1.Items)
+                image.Image = image.Image;
+            //worldMapTileset.Maximum = Model.WorldMapTilesets.Length; // was testing other tile layouts that appear in bank 3E (like the Star Pieces menu, File Menu, and "Map" option in the menu)
         }
         private void RefreshWorldMap()
         {
@@ -110,15 +212,18 @@ namespace LAZYSHELL
                 locationNum.Value = temp.Index;
             }
             else
-                MessageBox.Show("There are not enough locations left to add to the current world map.\nTry reducing the location count used by earlier world maps.", "LAZY SHELL");
+                MessageBox.Show("There are not enough locations left to add to the current world map.\nTry reducing the location count used by earlier world maps.", "LAZYSHELL++");
             tileset = new Tileset(tileset_bytes, Model.WorldMapGraphics, palettes, 16, 16, TilesetType.WorldMap);
             logoTileset = new Tileset(Model.WorldMapLogoTileset, Model.WorldMapLogos, logoPalette, 16, 16, TilesetType.WorldMapLogo);
+            tilesetBG = new Tileset(Model.WorldMapBackgroundTileset, Model.WorldMapBackgroundGraphics, Model.WorldMapBackgroundPalette, 16, 16, TilesetType.WorldMap);
+
             SetWorldMapImage();
             SetLocationsImage();
             SetBannerImage();
             this.Updating = false;
             GC.Collect();
             Cursor.Current = Cursors.Arrow;
+            this.pictureBoxTileset.Cursor = Cursors.Arrow;
         }
         // tooltips
         public void Assemble()
@@ -130,12 +235,13 @@ namespace LAZYSHELL
             foreach (WorldMap wm in worldMaps)
                 wm.Assemble();
             // Graphics
-            Model.WorldMapLogoPalette.Assemble(Model.MenuPalettes, 0xE0);
+            logoPalette.Assemble(Model.MenuPalettes, 0xE0);
             int offset = Bits.GetShort(Model.ROM, 0x3E000C) + 0x3E0000;
             int maxComp = Bits.GetShort(Model.ROM, 0x3E000E) - Bits.GetShort(Model.ROM, 0x3E000C);
             Model.Compress(Model.MenuPalettes, offset, 0x200, maxComp, "World map logo palettes");
             Model.Compress(Model.WorldMapGraphics, 0x3E2E81, 0x8000, 0x56F6, "Graphics");
-         //   Model.Compress(Model.WorldMapSprites, 0x3E90A7, 0x400, 0x1F8, "Sprite Graphics");
+            if (SpritesEdited)
+                Model.Compress(Model.WorldMapSprites, 0x3E90A6, 0x400, 0x1FB, "Sprite Graphics");
             // Tilesets
             byte[] compress = new byte[0x800];
             int totalSize = 0;
@@ -151,7 +257,7 @@ namespace LAZYSHELL
                 {
                     MessageBox.Show(
                         "Recompressed tilesets exceed allotted ROM space by " + (totalSize - 0x4D6).ToString() + " bytes.\nSaving has been discontinued for tilesets " + i.ToString() + " and higher.\nChange or delete some tiles to reduce the size.",
-                        "LAZY SHELL");
+                        "LAZYSHELL++");
                     break;
                 }
                 else
@@ -165,6 +271,13 @@ namespace LAZYSHELL
             Bits.SetShort(Model.ROM, pOffset, (ushort)dOffset);
             Model.Compress(Model.WorldMapLogoTileset, dOffset, 0x800, 0xC1, "World map logo tileset");
             // Palettes
+            //spritePalette.Assemble(Model.WorldMapSpritesMarioPalette, 0);
+            SyncSpritePalettes();
+            marioPalette.Assemble();
+            locationPalette.Assemble();
+            Model.WorldMapBackgroundPalette.Assemble();
+            Model.Compress(Model.WorldMapBackgroundGraphics, 0x3E8577, 0x2000, 0xB06, "Background Graphics");
+
             palettes.Assemble(Model.WorldMapPalettes, 0);
             Model.Compress(Model.WorldMapPalettes, 0x3E988C, 0x100, 0xD4, "Palette set");
             foreach (Location mp in locations)
@@ -189,8 +302,28 @@ namespace LAZYSHELL
             pictureBoxTileset.BackColor = Color.FromArgb(palettes.Reds[0], palettes.Greens[0], palettes.Blues[0]);
             pictureBoxTileset.Invalidate();
         }
+        private void CreateMarioImages(int i = 2)
+        {
+            if (i == 0 || i == 2)
+            {
+                locationImage = Do.PixelsToImage(GetLocationPixels(false), 16, 8);
+                locationImage_S = Do.PixelsToImage(GetLocationPixels(false), 16, 8);
+            }
+
+            if (i == 1 || i == 2)
+            {
+                Bitmap test = Do.PixelsToImage(GetMarioPixels(0), 16, 32);
+                marioImage1 = Do.PixelsToImage(GetMarioPixels(0), 16, 32);
+                marioImage2 = Do.PixelsToImage(GetMarioPixels(1), 16, 32);
+                marioImage2 = marioImage2.Clone(new Rectangle(0, 2, 16, 30), marioImage2.PixelFormat);
+                marioImage3 = Do.PixelsToImage(GetMarioPixels(2), 16, 32);
+                marioImage3 = marioImage3.Clone(new Rectangle(0, 2, 16, 30), marioImage3.PixelFormat);
+            }
+        }
         private void SetLocationsImage()
         {
+            SyncSpritePalettes();
+            CreateMarioImages();
             SetActiveLocations();
             SetWorldMapTextImage();
         }
@@ -198,6 +331,8 @@ namespace LAZYSHELL
         {
             int[] pixels = Do.TilesetToPixels(logoTileset.Tileset_tiles, 16, 16, 0, false);
             logoImage = Do.PixelsToImage(pixels, 256, 256);
+            pixels = Do.TilesetToPixels(tilesetBG.Tileset_tiles, 16, 16, 0, false);
+            tilesetImageBG = Do.PixelsToImage(pixels, 256, 256);
             pictureBoxTileset.Invalidate();
         }
         private void SetWorldMapTextImage()
@@ -212,7 +347,7 @@ namespace LAZYSHELL
         private void SetActiveLocations()
         {
             pointActivePixels = new int[256 * 256];
-            int[] point = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, GetPointPalette(), 16, 0, 1, 2, 1, 0);
+            int[] point = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, locationPalette.Palette, 16, 0, 1, 2, 1, 0);
             Location temp;
             for (int i = 0; i < worldMap.Locations; i++)
             {
@@ -233,20 +368,20 @@ namespace LAZYSHELL
         }
         private int[] GetLocationPixels(bool hilite)
         {
-            int[] pixels = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, GetPointPalette(), 16, 0, 1, 2, 1, 0);
+            int[] pixels = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, locationPalette.Palette, 16, 0, 1, 2, 1, 0);
             if (hilite)
                 return Do.Hilite(pixels, 16, 8);
             else
                 return pixels;
         }
-        private int[] GetMarioPixels()
+        private int[] GetMarioPixels(int index)
         {
             int[] pixels = new int[16 * 32];
-            int[] bottom = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, GetPointPalette(), 16, 10, 0, 2, 2, 0);
-            int[] top = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, GetPointPalette(), 16, 4, 0, 2, 2, 0);
+            int[] top = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, marioPalette.Palette, 16, 10, 0, 2, 2, 0);
+            int[] bottom = Do.GetPixelRegion(Model.WorldMapSprites, 0x20, marioPalette.Palette, 16, 4 + (index*2), 0, 2, 2, 0);
             Rectangle r = new Rectangle(0, 0, 16, 16);
-            Do.PixelsToPixels(bottom, pixels, 16, 16, r, r);
-            Do.PixelsToPixels(top, pixels, 16, 16, r, new Rectangle(0, 16, 16, 16));
+            Do.PixelsToPixels(top, pixels, 16, 16, r, r);
+            Do.PixelsToPixels(bottom, pixels, 16, 16, r, new Rectangle(0, 16, 16, 16));
             return pixels;
         }
         private int[] GetPointPalette()
@@ -257,6 +392,23 @@ namespace LAZYSHELL
             for (int i = 0; i < 16; i++) // 16 colors in palette
             {
                 color = Bits.GetShort(Model.ROM, i * 2 + 0x3DFF00);
+                red[i] = (byte)((color % 0x20) * multiplier);
+                green[i] = (byte)(((color >> 5) % 0x20) * multiplier);
+                blue[i] = (byte)(((color >> 10) % 0x20) * multiplier);
+            }
+            int[] temp = new int[16];
+            for (int i = 0; i < 16; i++)
+                temp[i] = Color.FromArgb(255, red[i], green[i], blue[i]).ToArgb();
+            return temp;
+        }
+        private int[] GetMarioSpritePalette()
+        {
+            double multiplier = 8; // 8;
+            ushort color = 0;
+            int[] red = new int[16], green = new int[16], blue = new int[16];
+            for (int i = 0; i < 16; i++) // 16 colors in palette
+            {
+                color = Bits.GetShort(Model.ROM, i * 2 + 0x3E99BF);
                 red[i] = (byte)((color % 0x20) * multiplier);
                 green[i] = (byte)(((color >> 5) % 0x20) * multiplier);
                 blue[i] = (byte)(((color >> 10) % 0x20) * multiplier);
@@ -316,23 +468,46 @@ namespace LAZYSHELL
             if (spriteGraphicEditor == null)
             {
                 spriteGraphicEditor = new GraphicEditor(new Function(SpriteGraphicUpdate),
-                    Model.WorldMapSprites, Model.WorldMapSprites.Length, 0, spritePalette, 0, 0x20);
+                    Model.WorldMapSprites, Model.WorldMapSprites.Length, 0, spritesPalettes, 0, 0x20);
                 spriteGraphicEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
                 spriteGraphicEditor.Reload(new Function(SpriteGraphicUpdate),
-                    Model.WorldMapSprites, Model.WorldMapSprites.Length, 0, spritePalette, 0, 0x20);
+                    Model.WorldMapSprites, Model.WorldMapSprites.Length, 0, spritesPalettes, 0, 0x20);
         }
         private void LoadSpritePaletteEditor()
         {
             if (spritePaletteEditor == null)
             {
-                spritePaletteEditor = new PaletteEditor(new Function(SpritePaletteUpdate), spritePalette, 1, 0, 1);
+                spritePaletteEditor = new PaletteEditor(new Function(SpritePaletteUpdate), spritesPalettes, 2, 0, 2);
                 spritePaletteEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
-                spritePaletteEditor.Reload(new Function(SpritePaletteUpdate), spritePalette, 1, 0, 1);
+                spritePaletteEditor.Reload(new Function(SpritePaletteUpdate), spritesPalettes, 2, 0, 2);
         }
+        private void LoadBackgroundGraphicsEditor()
+        {
+            if (backgroundGraphicsEditor == null)
+            {
+                backgroundGraphicsEditor = new GraphicEditor(new Function(BackgroundGraphicsUpdate),
+                    Model.WorldMapBackgroundGraphics, Model.WorldMapBackgroundGraphics.Length, 0, Model.WorldMapBackgroundPalette, 0, 0x20);
+                backgroundGraphicsEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
+            }
+            else
+                backgroundGraphicsEditor.Reload(new Function(BackgroundGraphicsUpdate),
+                    Model.WorldMapBackgroundGraphics, Model.WorldMapBackgroundGraphics.Length, 0, Model.WorldMapBackgroundPalette, 0, 0x20);
+        }
+        private void LoadBackgroundPaletteEditor()
+        {
+            if (backgroundPaletteEditor == null)
+            {
+                backgroundPaletteEditor = new PaletteEditor(new Function(BackgroundGraphicsUpdate), Model.WorldMapBackgroundPalette, 2, 0, 2);
+                backgroundPaletteEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
+            }
+            else
+                backgroundPaletteEditor.Reload(new Function(BackgroundGraphicsUpdate), Model.WorldMapBackgroundPalette, 2, 0, 2);
+        }
+
         private void LoadTileEditor()
         {
             if (tileEditor == null)
@@ -352,6 +527,8 @@ namespace LAZYSHELL
         {
             tileset.DrawTileset(tileset.Tileset_tiles, tileset.Tileset_bytes);
             SetWorldMapImage();
+            SetLocationsImage();
+            SetBannerImage();
         }
         private void PaletteUpdate()
         {
@@ -382,16 +559,44 @@ namespace LAZYSHELL
         }
         private void SpriteGraphicUpdate()
         {
-        //    this.tileset = new Tileset(tileset_bytes, Model.WorldMapSprites, palettes, 16, 16, TilesetType.WorldMap);
-       //     SetWorldMapImage();
-            LoadTileEditor();
+            // logoTileset = new Tileset(Model.WorldMapLogoTileset, Model.WorldMapLogos, logoPalette, 16, 16, TilesetType.WorldMapLogo);
+            SetLocationsImage();
+            //LoadSpritePaletteEditor();
+            this.Modified = true;
+            this.SpritesEdited = true;
         }
         private void SpritePaletteUpdate()
         {
-        //    spriteTileset = new Tileset(Model.WorldMapSprites, Model.WorldMapSprites, spritePalette, 16, 16, TilesetType.WorldMapLogo);
-        //    SetBannerImage();
-        //    LoadLogoGraphicEditor();
+            // logoTileset = new Tileset(Model.WorldMapLogoTileset, Model.WorldMapLogos, logoPalette, 16, 16, TilesetType.WorldMapLogo);
+            SetLocationsImage();
+            //LoadSpritePaletteEditor();
+            LoadSpriteEditor();
             this.Modified = true;
+        }
+        private void BackgroundGraphicsUpdate()
+        {
+            tilesetBG = new Tileset(Model.WorldMapBackgroundTileset, Model.WorldMapBackgroundGraphics, Model.WorldMapBackgroundPalette, 16, 16, TilesetType.WorldMap);
+            SetBannerImage();
+            this.Modified = true;
+        }
+            //
+        private void SyncSpritePalettes()
+        {
+            SyncSpritePalettes(spritesPalettes);
+        }
+        private void SyncSpritePalettes(PaletteSet value)
+        {
+            marioPalette = null;
+            locationPalette = null;
+            for (int a = 0, index = 16; a < 16; a++, index++)
+            {
+                marioPalette.Greens[a] = value.Greens[a];
+                marioPalette.Blues[a] = value.Blues[a];
+                marioPalette.Reds[a] = value.Reds[a];
+                locationPalette.Greens[a] = value.Greens[index];
+                locationPalette.Blues[a] = value.Blues[index];
+                locationPalette.Reds[a] = value.Reds[index];
+            }
         }
         // Editing
         private void DrawHoverBox(Graphics g)
@@ -564,17 +769,12 @@ namespace LAZYSHELL
         #endregion
         #region Eventhandlers
         // main
-        private void WorldMaps_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == (Keys.Control | Keys.S))
-                Assemble();
-        }
         private void WorldMaps_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!this.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
-                "World Maps have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "World Maps have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -587,6 +787,10 @@ namespace LAZYSHELL
                 Model.WorldMapSprites = null;
                 Model.WorldMapTilesets[0] = null;
                 Model.Palettes = null;
+                Model.WorldMapSpritesMarioPalette = null;
+                Model.WorldMapSpritesLocationPalette = null;
+                Model.WorldMapBackgroundPalette = null;
+                Model.WorldMapBackgroundGraphics = null;
             }
             else if (result == DialogResult.Cancel)
             {
@@ -635,32 +839,48 @@ namespace LAZYSHELL
         }
         private void showLocations_Click(object sender, EventArgs e)
         {
-            toolStrip2.Enabled = !showLocations.Checked || !showBanner.Checked;
-            if (showLocations.Checked)
-            {
-                buttonEditSelect.Checked = false;
-                if (draggedTiles != null)
-                    Defloat(draggedTiles);
-                overlay.SelectTS.Clear();
-                pictureBoxTileset.Cursor = Cursors.SizeAll;
-            }
-            else
-                pictureBoxTileset.Cursor = Cursors.Arrow;
-            pictureBoxTileset.Invalidate();
+            showButtonFunctions();
         }
         private void showBanner_Click(object sender, EventArgs e)
         {
-            toolStrip2.Enabled = !showLocations.Checked || !showBanner.Checked;
+            showButtonFunctions();
+        }
+        private void showCharacter_Click(object sender, EventArgs e)
+        {
+            showButtonFunctions();
+        }
+        private void showButtonFunctions()
+        {
+            SetLocationsImage();
+            if (showLocations.Checked || showBanner.Checked || showCharacter.Checked)
+                toolStrip2.Enabled = false;
+            else
+                toolStrip2.Enabled = true;
             if (showLocations.Checked)
             {
                 buttonEditSelect.Checked = false;
                 if (draggedTiles != null)
                     Defloat(draggedTiles);
                 overlay.SelectTS.Clear();
+                if (aTimer != null)
+                {
+                    aTimer.Stop();
+                    aTimer.Dispose();
+                }
                 pictureBoxTileset.Cursor = Cursors.SizeAll;
             }
+            else if (showBanner.Checked)
+                SetCursorAsAnimatedMario(); //this.pictureBoxTileset.Cursor = marioImageCursor;
             else
+            {
+                if (aTimer != null)
+                {
+                    aTimer.Stop();
+                    aTimer.Dispose();
+                }
                 pictureBoxTileset.Cursor = Cursors.Arrow;
+            }
+
             pictureBoxTileset.Invalidate();
         }
         private void pointCount_ValueChanged(object sender, EventArgs e)
@@ -714,20 +934,23 @@ namespace LAZYSHELL
                 y -= Do.PercentDecrease(third, 256) / 4.0;
                 rdst.Offset((int)x, (int)y);
             }
-            if (buttonToggleBG.Checked)
+            if (!buttonToggleBG.Checked)
+            {
                 e.Graphics.Clear(Color.FromArgb(palettes.Palette[0]));
+                /*// Disabling this for now because the layout for the clouds hasn't been found yet
+                if (showBanner.Checked)
+                    if (tilesetImageBG != null)
+                        e.Graphics.DrawImage(tilesetImageBG, 0, -8);
+                */
+            }
             if (tilesetImage != null)
                 e.Graphics.DrawImage(tilesetImage, rdst, 0, 0, 256, 256, GraphicsUnit.Pixel);
             if (showLocations.Checked)
             {
+                CreateMarioImages(0);
+
                 foreach (Location location in worldMapLocations[index])
                 {
-                    if (locationImage == null)
-                        locationImage = Do.PixelsToImage(GetLocationPixels(false), 16, 8);
-                    if (locationImage_S == null)
-                        locationImage_S = Do.PixelsToImage(GetLocationPixels(true), 16, 8);
-                    if (marioImage == null)
-                        marioImage = Do.PixelsToImage(GetMarioPixels(), 16, 32);
                     if (location.Index == locationNum.Value)
                     {
                         e.Graphics.DrawImage(locationImage_S, location.X, location.Y);
@@ -742,7 +965,12 @@ namespace LAZYSHELL
                     e.Graphics.DrawImage(logoImage, 0, -8);
                 if (locationText != null)
                     e.Graphics.DrawImage(locationText, 128 - (locationText.Width / 2), 182);
+                //if (!showLocations.Checked)
+                //    this.pictureBoxTileset.Cursor = marioImageCursor;
             }
+            if (locationImage != null)
+                showLocations.Image = locationImage;
+
             if (moving && selection != null)
             {
                 Rectangle rsrc = new Rectangle(0, 0, overlay.SelectTS.Width, overlay.SelectTS.Height);
@@ -987,9 +1215,9 @@ namespace LAZYSHELL
         private void buttonEditSelect_Click(object sender, EventArgs e)
         {
             if (buttonEditSelect.Checked)
-                this.pictureBoxTileset.Cursor = System.Windows.Forms.Cursors.Cross;
+                this.pictureBoxTileset.Cursor = Cursors.Cross;
             else
-                this.pictureBoxTileset.Cursor = System.Windows.Forms.Cursors.Arrow;
+                this.pictureBoxTileset.Cursor = Cursors.Arrow;
             Defloat();
             this.pictureBoxTileset.Invalidate();
         }
@@ -998,38 +1226,68 @@ namespace LAZYSHELL
         {
             if (paletteEditor == null)
                 LoadPaletteEditor();
-            paletteEditor.Visible = true;
+            paletteEditor.Show();
         }
         private void openGraphics_Click(object sender, EventArgs e)
         {
             if (graphicEditor == null)
                 LoadGraphicEditor();
-            graphicEditor.Visible = true;
+            graphicEditor.Show();
         }
         private void openLogos_Click(object sender, EventArgs e)
         {
             if (logoGraphicEditor == null)
                 LoadLogoGraphicEditor();
-            logoGraphicEditor.Visible = true;
+            logoGraphicEditor.Show();
         }
         private void logoBannerPalettesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (logoPaletteEditor == null)
                 LoadLogoPaletteEditor();
-            logoPaletteEditor.Visible = true;
+            logoPaletteEditor.Show();
         }
-        // OW sprites
+        // Overworld sprites
         private void spriteGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (spriteGraphicEditor == null)
+            {
                 LoadSpriteEditor();
+                // Old warning about compression
+                /*
+                byte[] src = Model.WorldMapSprites;
+                int offset = 0x400;
+                int maxComp = 0x1FB;
+                byte[] comp = new byte[maxComp];
+                int size = Comp.Compress(src, comp) + 1;
+                if (offset + size >= maxComp)
+                {
+                    MessageBox.Show(
+                    "You'll notice when you load a fresh ROM and save World Maps, you'll get an error about bytes exceeding the allotted space.\n" +
+                    "To fix it, all you need to do is delete the last pixel in Tile #30, and it saves fine.\n" +
+                    "Or delete the unused graphics, that works to reduce the compression size.",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                */
+            }
             spriteGraphicEditor.Visible = true;
         }
         private void OWSpritePaletteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (spritePaletteEditor == null)
                 LoadSpritePaletteEditor();
-            spritePaletteEditor.Visible = true;
+            spritePaletteEditor.Show();
+        }
+        private void backgroundGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (backgroundGraphicsEditor == null)
+                LoadBackgroundGraphicsEditor();
+            backgroundGraphicsEditor.Show();
+        }
+        private void backgroundPaletteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (backgroundPaletteEditor == null)
+                LoadBackgroundPaletteEditor();
+            backgroundPaletteEditor.Show();
         }
         //
         private void openTileEditor_Click(object sender, EventArgs e)
@@ -1066,7 +1324,7 @@ namespace LAZYSHELL
         private void resetWorldMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current world map. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             int pointer = Bits.GetShort(Model.ROM, worldMap.Tileset * 2 + 0x3E0014);
             int offset = 0x3E0000 + pointer + 1;
@@ -1077,11 +1335,20 @@ namespace LAZYSHELL
         private void resetLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current location. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             location = new Location(index_l);
             AddLocations();
             RefreshLocationEditor();
+            SetLocationsImage();
+        }
+        private void resetSpritesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the world map sprites. Go ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            locationPalette = null;
+            marioPalette = null;
             SetLocationsImage();
         }
         // context menu strip

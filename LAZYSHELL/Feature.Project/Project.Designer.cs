@@ -26,6 +26,7 @@ namespace LAZYSHELL
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Project));
             this.indexDescription = new System.Windows.Forms.RichTextBox();
             this.indexLabel = new System.Windows.Forms.TextBox();
             this.buttonMoveUp = new System.Windows.Forms.Button();
@@ -54,6 +55,8 @@ namespace LAZYSHELL
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.projectInformation = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.projectROMname = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -102,12 +105,14 @@ namespace LAZYSHELL
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newButton = new System.Windows.Forms.ToolStripButton();
             this.loadButton = new System.Windows.Forms.ToolStripButton();
-            this.closeButton = new System.Windows.Forms.ToolStripButton();
             this.save = new System.Windows.Forms.ToolStripButton();
             this.saveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.numerize = new System.Windows.Forms.ToolStripButton();
+            this.refreshButton = new System.Windows.Forms.ToolStripButton();
+            this.closeButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.alwaysOnTop = new System.Windows.Forms.ToolStripButton();
+            this.autoUpdate = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.indexNumber)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panelIndexNumber.SuspendLayout();
@@ -134,9 +139,9 @@ namespace LAZYSHELL
             // 
             // indexDescription
             // 
-            this.indexDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.indexDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.indexDescription.Location = new System.Drawing.Point(6, 100);
             this.indexDescription.Name = "indexDescription";
             this.indexDescription.Size = new System.Drawing.Size(214, 348);
@@ -146,8 +151,8 @@ namespace LAZYSHELL
             // 
             // indexLabel
             // 
-            this.indexLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.indexLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.indexLabel.Location = new System.Drawing.Point(6, 60);
             this.indexLabel.Name = "indexLabel";
             this.indexLabel.Size = new System.Drawing.Size(214, 21);
@@ -249,9 +254,9 @@ namespace LAZYSHELL
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.indexLabel);
             this.groupBox1.Controls.Add(this.label3);
@@ -346,8 +351,8 @@ namespace LAZYSHELL
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.buttonLoad);
             this.panel1.Controls.Add(this.buttonDelete);
             this.panel1.Controls.Add(this.buttonMoveUp);
@@ -362,8 +367,8 @@ namespace LAZYSHELL
             // elementIndexes
             // 
             this.elementIndexes.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.elementIndexes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.elementIndexes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.elementIndexes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.index,
             this.label});
@@ -404,19 +409,20 @@ namespace LAZYSHELL
             // 
             // projectFile
             // 
-            this.projectFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.projectFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.projectFile.Location = new System.Drawing.Point(12, 30);
             this.projectFile.Name = "projectFile";
             this.projectFile.ReadOnly = true;
             this.projectFile.Size = new System.Drawing.Size(507, 21);
             this.projectFile.TabIndex = 1;
+            this.projectFile.Click += new System.EventHandler(this.projectFile_Click);
             // 
             // projectOtherInfo
             // 
-            this.projectOtherInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.projectOtherInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.projectOtherInfo.Location = new System.Drawing.Point(6, 20);
             this.projectOtherInfo.Name = "projectOtherInfo";
             this.projectOtherInfo.Size = new System.Drawing.Size(228, 453);
@@ -426,9 +432,9 @@ namespace LAZYSHELL
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.projectInformation);
             this.tabControl1.Controls.Add(this.elementLists);
             this.tabControl1.Controls.Add(this.elementNotes);
@@ -454,8 +460,10 @@ namespace LAZYSHELL
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.projectROMname);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label8);
@@ -473,10 +481,27 @@ namespace LAZYSHELL
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Project Information";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 131);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 13);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "File Name";
+            // 
+            // projectROMname
+            // 
+            this.projectROMname.Location = new System.Drawing.Point(72, 128);
+            this.projectROMname.Name = "projectROMname";
+            this.projectROMname.Size = new System.Drawing.Size(247, 21);
+            this.projectROMname.TabIndex = 11;
+            this.projectROMname.TextChanged += new System.EventHandler(this.projectROMname_TextChanged);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 131);
+            this.label9.Location = new System.Drawing.Point(6, 158);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 13);
             this.label9.TabIndex = 8;
@@ -520,12 +545,12 @@ namespace LAZYSHELL
             // 
             // projectDescription
             // 
-            this.projectDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.projectDescription.Location = new System.Drawing.Point(72, 128);
+            this.projectDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.projectDescription.Location = new System.Drawing.Point(72, 155);
             this.projectDescription.Multiline = true;
             this.projectDescription.Name = "projectDescription";
-            this.projectDescription.Size = new System.Drawing.Size(247, 345);
+            this.projectDescription.Size = new System.Drawing.Size(247, 318);
             this.projectDescription.TabIndex = 9;
             this.projectDescription.TextChanged += new System.EventHandler(this.projectDescription_TextChanged);
             // 
@@ -563,9 +588,9 @@ namespace LAZYSHELL
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.projectOtherInfo);
             this.groupBox3.Location = new System.Drawing.Point(334, 6);
             this.groupBox3.Name = "groupBox3";
@@ -589,9 +614,9 @@ namespace LAZYSHELL
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.listLabel);
             this.groupBox2.Controls.Add(this.listDescription);
@@ -615,8 +640,8 @@ namespace LAZYSHELL
             // 
             // listLabel
             // 
-            this.listLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listLabel.Location = new System.Drawing.Point(6, 33);
             this.listLabel.Name = "listLabel";
             this.listLabel.Size = new System.Drawing.Size(214, 21);
@@ -625,9 +650,9 @@ namespace LAZYSHELL
             // 
             // listDescription
             // 
-            this.listDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listDescription.Location = new System.Drawing.Point(6, 73);
             this.listDescription.Multiline = true;
             this.listDescription.Name = "listDescription";
@@ -647,8 +672,8 @@ namespace LAZYSHELL
             // 
             // listViewList
             // 
-            this.listViewList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.listViewList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listViewList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.indexNum,
             this.indexName});
@@ -717,7 +742,7 @@ namespace LAZYSHELL
             // exportCollection
             // 
             this.exportCollection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.exportCollection.Image = global::LAZYSHELL.Properties.Resources.exportTextAll;
+            this.exportCollection.Image = ((System.Drawing.Image)(resources.GetObject("exportCollection.Image")));
             this.exportCollection.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportCollection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.exportCollection.Name = "exportCollection";
@@ -728,7 +753,7 @@ namespace LAZYSHELL
             // resetAllLists
             // 
             this.resetAllLists.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.resetAllLists.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetAllLists.Image = ((System.Drawing.Image)(resources.GetObject("resetAllLists.Image")));
             this.resetAllLists.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.resetAllLists.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.resetAllLists.Name = "resetAllLists";
@@ -755,7 +780,7 @@ namespace LAZYSHELL
             // exportList
             // 
             this.exportList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.exportList.Image = global::LAZYSHELL.Properties.Resources.exportText;
+            this.exportList.Image = ((System.Drawing.Image)(resources.GetObject("exportList.Image")));
             this.exportList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportList.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.exportList.Name = "exportList";
@@ -766,7 +791,7 @@ namespace LAZYSHELL
             // resetCurrentList
             // 
             this.resetCurrentList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.resetCurrentList.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetCurrentList.Image = ((System.Drawing.Image)(resources.GetObject("resetCurrentList.Image")));
             this.resetCurrentList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.resetCurrentList.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.resetCurrentList.Name = "resetCurrentList";
@@ -820,24 +845,24 @@ namespace LAZYSHELL
             this.elementType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.elementType.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.elementType.Items.AddRange(new object[] {
-            "Action Scripts",
-            "Attacks",
-            "Battlefields",
-            "Dialogues",
-            "Effects",
-            "Event Scripts",
-            "Formations",
-            "Items",
             "Levels",
+            "Dialogues",
             "Memory Bits",
+            "Event Scripts",
+            "Action Scripts",
+            "Battlefields",
             "Monsters",
+            "Formations",
             "Packs",
-            "Shops",
+            "Attacks",
             "Spells",
-            "Sprites"});
+            "Items",
+            "Allies",
+            "Effects",
+            "Sprites",
+            "Shops"});
             this.elementType.Name = "elementType";
             this.elementType.Size = new System.Drawing.Size(330, 25);
-            this.elementType.Sorted = true;
             this.elementType.SelectedIndexChanged += new System.EventHandler(this.elementType_SelectedIndexChanged);
             // 
             // transferToLists
@@ -922,7 +947,7 @@ namespace LAZYSHELL
             // resetKeystrokes
             // 
             this.resetKeystrokes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.resetKeystrokes.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetKeystrokes.Image = ((System.Drawing.Image)(resources.GetObject("resetKeystrokes.Image")));
             this.resetKeystrokes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.resetKeystrokes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.resetKeystrokes.Name = "resetKeystrokes";
@@ -964,12 +989,14 @@ namespace LAZYSHELL
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newButton,
             this.loadButton,
-            this.closeButton,
             this.save,
             this.saveAs,
             this.toolStripSeparator1,
-            this.numerize,
-            this.alwaysOnTop});
+            this.refreshButton,
+            this.closeButton,
+            this.toolStripSeparator4,
+            this.alwaysOnTop,
+            this.autoUpdate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -980,7 +1007,7 @@ namespace LAZYSHELL
             // newButton
             // 
             this.newButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newButton.Image = global::LAZYSHELL.Properties.Resources.new_small;
+            this.newButton.Image = ((System.Drawing.Image)(resources.GetObject("newButton.Image")));
             this.newButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.newButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newButton.Name = "newButton";
@@ -998,18 +1025,6 @@ namespace LAZYSHELL
             this.loadButton.Size = new System.Drawing.Size(23, 22);
             this.loadButton.ToolTipText = "Open Project Database";
             this.loadButton.Click += new System.EventHandler(this.load_Click);
-            // 
-            // closeButton
-            // 
-            this.closeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.closeButton.Enabled = false;
-            this.closeButton.Image = global::LAZYSHELL.Properties.Resources.delete_small;
-            this.closeButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.closeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(23, 22);
-            this.closeButton.ToolTipText = "Close Project Database";
-            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // save
             // 
@@ -1040,30 +1055,59 @@ namespace LAZYSHELL
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // numerize
+            // refreshButton
             // 
-            this.numerize.CheckOnClick = true;
-            this.numerize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.numerize.Image = global::LAZYSHELL.Properties.Resources.numerize;
-            this.numerize.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.numerize.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.numerize.Name = "numerize";
-            this.numerize.Size = new System.Drawing.Size(23, 22);
-            this.numerize.Text = "Numbered Indexes";
-            this.numerize.Visible = false;
-            this.numerize.Click += new System.EventHandler(this.tagIndexesWithNumbers_Click);
+            this.refreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.refreshButton.Enabled = false;
+            this.refreshButton.Image = ((System.Drawing.Image)(resources.GetObject("refreshButton.Image")));
+            this.refreshButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.refreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(23, 22);
+            this.refreshButton.ToolTipText = "Reload Project Database";
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
+            // closeButton
+            // 
+            this.closeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.closeButton.Enabled = false;
+            this.closeButton.Image = ((System.Drawing.Image)(resources.GetObject("closeButton.Image")));
+            this.closeButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.closeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(23, 22);
+            this.closeButton.ToolTipText = "Close Project Database";
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // alwaysOnTop
             // 
+            this.alwaysOnTop.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.alwaysOnTop.CheckOnClick = true;
             this.alwaysOnTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.alwaysOnTop.Image = global::LAZYSHELL.Properties.Resources.moveToFront;
+            this.alwaysOnTop.Image = global::LAZYSHELL.Properties.Resources.alwaysOnTop;
             this.alwaysOnTop.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.alwaysOnTop.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.alwaysOnTop.Name = "alwaysOnTop";
             this.alwaysOnTop.Size = new System.Drawing.Size(23, 22);
             this.alwaysOnTop.Text = "Always On Top";
             this.alwaysOnTop.CheckedChanged += new System.EventHandler(this.alwaysOnTop_CheckedChanged);
+            // 
+            // autoUpdate
+            // 
+            this.autoUpdate.Checked = true;
+            this.autoUpdate.CheckOnClick = true;
+            this.autoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.autoUpdate.Image = global::LAZYSHELL.Properties.Resources.synchronize;
+            this.autoUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.autoUpdate.Name = "autoUpdate";
+            this.autoUpdate.Size = new System.Drawing.Size(23, 22);
+            this.autoUpdate.Text = "Auto-update";
             // 
             // Project
             // 
@@ -1075,11 +1119,11 @@ namespace LAZYSHELL
             this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.projectFile);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainProject_ico;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "Project";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "PROJECT - Lazy Shell";
+            this.Text = "PROJECT DATABASE - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.indexNumber)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1117,6 +1161,7 @@ namespace LAZYSHELL
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.RichTextBox indexDescription;
@@ -1146,10 +1191,8 @@ namespace LAZYSHELL
         private System.Windows.Forms.TabPage projectInformation;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton loadButton;
-        private System.Windows.Forms.ToolStripButton save;
         private System.Windows.Forms.ToolStripButton saveAs;
         private System.Windows.Forms.ToolStripButton newButton;
-        private System.Windows.Forms.ToolStripButton numerize;
         private System.Windows.Forms.ToolStripButton alwaysOnTop;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private NewListView elementIndexes;
@@ -1201,5 +1244,11 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton exportList;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripButton closeButton;
+        private System.Windows.Forms.ToolStripButton save;
+        private System.Windows.Forms.ToolStripButton refreshButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox projectROMname;
+        private System.Windows.Forms.ToolStripButton autoUpdate;
     }
 }

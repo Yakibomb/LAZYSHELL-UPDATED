@@ -18,6 +18,7 @@ namespace LAZYSHELL
         private int[] palette;
         private int[][] palettes;
         // public accessors
+        public int OFFSET { get { return offset; } set { offset = value; } }
         public int Length { get { return length; } }
         public int[] Reds { get { return reds; } set { reds = value; } }
         public int[] Greens { get { return greens; } set { greens = value; } }

@@ -67,6 +67,7 @@ namespace LAZYSHELL
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -84,16 +85,17 @@ namespace LAZYSHELL
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainMainTitle_ico;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "Intro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "INTRO - Lazy Shell";
+            this.Text = "INTRO - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Intro_FormClosing);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.Panel panel1;

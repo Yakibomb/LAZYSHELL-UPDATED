@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using LAZYSHELL.Undo;
 using LAZYSHELL.Properties;
+using static System.Windows.Forms.AxHost;
 
 namespace LAZYSHELL
 {
@@ -71,6 +72,12 @@ namespace LAZYSHELL
         private int commandCount = 0;
         // special controls
         private EditLabel labelWindow;
+        // Ally image preview
+        private Bitmap[] allyImages;
+        private Bitmap[] statImages;
+        private Bitmap[] portraits;
+        //
+        private bool ShowBoundaries;
         #endregion
         #region Functions
         // Main
@@ -310,6 +317,10 @@ namespace LAZYSHELL
         /// <param name="buffer">The dragged selection or the newly pasted selection.</param>
         private void Defloat(CopyBuffer buffer)
         {
+            if (buffer == null)
+                return;
+            if (overlay.SelectTS.Empty)
+                return;
             byte[] oldTileset = Bits.Copy(tileset.Tileset_bytes);
             //
             selection = null;
@@ -334,6 +345,7 @@ namespace LAZYSHELL
             tileset.DrawTileset(tileset.Tileset_tiles, tileset.Tileset_bytes);
             commandStack.Push(commandCount + 1);
             commandCount = 0;
+            RefreshBattlefield();
             SetBattlefieldImage();
             //
             commandStack.Push(new TilesetCommand(tileset, oldTileset, this));
@@ -427,7 +439,7 @@ namespace LAZYSHELL
             if (!this.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
-                "Battlefields have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Battlefields have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -452,7 +464,6 @@ namespace LAZYSHELL
         }
         private void battlefieldNum_ValueChanged(object sender, EventArgs e)
         {
-            Defloat();
             battlefieldName.SelectedIndex = (int)battlefieldNum.Value;
             tileset.Assemble(16, 16);
             RefreshBattlefield();
@@ -619,7 +630,7 @@ namespace LAZYSHELL
             if (battlefieldImage == null)
                 return;
             Rectangle rdst = new Rectangle(0, 0, 512, 512);
-            if (buttonToggleBG.Checked)
+            if (!buttonToggleBG.Checked)
                 e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(paletteSets[palette].Palette[0])), rdst);
             e.Graphics.DrawImage(battlefieldImage, rdst, 0, 0, 512, 512, GraphicsUnit.Pixel);
             if (moving && selection != null)
@@ -647,6 +658,27 @@ namespace LAZYSHELL
                 overlay.DrawTileGrid(e.Graphics, Color.Gray, pictureBoxBattlefield.Size, new Size(16, 16), 1, true);
             if (overlay.SelectTS != null)
                 overlay.SelectTS.DrawSelectionBox(e.Graphics, 1);
+
+            if (toggleAllies.Checked)
+            {
+                if (allyImages == null || portraits == null)
+                    SetAllyImages();
+                e.Graphics.DrawImage(allyImages[0], Model.ROM[0x0296BD] - 128 + 8, Model.ROM[0x0296BE] - 128 - 1);
+                e.Graphics.DrawImage(allyImages[1], Model.ROM[0x0296BF] - 128 + 8, Model.ROM[0x0296C0] - 128 - 1);
+                e.Graphics.DrawImage(allyImages[4], Model.ROM[0x0296C1] - 128 + 8, Model.ROM[0x0296C2] - 128 - 1);
+                // draw HPs
+                e.Graphics.DrawImage(statImages[0], 24 + 8, 94 - 32);
+                e.Graphics.DrawImage(statImages[1], 48 + 8, 70 - 32);
+                e.Graphics.DrawImage(statImages[4], 72 + 8, 46 - 32);
+                // draw portraits
+                e.Graphics.DrawImage(portraits[0], 20 - 128 + 8, 82 - 96 - 1 - 32);
+                e.Graphics.DrawImage(portraits[1], 44 - 128 + 8, 58 - 96 - 1 - 32);
+                e.Graphics.DrawImage(portraits[4], 68 - 128 + 8, 34 - 96 - 1 - 32);
+            }
+
+            if (ShowBoundaries && mouseEnter)
+                overlay.DrawBoundaries(e.Graphics, mousePosition, zoom);
+
         }
         private void pictureBoxBattlefield_MouseDown(object sender, MouseEventArgs e)
         {
@@ -759,6 +791,7 @@ namespace LAZYSHELL
                 case Keys.G: buttonToggleCartGrid.PerformClick(); break;
                 case Keys.B: buttonToggleBG.PerformClick(); break;
                 case Keys.S: buttonEditSelect.PerformClick(); break;
+                case Keys.P: toggleAllies.PerformClick(); break;
                 case Keys.Control | Keys.C: buttonEditCopy.PerformClick(); break;
                 case Keys.Control | Keys.X: buttonEditCut.PerformClick(); break;
                 case Keys.Control | Keys.V:
@@ -767,17 +800,9 @@ namespace LAZYSHELL
                     Paste(new Point(16, 16), copiedTiles);
                     break;
                 case Keys.Delete: Delete(); break;
-                case Keys.Control | Keys.D:
-                    if (draggedTiles != null)
-                        Defloat(draggedTiles);
-                    else
-                    {
-                        overlay.SelectTS.Clear();
-                        pictureBoxBattlefield.Invalidate();
-                    }
-                    break;
+                case Keys.Control | Keys.D: Defloat(); break;
                 case Keys.Control | Keys.A:
-                    overlay.Select.Refresh(16, 0, 0, 512, 512, pictureBoxBattlefield);
+                    overlay.SelectTS.Refresh(16, 0, 0, 512, 512, pictureBoxBattlefield);
                     pictureBoxBattlefield.Invalidate();
                     break;
                 case Keys.Control | Keys.Z: buttonEditUndo.PerformClick(); break;
@@ -819,6 +844,8 @@ namespace LAZYSHELL
         }
         private void buttonEditPaste_Click(object sender, EventArgs e)
         {
+            if (copiedTiles == null)
+                return;
             if (draggedTiles != null)
             {
                 Defloat(draggedTiles);
@@ -932,11 +959,55 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current battlefield. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             battlefield = new Battlefield(index);
             Model.Decompress(Model.TilesetsBF, 0x150000, 0x160000, 0x2000, "", index, index + 1, false);
             RefreshBattlefield();
+        }
+
+        private void SetAllyImages()
+        {
+            allyImages = new Bitmap[5];
+            statImages = new Bitmap[5];
+            portraits = new Bitmap[5];
+            for (int i = 0; i < allyImages.Length; i++)
+            {
+                Size size = new Size(0, 0);
+                Sprite sprite = Model.Sprites[Model.NPCProperties[i].Sprite];
+                int[] pixels = sprite.GetPixels(false, true, 0, 7, false, false, ref size);
+                allyImages[i] = Do.PixelsToImage(pixels, size.Width, size.Height);
+                //
+                pixels = new int[128 * 24];
+                int[] palette = Model.BattleMenuPalette.Palette;
+                char[] HP = new char[] { '2', '0', '9' }; // Mario
+                if (i == 1) HP = new char[] { '2', '1', '1' }; // Toadstool
+                if (i == 2) HP = new char[] { '2', '4', '0' }; // Bowser
+                if (i == 3) HP = new char[] { '1', '9', '5' }; // Mallow
+                if (i == 4) HP = new char[] { '2', '0', '3' }; // Geno
+                char[] text = new char[]
+                {
+                    '\x01','\x01','\x01','\x01','\x01','\x01','\x01','\x01','\x02','\n' ,
+                    '\x00',HP[0],HP[1],HP[2],'\x16',HP[0],HP[1],HP[2],'\x10','\n',
+                    '\x11','\x11','\x11','\x11','\x11','\x11','\x11','\x11','\x12'
+                };
+                Do.DrawText(pixels, 128, text, 0, 0, 8, Model.FontBattleMenu, palette);
+                statImages[i] = Do.PixelsToImage(pixels, 128, 24);
+                //
+                palette = Model.Sprites[Model.NPCProperties[i].Sprite].Palette;
+                pixels = Model.Sprites[i + 40].GetPixels(true, false, 0, 0, palette, false, false, ref size);
+                portraits[i] = Do.PixelsToImage(pixels, 256, 256);
+            }
+        }
+        private void toggleAllies_Click(object sender, EventArgs e)
+        {
+            pictureBoxBattlefield.Invalidate();
+        }
+        private void buttonToggleBoundaries_Click(object sender, EventArgs e)
+        {
+            buttonToggleBoundaries.Checked = !buttonToggleBoundaries.Checked;
+            ShowBoundaries = buttonToggleBoundaries.Checked;
+            pictureBoxBattlefield.Invalidate();
         }
         #endregion
     }

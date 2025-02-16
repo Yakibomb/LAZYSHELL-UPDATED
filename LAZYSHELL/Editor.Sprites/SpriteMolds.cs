@@ -121,7 +121,7 @@ namespace LAZYSHELL
             bool alwaysTilemap = true;
             int startingIndex = 0;
             // if yes, start writing new graphics to location of highest used tile index
-            if (MessageBox.Show("Replace current " + type + " with imported image(s)?", "LAZY SHELL",
+            if (MessageBox.Show("Replace current " + type + " with imported image(s)?", "LAZYSHELL++",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 replaceMolds = false;
@@ -134,14 +134,14 @@ namespace LAZYSHELL
                 }
             }
             if (type != "molds" || MessageBox.Show("Import all molds as tilemaps? Selecting no will import smaller images as gridplanes.",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 alwaysTilemap = false;
-            if (MessageBox.Show("Would you like to create a new palette from the imported image(s)?", "LAZY SHELL",
+            if (MessageBox.Show("Would you like to create a new palette from the imported image(s)?", "LAZYSHELL++",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 replacePalette = false;
             if (type == "molds" && imports.Length > 32 || (!replaceMolds && molds.Count + imports.Length > 32))
             {
-                MessageBox.Show("Animations cannot contain more than 32 molds total.", "LAZY SHELL",
+                MessageBox.Show("Animations cannot contain more than 32 molds total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -177,7 +177,7 @@ namespace LAZYSHELL
             if (startingIndex * 0x20 + graphics.Length > 16384)
                 MessageBox.Show("Not enough space to store the necessary amount of SNES graphics data for the imported images. The total required space (" +
                     (startingIndex * 0x20 + graphics.Length) + " bytes) for the new SNES graphics data exceeds 16384 bytes.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //
             if (type == "molds")
             {
@@ -248,7 +248,7 @@ namespace LAZYSHELL
                 pictureBoxMold.Cursor = Cursors.Arrow;
             }
             foreach (ToolStripItem item in contextMenuStrip1.Items)
-                if (item != saveImageAsToolStripMenuItem)
+                if (item != saveImageAsToolStripMenuItem && item != importIntoTilemapToolStripMenuItem)
                     item.Enabled = !this.mold.Gridplane;
             toolStripDropDownButton1.Enabled = !mold.Gridplane;
             deleteTile.Enabled = !mold.Gridplane;
@@ -644,7 +644,7 @@ namespace LAZYSHELL
         {
             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-            if (showBG.Checked)
+            if (!showBG.Checked)
                 e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(palette[0])),
                     new Rectangle(new Point(0, 0), pictureBoxMold.Size));
             //if (tilemapImage != null)
@@ -1012,7 +1012,7 @@ namespace LAZYSHELL
                 src = new Rectangle(0, 0, 32, 32);
             else
                 src = dst;
-            if (showBG.Checked)
+            if (!showBG.Checked)
                 e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(palette[0])),
                     new Rectangle(new Point(0, 0), pictureBoxTileset.Size));
             if (tilesetImage != null)
@@ -1336,7 +1336,7 @@ namespace LAZYSHELL
         private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(
-                "Would you like to crop the saved image to the bounds of the pixel edges?", "LAZY SHELL",
+                "Would you like to crop the saved image to the bounds of the pixel edges?", "LAZYSHELL++",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 int[] cropped;
@@ -1402,7 +1402,7 @@ namespace LAZYSHELL
         {
             if (animation.UniqueTiles.Count <= 1)
             {
-                MessageBox.Show("Tile collections must contain at least 1 tile.", "LAZY SHELL",
+                MessageBox.Show("Tile collections must contain at least 1 tile.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -1509,7 +1509,7 @@ namespace LAZYSHELL
                 return;
             int[] pixels = Do.ImageToPixels(import, new Size(32, 32), new Rectangle(0, 0, 32, 32));
             if (MessageBox.Show(
-                "Would you like to create a new palette from the imported image?", "LAZY SHELL",
+                "Would you like to create a new palette from the imported image?", "LAZYSHELL++",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 int[] palette = Do.ReduceColorDepth(pixels, 16, this.palette[0]);
@@ -1644,7 +1644,7 @@ namespace LAZYSHELL
         {
             if (molds.Count == 32)
             {
-                MessageBox.Show("Animations cannot contain more than 32 molds total.", "LAZY SHELL",
+                MessageBox.Show("Animations cannot contain more than 32 molds total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -1652,7 +1652,7 @@ namespace LAZYSHELL
             PushCommand(SpriteAction.Create);
             //
             int index = this.index;
-            if (MessageBox.Show("Would you like the new mold to be in gridplane format?", "LAZY SHELL",
+            if (MessageBox.Show("Would you like the new mold to be in gridplane format?", "LAZYSHELL++",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 molds.Insert(index + 1, this.mold.New(true));
             else
@@ -1673,7 +1673,7 @@ namespace LAZYSHELL
         {
             if (molds.Count == 1)
             {
-                MessageBox.Show("Animations must contain at least 1 mold.", "LAZY SHELL",
+                MessageBox.Show("Animations must contain at least 1 mold.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -1701,7 +1701,7 @@ namespace LAZYSHELL
         {
             if (molds.Count == 32)
             {
-                MessageBox.Show("Animations cannot contain more than 32 molds total.", "LAZY SHELL",
+                MessageBox.Show("Animations cannot contain more than 32 molds total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }

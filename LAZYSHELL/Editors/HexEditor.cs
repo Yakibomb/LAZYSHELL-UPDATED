@@ -72,6 +72,8 @@ namespace LAZYSHELL
         private int selectionStart;
         private int selectionLength;
         private bool isMovingUpDown;
+        private bool isSearchLeftToRight = true;
+        private bool searchBoxEnter = false;
         #endregion
         public HexEditor(byte[] current, byte[] original)
         {
@@ -82,6 +84,8 @@ namespace LAZYSHELL
             RefreshHexEditor();
             Do.AddShortcut(toolStrip2, Keys.F1, helpTips);
             new ToolTipLabel(this, null, helpTips);
+            //
+            searchBox_Leave(null, null);
         }
         #region Functions
         public void ClearMemory()
@@ -108,11 +112,56 @@ namespace LAZYSHELL
             current_unmodified.CopyTo(current, 0);
             RefreshHexEditor();
         }
+        public void CompareChangesFromOriginal(bool alwaysHighlight)
+        {
+            ClearMemory();
+            for (int offset = 0; offset < 0x400000; offset++)
+            {
+                if (original[offset] == current[offset])
+                    continue;
+
+                int index = offset;
+
+                if (alwaysHighlight)
+                    oldProperties.Add(new Change(index, current_unmodified[offset], Color.Green));
+                else if (current_unmodified[offset] != current[offset])
+                    oldProperties.Add(new Change(index, current_unmodified[offset], Color.Red));
+                
+            }
+            RefreshHexEditor();
+        }
+
         public void SetOffset(int offset)
         {
             this.offset = offset & 0xFFFFF0;
             this.selectionStart = (offset & 15) * 3;
             this.ROMData.SelectionStart = (offset & 15) * 3;
+        }
+
+        public void FindRecentChangesRight()
+        {
+            for (int index = selection + 1; index < 0x400000; index++)
+            {
+                if (original[index] == current[index])
+                    continue;
+
+                SetOffset(index);
+                RefreshHexEditor();
+                ROMData.Focus();
+                break;
+            }
+        }
+        public void FindRecentChangesLeft()
+        {
+            for (int index = selection - 1; index > 0x00; --index)
+            {
+                if (original[index] == current[index])
+                    continue;
+                SetOffset(index);
+                RefreshHexEditor();
+                ROMData.Focus();
+                break;
+            }
         }
         public void RefreshHexEditor()
         {
@@ -367,11 +416,13 @@ namespace LAZYSHELL
         {
             if (MessageBox.Show("Saving the ROM in the hex editor resets all elements in all other editors. " +
                 "You will lose any changes made there since the last save.\n\n" +
-                "Continue with process?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                "Continue with process?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             current.CopyTo(current_unmodified, 0);
             Model.ClearModel();
             ClearMemory();
+            if (compareButton.Checked)
+                CompareChangesFromOriginal(true);
             RefreshHexEditor();
         }
         private void copy_Click(object sender, EventArgs e)
@@ -506,7 +557,7 @@ namespace LAZYSHELL
                     offset = input & 0xFFFFF0;
                     if (line_count * 16 + offset >= 0x400000)
                         offset = 0x400000 - (line_count * 16);
-                    selectionStart = Math.Max(0, (input - offset - 1) * 3);
+                    selectionStart = Math.Max(0, (input - offset) * 3);
                 }
                 else if (input < 0x000000)
                 {
@@ -530,6 +581,12 @@ namespace LAZYSHELL
         }
         private void searchValues_KeyDown(object sender, KeyEventArgs e)
         {
+            if (!searchBoxEnter)
+            {
+                searchBox.CharacterCasing = CharacterCasing.Upper;
+                searchBox.ForeColor = SystemColors.WindowText;
+            }
+            searchBoxEnter = true;
             if (searchBox.Text == "" ||
                 searchBox.Text.Length % 2 != 0 ||
                 e.KeyData != Keys.Enter)
@@ -545,7 +602,7 @@ namespace LAZYSHELL
                 }
                 int offset, foundAt;
                 offset = this.offset;
-                foundAt = Bits.Find(rom, values, ROMData.SelectionStart / 3 + ROMData.SelectionLength + offset);
+                foundAt = Bits.Find(rom, values, ROMData.SelectionStart / 3 + ROMData.SelectionLength + offset, isSearchLeftToRight);
                 if (foundAt != -1)
                 {
                     this.offset = foundAt & 0xFFFFF0;
@@ -554,21 +611,43 @@ namespace LAZYSHELL
                     RefreshHexEditor();
                     searchBox.Focus();
                 }
-                else if (MessageBox.Show("Search string was not found.\n\n" + "Restart from beginning?", "LAZY SHELL",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                else if (isSearchLeftToRight)
                 {
-                    offset = this.offset;
-                    foundAt = Bits.Find(rom, values, 0);
-                    if (foundAt != -1)
+                    if (MessageBox.Show("Search string was not found.\n\n" + "Restart from beginning (0x000000)?" , "LAZYSHELL++",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        this.offset = foundAt & 0xFFFFF0;
-                        selectionStart = (foundAt & 15) * 3;
-                        selectionLength = values.Length * 3;
-                        RefreshHexEditor();
-                        searchBox.Focus();
+                        offset = this.offset;
+                        foundAt = Bits.Find(rom, values, 0);
+                        if (foundAt != -1)
+                        {
+                            this.offset = foundAt & 0xFFFFF0;
+                            selectionStart = (foundAt & 15) * 3;
+                            selectionLength = values.Length * 3;
+                            RefreshHexEditor();
+                            searchBox.Focus();
+                        }
+                        else
+                            MessageBox.Show("Search string was not found.");
                     }
-                    else
-                        MessageBox.Show("Search string was not found.");
+                }
+                else
+                {
+                    if (MessageBox.Show("Search string was not found.\n\n" + "Restart from end (0x" + (rom.Length - 1).ToString("X6") + ")?", "LAZYSHELL++",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        offset = this.offset;
+                        foundAt = Bits.Find(rom, values, rom.Length, false);
+                        if (foundAt != -1)
+                        {
+                            this.offset = foundAt & 0xFFFFF0;
+                            selectionStart = (foundAt & 15) * 3;
+                            selectionLength = values.Length * 3;
+                            RefreshHexEditor();
+                            searchBox.Focus();
+                        }
+                        else
+                            MessageBox.Show("Search string was not found.");
+                    }
                 }
             }
             catch
@@ -596,6 +675,51 @@ namespace LAZYSHELL
                 Color = color;
             }
             public Color Color;
+        }
+
+        private void compareButton_Click(object sender, EventArgs e)
+        {
+            CompareChangesFromOriginal(compareButton.Checked);
+        }
+        private void findRecentChangeLeft_Click(object sender, EventArgs e)
+        {
+            FindRecentChangesLeft();
+        }
+
+        private void findRecentChangeRight_Click(object sender, EventArgs e)
+        {
+            FindRecentChangesRight();
+        }
+
+        private void gotoAddressButton_Click(object sender, EventArgs e)
+        {
+            isSearchLeftToRight = !isSearchLeftToRight;
+            gotoAddressButton.Image = isSearchLeftToRight ? Properties.Resources.jumpToRight : Properties.Resources.jumpToLeft;
+            this.gotoAddressButton.ToolTipText = isSearchLeftToRight ? "Search address (forwards)" : "Search address (backwards)";
+            
+            if (!searchBoxEnter) searchBox.Text = isSearchLeftToRight ? "Find (Right)" : "Find (Left)";
+        }
+
+        private void searchBox_Leave(object sender, EventArgs e)
+        {
+            if (searchBox.Text == "")
+            {
+                searchBox.CharacterCasing = CharacterCasing.Normal;
+                searchBox.Text = isSearchLeftToRight ? "Find (Right)" : "Find (Left)";
+                searchBox.ForeColor = SystemColors.ControlDark;
+                searchBoxEnter = false;
+            }
+        }
+
+        private void searchBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!searchBoxEnter)
+            {
+                searchBox.Text = "";
+                searchBox.CharacterCasing = CharacterCasing.Upper;
+                searchBox.ForeColor = SystemColors.WindowText;
+            }
+            searchBoxEnter = true;
         }
     }
 }

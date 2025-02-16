@@ -23,7 +23,7 @@ namespace LAZYSHELL
             {
                 switch (animationCategory.SelectedIndex)
                 {
-                    case 0: return Model.BehaviorAnimations;
+                    case 0: return Model.BehaviorAnimMonsters;
                     case 1: return Model.SpellAnimMonsters;
                     case 2: return Model.AttackAnimations;
                     case 3: return Model.EntranceAnimations;
@@ -35,7 +35,8 @@ namespace LAZYSHELL
                     case 9: return Model.BattleEvents;
                     case 10: return Model.BonusMessageAnimations;
                     case 11: return Model.ToadTutorialScript;
-                    case 12: return Model.CharacterScripts;
+                    case 12: return Model.WeaponWrapperAnimations;
+                    case 13: return Model.BehaviorAnimAllies;
                 }
                 return null;
             }
@@ -43,7 +44,7 @@ namespace LAZYSHELL
             {
                 switch (animationCategory.SelectedIndex)
                 {
-                    case 0: Model.BehaviorAnimations = value; break;
+                    case 0: Model.BehaviorAnimMonsters = value; break;
                     case 1: Model.SpellAnimMonsters = value; break;
                     case 2: Model.AttackAnimations = value; break;
                     case 3: Model.EntranceAnimations = value; break;
@@ -55,7 +56,8 @@ namespace LAZYSHELL
                     case 9: Model.BattleEvents = value; break;
                     case 10: Model.BonusMessageAnimations = value; break;
                     case 11: Model.ToadTutorialScript = value; break;
-                    case 12: Model.CharacterScripts = value; break;
+                    case 12: Model.WeaponWrapperAnimations = value; break;
+                    case 13: Model.BehaviorAnimAllies = value; break;
                 }
             }
         }
@@ -89,7 +91,8 @@ namespace LAZYSHELL
             "Battle Events",
             "Flower Bonus Messages",
             "Toad's Tutorial",
-            "Character Weapon Scripts"});
+            "Ally Weapon Wrapper",
+            "Ally Behaviors"});
             Do.AddShortcut(toolStrip4, Keys.Control | Keys.S, new EventHandler(save_Click));
             Do.AddShortcut(toolStrip4, Keys.F1, helpTips);
             Do.AddShortcut(toolStrip4, Keys.F2, baseConvertor);
@@ -107,7 +110,7 @@ namespace LAZYSHELL
             InitializeEditor();
             this.History = new History(this, animationName, animationNum);
             //
-            commands.Items.AddRange(Lists.Numerize(Lists.AnimationCommands));
+            commands.Items.AddRange(Lists.NumerizeHex(Lists.AnimationCommands));
         }
         #region Methods
         private void InitializeEditor()
@@ -126,11 +129,13 @@ namespace LAZYSHELL
             if (settings.RememberLastIndex)
                 animationCategory.SelectedIndex = settings.LastAnimationCat;
             else
-                animationCategory.SelectedIndex = 1;
+                animationCategory.SelectedIndex = 12;
             RefreshEditor();
             if (settings.RememberLastIndex)
                 animationNum.Value = Math.Min((int)animationNum.Maximum, settings.LastAnimation);
             //
+            UpdateAnimationCategory(animationCategory.SelectedIndex);
+
             this.Updating = false;
         }
         private void RefreshEditor()
@@ -145,31 +150,30 @@ namespace LAZYSHELL
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
-                        this.animationName.Items.Add("Script #" + i.ToString());
-                    animationName.DropDownWidth = animationName.Width;
+                    {
+                        if (Lists.MonsterBehaviors[i] == "")
+                            this.animationName.Items.Add("SCRIPT #" + i);
+                        else 
+                            this.animationName.Items.Add(Lists.MonsterBehaviors[i]);
+                    }
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 1:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
                         this.animationName.Items.Add(Model.SpellNames.GetUnsortedName(i + 0x40));
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 2:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     this.animationName.Items.AddRange(Model.AttackNames.Names);
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 3:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
@@ -190,70 +194,56 @@ namespace LAZYSHELL
                         "spread from front",
                         "spread from middle",
                         "ready to attack"});
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 4:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
                         this.animationName.Items.Add(Model.ItemNames.GetUnsortedName(i + 0x60));
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 5:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
                         this.animationName.Items.Add(Model.SpellNames.GetUnsortedName(i));
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 6:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
                         this.animationName.Items.Add(Model.ItemNames.GetUnsortedName(i));
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 7:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
                         this.animationName.Items.Add(Model.ItemNames.GetUnsortedName(i));
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 8:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
                         this.animationName.Items.Add(Model.ItemNames.GetUnsortedName(i));
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 9:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     this.animationName.Items.AddRange(Lists.Numerize(Lists.BattleEventNames));
-                    animationName.DropDownWidth = 400;
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 10:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
@@ -264,29 +254,42 @@ namespace LAZYSHELL
                         "HPMAX!",
                         "ONCE AGAIN!",
                         "LUCKY!"});
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 11:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     this.animationName.Items.AddRange(new object[] {
                         "Toad's Tutorial"});
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
-                    animationNum.Maximum = animationScripts.Length - 1;
-                    break;
+                    goto default;
                 case 12:
                     wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
                     animationName.Items.Clear();
                     for (int i = 0; i < animationScripts.Length; i++)
                         this.animationName.Items.Add(Model.CharacterNames.GetUnsortedName(i));
-                    animationName.DropDownWidth = animationName.Width;
                     animationName.DrawMode = DrawMode.OwnerDrawFixed;
                     animationName.BackColor = SystemColors.ControlDarkDark;
+                    goto default;
+                case 13:
+                    wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
+                    animationName.Items.Clear();
+                    this.animationName.Items.AddRange(new object[] {
+                        "Ally takes damage",
+                        "Ally tries to run",
+                        "?",
+                    });
+                    animationName.DrawMode = DrawMode.Normal;
+                    animationName.BackColor = SystemColors.Window;
+                    goto default;
+                default:
+                    if (animationCategory.SelectedIndex == 9)
+                        animationName.Width = 400;
+                    else
+                        animationName.Width = 160;
+                    animationName.DropDownWidth = animationName.Width;
                     animationNum.Maximum = animationScripts.Length - 1;
                     break;
             }
@@ -294,6 +297,7 @@ namespace LAZYSHELL
             if (this.commandTree.Nodes.Count > 0)
                 this.commandTree.SelectedNode = this.commandTree.Nodes[0];
         }
+
         private void RedrawTree()
         {
             commandTree.BeginUpdate();
@@ -386,13 +390,17 @@ namespace LAZYSHELL
                     aniBits.Items.AddRange(new object[]{
                         "store to VRAM",
                         "looping on",
-                        "store palette"});
+                        "store palette",
+                        "behind all sprites",
+                        "overlap all sprites"});
                     aniBits.Enabled = true;
                     aniNumA1.Value = aniNameA1.SelectedIndex = Bits.GetShort(asc.CommandData, 3) & 0x3FF;
                     aniNumB1.Value = asc.Param5 & 15;
                     aniBits.SetItemChecked(0, (asc.Param1 & 0x01) == 0x01);
                     aniBits.SetItemChecked(1, (asc.Param2 & 0x08) == 0x08);
                     aniBits.SetItemChecked(2, (asc.Param2 & 0x20) == 0x20);
+                    aniBits.SetItemChecked(3, (asc.Param1 & 0x40) == 0x40);
+                    aniBits.SetItemChecked(4, (asc.Param1 & 0x80) == 0x80);
                     break;
                 case 0x04:
                     aniLabelA1.Text = "Resume after";
@@ -401,7 +409,7 @@ namespace LAZYSHELL
                         "{00}","{01}","{02}","{03}","{04}","{05}",
                         "sprite shift complete",
                         "{07}",
-                        "Wait until button press",
+                        "button press",
                         "{09}","{0A}","{0B}","{0C}","{0D}","{0E}","{0F}",
                         "# frames elapsed"});
                     aniNameA1.Enabled = true;
@@ -624,7 +632,7 @@ namespace LAZYSHELL
                     break;
                 case 0x63:
                     aniLabelA1.Text = "Type";
-                    aniNameA1.Items.AddRange(new object[] { "attack name", "spell name", "item name" });
+                    aniNameA1.Items.AddRange(new object[] { "attack name", "spell name", "item name", "???", "???", "???"});
                     aniNameA1.Enabled = true;
                     aniNameA1.SelectedIndex = asc.Param1;
                     break;
@@ -796,6 +804,7 @@ namespace LAZYSHELL
                     aniNameA1.Enabled = true; aniNameA1.DropDownWidth = 250;
                     aniNameA1.SelectedIndex = asc.Param1;
                     aniNumA1.Maximum = 0xD2; aniNumA1.Enabled = true;
+                    aniNumA1.Value = asc.Param1;
                     break;
                 case 0xB0:
                     aniLabelA1.Text = "Music";
@@ -803,13 +812,16 @@ namespace LAZYSHELL
                     aniNameA1.Enabled = true;
                     aniNameA1.SelectedIndex = asc.Param1;
                     aniNumA1.Maximum = 0x49; aniNumA1.Enabled = true;
+                    aniNumA1.Value = asc.Param1;
                     break;
                 case 0xB1:
                     aniLabelA1.Text = "Music";
                     aniNameA1.Items.AddRange(Lists.Numerize(Lists.MusicNames));
                     aniNameA1.Enabled = true; aniNameA1.DropDownWidth = 250;
+                    aniNumA1.Maximum = 0x49; aniNumA1.Enabled = true;
                     aniNumB1.Enabled = true; aniNumB1.Maximum = 0xFFFF;
                     aniNameA1.SelectedIndex = asc.Param1;
+                    aniNumA1.Value = asc.Param1;
                     aniNumB1.Value = Bits.GetShort(asc.CommandData, 2);
                     break;
                 case 0xB6:
@@ -874,11 +886,11 @@ namespace LAZYSHELL
                     aniNumA2.Maximum = 255; aniNumA2.Enabled = true;
                     aniNumA2.Value = asc.Param1;
                     //
-                    aniLabelB1.Text = "Start JustOK";
+                    aniLabelB1.Text = "Start Just-OK";
                     aniNumB1.Maximum = 255; aniNumB1.Enabled = true;
                     aniNumB1.Value = asc.Param3;
                     //
-                    aniLabelB2.Text = "End JustOK/Start Perfect";
+                    aniLabelB2.Text = "End Just-OK/Start Perfect";
                     aniNumB2.Maximum = 255; aniNumB2.Enabled = true;
                     aniNumB2.Value = asc.Param4;
                     //
@@ -1284,18 +1296,23 @@ namespace LAZYSHELL
                     asc.Param1 = (byte)aniNumB1.Value;
                     break;
                 case 0xCE:
-                    asc.Param1 = (byte)aniNumA1.Value;
-                    asc.Param2 = (byte)aniNumA2.Value;
+                    asc.Param1 = (byte)aniNumA2.Value;
+                    asc.Param2 = (byte)aniNumA1.Value;
                     asc.Param3 = (byte)aniNumB1.Value;
                     asc.Param4 = (byte)aniNumB2.Value;
                     asc.Param5 = (byte)aniNumC1.Value;
                     Bits.SetShort(asc.CommandData, 6, (ushort)aniNumC2.Value);
                     break;
                 case 0xCF:
-                    asc.Param1 = (byte)aniNumA1.Value;
-                    asc.Param2 = (byte)aniNumA2.Value;
+                    asc.Param1 = (byte)aniNumA2.Value;
+                    asc.Param2 = (byte)aniNumA1.Value;
                     asc.Param3 = (byte)aniNumB1.Value;
                     Bits.SetShort(asc.CommandData, 4, (ushort)aniNumB2.Value);
+                    break;
+                case 0xD0:
+                case 0xD1:
+                    asc.Param1 = (byte)aniNumA1.Value;
+                    Bits.SetShort(asc.CommandData, 2, (ushort)aniNumB1.Value);
                     break;
                 case 0xD5:
                     asc.Param1 = (byte)(aniNumB1.Value);
@@ -1404,7 +1421,7 @@ namespace LAZYSHELL
         {
             MessageBox.Show("Not enough space to replace the selected command(s) with the new command.\n\n" +
                 "Try selecting a smaller command from the list or selecting an earlier command within the routine in the tree.",
-                "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             commands.SelectedIndex = -1;
         }
         //
@@ -1478,6 +1495,7 @@ namespace LAZYSHELL
                 case 10: if (e.Index < 0 || e.Index > 5) return; break;
                 case 11: if (e.Index < 0 || e.Index > 0) return; break;
                 case 12: if (e.Index < 0 || e.Index > 5) return; break;
+                case 13: if (e.Index < 0 || e.Index > 3) return; break;
             }
             int[] temp;
             if (animationCategory.SelectedIndex == 1 ||
@@ -1516,11 +1534,11 @@ namespace LAZYSHELL
                         name = Model.ItemNames.GetUnsortedName(e.Index).ToCharArray();
                         temp = menuTextPreview.GetPreview(Model.FontMenu, Model.FontPaletteBattle.Palette, name, true);
                         break;
-                    case 8: // weapons timed hit sounds
+                    case 8: // weapons timed-hit sounds
                         name = Model.ItemNames.GetUnsortedName(e.Index).ToCharArray();
                         temp = menuTextPreview.GetPreview(Model.FontMenu, Model.FontPaletteBattle.Palette, name, true);
                         break;
-                    case 12: // weapons timed hit sounds
+                    case 12: // weapons attack wrapper
                         name = Model.CharacterNames.GetUnsortedName(e.Index).ToCharArray();
                         temp = menuTextPreview.GetPreview(Model.FontMenu, Model.FontPaletteBattle.Palette, name, true);
                         break;
@@ -1682,7 +1700,7 @@ namespace LAZYSHELL
                 // check multiple instances of command in current script, and change each accordingly
                 animationScripts[(int)animationNum.Value].RefreshScript();
                 MessageBox.Show("Could not change command values -- the modified command cannot be parsed. Reverting back to original command.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ControlDisassemble(asc);
             }
             RedrawTree();
@@ -1701,6 +1719,8 @@ namespace LAZYSHELL
                 ap = new Previewer(animationCategory.SelectedIndex, (int)animationNum.Value, true);
             else
                 ap.Reload(animationCategory.SelectedIndex, (int)animationNum.Value, true);
+            if (ap.IsDisposed)
+                return;
             ap.Show();
             ap.BringToFront();
         }
@@ -1749,7 +1769,7 @@ namespace LAZYSHELL
                 int lastNeeded = asc.AvailableSpace(ascCopy.Length, true); // the last command index needed for space
                 if (MessageBox.Show("CAUTION: you are about to replace the selected command " +
                     "in the tree and the following " + (lastNeeded - asc.Index) + " commands.\n\n" +
-                    "Continue?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    "Continue?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
                 asc = ascCopy;
             }
@@ -1779,11 +1799,12 @@ namespace LAZYSHELL
         {
             if (this.Updating)
                 return;
+            AnimationCommand asc = ascCopy != null ? ascCopy : this.asc;
             switch (asc.Opcode)
             {
                 case 0x00:
                 case 0x03:
-                    aniNumA1.Value = aniNameA1.SelectedIndex;
+                    aniNumA1.Value = (int)aniNameA1.SelectedIndex;
                     break;
                 case 0x20:
                 case 0x21:
@@ -1855,9 +1876,13 @@ namespace LAZYSHELL
                             break;
                     }
                     break;
+                case 0xAB:
+                case 0xAE:
+                    aniNumA1.Value = (int)aniNameA1.SelectedIndex;
+                    break;
                 case 0xB0:
                 case 0xB1:
-                    aniNumA1.Value = aniNameA1.SelectedIndex;
+                    aniNumA1.Value = (int)aniNameA1.SelectedIndex;
                     break;
                 case 0xBC:
                 case 0xBD:
@@ -1885,7 +1910,7 @@ namespace LAZYSHELL
             {
                 case 0x00:
                 case 0x03:
-                    aniNameA1.SelectedIndex = (int)aniNumA1.Value;
+                    aniNameA1.SelectedIndex = (byte)aniNumA1.Value;
                     break;
                 case 0xAB:
                 case 0xAE:
@@ -1904,12 +1929,13 @@ namespace LAZYSHELL
                     break;
             }
         }
+
         //
         private void AnimationScripts_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!this.Modified)
                 goto Close;
-            DialogResult result = MessageBox.Show("Animations have not been saved.\n\nWould you like to save changes?", "LAZY SHELL", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("Animations have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 Assemble();
@@ -1919,13 +1945,15 @@ namespace LAZYSHELL
                 Buffer.BlockCopy(animationBank, 0, Model.ROM, 0x350000, 0x10000);
                 Buffer.BlockCopy(battleBank, 0, Model.ROM, 0x3A6000, 0xA000);
                 Buffer.BlockCopy(bonusmessageBank, 0, Model.ROM, 0x02F000, 0x1000);
+                Model.ToadTutorialScript = null;
                 Model.SpellAnimMonsters = null;
                 Model.SpellAnimAllies = null;
                 Model.AttackAnimations = null;
                 Model.ItemAnimations = null;
                 Model.BattleEvents = null;
                 Model.BonusMessageAnimations = null;
-                Model.BehaviorAnimations = null;
+                Model.BehaviorAnimAllies = null;
+                Model.BehaviorAnimMonsters = null;
                 Model.EntranceAnimations = null;
                 Model.WeaponAnimations = null;
                 Model.WeaponSoundScripts = null;
@@ -1951,10 +1979,164 @@ namespace LAZYSHELL
 
         }
 
-        private void animationCategory_Click(object sender, EventArgs e)
+
+        private void clearActionScriptsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void reset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearEventScriptsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateAnimationCategory(int index)
+        {
+            animationName.Visible = true;
+            animationNum.Visible = true;
+
+            Image image = null;
+            String text = "";
+
+            switch (index)
+            {
+                case 0:
+                    text = "Monster Behaviors";
+                    image = animCategoryMonstersBehaviors.Image;
+                    break;
+                case 1:
+                    text = "Monster Spells";
+                    image = animCategoryMonstersSpells.Image;
+                    break;
+                case 2:
+                    text = "Monster Attacks";
+                    image = animCategoryMonstersAttacks.Image;
+                    break;
+                case 3:
+                    text = "Monster Entrances";
+                    image = animCategoryMonstersEntrances.Image;
+                    break;
+                case 4:
+                    text = "Items";
+                    image = animCategoryItems.Image;
+                    break;
+                case 5:
+                    text = "Ally Spells";
+                    image = animCategoryAlliesSpells.Image;
+                    break;
+                case 6:
+                    text = "Weapons Animations";
+                    image = animCategoryAlliesWeaponsAnimations.Image;
+                    break;
+                case 7:
+                    text = "Weapon Miss Sounds";
+                    image = animCategoryAlliesWeaponsMissSounds.Image;
+                    break;
+                case 8:
+                    text = "Weapon Timed-Hit Sounds";
+                    image = animCategoryAlliesWeaponsTimedHitSounds.Image;
+                    break;
+                case 9:
+                    text = "Battle Events";
+                    image = animCategoryBattleEvents.Image;
+                    break;
+                case 10:
+                    text = "Flower Bonus Messages";
+                    image = animCategoryBonusFlowerMessages.Image;
+                    break;
+                case 11:
+                    text = "Toad's Tutorial";
+                    image = animCategoryToadsTutorial.Image;
+                    break;
+                case 12:
+                    text = "Ally Weapon Wrapper";
+                    image = animCategoryAlliesWeaponsWrapper.Image;
+                    break;
+                case 13:
+                    text = "Ally Behaviors";
+                    image = animCategoryAlliesBehaviors.Image;
+                    break;
+            }
+            animationCategory.SelectedIndex = index;
+            animationsCategoryDropDownMenu.Image = image;
+            animationsCategoryDropDownMenu.Text = text;
+        }
+
+        private void animCategoryAlliesWeaponsWrapper_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(12);
+        }
+
+        private void animCategoryAlliesWeaponsTimedHitSounds_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(8);
+        }
+
+        private void animCategoryAlliesWeaponsMissSounds_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(7);
+        }
+
+        private void animCategoryAlliesWeaponsAnimations_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(6);
+        }
+
+        private void animCategoryAlliesSpells_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(5);
+        }
+
+        private void animCategoryItems_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(4);
+        }
+
+        private void animCategoryMonstersEntrances_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(3);
+        }
+
+        private void animCategoryMonstersBehaviors_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(0);
+        }
+
+        private void animCategoryMonstersAttacks_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(2);
+        }
+
+        private void animCategoryMonstersSpells_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(1);
+        }
+
+        private void animCategoryAlliesBehaviors_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(13);
+        }
+
+        private void animCategoryToadsTutorial_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(11);
+        }
+
+        private void animCategoryBattleEvents_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(9);
+        }
+
+        private void animCategoryBonusFlowerMessages_Click(object sender, EventArgs e)
+        {
+            UpdateAnimationCategory(10);
+        }
+
 
         private void export_Click(object sender, EventArgs e)
         {
@@ -2050,7 +2232,7 @@ namespace LAZYSHELL
             evtscr.WriteLine("\n*********");
             evtscr.WriteLine("BEHAVIORS");
             evtscr.WriteLine("*********\n");
-            foreach (AnimationScript ans in Model.BehaviorAnimations)
+            foreach (AnimationScript ans in Model.BehaviorAnimMonsters)
             {
                 evtscr.WriteLine("\nBEHAVIOR {" + i.ToString("d3") + "} " +
                     "------------------------------------------------------------>\n");

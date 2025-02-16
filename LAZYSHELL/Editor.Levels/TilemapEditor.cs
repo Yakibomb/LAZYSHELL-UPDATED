@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using LAZYSHELL.Undo;
+using static System.Windows.Forms.AxHost;
 
 namespace LAZYSHELL
 {
@@ -178,7 +179,7 @@ namespace LAZYSHELL
             this.pictureBoxLevel.ZoomBoxPosition = new Point(64, 0);
             SetLevelImage();
             // toggle
-            toggleBG.Checked = state.BG;
+            toggleBG.Checked = !state.BG;
             toggleCartGrid.Checked = state.TileGrid;
             toggleEvents.Checked = state.Events;
             toggleExits.Checked = state.Exits;
@@ -193,6 +194,7 @@ namespace LAZYSHELL
             toggleSolid.Checked = state.SolidityLayer;
             toggleSolidMods.Checked = state.SolidMods;
             toggleTileMods.Checked = state.TileMods;
+            toggleSolidityFlatMode.Checked = state.SolidityLayerFlatMode;
         }
         public void Reload(Form parent, Level level, Tilemap tilemap, LevelSolidMap solidmap, Tileset tileset, Overlay overlay,
             PaletteEditor paletteEditor, TilesetEditor tilesetEditor, LevelsSolidTiles levelsSolidTiles, LevelsTemplate levelsTemplate)
@@ -258,6 +260,10 @@ namespace LAZYSHELL
             toggleSolid.Visible = false;
             toggleSolidMods.Visible = false;
             toggleTileMods.Visible = false;
+            toggleSolidityFlatMode.Visible = false;
+            buttonToggleBoundaries.Visible = false;
+            opacityToolStripButton.Visible = false;
+            toolStripSeparator12.Visible = false;
             //
             tags.Visible = false;
             editAllLayers.Visible = false;
@@ -274,6 +280,7 @@ namespace LAZYSHELL
             toggleMushrooms.Checked = state.Mushrooms;
             toggleRails.Checked = state.Rails;
             toggleP1.Checked = state.Priority1;
+        //    toggleSolidityFlatMode.Checked = state.SolidityLayerFlatMode;
         }
         public void Reload(Form parent, Tilemap tilemap, Tileset tileset, Overlay overlay, PaletteEditor paletteEditor, TilesetEditor levelsTileset)
         {
@@ -437,7 +444,7 @@ namespace LAZYSHELL
         {
             if (template == null)
             {
-                MessageBox.Show("Must select a template to paint to the level.", "LAZY SHELL");
+                MessageBox.Show("Must select a template to paint to the level.", "LAZYSHELL++");
                 return;
             }
             Point tL = new Point(x / 16 * 16, y / 16 * 16);
@@ -1142,11 +1149,11 @@ namespace LAZYSHELL
                new float[] {1, 0, 0, 0, 0},
                new float[] {0, 1, 0, 0, 0},
                new float[] {0, 0, 1, 0, 0},
-               new float[] {0, 0, 0, (float)overlayOpacity.Value / 100, 0}, 
+               new float[] {0, 0, 0, ((float)overlayOpacity.Value - 1 ) / 100, 0}, 
                new float[] {0, 0, 0, 0, 1}};
             ColorMatrix cm = new ColorMatrix(matrixItems);
             ImageAttributes ia = new ImageAttributes();
-            if (overlayOpacity.Value < 100)
+        //    if (overlayOpacity.Value < 100)
                 ia.SetColorMatrix(cm, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
             Rectangle rdst = new Rectangle(0, 0, zoom * width, zoom * height);
             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1190,14 +1197,20 @@ namespace LAZYSHELL
             }
             if (state.SolidityLayer)
             {
-                if (overlayOpacity.Value < 100)
-                    e.Graphics.DrawImage(solidityMap.Image, rdst, 0, 0, width, height, GraphicsUnit.Pixel, ia);
+                //breaks level editting; do not refresh directly
+                //solidityMap.Image = Do.PixelsToImage(solidity.GetTilemapPixels(solidityMap, false, state.SolidityLayerFlatMode), 1024, 1024);
+                Bitmap solidityMapImage = solidityMap.Image;
+                if (state.SolidityLayerFlatMode)
+                    solidityMapImage = Do.PixelsToImage(solidity.GetTilemapPixels(solidityMap, false, state.SolidityLayerFlatMode), 1024, 1024);
+
+                if (overlayOpacity.Value < 99)
+                    e.Graphics.DrawImage(solidityMapImage, rdst, 0, 0, width, height, GraphicsUnit.Pixel, ia);
                 else
-                    e.Graphics.DrawImage(solidityMap.Image, rdst, 0, 0, width, height, GraphicsUnit.Pixel);
+                    e.Graphics.DrawImage(solidityMapImage, rdst, 0, 0, width, height, GraphicsUnit.Pixel);
+
                 if (state.Priority1)
                 {
-                    if (p1SolidityImage == null)
-                        p1SolidityImage = Do.PixelsToImage(solidity.GetPriority1Pixels(solidityMap), 1024, 1024);
+                    p1SolidityImage = Do.PixelsToImage(solidity.GetTilemapPixels(solidityMap, true, state.SolidityLayerFlatMode), 1024, 1024);
                     e.Graphics.DrawImage(p1SolidityImage, rdst, 0, 0, width, height, GraphicsUnit.Pixel, ia);
                 }
                 if (selsolidt != null)
@@ -2053,10 +2066,6 @@ namespace LAZYSHELL
                 state.NPCs || state.Exits || state.Events || state.Overlaps)
                 pictureBoxLevel.Invalidate();
         }
-        private void pictureBoxLevel_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            //toolStripMenuItem5.PerformClick();
-        }
         private void pictureBoxLevel_MouseEnter(object sender, EventArgs e)
         {
             mouseEnter = true;
@@ -2087,6 +2096,7 @@ namespace LAZYSHELL
                 case Keys.F: buttonEditFill.PerformClick(); break;
                 case Keys.S: buttonEditSelect.PerformClick(); break;
                 case Keys.T: buttonEditTemplate.PerformClick(); break;
+                case Keys.R: toggleSolidityFlatMode.PerformClick(); break;
                 case Keys.Control | Keys.V: buttonEditPaste.PerformClick(); break;
                 case Keys.Control | Keys.C: buttonEditCopy.PerformClick(); break;
                 case Keys.Delete: buttonEditDelete.PerformClick(); break;
@@ -2125,7 +2135,7 @@ namespace LAZYSHELL
         }
         private void buttonToggleBG_Click(object sender, EventArgs e)
         {
-            state.BG = toggleBG.Checked;
+            state.BG = !toggleBG.Checked;
             tilemap.RedrawTilemaps();
             tileMods.RedrawTilemaps();
             SetLevelImage();
@@ -2167,21 +2177,23 @@ namespace LAZYSHELL
             state.Priority1 = toggleP1.Checked;
             pictureBoxLevel.Invalidate();
         }
-        private void buttonTogglePhys_Click(object sender, EventArgs e)
-        {
-            Defloat();
-            state.SolidityLayer = toggleSolid.Checked;
-            buttonDragSolidity.Enabled = toggleSolid.Checked;
-            if (!buttonDragSolidity.Enabled)
-                buttonDragSolidity.Checked = false;
-            pictureBoxLevel.Invalidate();
-            ToggleTilesets();
-        }
         private void buttonToggleTileMods_Click(object sender, EventArgs e)
         {
             Defloat();
             state.TileMods = toggleTileMods.Checked;
             pictureBoxLevel.Invalidate();
+        }
+        private void buttonToggleSolidity_Click(object sender, EventArgs e)
+        {
+            Defloat();
+            state.SolidityLayer = toggleSolid.Checked;
+
+            buttonDragSolidity.Enabled = toggleSolid.Checked;
+            if (!buttonDragSolidity.Enabled)
+                buttonDragSolidity.Checked = false;
+
+            pictureBoxLevel.Invalidate();
+            ToggleTilesets();
         }
         private void buttonToggleSolidMods_Click(object sender, EventArgs e)
         {
@@ -2190,6 +2202,27 @@ namespace LAZYSHELL
             pictureBoxLevel.Invalidate();
             ToggleTilesets();
         }
+
+        // Will319 suggested this feature
+        // It's a toggleable "Flat Mode" where you can more easily distinguish tiles across the field
+        private void buttonToggleSolidityFlatMode_Click(object sender, EventArgs e)
+        {
+            Defloat();
+            state.SolidityLayerFlatMode = toggleSolidityFlatMode.Checked;
+            if (!state.SolidityLayer && state.SolidityLayerFlatMode)
+            {
+                state.SolidityLayer = true;
+                toggleSolid.Checked = true;
+                buttonDragSolidity.Enabled = true;
+            }
+
+            pictureBoxLevel.Invalidate();
+            ToggleTilesets();
+        }
+
+        //
+        //
+        //
         private void buttonToggleNPCs_Click(object sender, EventArgs e)
         {
             Defloat();
@@ -2506,13 +2539,13 @@ namespace LAZYSHELL
         {
             if (overlay.Select.Empty)
             {
-                MessageBox.Show("Must make a selection before creating a new tile mod.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Must make a selection before creating a new tile mod.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (overlay.Select.Width / 16 >= 64 ||
                 overlay.Select.Height / 16 >= 64)
             {
-                MessageBox.Show("Selection must be smaller than 64x64 tiles.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Selection must be smaller than 64x64 tiles.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             levels.TabControl.SelectedIndex = 5;
@@ -2520,7 +2553,7 @@ namespace LAZYSHELL
             if (levels.TileModsFieldTree.SelectedNode != null &&
                 levels.TileModsFieldTree.SelectedNode.Nodes.Count == 0 &&
                 levels.TileModsFieldTree.SelectedNode.Parent == null)
-                instance = MessageBox.Show("Create as an alternate tile mod?", "LAZY SHELL",
+                instance = MessageBox.Show("Create as an alternate tile mod?", "LAZYSHELL++",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             if (!instance && !levels.AddNewTileMod())
                 return;
@@ -2584,11 +2617,13 @@ namespace LAZYSHELL
             else
                 Do.Export(tilemapImage, "minecart." + minecart.Index.ToString("d2") + ".png");
         }
+
+
         private void exportToBattlefieldToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (overlay.Select.Empty)
             {
-                MessageBox.Show("Must make a selection before exporting to battlefield.", "LAZY SHELL",
+                MessageBox.Show("Must make a selection before exporting to battlefield.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }

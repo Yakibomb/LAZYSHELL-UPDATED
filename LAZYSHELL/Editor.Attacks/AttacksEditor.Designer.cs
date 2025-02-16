@@ -27,6 +27,7 @@ namespace LAZYSHELL
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttacksEditor));
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveShortcut = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -38,6 +39,7 @@ namespace LAZYSHELL
             this.export = new System.Windows.Forms.ToolStripDropDownButton();
             this.exportSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAttacksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.reset = new System.Windows.Forms.ToolStripDropDownButton();
             this.resetSpellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetAttackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,8 +51,8 @@ namespace LAZYSHELL
             this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.damageCalculator = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.showSpells = new System.Windows.Forms.ToolStripButton();
             this.showAttacks = new System.Windows.Forms.ToolStripButton();
+            this.showSpells = new System.Windows.Forms.ToolStripButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip3.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +82,7 @@ namespace LAZYSHELL
             this.toolStripSeparator4,
             this.import,
             this.export,
+            this.toolStripSeparator3,
             this.reset,
             this.clear,
             this.toolStripSeparator2,
@@ -87,8 +90,8 @@ namespace LAZYSHELL
             this.baseConvertor,
             this.damageCalculator,
             this.toolStripSeparator1,
-            this.showSpells,
-            this.showAttacks});
+            this.showAttacks,
+            this.showSpells});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -120,7 +123,7 @@ namespace LAZYSHELL
             this.import.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.import.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.import.Name = "import";
-            this.import.Size = new System.Drawing.Size(27, 22);
+            this.import.Size = new System.Drawing.Size(29, 22);
             // 
             // importSpellsToolStripMenuItem
             // 
@@ -149,7 +152,7 @@ namespace LAZYSHELL
             this.export.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.export.Name = "export";
-            this.export.Size = new System.Drawing.Size(27, 22);
+            this.export.Size = new System.Drawing.Size(29, 22);
             // 
             // exportSpellsToolStripMenuItem
             // 
@@ -169,6 +172,11 @@ namespace LAZYSHELL
             this.exportAttacksToolStripMenuItem.Text = "Export Attacks...";
             this.exportAttacksToolStripMenuItem.Click += new System.EventHandler(this.exportAttacksToolStripMenuItem_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // reset
             // 
             this.reset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -179,7 +187,7 @@ namespace LAZYSHELL
             this.reset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.reset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(27, 22);
+            this.reset.Size = new System.Drawing.Size(29, 22);
             // 
             // resetSpellToolStripMenuItem
             // 
@@ -208,7 +216,7 @@ namespace LAZYSHELL
             this.clear.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.clear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(28, 22);
+            this.clear.Size = new System.Drawing.Size(29, 22);
             // 
             // clearSpellsToolStripMenuItem
             // 
@@ -235,6 +243,7 @@ namespace LAZYSHELL
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -246,6 +255,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
@@ -268,24 +278,13 @@ namespace LAZYSHELL
             // 
             // toolStripSeparator1
             // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // showSpells
-            // 
-            this.showSpells.Checked = true;
-            this.showSpells.CheckOnClick = true;
-            this.showSpells.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showSpells.Image = global::LAZYSHELL.Properties.Resources.openSpells;
-            this.showSpells.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showSpells.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.showSpells.Name = "showSpells";
-            this.showSpells.Size = new System.Drawing.Size(23, 22);
-            this.showSpells.ToolTipText = "Spells";
-            this.showSpells.Click += new System.EventHandler(this.showSpells_Click);
-            // 
             // showAttacks
             // 
+            this.showAttacks.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.showAttacks.Checked = true;
             this.showAttacks.CheckOnClick = true;
             this.showAttacks.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -296,6 +295,20 @@ namespace LAZYSHELL
             this.showAttacks.Size = new System.Drawing.Size(23, 22);
             this.showAttacks.ToolTipText = "Attacks";
             this.showAttacks.Click += new System.EventHandler(this.showAttacks_Click);
+            // 
+            // showSpells
+            // 
+            this.showSpells.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.showSpells.Checked = true;
+            this.showSpells.CheckOnClick = true;
+            this.showSpells.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showSpells.Image = global::LAZYSHELL.Properties.Resources.mainAttacks;
+            this.showSpells.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showSpells.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.showSpells.Name = "showSpells";
+            this.showSpells.Size = new System.Drawing.Size(23, 22);
+            this.showSpells.ToolTipText = "Spells";
+            this.showSpells.Click += new System.EventHandler(this.showSpells_Click);
             // 
             // toolTip1
             // 
@@ -309,12 +322,12 @@ namespace LAZYSHELL
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip3);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon =  global::LAZYSHELL.Properties.Resources.mainAttacks_2_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "AttacksEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "ATTACKS - Lazy Shell";
+            this.Text = "ATTACKS - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AttacksEditor_FormClosing);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
@@ -348,5 +361,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripDropDownButton reset;
         private System.Windows.Forms.ToolStripMenuItem resetSpellToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetAttackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

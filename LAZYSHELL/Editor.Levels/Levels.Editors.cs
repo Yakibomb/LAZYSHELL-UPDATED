@@ -180,6 +180,8 @@ namespace LAZYSHELL
         private void openPreviewer_Click(object sender, EventArgs e)
         {
             LoadPreviewer();
+            if (previewer.IsDisposed)
+                return;
             previewer.Show();
             previewer.BringToFront();
         }

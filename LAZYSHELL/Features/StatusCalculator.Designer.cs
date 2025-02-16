@@ -1026,7 +1026,7 @@ namespace LAZYSHELL
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "StatusCalculator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "STATUS CALCULATOR - Lazy Shell";
+            this.Text = "STATUS CALCULATOR - LAZYSHELL++";
             ((System.ComponentModel.ISupportInitialize)(this.attackerAttack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.attackerMgDefense)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.attackerMgAttack)).EndInit();

@@ -65,12 +65,12 @@ namespace LAZYSHELL
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.timingPropertiesBox = new System.Windows.Forms.GroupBox();
             this.AlliesSpellTimingPointer = new System.Windows.Forms.NumericUpDown();
             this.AlliesSpellTimingAutoset = new System.Windows.Forms.ComboBox();
             this.AlliesSpellDamagePointer = new System.Windows.Forms.NumericUpDown();
             this.AlliesSpellDamageAutoset = new System.Windows.Forms.ComboBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.damageModifiersBox = new System.Windows.Forms.GroupBox();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpellDesc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spellHitRate)).BeginInit();
@@ -85,10 +85,10 @@ namespace LAZYSHELL
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.timingPropertiesBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AlliesSpellTimingPointer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AlliesSpellDamagePointer)).BeginInit();
-            this.groupBox5.SuspendLayout();
+            this.damageModifiersBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // spellTargetting
@@ -150,6 +150,7 @@ namespace LAZYSHELL
             "Sleep",
             "Poison",
             "Fear",
+            "Berserk",
             "Mushroom",
             "Scarecrow",
             "Invincible"});
@@ -492,6 +493,7 @@ namespace LAZYSHELL
             // 
             // textBoxSpellName
             // 
+            this.textBoxSpellName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textBoxSpellName.MaxLength = 14;
             this.textBoxSpellName.Name = "textBoxSpellName";
             this.textBoxSpellName.Size = new System.Drawing.Size(154, 25);
@@ -591,16 +593,16 @@ namespace LAZYSHELL
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Status Effects";
             // 
-            // groupBox6
+            // timingPropertiesBox
             // 
-            this.groupBox6.Controls.Add(this.AlliesSpellTimingPointer);
-            this.groupBox6.Controls.Add(this.AlliesSpellTimingAutoset);
-            this.groupBox6.Location = new System.Drawing.Point(207, 393);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(195, 45);
-            this.groupBox6.TabIndex = 11;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Timing Properties";
+            this.timingPropertiesBox.Controls.Add(this.AlliesSpellTimingPointer);
+            this.timingPropertiesBox.Controls.Add(this.AlliesSpellTimingAutoset);
+            this.timingPropertiesBox.Location = new System.Drawing.Point(207, 393);
+            this.timingPropertiesBox.Name = "timingPropertiesBox";
+            this.timingPropertiesBox.Size = new System.Drawing.Size(195, 45);
+            this.timingPropertiesBox.TabIndex = 11;
+            this.timingPropertiesBox.TabStop = false;
+            this.timingPropertiesBox.Text = "Timing Properties";
             // 
             // AlliesSpellTimingPointer
             // 
@@ -678,16 +680,16 @@ namespace LAZYSHELL
             this.AlliesSpellDamageAutoset.TabIndex = 9;
             this.AlliesSpellDamageAutoset.SelectedIndexChanged += new System.EventHandler(this.AlliesSpellDamageAutoset_SelectedIndexChanged);
             // 
-            // groupBox5
+            // damageModifiersBox
             // 
-            this.groupBox5.Controls.Add(this.AlliesSpellDamagePointer);
-            this.groupBox5.Controls.Add(this.AlliesSpellDamageAutoset);
-            this.groupBox5.Location = new System.Drawing.Point(207, 444);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(195, 49);
-            this.groupBox5.TabIndex = 8;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Damage Modifiers";
+            this.damageModifiersBox.Controls.Add(this.AlliesSpellDamagePointer);
+            this.damageModifiersBox.Controls.Add(this.AlliesSpellDamageAutoset);
+            this.damageModifiersBox.Location = new System.Drawing.Point(207, 444);
+            this.damageModifiersBox.Name = "damageModifiersBox";
+            this.damageModifiersBox.Size = new System.Drawing.Size(195, 49);
+            this.damageModifiersBox.TabIndex = 8;
+            this.damageModifiersBox.TabStop = false;
+            this.damageModifiersBox.Text = "Damage Modifiers";
             // 
             // Spells
             // 
@@ -695,8 +697,8 @@ namespace LAZYSHELL
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 498);
             this.ControlBox = false;
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.damageModifiersBox);
+            this.Controls.Add(this.timingPropertiesBox);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox8);
@@ -731,10 +733,10 @@ namespace LAZYSHELL
             this.groupBox7.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
+            this.timingPropertiesBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AlliesSpellTimingPointer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AlliesSpellDamagePointer)).EndInit();
-            this.groupBox5.ResumeLayout(false);
+            this.damageModifiersBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -779,11 +781,11 @@ namespace LAZYSHELL
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox timingPropertiesBox;
         private System.Windows.Forms.NumericUpDown AlliesSpellDamagePointer;
         private System.Windows.Forms.ComboBox AlliesSpellDamageAutoset;
         private System.Windows.Forms.NumericUpDown AlliesSpellTimingPointer;
         private System.Windows.Forms.ComboBox AlliesSpellTimingAutoset;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox damageModifiersBox;
     }
 }

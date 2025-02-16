@@ -68,12 +68,13 @@ namespace LAZYSHELL
             // attackName
             // 
             this.attackName.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.attackName.ContextMenuStrip = null;
             this.attackName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.attackName.DropDownHeight = 497;
             this.attackName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.attackName.DropDownWidth = 146;
             this.attackName.ItemHeight = 15;
-            this.attackName.Location = new System.Drawing.Point(7, 1);
+            this.attackName.Location = new System.Drawing.Point(9, 1);
             this.attackName.Name = "attackName";
             this.attackName.SelectedIndex = -1;
             this.attackName.SelectedItem = null;
@@ -91,7 +92,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.attackNum.Location = new System.Drawing.Point(153, 1);
+            this.attackNum.Location = new System.Drawing.Point(155, 1);
             this.attackNum.Maximum = new decimal(new int[] {
             128,
             0,
@@ -103,7 +104,7 @@ namespace LAZYSHELL
             0,
             0});
             this.attackNum.Name = "attackNum";
-            this.attackNum.Size = new System.Drawing.Size(45, 22);
+            this.attackNum.Size = new System.Drawing.Size(41, 22);
             this.attackNum.Text = "0";
             this.attackNum.Value = new decimal(new int[] {
             0,
@@ -149,12 +150,13 @@ namespace LAZYSHELL
             "Sleep",
             "Poison",
             "Fear",
+            "Berserk",
             "Mushroom",
             "Scarecrow",
             "Invincible"});
             this.attackStatusEffect.Location = new System.Drawing.Point(6, 20);
             this.attackStatusEffect.Name = "attackStatusEffect";
-            this.attackStatusEffect.Size = new System.Drawing.Size(184, 116);
+            this.attackStatusEffect.Size = new System.Drawing.Size(184, 132);
             this.attackStatusEffect.TabIndex = 0;
             this.attackStatusEffect.SelectedIndexChanged += new System.EventHandler(this.attackStatusEffect_SelectedIndexChanged);
             // 
@@ -213,6 +215,7 @@ namespace LAZYSHELL
             // 
             // textBoxAttackName
             // 
+            this.textBoxAttackName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.textBoxAttackName.MaxLength = 13;
             this.textBoxAttackName.Name = "textBoxAttackName";
             this.textBoxAttackName.Size = new System.Drawing.Size(144, 25);
@@ -236,7 +239,7 @@ namespace LAZYSHELL
             this.groupBox2.Controls.Add(this.attackStatusEffect);
             this.groupBox2.Location = new System.Drawing.Point(3, 129);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(196, 141);
+            this.groupBox2.Size = new System.Drawing.Size(196, 157);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Effect Inflict";
@@ -244,7 +247,7 @@ namespace LAZYSHELL
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.attackStatusUp);
-            this.groupBox3.Location = new System.Drawing.Point(3, 276);
+            this.groupBox3.Location = new System.Drawing.Point(3, 291);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(196, 94);
             this.groupBox3.TabIndex = 4;
@@ -254,7 +257,7 @@ namespace LAZYSHELL
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.attackAtkType);
-            this.groupBox4.Location = new System.Drawing.Point(3, 376);
+            this.groupBox4.Location = new System.Drawing.Point(3, 389);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(196, 95);
             this.groupBox4.TabIndex = 5;
@@ -265,7 +268,7 @@ namespace LAZYSHELL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(202, 475);
+            this.ClientSize = new System.Drawing.Size(202, 488);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -293,6 +296,7 @@ namespace LAZYSHELL
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip1;

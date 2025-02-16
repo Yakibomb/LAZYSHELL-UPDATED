@@ -29,10 +29,10 @@ namespace LAZYSHELL
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.save = new System.Windows.Forms.ToolStripButton();
+            this.helpTips = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toggleSamples = new System.Windows.Forms.ToolStripButton();
             this.toggleSPCs = new System.Windows.Forms.ToolStripButton();
-            this.helpTips = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,8 +52,8 @@ namespace LAZYSHELL
             this.save,
             this.helpTips,
             this.toolStripSeparator1,
-            this.toggleSamples,
-            this.toggleSPCs});
+            this.toggleSPCs,
+            this.toggleSamples});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -70,13 +70,27 @@ namespace LAZYSHELL
             this.save.ToolTipText = "Save";
             this.save.Click += new System.EventHandler(this.save_Click);
             // 
+            // helpTips
+            // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.helpTips.CheckOnClick = true;
+            this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
+            this.helpTips.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.helpTips.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.helpTips.Name = "helpTips";
+            this.helpTips.Size = new System.Drawing.Size(23, 22);
+            this.helpTips.Text = "Help Tips";
+            // 
             // toolStripSeparator1
             // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toggleSamples
             // 
+            this.toggleSamples.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toggleSamples.Checked = true;
             this.toggleSamples.CheckOnClick = true;
             this.toggleSamples.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -91,6 +105,7 @@ namespace LAZYSHELL
             // 
             // toggleSPCs
             // 
+            this.toggleSPCs.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toggleSPCs.Checked = true;
             this.toggleSPCs.CheckOnClick = true;
             this.toggleSPCs.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -103,17 +118,6 @@ namespace LAZYSHELL
             this.toggleSPCs.Text = "Show/hide SPCs";
             this.toggleSPCs.Click += new System.EventHandler(this.toggleSPCs_Click);
             // 
-            // helpTips
-            // 
-            this.helpTips.CheckOnClick = true;
-            this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
-            this.helpTips.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.helpTips.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.helpTips.Name = "helpTips";
-            this.helpTips.Size = new System.Drawing.Size(23, 22);
-            this.helpTips.Text = "Help Tips";
-            // 
             // Audio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,17 +126,18 @@ namespace LAZYSHELL
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainAudio_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "Audio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "AUDIO - Lazy Shell";
+            this.Text = "AUDIO - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Audio_FormClosing);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.Panel panel1;

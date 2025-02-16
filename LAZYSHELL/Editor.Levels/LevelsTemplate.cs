@@ -53,7 +53,7 @@ namespace LAZYSHELL
             if (overlay.Select.Empty || overlay.Select.Size == new Size(0, 0))
             {
                 MessageBox.Show("Need to make a selection before creating a new template.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             // now create the template from the selection
@@ -145,7 +145,7 @@ namespace LAZYSHELL
                 return;
             if (templateRenameText.Text == "")
             {
-                MessageBox.Show("A template name cannot be empty.", "LAZY SHELL");
+                MessageBox.Show("A template name cannot be empty.", "LAZYSHELL++");
                 return;
             }
             foreach (LevelTemplate lt in templates)
@@ -153,7 +153,7 @@ namespace LAZYSHELL
                 if (template != lt && templateRenameText.Text == lt.Name)
                 {
                     MessageBox.Show("Cannot rename " + lt.Name + ". A template with the name you specified already exists.",
-                       "LAZY SHELL");
+                       "LAZYSHELL++");
                     return;
                 }
                 else if (template == lt && template.Name == templateRenameText.Text)

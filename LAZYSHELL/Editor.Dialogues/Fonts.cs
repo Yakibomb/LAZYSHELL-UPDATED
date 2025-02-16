@@ -480,7 +480,7 @@ namespace LAZYSHELL
             if (currentFontChar == 59 || currentFontChar == 61)
             {
                 MessageBox.Show("Character #91 and #93 cannot be edited because they are reserved for [ and ], respectively.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 currentFontChar = before;
                 return;
             }
@@ -546,7 +546,7 @@ namespace LAZYSHELL
                 {
                     MessageBox.Show("There was a problem opening the keystroke table.\n" +
                         "One or more of the assigned keystrokes has an invalid length.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 keystrokes[i] = line;
@@ -618,7 +618,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current font character. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             font[currentFontChar] = new FontCharacter(currentFontChar, FontType);
             InitializeFontCharacter();

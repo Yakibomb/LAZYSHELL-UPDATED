@@ -1,14 +1,90 @@
-﻿Flags - 1 Byte - A bitmask that represents the different options that are shown for a patch.
-			Bit 0 - Assembly Hack
-			Bit 1 - Game Hack
-			Bit 2 - Must be applied to a Fresh Rom
-The following fields are 1 Line of text (terminated with endl 0x0D 0x0A)
-	Patch Name
-	Author(s)
-	File Size
-	Release Date
-	Description
-	Extra Info
-	Image Name
-	IPS file name
-	
+﻿----------------------------------------------
+    SMRPG LAZYSHELL++ DEFAULT PATCH SERVER
+----------------------------------------------
+    LAZYSHELL++ can connect to one or several patch servers within the editor, under "Patches".
+This repository is the default server.
+
+
+------------------------------------------------------
+    How it works, aka How To Setup Your Own Server
+------------------------------------------------------
+    LAZYSHELL++ connects to the websites you put into its settings.
+
+For example, this is the default server:
+    https://github.com/Yakibomb/SMRPG-Patch-Server/
+
+For github servers, LS++ adds the extension "blob/main/" to the website 
+    https://github.com/Yakibomb/SMRPG-Patch-Server/blob/main/
+For websites that aren't github, LS++ wouldn't add this extension.
+
+Using the above site as a base, LS++ then tries to connect to a file called "patches"
+    https://github.com/Yakibomb/SMRPG-Patch-Server/blob/main/patches
+
+In "patches", is a list of patch folders it tries to access.
+Each line is a folder LS++ tries to access. This example uses the patch folder OREFFEZEPS
+    https://github.com/Yakibomb/SMRPG-Patch-Server/blob/main/OREFFEZEPS/patchinfo
+
+For each folder, LS++ tries to access "patchinfo", which contains all the details for your patch.
+The parser for the patch is at the bottom of this readme.
+
+
+Adding Additional Versions of The Same Patch
+----------------------------------------
+    The above method is enough to make a one version of your patch appear on your server.
+But what about if you had a beta version, v1.0 Release, a v2.0, etc of the same patch?
+
+In addition to "patchinfo", LS++ tries to access "patchinfo1" for additional versions.
+If "patchinfo1" is found, it continues on to try loading "patchinfo2", then "patchinfo3", then etc.
+
+Each extra patchinfo# is a separate version for your patch.
+patchinfo uses the same format for each, so you needn't wonder if there's anything more or less about writing each.
+Each patch can be accessed by a drop-down menu in the Patches window.
+
+
+-------------------------------------------------------
+    How to Setup "patchinfo" -- About the Parser
+-------------------------------------------------------
+NOTE: Check "z_Words from Yaki" folder for example of how to write a patchinfo.
+
+    The parser for patchinfo identifies what text lines go where in the Patches window.
+Each line needs the label for LS++ to parse, separated by a space (except the first line, which is reserved for the name/title of the patch)
+
+Notes:
+ - The ips patch (and a readme, if desired) needs to be in the folder of your patchinfo, with file type extension
+ = patch must be a ".ips" ( example-- Patch: myPatch.ips )
+ = readme must be a ".txt" (must be named "readme.txt"), and there can only be one readme.txt PER PATCH FOLDER
+ = Image must be ".jpg" ".bmp" ".png" or ".gif"
+ - The first line is usually reserved for the name of the patch if there are no labels present
+ = This isn't enforced, any label can be there
+ - Authors and Categories can have several entries on the same line, separated by commas ,
+ - Images are supported, in addition to having a short caption (separated by | ). Example:
+ = Image: myPreview.png|This game stinks!
+ - Max Images per patchinfo is 4. The amount of images downloaded can be adjusted on the fly in the LS++ Patches window.
+ - If you plan on having multiple versions of a patch hosted on your server, add a version number.
+ - A "Verify IPS Patch" button exists solely to confirm a patch is a patch file onto the list the first time.
+ = Use it for security and/or debugging purposes, but it slows downloading speed
+ = Turn it off for faster downloading speed
+
+All properties are listed below:
+----------------------------
+    Name:         //  Display name for the patch (Can also omit without "Name: " and keep patch's name on first line)
+    Title:        //  ""
+    Author:       //  Author(s) of the patch, separated by commas ,
+    Authors:      //  ""
+    Version:      //  Version Number
+    Date:         //  Release/Creation Date
+    Patch:        //  Patch file name. Needs file extension ".ips"
+    Size:         //  Size of patch file (auto-calculated if "Verify IPS Patch" is on)
+    Description:  //  short description
+    Desc:         //  "" (if ever you need extra lines in description)
+    Image:        //  Preview image, needs file extension (".jpg" ".bmp" ".png" ".gif"). 
+                  //      Format like Image: Image.png|Short Description
+    Website:      //  For community discussion, youtube previews, etc
+    Site:         //  ""
+    Link:         //  ""
+    Tag:          //  Categorizes this patch (LS creates new categories and can sort by category). Separate with commas ,
+    Tags:         //  ""
+    Categories:   //  ""
+    Recommend:    //  Can write anything here, it'll tag the patch with a star and add to the "Recommended" category
+    Favorite:     //  ""
+    Recommended:  //  ""

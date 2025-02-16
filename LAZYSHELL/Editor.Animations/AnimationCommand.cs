@@ -246,6 +246,8 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                         Disassemble((offset & 0xFF0000) + Bits.GetShort(commandData, 1));
                     break;
                 case 0x10:
+                case 0x50:
+                case 0x51:
                 case 0x64:
                 case 0x68:
                     if (offset == 0x3562C8 ||
@@ -325,8 +327,15 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                         offset += length;
                     }
                     break;
-                case 0x10: goto case 0x09;
-                case 0x5D: goto case 0x09;
+                case 0x10:
+                case 0x50:
+                case 0x51: 
+                case 0x5D:
+                case 0xCE:
+                case 0xCF:
+                case 0xD0:
+                case 0xD8:
+                    goto case 0x09;
                 case 0x64:
                     if (script.AMEM > 0x10)
                     {

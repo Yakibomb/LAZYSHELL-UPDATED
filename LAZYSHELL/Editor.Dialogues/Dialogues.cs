@@ -230,6 +230,7 @@ namespace LAZYSHELL
         }
         private int CalculateFreeTableSpace()
         {
+            /*
             int used = 0;
             for (int i = 0; i < dte.Length; i++)
                 used += dte[i].Length + 1;
@@ -237,7 +238,84 @@ namespace LAZYSHELL
             this.freeTableBytes.Text = "(" + left.ToString() + " characters left)";
             this.freeTableBytes.BackColor = left >= 0 ? SystemColors.Control : Color.Red;
             return left;
+            */
+
+            int used = 0;
+            for (int i = 0; i < dte.Length; i++)
+                used += dte[i].Length + 1;
+            return 0x40 - used;
         }
+
+        public int FreeSpace(int start)
+        {
+            int used = 0;
+            int size = 0;
+            int end = 0;
+            int i;
+            if (start >= 0xC00)
+            {
+                size = 0x9000;
+                start = 0xC00;
+                end = 0x1000;
+                i = start;
+
+                // There's two sections to keep track of
+                for (; i < end; i++)
+                {
+                    int cost = FreeSpace(start, i);
+
+                    if (cost + used > size)
+                        break;
+
+                    used += cost;
+                }
+
+                if (i == end)
+                {
+                    size += 0xFFFF - 0xEDE0;
+                }
+                else
+                {
+                    size = 0xFFFF - 0xEDE0;
+                    used = 0;
+                }
+            }
+            else if (start >= 0x800)
+            {
+                size = 0xF2D5;
+                start = 0x800;
+                end = 0xC00;
+                i = start;
+            }
+            else
+            {
+                size = 0xFD18;
+                start = 0;
+                end = 0x800;
+                i = start;
+            }
+            for (; i < end; i++)
+            {
+                used += FreeSpace(start, i);
+            }
+
+            // Finished
+            return size - used;
+        }
+        private int FreeSpace(int start, int index)
+        {
+            // First check if current dialogue can reference another or another's substring
+            for (int i = start; i < index; i++)
+            {
+                // Write to ROM at offset of reference
+                if (Bits.Compare(dialogues[index].Text, dialogues[i].Text))
+                    return 0;
+                else if (Bits.EndsWith(dialogues[i].Text, dialogues[index].Text))
+                    return 0;
+            }
+            return dialogues[index].Length;
+        }
+        /*
         private bool FreeSpace(int current)
         {
             int used = 0;
@@ -283,6 +361,7 @@ namespace LAZYSHELL
             left = (double)(size - used);
             return true;
         }
+        */
         public void InsertIntoDialogueText(string toInsert)
         {
             char[] newText = new char[dialogueTextBox.Text.Length + toInsert.Length];
@@ -491,6 +570,94 @@ namespace LAZYSHELL
             option.Image = Do.PixelsToImage(fontTriangle[0].GetPixels(fontPalette.Palettes[1]), 8, 16);
         }
         // assembler
+
+        // Saving
+        public void Assemble()
+        {
+            if (!dialogueTextBox.IsDisposed && !dialogueTextBox.Text.EndsWith("[0]") && !dialogueTextBox.Text.EndsWith("[6]"))
+            {
+                dialogueTextBox.SelectionStart = dialogueTextBox.Text.Length;
+                InsertIntoDialogueText("[0]");
+            }
+
+            // Assemble the dialogue
+            int offset = 0;
+            int i = 0;
+
+            // Assemble table
+            if (CalculateFreeTableSpace() >= 0)
+            {
+                for (i = 0; i < dte.Length && offset + dte[i].Length < 0x40; i++)
+                    dte[i].Assemble(ref offset);
+            }
+            else
+                MessageBox.Show("The dialogue table was not saved. Please delete the necessary number of bytes for space.",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // 0 - 2047
+            if (FreeSpace(0) >= 0)
+            {
+                offset = 0x220008; // Dialogues start right after end of pointer table
+                for (i = 0; i < 2048 && offset + dialogues[i].Length < 0x22FD18; i++)
+                    Assemble(0, i, ref offset);
+            }
+            else
+                MessageBox.Show("The dialogue in bank 0x22 was not saved. Please delete the necessary number of bytes for space.\n\n" +
+                    "Last dialogue saved was #" + i.ToString() + ". It should have been #2047",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // 2048 - 3071
+            if (FreeSpace(0x800) >= 0)
+            {
+                offset = 0x230004; // Dialogues start right after end of pointer table
+                for (i = 2048; i < 3072 && offset + dialogues[i].Length < 0x23F2D5; i++)
+                    Assemble(2048, i, ref offset);
+            }
+            else
+                MessageBox.Show("The dialogue in bank 0x23 was not saved. Please delete the necessary number of bytes for space.\n\n" +
+                    "Last dialogue saved was #" + i.ToString() + ". It should have been #3091",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // 3072 - 4095
+            if (FreeSpace(0xC00) >= 0)
+            {
+                offset = 0x240004; // Dialogues start right after end of pointer table
+                for (i = 3072; i < 4096 && offset + dialogues[i].Length < 0x248FFF; i++)
+                    Assemble(3072, i, ref offset);
+
+                // Write to extra space if necessary
+                offset = 0x24EDE0;
+                int start = i; // Need to retain first index of dialogue using extra space
+                for (; i < 4096 && offset + dialogues[i].Length < 0x24FFFF; i++)
+                    Assemble(start, i, ref offset);
+            }
+            else
+                MessageBox.Show("The dialogue in bank 0x24 was not saved. Please delete the necessary number of bytes for space.\n\n" +
+                    "Last dialogue saved was #" + i.ToString() + ". It should have been #4095",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void Assemble(int start, int index, ref int offset)
+        {
+            // First check if current dialogue can reference another or another's substring
+            for (int i = start; i < index; i++)
+            {
+                // Write to ROM at offset of reference
+                if (Bits.Compare(dialogues[index].Text, dialogues[i].Text))
+                {
+                    dialogues[index].Assemble(dialogues[i].Offset);
+                    return;
+                }
+                else if (Bits.EndsWith(dialogues[i].Text, dialogues[index].Text))
+                {
+                    // Write to ROM at offset of substring
+                    int lengthDiff = dialogues[i].Text.Length - dialogues[index].Text.Length;
+                    dialogues[index].Assemble(dialogues[i].Offset + lengthDiff);
+                    return;
+                }
+            }
+            dialogues[index].Assemble(ref offset);
+        }
+        /*
         public void Assemble()
         {
             // Assemble the overworld menu palette
@@ -502,7 +669,7 @@ namespace LAZYSHELL
             if (totalSize > maxSize)
                 MessageBox.Show("Not enough space for compressed menu palettes. The total required space (" +
                     totalSize + " bytes) exceeds " + maxSize +  " bytes.\n\n" + "The menu palettes were not saved.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 Bits.SetBytes(Model.ROM, pointerOffset + 0x3E0000 + 1, compressed, 0, totalSize - 1);
             //
@@ -525,7 +692,7 @@ namespace LAZYSHELL
             }
             else
                 MessageBox.Show("The dialogue table was not saved. Please delete the necessary number of bytes for space.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             // 000 - 1ff
             if (FreeSpace(0))
             {
@@ -547,7 +714,7 @@ namespace LAZYSHELL
             }
             else
                 MessageBox.Show("The dialogue in bank 1 was not saved. Please delete the necessary number of bytes for space.\n\nLast dialogue saved was #" + i.ToString() + ". It should have been #2047",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (FreeSpace(0x800))
             {
                 length = 0x0004;
@@ -567,7 +734,7 @@ namespace LAZYSHELL
             }
             else
                 MessageBox.Show("The dialogue in bank 2 was not saved. Please delete the necessary number of bytes for space.\n\nLast dialogue saved was #" + i.ToString() + ". It should have been #2047",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (FreeSpace(0xC00))
             {
                 length = 0x0004;
@@ -601,11 +768,12 @@ namespace LAZYSHELL
             }
             else
                 MessageBox.Show("The dialogue in bank 3 was not saved. Please delete the necessary number of bytes for space.\n\nLast dialogue saved was #" + i.ToString() + ". It should have been #2047",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             battleDialogues.Modified = false;
             fonts.Modified = false;
             this.Modified = false;
         }
+        */
         #endregion
         #region Event Handlers
         // main
@@ -616,7 +784,7 @@ namespace LAZYSHELL
             if (!this.Modified && !battleDialogues.Modified && !fonts.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
-                "Dialogues have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Dialogues have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -677,7 +845,7 @@ namespace LAZYSHELL
                 return;
             MessageBox.Show("Unchecking this will disable sychronization of duplicate dialogues.\n\n" +
                 "Modifying any duplicate dialogues might result in a significant loss of available byte space.",
-                "LAZY SHELL");
+                "LAZYSHELL++");
             warning = true;
         }
         private void showDialogues_Click(object sender, EventArgs e)
@@ -948,7 +1116,7 @@ namespace LAZYSHELL
                     "text file are correctly named.\n\n" +
                     "Each line must begin with the 4-digit dialogue number enclosed in {},\n" +
                     "followed by a tab character, then the raw dialogue itself.",
-                    "LAZY SHELL");
+                    "LAZYSHELL++");
             }
         }
         // compression table
@@ -956,7 +1124,7 @@ namespace LAZYSHELL
         {
             if (MessageBox.Show(
                 "You are about to apply the compression table to all dialogues, which involves re-encoding all 4,096 dialogues. This procedure may take up to half a minute to complete.\n\nGo ahead with process?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
             EncodeDialogues_();
         }
@@ -992,7 +1160,7 @@ namespace LAZYSHELL
             }
             //
             this.Enabled = true;
-            this.Text = "DIALOGUES - Lazy Shell";
+            this.Text = "DIALOGUES - LAZYSHELL++";
             modifyDTE = false;
             progressBar1.Value = 0;
             dteStrByte = Model.DTEStr(true);
@@ -1057,10 +1225,10 @@ namespace LAZYSHELL
                 MessageBox.Show(
                     "There was a problem loading dialogues. Verify that the lines are correctly named.\n\n" +
                     "Each line must begin with a 4-digit index enclosed in {}, followed by a tab character, then the raw dialogue.",
-                    "LAZY SHELL");
+                    "LAZYSHELL++");
             }
             this.Enabled = true;
-            this.Text = "DIALOGUES - Lazy Shell";
+            this.Text = "DIALOGUES - LAZYSHELL++";
             progressBar1.Value = 0;
         }
         private void importBattleDialoguesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1100,7 +1268,7 @@ namespace LAZYSHELL
                 MessageBox.Show(
                     "There was a problem loading dialogues. Verify that the lines are correctly named.\n\n" +
                     "Each line must begin with a 4-digit index enclosed in {}, followed by a tab character, then the raw dialogue.",
-                    "LAZY SHELL");
+                    "LAZYSHELL++");
             }
         }
         private void exportDialoguesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1156,7 +1324,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current dialogue. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             dialogue = new Dialogue(index);
             dialoguePreview.Reset();

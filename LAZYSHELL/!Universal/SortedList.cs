@@ -3,6 +3,9 @@ using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Text;
 using LAZYSHELL.Properties;
+using System.Runtime;
+using System.Windows.Forms;
+using System.Runtime.Remoting.Messaging;
 
 namespace LAZYSHELL
 {
@@ -17,15 +20,28 @@ namespace LAZYSHELL
         {
             get
             {
-                int index = 0;
                 Type t = elements.GetType();
-                if (t == typeof(Item[]))
-                    index = 1;
-                for (int i = 0; i < names.Length - 1; i++)
-                {
-                    if (names[i].Substring(index).CompareTo(names[i + 1].Substring(index)) > 0)
-                        return false;
-                }
+
+                bool ItemsFilterOutDUMMY = t == typeof(Item[]) && Settings.Default.ItemsFilterOutDUMMY;
+
+                int startIndex = 0;
+                if (t == typeof(Item[]) && Settings.Default.ItemsDrawItemIconsOnList)
+                    startIndex = 1;
+
+                if (ItemsFilterOutDUMMY)
+                    for (int i = 0; i < names.Length - 1; i++)
+                    {
+                        if (names[i].Substring(startIndex).StartsWith("DUMMY") || names[i + 1].Substring(startIndex).StartsWith("DUMMY"))
+                            continue;
+                        if (names[i].Substring(startIndex).CompareTo(names[i + 1].Substring(startIndex)) > 0)
+                            return false;
+                    }
+                else
+                    for (int i = 0; i < names.Length - 1; i++)
+                    {
+                        if (names[i].Substring(startIndex).CompareTo(names[i + 1].Substring(startIndex)) > 0)
+                            return false;
+                    }
                 return true;
             }
         }
@@ -34,11 +50,12 @@ namespace LAZYSHELL
             get
             {
                 for (int i = 0; i < unsorted.Length - 1; i++)
-                    if (unsorted[i] > unsorted[i + 1])
+                    if (unsorted[i] < unsorted[i + 1])
                         return false;
                 return true;
             }
         }
+
         // constructor
         public SortedList(object[] elements)
         {
@@ -100,36 +117,35 @@ namespace LAZYSHELL
                 }
             }
         }
+
         // accessors
         /// <summary>
         /// Get the sorted index of an item in an alphabetically sorted name list.
         /// </summary>
-        /// <param name="index">The unsorted index of the item</param>
+        /// <param name="index">The sorted index of the item</param>
         /// <returns></returns>
         public int GetSortedIndex(int index)
         {
-            if (!IsSortedAlphabetically)
-                SortAlphabetically();
+            SortAlphabetically();
+
             for (int i = 0; i < names.Length; i++)
-            {
                 if (unsorted[i] == index)
                     return i;
-            }
             return 0;
         }
         /// <summary>
         /// Get the unsorted index of an item in an alphabetically sorted name list.
         /// </summary>
-        /// <param name="index">The sorted index of the item.</param>
+        /// <param name="index">The unsorted index of the item.</param>
         /// <returns></returns>
         public int GetUnsortedIndex(int index)
         {
-            if (!IsSortedAlphabetically)
-                SortAlphabetically();
+            SortAlphabetically();
             if (index < unsorted.Length)
                 return unsorted[index];
             return 0;
         }
+
         /// <summary>
         /// Returns the name in the unsorted list.
         /// </summary>
@@ -201,20 +217,48 @@ namespace LAZYSHELL
         }
         public void SortAlphabetically()
         {
+            Type t = elements.GetType();
+
+            if (t == typeof(Item[]) && !Settings.Default.ItemsSortItemList)
+                return;
+
             if (IsSortedAlphabetically)
                 return;
+
             int startIndex = 0;
-            Type t = elements.GetType();
-            if (t == typeof(Item[]))
+            if (t == typeof(Item[]) && Settings.Default.ItemsDrawItemIconsOnList)
                 startIndex = 1;
             string name;
             int index;
             int length = names.Length;
+
             for (int a = 0; a < length - 1; a++)
             {
                 for (int b = 0; b < length - 1 - a; b++)
                 {
                     if (names[b + 1].Substring(startIndex).CompareTo(names[b].Substring(startIndex)) < 0)
+                    {
+                        name = names[b].TrimEnd();
+                        names[b] = names[b + 1];
+                        names[b + 1] = name;
+                        //
+                        index = unsorted[b];
+                        unsorted[b] = unsorted[b + 1];
+                        unsorted[b + 1] = index;
+                    }
+                }
+            }
+
+            // Sorts out DUMMY names to the end
+            if (t != typeof(Item[]) || !Settings.Default.ItemsFilterOutDUMMY)
+                return;
+
+            for (int a = 0; a < length - 1; a++)
+            {
+                for (int b = 0; b < length - 1 - a; b++)
+                {
+                    if (names[b].Substring(startIndex) != names[b + 1].Substring(startIndex)
+                        && names[b].Substring(startIndex).StartsWith("DUMMY"))
                     {
                         name = names[b];
                         names[b] = names[b + 1];
@@ -246,6 +290,17 @@ namespace LAZYSHELL
                         names[b] = names[b + 1];
                         names[b + 1] = name;
                     }
+                }
+            }
+        }
+        public void CullItemIcons()
+        {
+            int length = names.Length;
+            if (!Settings.Default.ItemsDrawItemIconsOnList)
+            {
+                for (int a = 0; a < length; a++)
+                {
+                    names[a] = names[a].Substring(1);
                 }
             }
         }

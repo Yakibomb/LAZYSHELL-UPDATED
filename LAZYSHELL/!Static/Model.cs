@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using System.Xml;
 using LAZYSHELL.ScriptsEditor;
 using LAZYSHELL.Properties;
+using System.Reflection;
+using LAZYSHELL.Patches;
 
 namespace LAZYSHELL
 {
@@ -42,6 +44,20 @@ namespace LAZYSHELL
             set
             {
                 project = value;
+            }
+        }
+        private static GamePatches patches;
+        public static GamePatches Patches
+        {
+            get
+            {
+                if (patches == null)
+                    patches = new GamePatches();
+                return patches;
+            }
+            set
+            {
+                patches = value;
             }
         }
         private static HexEditor hexEditor;
@@ -488,7 +504,7 @@ namespace LAZYSHELL
                     fontPaletteMenu = new PaletteSet(MenuPalettes, 0, 0, 2, 16, 32);
                 return fontPaletteMenu;
             }
-            set { palettes = value; }
+            set { fontPaletteMenu = value; }
         }
         public static byte[] NumeralGraphics
         {
@@ -656,6 +672,42 @@ namespace LAZYSHELL
                 return openingPalette;
             }
             set { openingPalette = value; }
+        }
+        //
+        private static byte[] bootupLogoData;
+        private static byte[] bootupLogoGraphics;
+        private static PaletteSet bootupPalettes;
+        public static byte[] BootupLogoData
+        {
+            get
+            {
+                if (bootupLogoData == null)
+                {
+                    bootupLogoData = Comp.Decompress(rom, 0x3EFD18, 0x2710);
+                }
+                return bootupLogoData;
+            }
+            set { bootupLogoData = value; }
+        }
+        public static byte[] BootupLogoGraphics
+        {
+            get
+            {
+                if (bootupLogoGraphics == null)
+                    bootupLogoGraphics = Bits.GetBytes(BootupLogoData, 0x510, 0x2200);
+                return bootupLogoGraphics;
+            }
+            set { bootupLogoGraphics = value; }
+        }
+        public static PaletteSet BootupPalettes
+        {
+            get
+            {
+                if (bootupPalettes == null)
+                    bootupPalettes = new PaletteSet(rom, 0, 0x3EFD18, 7, 16, 32);
+                return bootupPalettes;
+            }
+            set { bootupPalettes = value; }
         }
         #endregion
         #region Levels
@@ -827,12 +879,12 @@ namespace LAZYSHELL
         #region Menus
         private static byte[] menuBGGraphics;
         private static byte[] menuBGTileset;
-        private static byte[] unkTileset3E2C80;
         private static byte[] menuFrameGraphics;
         private static byte[] menuCursorGraphics;
         private static byte[] menuPalettes;
         private static PaletteSet cursorPaletteSet;
         private static MenuTexts[] menuTexts;
+        private static MenuBox[] menuBoxTexts;
         public static byte[] MenuBGGraphics
         {
             get
@@ -873,16 +925,9 @@ namespace LAZYSHELL
             }
             set { menuBGTileset = value; }
         }
-        public static byte[] UNKTileset3E2C80
-        {
-            get
-            {
-                if (unkTileset3E2C80 == null)
-                    unkTileset3E2C80 = Decompress(rom, 0x3E000A, 0x3E0000, 0x800);
-                return unkTileset3E2C80;
-            }
-            set { unkTileset3E2C80 = value; }
-        }
+        //
+        // 0x3E000A was moved to OverworldStarPiecesMenuTileset
+        //
         public static byte[] MenuPalettes
         {
             get
@@ -901,7 +946,7 @@ namespace LAZYSHELL
                     cursorPaletteSet = new PaletteSet(MenuPalettes, 8, 0x100, 1, 16, 32);
                 return cursorPaletteSet;
             }
-            set { palettes = value; }
+            set { cursorPaletteSet = value; }
         }
         public static MenuTexts[] MenuTexts
         {
@@ -916,6 +961,22 @@ namespace LAZYSHELL
                 return menuTexts;
             }
             set { menuTexts = value; }
+        }
+        public static MenuBox[] MenuBox
+        {
+            get
+            {
+                if (menuBoxTexts == null)
+                {
+                    menuBoxTexts = new MenuBox[9];
+                    for (int i = 0; i < menuBoxTexts.Length; i++)
+                    {
+                        menuBoxTexts[i] = new MenuBox(i);
+                    }
+                }
+                return menuBoxTexts;
+            }
+            set { menuBoxTexts = value; }
         }
         public static bool EditMenuTileSet;
         private static PaletteSet menuBGPalette;
@@ -1024,7 +1085,12 @@ namespace LAZYSHELL
             get
             {
                 if (gameSelectTileset == null)
-                    gameSelectTileset = Comp.Decompress(rom, 0x3EB2CE, 0x800);
+                {
+                    int pointer = Bits.GetShort(rom, 0x3E0034);
+                    int offset = 0x3E0000 + pointer + 1;
+                    gameSelectTileset = Comp.Decompress(rom, offset, 0x800);
+                    //gameSelectTileset = Comp.Decompress(rom, 0x3EB2CE, 0x800);
+                }
                 return gameSelectTileset;
             }
             set { gameSelectTileset = value; }
@@ -1058,6 +1124,45 @@ namespace LAZYSHELL
                 return gameSelectSpeakers;
             }
             set { gameSelectSpeakers = value; }
+        }
+        //
+        private static byte[] overworldStarPiecesMenuGraphics;
+        private static byte[] overworldStarPiecesMenuTileset;
+        private static PaletteSet overworldStarPiecesMenuPalette;
+        public static byte[] OverworldStarPiecesMenuGraphics
+        {
+            get
+            {
+                //if (overworldStarPiecesMenuGraphics == null)
+                    //overworldStarPiecesMenuGraphics = Decompress(rom, 0x3E0000, 0x3E0000, 0x2000);
+                return overworldStarPiecesMenuGraphics;
+            }
+            set { overworldStarPiecesMenuGraphics = value; }
+        }
+        public static byte[] OverworldStarPiecesMenuTileset
+        {
+            get
+            {
+
+                if (overworldStarPiecesMenuTileset == null)
+                    overworldStarPiecesMenuTileset = Decompress(rom, 0x3E000A, 0x3E0000, 0x800);
+                return overworldStarPiecesMenuTileset;
+            }
+            set { overworldStarPiecesMenuTileset = value; }
+        }
+        public static PaletteSet OverworldStarPiecesMenuPalette
+        {
+            get
+            {
+                if (overworldStarPiecesMenuPalette == null)
+                {
+                    int pointer = Bits.GetShort(rom, 0x3E000A);
+                    int offset = 0x3E0000 + pointer + 0x194;
+                    overworldStarPiecesMenuPalette = new PaletteSet(rom, 0, offset, 1, 16, 32);
+                }
+                return overworldStarPiecesMenuPalette;
+            }
+            set { overworldStarPiecesMenuPalette = value; }
         }
         #endregion
         #region Mini-Games
@@ -1277,14 +1382,15 @@ namespace LAZYSHELL
         private static AnimationScript[] attackAnimations;
         private static AnimationScript[] itemAnimations;
         private static AnimationScript[] battleEvents;
-        private static AnimationScript[] behaviorAnimations;
+        private static AnimationScript[] behaviorAnimAllies;
+        private static AnimationScript[] behaviorAnimMonsters;
         private static AnimationScript[] entranceAnimations;
         private static AnimationScript[] weaponAnimations;
         private static AnimationScript[] weaponSoundScripts;
         private static AnimationScript[] weaponTimedHitScripts;
         private static AnimationScript[] bonusMessageAnimations;
         private static AnimationScript[] toadTutorialScript;
-        private static AnimationScript[] characterScripts;
+        private static AnimationScript[] weaponWrapperAnimations;
         public static BattleScript[] BattleScripts
         {
             get
@@ -1411,19 +1517,33 @@ namespace LAZYSHELL
             }
             set { battleEvents = value; }
         }
-        public static AnimationScript[] BehaviorAnimations
+        public static AnimationScript[] BehaviorAnimMonsters
         {
             get
             {
-                if (behaviorAnimations == null)
+                if (behaviorAnimMonsters == null)
                 {
-                    behaviorAnimations = new AnimationScript[54];
-                    for (int i = 0; i < behaviorAnimations.Length; i++)
-                        behaviorAnimations[i] = new AnimationScript(i, 0);
+                    behaviorAnimMonsters = new AnimationScript[54];
+                    for (int i = 0; i < behaviorAnimMonsters.Length; i++)
+                        behaviorAnimMonsters[i] = new AnimationScript(i, 0);
                 }
-                return behaviorAnimations;
+                return behaviorAnimMonsters;
             }
-            set { behaviorAnimations = value; }
+            set { behaviorAnimMonsters = value; }
+        }
+        public static AnimationScript[] BehaviorAnimAllies
+        {
+            get
+            {
+                if (behaviorAnimAllies == null)
+                {
+                    behaviorAnimAllies = new AnimationScript[3];
+                    for (int i = 0; i < behaviorAnimAllies.Length; i++)
+                        behaviorAnimAllies[i] = new AnimationScript(i, 13);
+                }
+                return behaviorAnimAllies;
+            }
+            set { behaviorAnimAllies = value; }
         }
         public static AnimationScript[] EntranceAnimations
         {
@@ -1509,19 +1629,19 @@ namespace LAZYSHELL
             }
             set { toadTutorialScript = value; }
         }
-        public static AnimationScript[] CharacterScripts
+        public static AnimationScript[] WeaponWrapperAnimations
         {
             get
             {
-                if (characterScripts == null)
+                if (weaponWrapperAnimations == null)
                 {
-                    characterScripts = new AnimationScript[5];
-                    for (int i = 0; i < characterScripts.Length; i++)
-                        characterScripts[i] = new AnimationScript(i, 12);
+                    weaponWrapperAnimations = new AnimationScript[5];
+                    for (int i = 0; i < weaponWrapperAnimations.Length; i++)
+                        weaponWrapperAnimations[i] = new AnimationScript(i, 12);
                 }
-                return characterScripts;
+                return weaponWrapperAnimations;
             }
-            set { characterScripts = value; }
+            set { weaponWrapperAnimations = value; }
         }
         #endregion
         #region Sprites
@@ -1771,6 +1891,7 @@ namespace LAZYSHELL
         private static SortedList attackNames;
         private static SortedList itemNames;
         private static SortedList characterNames;
+        private static string[] menuBoxNames;
         public static SortedList MonsterNames
         {
             get
@@ -1832,14 +1953,25 @@ namespace LAZYSHELL
                 if (itemNames == null)
                 {
                     itemNames = new SortedList(Items);
-                    itemNames.SortAlphabetically();
+
+                    if (!settings.ItemsDrawItemIconsOnList)
+                        itemNames.CullItemIcons();
+
+                    if (settings.ItemsSortItemList)
+                        itemNames.SortAlphabetically();
                 }
                 return itemNames;
             }
             set
             {
                 itemNames = value;
-                if (itemNames != null)
+
+                if (itemNames == null)
+                    return;
+
+                if (!settings.ItemsDrawItemIconsOnList)
+                    itemNames.CullItemIcons();
+                if (settings.ItemsSortItemList)
                     itemNames.SortAlphabetically();
             }
         }
@@ -1861,6 +1993,26 @@ namespace LAZYSHELL
                     characterNames.SortAlphabetically();
             }
         }
+        public static string[] MenuBoxNames
+        {
+            get
+            {
+                if (menuBoxNames == null)
+                {
+                    menuBoxNames = new string[10];
+                    for (int i = 0; i < menuBoxNames.Length; i++)
+                    {
+                        menuBoxNames[i] = new MenuTexts(i).ToString();
+                    }
+                }
+                return menuBoxNames;
+            }
+            set
+            {
+                menuBoxNames = value;
+            }
+        }
+        
         #endregion
         #region World Maps
         private static WorldMap[] worldMaps;
@@ -1868,12 +2020,17 @@ namespace LAZYSHELL
         private static PaletteSet palettes;
         private static byte[] worldMapGraphics;
         private static byte[] worldMapPalettes;
-        private static byte[][] worldMapTileSets = new byte[7][];
+        private static byte[][] worldMapTileSets = new byte[7][]; //7
         private static byte[] worldMapSprites;
         private static byte[] worldMapLogos;
         private static byte[] worldMapLogoTileset;
+        private static byte[] worldMapBackgroundGraphics;
+        private static byte[] worldMapBackgroundTileset;
+
         public static PaletteSet worldMapLogoPalette;
         public static PaletteSet worldMapSpritePalette;
+        public static PaletteSet worldMapSpriteLocationPalette;
+        public static PaletteSet worldMapBackgroundPalette;
         public static WorldMap[] WorldMaps
         {
             get
@@ -1938,9 +2095,9 @@ namespace LAZYSHELL
             {
                 if (worldMapTileSets[0] == null)
                 {
-                    for (int i = 0; i < 7; i++)
+                    for (int i = 0; i < worldMapTileSets.Length; i++)
                     {
-                        int pointer = Bits.GetShort(rom, i * 2 + 0x3E0014);
+                        int pointer = Bits.GetShort(rom, i * 2 + 0x3E0014); //0x3E0014
                         int offset = 0x3E0000 + pointer + 1;
                         worldMapTileSets[i] = Comp.Decompress(rom, offset, 0x800);
                     }
@@ -1948,16 +2105,6 @@ namespace LAZYSHELL
                 return worldMapTileSets;
             }
             set { worldMapTileSets = value; }
-        }
-        public static byte[] WorldMapSprites
-        {
-            get
-            {
-                if (worldMapSprites == null)
-                    worldMapSprites = Comp.Decompress(rom, 0x3E90A7, 0x400);
-                return worldMapSprites;
-            }
-            set { worldMapSprites = value; }
         }
         public static byte[] WorldMapLogos
         {
@@ -1983,6 +2130,40 @@ namespace LAZYSHELL
             }
             set { worldMapLogoTileset = value; }
         }
+        public static byte[] WorldMapBackgroundGraphics
+        {
+            get
+            {
+                if (worldMapBackgroundGraphics == null)
+                    worldMapBackgroundGraphics = Comp.Decompress(rom, 0x3E8578, 0x2000);
+                return worldMapBackgroundGraphics;
+            }
+            set { worldMapBackgroundGraphics = value; }
+        }
+        public static PaletteSet WorldMapBackgroundPalette
+        {
+            get
+            {
+                if (worldMapBackgroundPalette == null)
+                    worldMapBackgroundPalette = new PaletteSet(rom, 0, 0x3E9962, 2, 16, 32);
+                return worldMapBackgroundPalette;
+            }
+            set { worldMapBackgroundPalette = value; }
+        }
+        public static byte[] WorldMapBackgroundTileset
+        {
+            get
+            {
+                if (worldMapBackgroundTileset == null)
+                {
+                    int pointer = Bits.GetShort(rom, 0x3E000C);
+                    int offset = 0x3E0000 + pointer + 1;
+                    worldMapBackgroundTileset = Comp.Decompress(rom, offset, 0x800);
+                }
+                return worldMapBackgroundTileset;
+            }
+            set { worldMapBackgroundTileset = value; }
+        }
         public static PaletteSet WorldMapLogoPalette
         {
             get
@@ -1993,7 +2174,17 @@ namespace LAZYSHELL
             }
             set { worldMapLogoPalette = value; }
         }
-        public static PaletteSet WorldMapSpritePalette
+        public static byte[] WorldMapSprites
+        {
+            get
+            {
+                if (worldMapSprites == null)
+                    worldMapSprites = Comp.Decompress(rom, 0x3E90A7, 0x400);
+                return worldMapSprites;
+            }
+            set { worldMapSprites = value; }
+        }
+        public static PaletteSet WorldMapSpritesMarioPalette
         {
             get
             {
@@ -2003,9 +2194,18 @@ namespace LAZYSHELL
             }
             set { worldMapSpritePalette = value; }
         }
+        public static PaletteSet WorldMapSpritesLocationPalette
+        {
+            get
+            {
+                if (worldMapSpriteLocationPalette == null)
+                    worldMapSpriteLocationPalette = new PaletteSet(rom, 0, 0x3DFF00, 1, 16, 32);
+                return worldMapSpriteLocationPalette;
+            }
+            set { worldMapSpriteLocationPalette = value; }
+        }
         #endregion
-        #region Previewer
-        #endregion
+
         #endregion
         #region Functions
         #region File Handling
@@ -2021,7 +2221,7 @@ namespace LAZYSHELL
                 if (Bits.Compare(original, Bits.GetBytes(rom, 0xF800, 32)))
                     return true;
             }
-            return MessageBox.Show("file does not appear to be a Super Mario RPG rom. Use it anyways?", "LAZY SHELL", MessageBoxButtons.YesNo) == DialogResult.Yes;
+            return MessageBox.Show("file does not appear to be a Super Mario RPG rom. Use it anyways?", "LAZYSHELL++", MessageBoxButtons.YesNo) == DialogResult.Yes;
         }
         public static void CreateNewMD5Checksum()
         {
@@ -2046,6 +2246,10 @@ namespace LAZYSHELL
         public static string GetEditorPathWithoutFileName()
         {
             return GetEditorPath().Substring(0, GetEditorPath().LastIndexOf('\\') + 1);
+        }
+        public static string GetPathWithoutFileName(string path)
+        {
+            return path.Substring(0, path.LastIndexOf('\\') + 1);
         }
         public static string GetFileNameWithoutPath()
         {
@@ -2121,7 +2325,7 @@ namespace LAZYSHELL
                             bw.Close();
                         }
                         else
-                            MessageBox.Show("Could not create backup ROM.\n\nThe backup ROM directory has been moved, renamed, or no longer exists.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Could not create backup ROM.\n\nThe backup ROM directory has been moved, renamed, or no longer exists.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 RemoveHeader();
@@ -2131,7 +2335,7 @@ namespace LAZYSHELL
             catch (Exception e)
             {
                 if (MessageBox.Show("Lazy Shell was unable to load the rom.\n\n" + e.Message,
-                    "LAZY SHELL", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) != DialogResult.Cancel)
+                    "LAZYSHELL++", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) != DialogResult.Cancel)
                     goto Retry;
                 fileName = "Invalid File";
                 return false;
@@ -2217,6 +2421,10 @@ namespace LAZYSHELL
         }
         public static bool WriteRom()
         {
+            return WriteRom(true);
+        }
+        public static bool WriteRom(bool backupROMifSettingsApply)
+        {
             try
             {
                 SetRomChecksum();
@@ -2224,7 +2432,7 @@ namespace LAZYSHELL
                 BinaryWriter binWriter = new BinaryWriter(File.Open(fileName, FileMode.Create));
                 binWriter.Write(rom);
                 binWriter.Close();
-                if (Settings.Default.CreateBackupROMSave)
+                if (backupROMifSettingsApply && Settings.Default.CreateBackupROMSave)
                 {
                     DateTime currentTime = DateTime.Now;
                     string backup = " (save @ " +
@@ -2248,7 +2456,7 @@ namespace LAZYSHELL
                             bw.Close();
                         }
                         else
-                            MessageBox.Show("Could not create backup ROM.\n\nThe backup ROM directory has been moved, renamed, or no longer exists.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Could not create backup ROM.\n\nThe backup ROM directory has been moved, renamed, or no longer exists.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 RemoveHeader();
@@ -2256,7 +2464,7 @@ namespace LAZYSHELL
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lazy Shell was unable to write to the file.\n\n" + ex.Message, "LAZY SHELL");
+                MessageBox.Show("Lazy Shell was unable to write to the file.\n\n" + ex.Message, "LAZYSHELL++");
                 return false;
             }
         }
@@ -2426,7 +2634,7 @@ namespace LAZYSHELL
                         {
                             MessageBox.Show("Could not save all " + label + "S. " +
                                 "Stopped saving at " + label + " #" + index.ToString(),
-                                "LAZY SHELL");
+                                "LAZYSHELL++");
                             size = Comp.Compress(new byte[arrays[index].Length], compressed);
                         }
                         // Write data to rom
@@ -2439,7 +2647,7 @@ namespace LAZYSHELL
                         {
                             MessageBox.Show("Could not save all " + label + "S. " +
                                 "Stopped saving at " + label + " #" + index.ToString(),
-                                "LAZY SHELL");
+                                "LAZYSHELL++");
                             size = Comp.Compress(new byte[arrays[index].Length], compressed);
                         }
                     }
@@ -2475,7 +2683,7 @@ namespace LAZYSHELL
                 MessageBox.Show(
                     label + " recompressed data exceeds allotted ROM space by " +
                     (totalSize - maxComp).ToString() + " bytes.\n" + label + " was not saved.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             Model.ROM[offset] = 0x01;
@@ -2500,7 +2708,7 @@ namespace LAZYSHELL
                 MessageBox.Show(
                     label + " recompressed data exceeds allotted ROM space by " +
                     (size - maxComp).ToString() + " bytes.\n" + label + " was not saved.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             dst[offset] = 0x01;
@@ -2528,7 +2736,8 @@ namespace LAZYSHELL
             dummy = BattleMenuPalette;
             dummy = BattleMessages;
             dummy = BattleScripts;
-            dummy = BehaviorAnimations;
+            dummy = BehaviorAnimAllies;
+            dummy = BehaviorAnimMonsters;
             dummy = BonusMessages;
             dummy = BonusMessageAnimations;
             dummy = Characters;
@@ -2564,12 +2773,21 @@ namespace LAZYSHELL
             dummy = MenuBG;
             dummy = MenuBGPalette;
             dummy = ShopBGPalette;
+            dummy = GameBG;
+            dummy = ShopBG;
             dummy = MenuFrameGraphics;
             dummy = FontPaletteMenu;
             dummy = MenuBGGraphics;
             dummy = MenuBGTileset;
+            dummy = OverworldStarPiecesMenuGraphics;
+            dummy = OverworldStarPiecesMenuPalette;
+            dummy = OverworldStarPiecesMenuTileset;
             dummy = MenuCursorGraphics;
+            dummy = CursorPaletteSet;
             dummy = MenuTexts;
+            dummy = MenuPalettes;
+            dummy = MenuBox;
+            dummy = MenuBoxNames;
             dummy = MinecartM7Graphics;
             dummy = MinecartM7Palettes;
             dummy = MinecartM7PaletteSet;
@@ -2598,6 +2816,8 @@ namespace LAZYSHELL
             dummy = NumeralPaletteSet;
             dummy = OpeningData;
             dummy = OpeningPalette;
+            dummy = BootupLogoData;
+            dummy = BootupLogoGraphics;
             dummy = OverlapTileset;
             dummy = Palettes;
             dummy = PaletteSets;
@@ -2629,7 +2849,7 @@ namespace LAZYSHELL
             dummy = WeaponAnimations;
             dummy = WeaponSoundScripts;
             dummy = WeaponTimedHitScripts;
-            dummy = CharacterScripts;
+            dummy = WeaponWrapperAnimations;
             dummy = WorldMapGraphics;
             dummy = WorldMapPalettes;
             dummy = WorldMaps;
@@ -2638,7 +2858,11 @@ namespace LAZYSHELL
             dummy = WorldMapLogos;
             dummy = WorldMapLogoTileset;
             dummy = WorldMapLogoPalette;
-            dummy = WorldMapSpritePalette;
+            dummy = WorldMapSpritesMarioPalette;
+            dummy = WorldMapSpritesLocationPalette;
+            dummy = WorldMapBackgroundGraphics;
+            dummy = WorldMapBackgroundPalette;
+            dummy = WorldMapBackgroundTileset;
         }
         public static void ClearModel()
         {
@@ -2657,7 +2881,8 @@ namespace LAZYSHELL
             battleMenuGraphics = null;
             battleMenuPalette = null;
             battleScripts = null;
-            behaviorAnimations = null;
+            behaviorAnimAllies = null;
+            behaviorAnimMonsters = null;
             bonusMessages = null;
             bonusMessageAnimations = null;
             characters = null;
@@ -2671,6 +2896,7 @@ namespace LAZYSHELL
             fontDescription = null;
             fontDialogue = null;
             fontMenu = null;
+            fontPaletteMenu = null;
             fontPaletteBattle = null;
             fontPaletteDialogue = null;
             fontTriangle = null;
@@ -2694,11 +2920,19 @@ namespace LAZYSHELL
             menuBG = null;
             menuBGPalette = null;
             shopBGPalette = null;
+            shopBG = null;
+            gameBG = null;
             menuFrameGraphics = null;
             menuBGGraphics = null;
             menuBGTileset = null;
             menuPalettes = null;
+            overworldStarPiecesMenuGraphics = null;
+            overworldStarPiecesMenuTileset = null;
+            overworldStarPiecesMenuPalette = null;
+            cursorPaletteSet = null;
             menuTexts = null;
+            menuBoxTexts = null;
+            menuBoxNames = null;
             minecartM7Graphics = null;
             minecartM7Palettes = null;
             minecartM7PaletteSet = null;
@@ -2726,6 +2960,8 @@ namespace LAZYSHELL
             numeralPaletteSet = null;
             openingData = null;
             openingPalette = null;
+            bootupLogoData = null;
+            bootupLogoGraphics = null;
             overlapTileset = null;
             palettes = null;
             paletteSets = null;
@@ -2757,7 +2993,7 @@ namespace LAZYSHELL
             weaponAnimations = null;
             weaponSoundScripts = null;
             weaponTimedHitScripts = null;
-            characterScripts = null;
+            weaponWrapperAnimations = null;
             worldMapGraphics = null;
             worldMapPalettes = null;
             worldMaps = null;
@@ -2767,29 +3003,34 @@ namespace LAZYSHELL
             worldMapLogoPalette = null;
             worldMapLogoTileset = null;
             worldMapSpritePalette = null;
+            worldMapSpriteLocationPalette = null;
+            worldMapBackgroundGraphics = null;
+            worldMapBackgroundPalette = null;
+            worldMapBackgroundTileset = null;
         }
         public static void CreateListCollections()
         {
             ELists = new List<EList>();
+            ELists.Add(new EList("Levels", Lists.Copy(Lists.LevelNames)));
+            ELists.Add(new EList("Solidity Maps", Lists.Copy(Lists.SolidityMapNames)));
+            ELists.Add(new EList("Tilemaps", Lists.Copy(Lists.TileMapNames)));
+            ELists.Add(new EList("Tilesets", Lists.Copy(Lists.TileSetNames)));
+            ELists.Add(new EList("Graphic Sets", Lists.Copy(Lists.GraphicSetNames)));
+            ELists.Add(new EList("Event Scripts", Lists.Copy(Lists.EventLabels)));
             ELists.Add(new EList("Action Scripts", Lists.Copy(Lists.ActionLabels)));
             ELists.Add(new EList("Battle Events", Lists.Copy(Lists.BattleEventNames)));
+            ELists.Add(new EList("Monster Behavior Animations", Lists.Copy(Lists.MonsterBehaviors)));
             ELists.Add(new EList("Battlefields", Lists.Copy(Lists.BattlefieldNames)));
-            ELists.Add(new EList("Effects", Lists.Copy(Lists.EffectNames)));
-            ELists.Add(new EList("Event Scripts", Lists.Copy(Lists.EventLabels)));
-            ELists.Add(new EList("Graphic Sets", Lists.Copy(Lists.GraphicSetNames)));
-            ELists.Add(new EList("Levels", Lists.Copy(Lists.LevelNames)));
-            ELists.Add(new EList("Samples", Lists.Copy(Lists.SampleNames)));
-            ELists.Add(new EList("Shops", Lists.Copy(Lists.ShopNames)));
-            ELists.Add(new EList("Solidity Maps", Lists.Copy(Lists.SolidityMapNames)));
+            ELists.Add(new EList("Sprites", Lists.Copy(Lists.SpriteNames)));
             ELists.Add(new EList("Songs", Lists.Copy(Lists.MusicNames)));
             ELists.Add(new EList("Sound FX (Event)", Lists.Copy(Lists.SoundNames)));
             ELists.Add(new EList("Sound FX (Battle)", Lists.Copy(Lists.BattleSoundNames)));
-            ELists.Add(new EList("Sprites", Lists.Copy(Lists.SpriteNames)));
-            ELists.Add(new EList("Tilesets", Lists.Copy(Lists.TileSetNames)));
-            ELists.Add(new EList("Tilemaps", Lists.Copy(Lists.TileMapNames)));
+            ELists.Add(new EList("Samples", Lists.Copy(Lists.SampleNames)));
+            ELists.Add(new EList("Effects", Lists.Copy(Lists.EffectNames)));
+            ELists.Add(new EList("Shops", Lists.Copy(Lists.ShopNames)));
             ELists.Add(new EList("World Maps", Lists.Copy(Lists.WorldMapNames)));
             //
-            Keystrokes = Lists.Copy(Lists.Keystrokes);
+                Keystrokes = Lists.Copy(Lists.Keystrokes);
             KeystrokesMenu = Lists.Copy(Lists.KeystrokesMenu);
             KeystrokesDesc = Lists.Copy(Lists.KeystrokesDesc);
         }
@@ -2813,13 +3054,14 @@ namespace LAZYSHELL
         {
             switch (name)
             {
+                case "Levels": elist.Labels.CopyTo(Lists.LevelNames, 0); break;
                 case "Action Scripts": elist.Labels.CopyTo(Lists.ActionLabels, 0); break;
                 case "Battle Events": elist.Labels.CopyTo(Lists.BattleEventNames, 0); break;
+                case "Monster Behavior Animations": elist.Labels.CopyTo(Lists.MonsterBehaviors, 0); break;
                 case "Battlefields": elist.Labels.CopyTo(Lists.BattlefieldNames, 0); break;
                 case "Effects": elist.Labels.CopyTo(Lists.EffectNames, 0); break;
                 case "Event Scripts": elist.Labels.CopyTo(Lists.EventLabels, 0); break;
                 case "Graphic Sets": elist.Labels.CopyTo(Lists.GraphicSetNames, 0); break;
-                case "Levels": elist.Labels.CopyTo(Lists.LevelNames, 0); break;
                 case "Samples": elist.Labels.CopyTo(Lists.SampleNames, 0); break;
                 case "Shops": elist.Labels.CopyTo(Lists.ShopNames, 0); break;
                 case "Solidity Maps": elist.Labels.CopyTo(Lists.SolidityMapNames, 0); break;
@@ -2837,7 +3079,7 @@ namespace LAZYSHELL
             if (project == null)
             {
                 if (MessageBox.Show("No project file has been loaded. Would you like to load a project file?",
-                    "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Project temp = program.Project;
                     if (temp == null)
@@ -2848,7 +3090,7 @@ namespace LAZYSHELL
                 if (project == null)
                 {
                     MessageBox.Show("A project file must be loaded to edit labels or keystrokes.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Question);
                     return false;
                 }
             }

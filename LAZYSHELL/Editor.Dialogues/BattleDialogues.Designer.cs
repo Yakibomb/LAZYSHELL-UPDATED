@@ -26,6 +26,7 @@ namespace LAZYSHELL
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BattleDialogues));
             this.battleDialogueTextBox = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.battleDlgType = new System.Windows.Forms.ToolStripComboBox();
@@ -120,7 +121,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.battleDialogueNum.Location = new System.Drawing.Point(129, 2);
+            this.battleDialogueNum.Location = new System.Drawing.Point(131, 2);
             this.battleDialogueNum.Maximum = new decimal(new int[] {
             255,
             0,
@@ -143,6 +144,7 @@ namespace LAZYSHELL
             // 
             // searchBox
             // 
+            this.searchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(120, 25);
             // 
@@ -158,6 +160,7 @@ namespace LAZYSHELL
             // 
             // bonusTextBox
             // 
+            this.bonusTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bonusTextBox.MaxLength = 16;
             this.bonusTextBox.Name = "bonusTextBox";
             this.bonusTextBox.Size = new System.Drawing.Size(120, 25);
@@ -167,16 +170,17 @@ namespace LAZYSHELL
             // bonusPreview
             // 
             this.bonusPreview.AutoSize = false;
-            this.bonusPreview.BackgroundImage = global::LAZYSHELL.Properties.Resources._transparent;
+            this.bonusPreview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bonusPreview.BackgroundImage")));
             this.bonusPreview.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.bonusPreview.Margin = new System.Windows.Forms.Padding(4, 1, 0, 2);
             this.bonusPreview.Name = "bonusPreview";
             this.bonusPreview.Size = new System.Drawing.Size(128, 8);
+            this.bonusPreview.Visible = false;
             this.bonusPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.bonusPreview_Paint);
             // 
             // pictureBoxBattleDialogue
             // 
-            this.pictureBoxBattleDialogue.BackgroundImage = global::LAZYSHELL.Properties.Resources._transparent;
+            this.pictureBoxBattleDialogue.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxBattleDialogue.BackgroundImage")));
             this.pictureBoxBattleDialogue.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBoxBattleDialogue.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxBattleDialogue.Name = "pictureBoxBattleDialogue";
@@ -208,7 +212,7 @@ namespace LAZYSHELL
             // pageUp
             // 
             this.pageUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pageUp.Image = global::LAZYSHELL.Properties.Resources.pageUp;
+            this.pageUp.Image = ((System.Drawing.Image)(resources.GetObject("pageUp.Image")));
             this.pageUp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pageUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pageUp.Name = "pageUp";
@@ -219,7 +223,7 @@ namespace LAZYSHELL
             // pageDown
             // 
             this.pageDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pageDown.Image = global::LAZYSHELL.Properties.Resources.pageDown;
+            this.pageDown.Image = ((System.Drawing.Image)(resources.GetObject("pageDown.Image")));
             this.pageDown.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pageDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pageDown.Name = "pageDown";
@@ -236,7 +240,7 @@ namespace LAZYSHELL
             // 
             this.textView.CheckOnClick = true;
             this.textView.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.textView.Image = global::LAZYSHELL.Properties.Resources.textView;
+            this.textView.Image = ((System.Drawing.Image)(resources.GetObject("textView.Image")));
             this.textView.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.textView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.textView.Name = "textView";
@@ -258,7 +262,7 @@ namespace LAZYSHELL
             // newLine
             // 
             this.newLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newLine.Image = global::LAZYSHELL.Properties.Resources.newLine;
+            this.newLine.Image = ((System.Drawing.Image)(resources.GetObject("newLine.Image")));
             this.newLine.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.newLine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newLine.Name = "newLine";
@@ -269,7 +273,7 @@ namespace LAZYSHELL
             // endString
             // 
             this.endString.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.endString.Image = global::LAZYSHELL.Properties.Resources.endString;
+            this.endString.Image = ((System.Drawing.Image)(resources.GetObject("endString.Image")));
             this.endString.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.endString.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.endString.Name = "endString";
@@ -280,7 +284,7 @@ namespace LAZYSHELL
             // pause60f
             // 
             this.pause60f.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pause60f.Image = global::LAZYSHELL.Properties.Resources.pause60f;
+            this.pause60f.Image = ((System.Drawing.Image)(resources.GetObject("pause60f.Image")));
             this.pause60f.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pause60f.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pause60f.Name = "pause60f";
@@ -291,7 +295,7 @@ namespace LAZYSHELL
             // pauseA
             // 
             this.pauseA.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pauseA.Image = global::LAZYSHELL.Properties.Resources.pauseA;
+            this.pauseA.Image = ((System.Drawing.Image)(resources.GetObject("pauseA.Image")));
             this.pauseA.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pauseA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pauseA.Name = "pauseA";
@@ -303,7 +307,7 @@ namespace LAZYSHELL
             // 
             this.pauseFrames.CheckOnClick = true;
             this.pauseFrames.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pauseFrames.Image = global::LAZYSHELL.Properties.Resources.pauseFrames;
+            this.pauseFrames.Image = ((System.Drawing.Image)(resources.GetObject("pauseFrames.Image")));
             this.pauseFrames.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pauseFrames.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pauseFrames.Name = "pauseFrames";
@@ -334,7 +338,7 @@ namespace LAZYSHELL
             // reset
             // 
             this.reset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.reset.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.reset.Image = ((System.Drawing.Image)(resources.GetObject("reset.Image")));
             this.reset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.reset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.reset.Name = "reset";
@@ -407,14 +411,14 @@ namespace LAZYSHELL
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(31, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
             // 
             // openPaletteDialogue
             // 
             this.openPaletteDialogue.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.openPaletteDialogue.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openPaletteDialogue.Name = "openPaletteDialogue";
-            this.openPaletteDialogue.Size = new System.Drawing.Size(179, 24);
+            this.openPaletteDialogue.Size = new System.Drawing.Size(177, 22);
             this.openPaletteDialogue.Text = "Dialogue Font Palette";
             this.openPaletteDialogue.Click += new System.EventHandler(this.openPalettes_Click);
             // 
@@ -423,7 +427,7 @@ namespace LAZYSHELL
             this.openPaletteMenu.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.openPaletteMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openPaletteMenu.Name = "openPaletteMenu";
-            this.openPaletteMenu.Size = new System.Drawing.Size(179, 24);
+            this.openPaletteMenu.Size = new System.Drawing.Size(177, 22);
             this.openPaletteMenu.Text = "Menu Font Palette";
             this.openPaletteMenu.Click += new System.EventHandler(this.openPaletteMenu_Click);
             // 

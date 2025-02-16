@@ -27,18 +27,19 @@ namespace LAZYSHELL
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlliesEditor));
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.save = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.import = new System.Windows.Forms.ToolStripButton();
             this.export = new System.Windows.Forms.ToolStripButton();
-            this.clear = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.clear = new System.Windows.Forms.ToolStripButton();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
             this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.showNewGameStats = new System.Windows.Forms.ToolStripButton();
             this.showLevelUps = new System.Windows.Forms.ToolStripButton();
+            this.showNewGameStats = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new LAZYSHELL.NewPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip3.SuspendLayout();
@@ -52,13 +53,13 @@ namespace LAZYSHELL
             this.toolStripSeparator4,
             this.import,
             this.export,
-            this.clear,
             this.toolStripSeparator1,
+            this.clear,
             this.helpTips,
             this.baseConvertor,
             this.toolStripSeparator2,
-            this.showNewGameStats,
-            this.showLevelUps});
+            this.showLevelUps,
+            this.showNewGameStats});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -101,6 +102,11 @@ namespace LAZYSHELL
             this.export.ToolTipText = "Export";
             this.export.Click += new System.EventHandler(this.export_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // clear
             // 
             this.clear.Image = global::LAZYSHELL.Properties.Resources.clear_small;
@@ -111,13 +117,9 @@ namespace LAZYSHELL
             this.clear.ToolTipText = "Clear";
             this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -129,6 +131,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
@@ -140,24 +143,13 @@ namespace LAZYSHELL
             // 
             // toolStripSeparator2
             // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // showNewGameStats
-            // 
-            this.showNewGameStats.Checked = true;
-            this.showNewGameStats.CheckOnClick = true;
-            this.showNewGameStats.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showNewGameStats.Image = global::LAZYSHELL.Properties.Resources.openNewGame;
-            this.showNewGameStats.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showNewGameStats.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.showNewGameStats.Name = "showNewGameStats";
-            this.showNewGameStats.Size = new System.Drawing.Size(23, 22);
-            this.showNewGameStats.ToolTipText = "New Game Stats";
-            this.showNewGameStats.Click += new System.EventHandler(this.showNewGameStats_Click);
-            // 
             // showLevelUps
             // 
+            this.showLevelUps.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.showLevelUps.Checked = true;
             this.showLevelUps.CheckOnClick = true;
             this.showLevelUps.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -168,6 +160,20 @@ namespace LAZYSHELL
             this.showLevelUps.Size = new System.Drawing.Size(23, 22);
             this.showLevelUps.ToolTipText = "Level-Ups";
             this.showLevelUps.Click += new System.EventHandler(this.showLevelUps_Click);
+            // 
+            // showNewGameStats
+            // 
+            this.showNewGameStats.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.showNewGameStats.Checked = true;
+            this.showNewGameStats.CheckOnClick = true;
+            this.showNewGameStats.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showNewGameStats.Image = global::LAZYSHELL.Properties.Resources.openNewGame;
+            this.showNewGameStats.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showNewGameStats.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.showNewGameStats.Name = "showNewGameStats";
+            this.showNewGameStats.Size = new System.Drawing.Size(23, 22);
+            this.showNewGameStats.ToolTipText = "New Game Stats";
+            this.showNewGameStats.Click += new System.EventHandler(this.showNewGameStats_Click);
             // 
             // panel1
             // 
@@ -192,17 +198,18 @@ namespace LAZYSHELL
             this.Controls.Add(this.toolStrip3);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainAllies_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "AlliesEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "ALLIES - Lazy Shell";
+            this.Text = "ALLIES - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AlliesEditor_FormClosing);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip3;

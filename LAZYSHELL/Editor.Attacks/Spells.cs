@@ -76,9 +76,10 @@ namespace LAZYSHELL
             this.spellStatusEffect.SetItemChecked(1, spell.EffectSleep);
             this.spellStatusEffect.SetItemChecked(2, spell.EffectPoison);
             this.spellStatusEffect.SetItemChecked(3, spell.EffectFear);
-            this.spellStatusEffect.SetItemChecked(4, spell.EffectMushroom);
-            this.spellStatusEffect.SetItemChecked(5, spell.EffectScarecrow);
-            this.spellStatusEffect.SetItemChecked(6, spell.EffectInvincible);
+            this.spellStatusEffect.SetItemChecked(4, spell.EffectBerserk);
+            this.spellStatusEffect.SetItemChecked(5, spell.EffectMushroom);
+            this.spellStatusEffect.SetItemChecked(6, spell.EffectScarecrow);
+            this.spellStatusEffect.SetItemChecked(7, spell.EffectInvincible);
             this.spellStatusChange.SetItemChecked(0, spell.ChangeAttack);
             this.spellStatusChange.SetItemChecked(1, spell.ChangeDefense);
             this.spellStatusChange.SetItemChecked(2, spell.ChangeMagicAttack);
@@ -108,7 +109,8 @@ namespace LAZYSHELL
                 this.groupBox8.Text = "Effect <. . . .>";
                 this.groupBox9.Text = "Status <. . . .>";
             }
-            groupBox6.Visible = index < 32;
+            damageModifiersBox.Visible = index < 32;
+            timingPropertiesBox.Visible = index < 32;
             if (index < 32)
             {
                 this.AlliesSpellTimingPointer.Value = spell.TimingPointer;
@@ -387,9 +389,10 @@ namespace LAZYSHELL
             spell.EffectSleep = this.spellStatusEffect.GetItemChecked(1);
             spell.EffectPoison = this.spellStatusEffect.GetItemChecked(2);
             spell.EffectFear = this.spellStatusEffect.GetItemChecked(3);
-            spell.EffectMushroom = this.spellStatusEffect.GetItemChecked(4);
-            spell.EffectScarecrow = this.spellStatusEffect.GetItemChecked(5);
-            spell.EffectInvincible = this.spellStatusEffect.GetItemChecked(6);
+            spell.EffectBerserk = this.spellStatusEffect.GetItemChecked(4);
+            spell.EffectMushroom = this.spellStatusEffect.GetItemChecked(5);
+            spell.EffectScarecrow = this.spellStatusEffect.GetItemChecked(6);
+            spell.EffectInvincible = this.spellStatusEffect.GetItemChecked(7);
         }
         private void spellTargetting_SelectedIndexChanged(object sender, EventArgs e)
         {

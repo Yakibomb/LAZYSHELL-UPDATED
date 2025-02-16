@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
 namespace LAZYSHELL.ScriptsEditor.Commands
@@ -7,7 +8,17 @@ namespace LAZYSHELL.ScriptsEditor.Commands
     public partial class Interpreter
     {
         #region Static Data
-        public static string[] EventCommands = new string[]
+
+        public static string[] EventCommands
+        {
+            get
+            {
+                for (int i = 0; i < Model.Characters.Length; i++)
+                    eventCommands[i] = Model.CharacterNames.GetUnsortedName(i) + ", {0}";
+                return eventCommands;
+            }
+        }
+        public static string[] eventCommands = new string[]
         {
             "Mario, {0}",			// 0x00
             "Toadstool, {0}",			// 0x01
@@ -510,63 +521,83 @@ namespace LAZYSHELL.ScriptsEditor.Commands
             "Return",			// 0xFE
             "Return all"			// 0xFF
         };
-        private static string[] CharacterNames = new string[]
+        private static string[] CharacterNames
         {
-            "Mario","Toadstool","Bowser","Geno","Mallow",
-            "INVALID","INVALID","INVALID","INVALID","INVALID",
-            "INVALID","INVALID","INVALID","INVALID","INVALID",
-        };
-        private static string[] ObjectNames = new string[]
+            get
             {
-            "Mario",
-            "Toadstool",
-            "Bowser",
-            "Geno",
-            "Mallow",
-            "DUMMY 0x05",
-            "DUMMY 0x06",
-            "DUMMY 0x07",
-            "Character in Slot 1",
-            "Character in Slot 2",
-            "Character in Slot 3",
-            "DUMMY 0x0B",
-            "Screen Focus",
-            "Layer 1",
-            "Layer 2",
-            "Layer 3",
-            "Memory $70A8",
-            "Memory $70A9",
-            "Memory $70AA",
-            "Memory $70AB",
-            "NPC #0",
-            "NPC #1",
-            "NPC #2",
-            "NPC #3",
-            "NPC #4",
-            "NPC #5",
-            "NPC #6",
-            "NPC #7",
-            "NPC #8",
-            "NPC #9",
-            "NPC #10",
-            "NPC #11",
-            "NPC #12",
-            "NPC #13",
-            "NPC #14",
-            "NPC #15",
-            "NPC #16",
-            "NPC #17",
-            "NPC #18",
-            "NPC #19",
-            "NPC #20",
-            "NPC #21",
-            "NPC #22",
-            "NPC #23",
-            "NPC #24",
-            "NPC #25",
-            "NPC #26",
-            "NPC #27",
-            };
+                string[] characterNames = new string[] {
+                    "Mario","Toadstool","Bowser","Geno","Mallow",
+                    "INVALID","INVALID","INVALID","INVALID","INVALID",
+                    "INVALID","INVALID","INVALID","INVALID","INVALID" };
+
+                for (int i = 0; i < Model.Characters.Length; i++)
+                    characterNames[i] = Model.CharacterNames.GetUnsortedName(i);
+                return characterNames;
+            }
+        }
+        public static string[] objectNames = new string[]
+        {
+            "Mario",// 0x00
+            "Toadstool",			// 0x01
+            "Bowser",			// 0x02
+            "Geno",// 0x03
+            "Mallow",			// 0x04
+            "DUMMY 0x05",			// 0x05
+            "DUMMY 0x06",			// 0x06
+            "DUMMY 0x07",			// 0x07
+            "Character in Slot 1",// 0x08
+            "Character in Slot 2",// 0x09
+            "Character in Slot 3",// 0x0A
+            "DUMMY 0x0B",			// 0x0B
+            "Screen Focus",			// 0x0C
+            "Layer 1",			// 0x0D
+            "Layer 2",			// 0x0E
+            "Layer 3",			// 0x0F
+            			
+            "Mem $70A8",			// 0x10
+            "Mem $70A9",			// 0x11
+            "Mem $70AA",			// 0x12
+            "Mem $70AB",			// 0x13
+            "NPC #0",			// 0x14
+            "NPC #1",			// 0x15
+            "NPC #2",			// 0x16
+            "NPC #3",			// 0x17
+            "NPC #4",			// 0x18
+            "NPC #5",			// 0x19
+            "NPC #6",			// 0x1A
+            "NPC #7",			// 0x1B
+            "NPC #8",			// 0x1C
+            "NPC #9",			// 0x1D
+            "NPC #10",			// 0x1E
+            "NPC #11",			// 0x1F
+            			
+            "NPC #12",			// 0x20
+            "NPC #13",			// 0x21
+            "NPC #14",			// 0x22
+            "NPC #15",			// 0x23
+            "NPC #16",			// 0x24
+            "NPC #17",			// 0x25
+            "NPC #18",			// 0x26
+            "NPC #19",			// 0x27
+            "NPC #20",			// 0x28
+            "NPC #21",			// 0x29
+            "NPC #22",			// 0x2A
+            "NPC #23",			// 0x2B
+            "NPC #24",			// 0x2C
+            "NPC #25",			// 0x2D
+            "NPC #26",			// 0x2E
+            "NPC #27"			// 0x2F
+        };
+
+        public static string[] ObjectNames
+        {
+            get
+            {
+                for (int i = 0; i < Model.Characters.Length; i++)
+                    objectNames[i] = Model.CharacterNames.GetUnsortedName(i);
+                return objectNames;
+            }
+        }
         private static string[] Menus = new string[] { 
             "choose game", "overworld menu", "return to world map", "shop 0", "save game", "items maxed out" };
         private static string[] DirectionNames = new string[] { 

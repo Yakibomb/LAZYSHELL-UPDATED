@@ -485,7 +485,7 @@ namespace LAZYSHELL
             this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
             this.MaximizeBox = false;
             this.Name = "NPCPackets";
-            this.Text = "NPC PACKETS - Lazy Shell";
+            this.Text = "NPC PACKETS - LAZYSHELL++";
             ((System.ComponentModel.ISupportInitialize)(this.spritePictureBox)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

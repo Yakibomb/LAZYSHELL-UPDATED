@@ -153,7 +153,7 @@ namespace LAZYSHELL
         // class functions
         private void ErrorMessage(string error, int parent, int offset, int parentoffset)
         {
-            NewMessage.Show("LAZY SHELL", "Error in animation #" + parent + " @ offset $" + offset.ToString("X4") + ". " +
+            NewMessage.Show("LAZYSHELL++", "Error in animation #" + parent + " @ offset $" + offset.ToString("X4") + ". " +
                 "Data is corrupt: " + error + " " + 
                 "The sprites editor will continue to load anyways.\n\nAnimation Data:",
                 Do.BitArrayToString(buffer, 16, true, true, parentoffset), "Lucida Console");

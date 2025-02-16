@@ -18,6 +18,7 @@ namespace LAZYSHELL
         private bool priority1 = false; public bool Priority1 { get { return priority1; } set { priority1 = value; } }
         private bool bg = true; public bool BG { get { return bg; } set { bg = value; } }
         private bool solidityLayer = false; public bool SolidityLayer { get { return solidityLayer; } set { solidityLayer = value; } }
+        private bool solidityLayerFlatMode = false; public bool SolidityLayerFlatMode { get { return solidityLayerFlatMode; } set { solidityLayerFlatMode = value; } }
         private bool mask = false; public bool Mask { get { return mask; } set { mask = value; } }
         private bool npcs = false; public bool NPCs { get { return npcs; } set { npcs = value; } }
         private bool exits = false; public bool Exits { get { return exits; } set { exits = value; } }
@@ -40,6 +41,7 @@ namespace LAZYSHELL
         private bool autoPointerUpdate = true; public bool AutoPointerUpdate { get { return this.autoPointerUpdate; } set { this.autoPointerUpdate = value; } }
         private bool showEncryptionWarnings = true; public bool ShowEncryptionWarnings { get { return this.showEncryptionWarnings; } set { this.showEncryptionWarnings = value; } }
         private bool showBoundaries = false; public bool ShowBoundaries { get { return showBoundaries; } set { showBoundaries = value; } }
+
         // constructor
         State()
         {

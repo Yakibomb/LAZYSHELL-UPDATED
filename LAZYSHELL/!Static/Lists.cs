@@ -5,6 +5,12 @@ using System.Globalization;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TreeView;
+using System.Drawing.Drawing2D;
+using System.Drawing;
+using System.Net.PeerToPeer.Collaboration;
+using System.Security.Cryptography;
+using System.Timers;
 
 namespace LAZYSHELL
 {
@@ -124,7 +130,7 @@ namespace LAZYSHELL
             "Sprite sequence = {xx}",			// 0x43
             "{44}",			// 0x44
             "AMEM $60 = current target",			// 0x45
-            "{46}",			// 0x46
+            "Check ally mortal status, if all allies down set game over",			// 0x46
             "{47}",			// 0x47
             "{48}",			// 0x48
             "{49}",			// 0x49
@@ -268,18 +274,18 @@ namespace LAZYSHELL
             "Sprite sequence speed = ...",			// 0xCB
             "Start tracking for Ally Button Timing",			// 0xCC
             "End tracking for Ally Button Timing",			// 0xCD
-            "Timing for One Button Press: JustOK/Perfect range",			// 0xCE
+            "Timing for One Button Press: Just-OK/Perfect range",			// 0xCE
             "Timing for One Button Press: Any timing range",			// 0xCF
-
-            "Timing for Multiple Button Presses: Wait {0} frames, then jump",			// 0xD0
+            "Timing for Multiple Button Presses: Wait # frames, then jump",			// 0xD0
             "Timing for Button Mash: ???",			// 0xD1
             "Timing for Button Mash: Possible Power-ups range",			// 0xD2
             "Timing for Rotation: Frame range, Possible Power-ups range",			// 0xD3
             "Timing for Held Button: Hold for frame range",			// 0xD4
+
             "Summon monster...",			// 0xD5
             "{D6}",			// 0xD6
             "{D7}",			// 0xD7
-            "Timing for Mute: ??? Jump",			// 0xD8
+            "Timing for Mute: ??? then jump",			// 0xD8
             "Display \"Can\'t run\" dialogue",			// 0xD9
             "{DA}",			// 0xDA
             "{DB}",			// 0xDB
@@ -374,7 +380,7 @@ namespace LAZYSHELL
             "(normal)",
             "no reaction when hit"
         };
-        public static string[] MonsterSoundStrike = new string[] 
+        public static string[] MonsterSoundStrike = new string[]
         {
             "bite",
             "pierce",
@@ -391,7 +397,7 @@ namespace LAZYSHELL
             "wallop 4",
             "wallop 4"
         };
-        public static string[] MonsterSoundOther = new string[] 
+        public static string[] MonsterSoundOther = new string[]
         {
             "none",
             "Starslap, Spikey, Enigma",
@@ -402,46 +408,52 @@ namespace LAZYSHELL
             "Dry Bones",
             "Torte"
         };
-        public static string[] CharacterNames = new string[]
+        public static string[] CharacterNames
         {
-            "Mario", "Toadstool", "Bowser", "Geno", "Mallow"
-        };
-        public static string[] ButtonNames = new string[] 
-        { 
-            "left", "right", "down", "up", "X", "A", "Y", "B" 
+            get
+            {
+                string[] characterNames = new string[Model.Characters.Length];
+                for (int i = 0; i < Model.Characters.Length; i++)
+                    characterNames[i] = Model.CharacterNames.GetUnsortedName(i);
+                return characterNames;
+            }
+        }
+        public static string[] ButtonNames = new string[]
+        {
+            "left", "right", "down", "up", "X", "A", "Y", "B"
         };
         public static string[] Directions = new string[]
         {
             "east","southeast","south","southwest",
             "west","northwest","north","northeast"
         };
-        public static string[] ColorNames = new string[] 
-        { 
-            "black", "blue", "red", "pink", "green", "aqua", "yellow", "white" 
+        public static string[] ColorNames = new string[]
+        {
+            "black", "blue", "red", "pink", "green", "aqua", "yellow", "white"
         };
-        public static string[] LayerNames = new string[] 
-        { 
-            "L1", "L2", "L3", "L4", "NPC", "BG", "½ intensity", "Minus sub" 
+        public static string[] LayerNames = new string[]
+        {
+            "L1", "L2", "L3", "L4", "NPC", "BG", "½ intensity", "Minus sub"
         };
         public static string[] MenuNames = new string[]
         {
-                        "open game select menu",
-                        "open overworld menu",
-                        "open location",
-                        "open shop menu",
-                        "open save game menu",
-                        "open items maxed out menu",
-                        "UNKNOWN",
-                        "run menu tutorial",
-                        "add star piece",
-                        "run Moleville Mountain",
-                        "close menu and refresh VRAM",
-                        "run Moleville Mountain intro",
-                        "close menu and refresh VRAM",
-                        "run star piece end sequence",
-                        "run garden intro sequence",
-                        "enter gate to Smithy Factory",
-                        "run world map event sequence"
+            "open game select menu",
+            "open overworld menu",
+            "open location",
+            "open shop menu",
+            "open save game menu",
+            "open items maxed out menu",
+            "UNKNOWN",
+            "run menu tutorial",
+            "add star piece",
+            "run Moleville Mountain",
+            "close menu and refresh VRAM",
+            "run Moleville Mountain intro",
+            "close menu and refresh VRAM",
+            "run star piece end sequence",
+            "run garden intro sequence",
+            "enter gate to Smithy Factory",
+            "run world map event sequence"
         };
         #endregion
         #region Maps
@@ -516,59 +528,69 @@ namespace LAZYSHELL
             "Coal Mines (Bowser's Keep)",
             "Factory (Bowser's Keep)"
         };
-        public static string[] ObjectNames = new string[]
+        public static string[] objectNames = new string[]
+        {
+            "Mario",// 0x00
+            "Toadstool",			// 0x01
+            "Bowser",			// 0x02
+            "Geno",// 0x03
+            "Mallow",			// 0x04
+            "DUMMY 0x05",			// 0x05
+            "DUMMY 0x06",			// 0x06
+            "DUMMY 0x07",			// 0x07
+            "Character in Slot 1",// 0x08
+            "Character in Slot 2",// 0x09
+            "Character in Slot 3",// 0x0A
+            "DUMMY 0x0B",			// 0x0B
+            "Screen Focus",			// 0x0C
+            "Layer 1",			// 0x0D
+            "Layer 2",			// 0x0E
+            "Layer 3",			// 0x0F
+            			
+            "Mem $70A8",			// 0x10
+            "Mem $70A9",			// 0x11
+            "Mem $70AA",			// 0x12
+            "Mem $70AB",			// 0x13
+            "NPC #0",			// 0x14
+            "NPC #1",			// 0x15
+            "NPC #2",			// 0x16
+            "NPC #3",			// 0x17
+            "NPC #4",			// 0x18
+            "NPC #5",			// 0x19
+            "NPC #6",			// 0x1A
+            "NPC #7",			// 0x1B
+            "NPC #8",			// 0x1C
+            "NPC #9",			// 0x1D
+            "NPC #10",			// 0x1E
+            "NPC #11",			// 0x1F
+            			
+            "NPC #12",			// 0x20
+            "NPC #13",			// 0x21
+            "NPC #14",			// 0x22
+            "NPC #15",			// 0x23
+            "NPC #16",			// 0x24
+            "NPC #17",			// 0x25
+            "NPC #18",			// 0x26
+            "NPC #19",			// 0x27
+            "NPC #20",			// 0x28
+            "NPC #21",			// 0x29
+            "NPC #22",			// 0x2A
+            "NPC #23",			// 0x2B
+            "NPC #24",			// 0x2C
+            "NPC #25",			// 0x2D
+            "NPC #26",			// 0x2E
+            "NPC #27"			// 0x2F
+        };
+
+        public static string[] ObjectNames
+        {
+            get
             {
-                    "Mario",// 0x00
-                    "Toadstool",			// 0x01
-                    "Bowser",			// 0x02
-                    "Geno",// 0x03
-                    "Mallow",			// 0x04
-                    "DUMMY 0x05",			// 0x05
-                    "DUMMY 0x06",			// 0x06
-                    "DUMMY 0x07",			// 0x07
-                    "Character in Slot 1",// 0x08
-                    "Character in Slot 2",// 0x09
-                    "Character in Slot 3",// 0x0A
-                    "DUMMY 0x0B",			// 0x0B
-                    "Screen Focus",			// 0x0C
-                    "Layer 1",			// 0x0D
-                    "Layer 2",			// 0x0E
-                    "Layer 3",			// 0x0F
-            			
-                    "Mem $70A8",			// 0x10
-                    "Mem $70A9",			// 0x11
-                    "Mem $70AA",			// 0x12
-                    "Mem $70AB",			// 0x13
-                    "NPC #0",			// 0x14
-                    "NPC #1",			// 0x15
-                    "NPC #2",			// 0x16
-                    "NPC #3",			// 0x17
-                    "NPC #4",			// 0x18
-                    "NPC #5",			// 0x19
-                    "NPC #6",			// 0x1A
-                    "NPC #7",			// 0x1B
-                    "NPC #8",			// 0x1C
-                    "NPC #9",			// 0x1D
-                    "NPC #10",			// 0x1E
-                    "NPC #11",			// 0x1F
-            			
-                    "NPC #12",			// 0x20
-                    "NPC #13",			// 0x21
-                    "NPC #14",			// 0x22
-                    "NPC #15",			// 0x23
-                    "NPC #16",			// 0x24
-                    "NPC #17",			// 0x25
-                    "NPC #18",			// 0x26
-                    "NPC #19",			// 0x27
-                    "NPC #20",			// 0x28
-                    "NPC #21",			// 0x29
-                    "NPC #22",			// 0x2A
-                    "NPC #23",			// 0x2B
-                    "NPC #24",			// 0x2C
-                    "NPC #25",			// 0x2D
-                    "NPC #26",			// 0x2E
-                    "NPC #27"			// 0x2F
-            };
+                for (int i = 0; i < Model.Characters.Length; i++)
+                    objectNames[i] = Model.CharacterNames.GetUnsortedName(i);
+                return objectNames;
+            }
+        }
         #endregion
         #region Audio
         public static int[] SMWSamples = new int[]{
@@ -594,11 +616,11 @@ namespace LAZYSHELL
             false,false,true, true, true, true, false,false,false,false,
             false,false,true, true, false,true, true, true, false,false,
             false,true, true, true, true, false,false,false,false,false,
-            true, true, true, false,false,false,false,true, true, true, 
-            false,false,true, true, false,true, true, true, false,true, 
+            true, true, true, false,false,false,false,true, true, true,
+            false,false,true, true, false,true, true, true, false,true,
             true, true, false,false,true, false,false,false,false,false,
-            false,true, false,false,false,false,false,true, true, true, 
-            false,false,false,false,false,false,true, true, true, true, 
+            false,true, false,false,false,false,false,true, true, true,
+            false,false,false,false,false,false,true, true, true, true,
             false,false,false,false,true, false
         };
         public static int[] SMRPGtoSMWSamples = new int[]{
@@ -1408,7 +1430,7 @@ namespace LAZYSHELL
             0x00,0x00,0x00,0x00
         };
         public static string[] BattlefieldNames = new string[]
-            {
+        {
             "Forest Maze",
             "Forest Maze: Bowyer\'s Pad",
             "Bean Valley: Beanstalks",
@@ -1473,7 +1495,7 @@ namespace LAZYSHELL
             "_____",
             "_____",
             "_____"
-            };
+        };
         public static string[] BattleEventNames = new string[]
         {
             "Mallow belts Croco, gets back frog coin",
@@ -1580,7 +1602,7 @@ namespace LAZYSHELL
             "___Magikoopa is there",
             "<NONE>"
         };
-        public static string[] TargetNames = new string[]
+        public static string[] targetNames = new string[]
         {
             "Mario",
             "Toadstool",
@@ -1631,6 +1653,41 @@ namespace LAZYSHELL
             "monster 7 (call)",
             "monster 8 (call)"
         };
+        public static string[] TargetNames
+        {
+            get
+            {
+                for (int i = 0; i < Model.Characters.Length; i++)
+                    targetNames[i] = Model.CharacterNames.GetUnsortedName(i);
+                return targetNames;
+            }
+        }
+        private static string[] monsterBehaviors = new string[0];
+        public static string[] MonsterBehaviors
+        {
+            get
+            {
+                if (monsterBehaviors.Length == 54)
+                    return monsterBehaviors;
+                monsterBehaviors = new string[54];
+                for (int i = 0; i < monsterBehaviors.Length; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                        case 36:
+                            monsterBehaviors[i] = "Initialize in Battle"; break;
+                        case 1:
+                        case 37:
+                            monsterBehaviors[i] = "Idle/On Hit"; break;
+
+                        default: monsterBehaviors[i] = ""; break;
+                    }
+                }
+                return monsterBehaviors;
+            }
+
+        }
         #endregion
 
         #region Monsters
@@ -1994,7 +2051,7 @@ namespace LAZYSHELL
             "Treasure Chest",
             "Empty Treasure Chest",
             "Mario Doll (surprised)",
-            "Toadstool's Parachute",
+            "Snifit's Parachute",
             "Rolling Barrel",
             "Trampoline (Warp)",
             "Trampoline (Jump)",
@@ -2032,7 +2089,7 @@ namespace LAZYSHELL
             "Moleville Mine Cart",
             "Knife Guy Juggler (still, red balls)",
             "Knife Guy Juggler",
-            "Mine Cart (bad palette)",
+            "Mine Cart (Seq7 Overworld Sprite)",
             "Mario in Mine Cart",
             "Fireball (surface from lava)",
             "Piranha Plant",
@@ -2041,7 +2098,7 @@ namespace LAZYSHELL
             "Golden Bullet Bill",
             "Factory Clerk (green)",
             "Land's End Cannon",
-            "Red Dot?",
+            "Apple (Yo'ster Isle intro sequence)",
             "Bob-omb",
             "Commander Troopa",
             "Golden Belome",
@@ -2071,7 +2128,7 @@ namespace LAZYSHELL
             "Sparkles from Star Piece",
             "Geno Doll",
             "Smelter (back section)",
-            "Small Candy Cloud",
+            "Mario on Nimbus Busman (Bowser's Keep cutscene)",
             "Golden Chomp (back)",
             "Chomp (front)",
             "Grate Guy (from casino)",
@@ -2119,7 +2176,7 @@ namespace LAZYSHELL
             "Whirlpool (desert)",
             "Yellow Letter",
             "Yaridovich (out of battle)",
-            "Banana Peel",
+            "Toadstool Marrymore Accessories",
             "Tentacle (extending)",
             "Snifit (black, back)",
             "Level Up Bonus Selection Box",
@@ -2418,13 +2475,13 @@ namespace LAZYSHELL
             "Small White Cloud",
             "Drain Explosion",
             "flower bonus alphabet + symbols",
-            "light blue stars",
+            "Battle stars (on hit)",
             "Come Back rainbow star",
             "yellow cure stars",
             "....",
             "Bowyer's arrow",
-            "yellow mist / steam",
-            "yellow mist / steam forms into small star",
+            "Geno's Star Form (Ending Credits)",
+            "Geno's Bullets and Star Gun",
             "very small black dot",
             "HP Rain cloud",
             "stat-boost arrows",
@@ -2683,10 +2740,10 @@ namespace LAZYSHELL
             "blue gas cloud",
             "bone throw",
             "spritz bomb",
-            "Wind Crystal",
+            "Wind Crystal and Fire Crystal",
             "green shine web",
             "Mecha-Koopa (Bowser Crush) eyes",
-            "Water Crystal",
+            "Water Crystal and Earth Crystal",
             "plasm water droplet (blue-green)",
             "Ice Rock",
             "black rock",
@@ -2853,9 +2910,9 @@ namespace LAZYSHELL
             "poof",
             "purple firework",
             "smaller red firework",
-            "normal yellow 5-pronged star",
-            "brown object dissipating",
-            "tiny glowing pixel",
+            "Geno in Star Form (Ending Credits)",
+            "The End background (Ending Credits)",
+            "Geno's Star's glow effect (Ending Credits)",
             "....",
             "....",
             "....",
@@ -3517,7 +3574,7 @@ namespace LAZYSHELL
             "Nimbus Land, fall from platform (2nd)",
             "Nimbus Land, fall from platform (3rd)",
             "Nimbus Land, fall from platform (4th)",
-            "ENDING CREDITS: Star Pieces shoot through the sky",
+            "ENDING CREDITS: Vista Hill (Exor vanishes from the world)",
             "Bowser's Keep 6-door, Battle Room 2-B (1st fight: Chewy)",
             "Bowser's Keep 6-door, Battle Room 2-C (1st fight: Sparky)",
             "Bean Valley Beanstalks, Area 01",
@@ -3638,7 +3695,7 @@ namespace LAZYSHELL
             "Mushroom Kingdom, Inn (1F)",
             "Mushroom Kingdom, Inn (2F)",
             "Mushroom Kingdom, running kid's house",
-            "Factory Grounds, fight with Smithy (uses Sledge)",
+            "ENDING CREDITS: Factory Grounds, fight with Smithy",
             "Nimbus Castle, Area 06 ____dummy",
             "Nimbus Castle, Area 10 ____dummy",
             "Nimbus Castle, Area 05 (long 5-exit room, after Valentina)",
@@ -3891,7 +3948,7 @@ namespace LAZYSHELL
             "Smithy 2",
             "____",
             "____",
-            "____"        
+            "____"
         };
         public static string[] TileSetNames = new string[]
         {
@@ -4523,8 +4580,138 @@ namespace LAZYSHELL
             "Count Down"};
         #endregion
         #region Events
-        public static string[] EventLabels = new string[4096];
-        public static string[] ActionLabels = new string[1024];
+        private static string[] eventLabels = new string[0];
+        private static string[] actionLabels = new string[0];
+   /*
+                  +1731 - Waypoint Event If $074E:3 skip #143 and go to #1746
+                   +143 - Waypoint Event
+                    +154 - Battle Pack 202 Seaside Town Beach BG(Hex 25 / Dec 37), Goto Event #3839 Via #143
+                    +3839 - Sea Shore intro area
+                     +145 - Waypoint Event
+                      +155 -> Battle Pack 197 Mountains BG(Dec 10 / Hex A), Goto #997 via #145
+                      +997 - Intro level Nimbus Land w/ birdbrains
+                       +146 - Waypoint Event
+                        +156 -> Battle Czar Dragon(204) His BG(8), Goto #2290 Via #146
+                        +2290 - Booster Tower, Peach's Intro
+                         +141 - Goto #2291
+                          +2291 - Open Vista Hill level
+                           +147 - Goto #996
+                            +996 - Pipe Vault Area 01 (not faded in), "In...' text, Return.  ==END OF SCRIPTS EXECUTION HERE==
+            */
+        public static string[] EventLabels
+        {
+            get
+            {
+                if (eventLabels.Length == 4096)
+                    return eventLabels;
+                eventLabels = new string[4096];
+                for (int i = 0; i < eventLabels.Length; i++)
+                {
+                    switch (i)
+                    {
+                        case 16: eventLabels[i] = "Engage in battle (remove permanently after defeat)"; break;
+                        case 17: eventLabels[i] = "Engage in battle (remove temporarily after defeat)"; break;
+                        case 18: eventLabels[i] = "Engage in battle (do not remove after defeat)"; break;
+                        case 19: eventLabels[i] = "Engage in battle (remove permanently after defeat, if ran away, walk through while blinking)"; break;
+                        case 20: eventLabels[i] = "Engage in battle (remove temporarily after defeat, if ran away, walk through while blinking)"; break;
+                        case 24: eventLabels[i] = "Post-battle, check if lost/won, etc."; break;
+                        case 32: eventLabels[i] = "Hit a treasure with a mushroom/star/flower"; break;
+                        case 33: eventLabels[i] = "Hit a treasure with an item (item bag sprite)"; break;
+                        case 34: eventLabels[i] = "Hit a treasure with coins"; break;
+                        case 65: eventLabels[i] = "Jump on trampoline"; break;
+                        case 269: eventLabels[i] = "Come up from tree trunk"; break;
+                        case 1556: eventLabels[i] = "Jump on wiggler"; break;
+                        case 2496: eventLabels[i] = "Game Start: Mario enters Bowser's Keep"; break;
+                // Intro Demo Events
+                        case 128: eventLabels[i] = "Intro Demo Start - Call Mario, Run Event 2396"; break;
+                        case 2396: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 2357: eventLabels[i] = "Intro Demo - Mushroom Way, Mario Intro"; break;
+                        case 129: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 48: eventLabels[i] = "Intro Demo - Battle, Pack 196 Beanstalk BG(2), jump via #129 to #992"; break;
+                        case 992: eventLabels[i] = "Intro Demo - Kingdom Castle, talk with Chancellor"; break;
+                        case 130: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 1733: eventLabels[i] = "Intro Demo - Bandits Way Intro(Power Star / Level Up)"; break;
+                        case 1728: eventLabels[i] = "Intro Demo - Waypoint Event, If Mem $704E:3 then skip 131 and go to #1738"; break;
+                        case 131: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 149: eventLabels[i] = "Intro Demo - Battle, Pack 201 Grasslands BG(9), jump via #149 to #1725"; break;
+                        case 1725: eventLabels[i] = "Intro Demo - Midas River intro, start #1724 sync, spin mario until level exit"; break;
+                        case 1724: eventLabels[i] = "Intro Demo - Wait until $7043:1, then fade out and execute three UNKCMDs before ending side script w/ return"; break;
+                        case 132: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 1746: eventLabels[i] = "Intro Demo - Midas River barrel jumping intro"; break;
+                        case 2288: eventLabels[i] = "Intro Demo - Mallow Intro"; break;
+                        case 135: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 2289: eventLabels[i] = "Intro Demo - Tadpole Pond scene"; break;
+                        case 134: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 1723: eventLabels[i] = "Intro Demo - Open Wiggler intro level, 6,32,3 southeast run event no message return"; break;
+                        case 1718: eventLabels[i] = "Intro Demo - Level Event, control Mario jumping"; break;
+                        case 136: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 150: eventLabels[i] = "Intro Demo - Battle Pack 198 Kero Sewers BG(Dec 21 Hex 15)"; break;
+                        case 2397: eventLabels[i] = "Intro Demo - Load Geno Intro Level"; break;
+                        case 2366: eventLabels[i] = "Intro Demo - Script Geno Intro Level"; break;
+                        case 137: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 993: eventLabels[i] = "Intro Demo - Pipe Vault Intro"; break;
+                        case 138: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 151: eventLabels[i] = "Intro Demo - Battle Pack 199 Ship BG(4), goto #994 via #138"; break;
+                        case 994: eventLabels[i] = "Intro Demo - Yo'ster Isle intro"; break;
+                        case 139: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 995: eventLabels[i] = "Intro Demo - Docaty Railroad Intro"; break;
+                        case 1738: eventLabels[i] = "Intro Demo - Load/Do Bowser intro scene"; break;
+                        case 1730: eventLabels[i] = "Intro Demo - Waypoint Event, if $704E:3 Then skip #140 and go to #1740"; break;
+                        case 140: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 152: eventLabels[i] = "Intro Demo - Battle, Pack 203 Mines BG(5), Then jump via #140 to #2398"; break;
+                        case 2398: eventLabels[i] = "Intro Demo - Open Booster Tower with Parachuters at 5,53,0 facing northeast no event no message"; break;
+                        case 2365: eventLabels[i] = "Intro Demo - Action Script Above Level"; break;
+                        case 142: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 153: eventLabels[i] = "Intro Demo - Battle Pack 202 Birdo BG(Dec 23 / Hex 17), jump -> #1740"; break;
+                        case 1740: eventLabels[i] = "Intro Demo - Booster Hill Scene"; break;
+                        case 1731: eventLabels[i] = "Intro Demo - Waypoint Event, If $074E:3 skip #143 and go to #1746"; break;
+                        case 143: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 154: eventLabels[i] = "Intro Demo - Battle Pack 202 Seaside Town Beach BG (Hex 25 / Dec 37), Goto Event #3839 Via #143"; break;
+                        case 3839: eventLabels[i] = "Intro Demo - Sea Shore intro area"; break;
+                        case 145: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 155: eventLabels[i] = "Intro Demo - Battle Pack 197 Mountains BG (Dec 10 / Hex A), Goto #997 via #145"; break;
+                        case 997: eventLabels[i] = "Intro Demo - Intro level Nimbus Land w/ birdbrains"; break;
+                        case 146: eventLabels[i] = "Intro Demo - Waypoint Event"; break;
+                        case 156: eventLabels[i] = "Intro Demo - Battle Czar Dragon (204) His BG (8), Goto #2290 Via #146"; break;
+                        case 2290: eventLabels[i] = "Intro Demo - Booster Tower, Peach's Intro"; break;
+                        case 141: eventLabels[i] = "Intro Demo - Waypoint Event, Goto #2291"; break;
+                        case 2291: eventLabels[i] = "Intro Demo - Open Vista Hill level"; break;
+                        case 147: eventLabels[i] = "Intro Demo - Waypoint Event, Goto #996"; break;
+                        case 996: eventLabels[i] = "Intro Demo - Pipe Vault Area 01 (not faded in), \"In...\" text, Return."; break;
+                        default: eventLabels[i] = "";  break;
+                    }
+                }
+                return eventLabels;
+            }
+            set
+            {
+                eventLabels = value;
+            }
+        }
+        public static string[] ActionLabels
+        {
+            get
+            {
+                if (actionLabels.Length == 1024)
+                    return actionLabels;
+                actionLabels = new string[1024];
+                for (int i = 0; i < actionLabels.Length; i++)
+                {
+                    switch (i)
+                    {
+                        case 128: actionLabels[i] = "NPC walks around slowly"; break;
+                        default: actionLabels[i] = ""; break;
+                    }
+                }
+                return actionLabels;
+            }
+            set
+            {
+                actionLabels = value;
+            }
+        }
+
+
         public static int[][] EventOpcodes = new int[][]
         {
             new int[]   // 0
@@ -5409,7 +5596,7 @@ namespace LAZYSHELL
                     "Object {xx}'s presence in level {xx} is...",			// 0xF2
                     "Object {xx}'s event trigger is...",			// 0xF3
                     "Summon object @ $70A8 to current level",			// 0xF4
-                    "Remove object @ $70A8 in current level",			// 0xF4
+                    "Remove object @ $70A8 in current level",			// 0xF5
                     "Enable event trigger for object @ 70A8",			// 0xF6
                     "Disable event trigger for object @ 70A8",			// 0xF7
                     "If object {xx} is present in level {xx}...",			// 0xF8
@@ -5540,6 +5727,19 @@ namespace LAZYSHELL
                 temp[i] = "{" + i.ToString("d" + length) + "}  " + list[i];
             return temp;
         }
+        public static string[] NumerizeHex(string[] list)
+        {
+            int length = (list.Length - 1).ToString().Length;
+            string[] temp = new string[list.Length];
+            for (int i = 0; i < list.Length; i++)
+            {
+                temp[i] = "{" + i.ToString("X" + length).Substring(1) + "}  ";
+                if (!list[i].StartsWith("{"))
+                    temp[i] += list[i];
+            }
+            return temp;
+        }
+
         public static string[] Numerize(int start, int end, string[] list)
         {
             int length = (list.Length - 1).ToString().Length;

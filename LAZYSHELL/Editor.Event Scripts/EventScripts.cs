@@ -42,6 +42,9 @@ namespace LAZYSHELL
         private bool isActionScript = false;
         private bool isActionSelected = false;
         private int index { get { return (int)eventNum.Value; } set { eventNum.Value = value; } }
+
+      //  private int buffer;
+
         private int type { get { return eventName.SelectedIndex; } set { eventName.SelectedIndex = value; } }
         private int scriptLength
         {
@@ -142,12 +145,14 @@ namespace LAZYSHELL
         // Constructor
         public EventScripts()
         {
+            this.Modified = true;
             InitializeComponent();
             Do.AddShortcut(toolStrip4, Keys.Control | Keys.S, new EventHandler(save_Click));
             Do.AddShortcut(toolStrip4, Keys.F2, baseConvertor);
             InitializeEditor();
             searchWindow = new Search(eventNum, searchBox, searchLabels, Lists.EventLabels);
             labelWindow = new EditLabel(eventLabel, eventNum, "Event Scripts", true);
+            //this.eventName.Items.AddRange(Lists.Numerize(Lists.EventLabels));
             new ToolTipLabel(this, baseConvertor, helpTips);
             this.History = new History(this, null, eventNum);
             disableNavigate = true;
@@ -169,26 +174,15 @@ namespace LAZYSHELL
             {
                 if (Lists.EventLabels[i] != null)
                     continue;
-                switch (i)
-                {
-                    case 16: Lists.EventLabels[i] = "Engage in battle (remove permanently after defeat)"; break;
-                    case 17: Lists.EventLabels[i] = "Engage in battle (remove temporarily after defeat)"; break;
-                    case 18: Lists.EventLabels[i] = "Engage in battle (do not remove after defeat)"; break;
-                    case 19: Lists.EventLabels[i] = "Engage in battle (remove permanently after defeat, if ran away, walk through while blinking)"; break;
-                    case 20: Lists.EventLabels[i] = "Engage in battle (remove temporarily after defeat, if ran away, walk through while blinking)"; break;
-                    case 24: Lists.EventLabels[i] = "Post-battle, check if lost/won, etc."; break;
-                    case 32: Lists.EventLabels[i] = "Hit a treasure with a mushroom/star/flower"; break;
-                    case 33: Lists.EventLabels[i] = "Hit a treasure with an item (item bag sprite)"; break;
-                    case 34: Lists.EventLabels[i] = "Hit a treasure with coins"; break;
-                    case 65: Lists.EventLabels[i] = "Jump on trampoline"; break;
-                    case 269: Lists.EventLabels[i] = "Come up from tree trunk"; break;
-                    case 1556: Lists.EventLabels[i] = "Jump on wiggler"; break;
-                    default: Lists.EventLabels[i] = "EVENT #" + i; break;
-                }
+                if (Lists.EventLabels[i] != "")
+                    continue;
+                Lists.EventLabels[i] = "EVENT #" + i;
             }
             for (int i = 0; i < Lists.ActionLabels.Length; i++)
             {
                 if (Lists.ActionLabels[i] != null)
+                    continue;
+                if (Lists.ActionLabels[i] != "")
                     continue;
                 Lists.ActionLabels[i] = "ACTION #" + i;
             }
@@ -232,6 +226,19 @@ namespace LAZYSHELL
             }
             commandTree.EndUpdate();
             UpdateCommandData();
+            if (!isActionScript)
+            {
+                if (Lists.EventLabels[currentScript] == "")
+                    eventLabel.Text = "EVENT #" + currentScript;
+                else eventLabel.Text = Lists.EventLabels[currentScript];
+            }
+            else
+            {
+                if (Lists.ActionLabels[currentScript] == "")
+                    eventLabel.Text = "ACTION #" + currentScript;
+                else eventLabel.Text = Lists.ActionLabels[currentScript];
+            }
+
             if (isActionScript)
                 return;
             switch (currentScript)
@@ -247,7 +254,7 @@ namespace LAZYSHELL
                     commands.Enabled = false;
                     MessageBox.Show(
                         "Editing of script #" + currentScript.ToString() + " is not allowed due to parsing issues.",
-                        "LAZY SHELL",
+                        "LAZYSHELL++",
                         MessageBoxButtons.OK);
                     break;
                 default:
@@ -257,10 +264,7 @@ namespace LAZYSHELL
                     commands.Enabled = true;
                     break;
             }
-            if (!isActionScript)
-                eventLabel.Text = Lists.EventLabels[currentScript];
-            else
-                eventLabel.Text = Lists.ActionLabels[currentScript];
+
             this.Modified = modified;
         }
         // GUI settings
@@ -475,11 +479,11 @@ namespace LAZYSHELL
             if (CalculateEventScriptsLength() >= 0)
                 AssembleAllEventScripts();
             else
-                MessageBox.Show("There is not enough available space to save the event scripts to.\n\nThe event scripts were not saved.", "LAZY SHELL");
+                MessageBox.Show("There is not enough available space to save the event scripts to.\n\nThe event scripts were not saved.", "LAZYSHELL++");
             if (CalculateActionScriptsLength() >= 0)
                 AssembleAllActionScripts();
             else
-                MessageBox.Show("There is not enough available space to save the action scripts to.\n\nThe action scripts were not saved.", "LAZY SHELL");
+                MessageBox.Show("There is not enough available space to save the action scripts to.\n\nThe action scripts were not saved.", "LAZYSHELL++");
             if (!isActionScript)
                 Model.HexEditor.SetOffset(eventScript.BaseOffset);
             else
@@ -545,6 +549,8 @@ namespace LAZYSHELL
                 previewer = new Previewer(this.currentScript, this.type == 0 ? EType.EventScript : EType.ActionScript);
             else
                 previewer.Reload(this.currentScript, this.type == 0 ? EType.EventScript : EType.ActionScript);
+            
+            if (previewer.IsDisposed) return;
             previewer.Show();
             previewer.BringToFront();
         }
@@ -561,6 +567,14 @@ namespace LAZYSHELL
         }
         #endregion
         #region Event Handlers
+        private void eventPointer_UpdatePointer(object sender, EventArgs e)
+        {
+            //
+            ScriptBuffer buffer = new ScriptBuffer(Bits.Copy(scriptData), 2);
+                PushCommand(buffer);
+                treeViewWrapper.RefreshScript();
+            //
+        }
         private void eventNum_ValueChanged(object sender, EventArgs e)
         {
             if (this.Refreshing)
@@ -595,12 +609,18 @@ namespace LAZYSHELL
             UpdateCommandData();
             if (!isActionScript)
             {
-                eventLabel.Text = Lists.EventLabels[currentScript];
+                if (Lists.EventLabels[currentScript] == "")
+                    eventLabel.Text = "EVENT #" + currentScript;
+                else eventLabel.Text = Lists.EventLabels[currentScript];
+
                 labelWindow.SetElement("Event Scripts");
             }
             else
             {
-                eventLabel.Text = Lists.ActionLabels[currentScript];
+                if (Lists.ActionLabels[(int)this.eventNum.Value] == "")
+                    eventLabel.Text = "ACTION #" + this.eventNum.Value.ToString();
+                else eventLabel.Text = Lists.ActionLabels[(int)this.eventNum.Value];
+
                 labelWindow.SetElement("Action Scripts");
             }
             this.Refreshing = false;
@@ -701,7 +721,7 @@ namespace LAZYSHELL
             if (!this.Modified)
                 goto Close;
             DialogResult result;
-            result = MessageBox.Show("Event Scripts have not been saved.\n\nWould you like to save changes?", "LAZY SHELL", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            result = MessageBox.Show("Event Scripts have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
             else if (result == DialogResult.No)
@@ -718,6 +738,8 @@ namespace LAZYSHELL
             searchWindow.Close();
             if (previewer != null)
                 previewer.Close();
+            if (labelWindow.Visible)
+                labelWindow.Close();
         }
         private void navigateBck_Click(object sender, EventArgs e)
         {
@@ -753,13 +775,7 @@ namespace LAZYSHELL
             navigateFwd.Enabled = navigateForward.Count > 0;
             navigateBck.Enabled = true;
         }
-        private void eventLabel_TextChanged(object sender, EventArgs e)
-        {
-            if (!isActionScript)
-                Lists.EventLabels[currentScript] = eventLabel.Text;
-            else
-                Lists.ActionLabels[currentScript] = eventLabel.Text;
-        }
+
         // tree
         private void commandTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -1109,7 +1125,7 @@ namespace LAZYSHELL
         {
             DialogResult result = MessageBox.Show(
             "You are about to clear the current script of all commands.\n\nGo ahead with process?",
-            "LAZY SHELL", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            "LAZYSHELL++", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result != DialogResult.Yes)
                 return;
             treeViewWrapper.ClearAll();
@@ -1767,7 +1783,7 @@ namespace LAZYSHELL
             //
             if (!Bits.Compare(buffer.OldScript, scriptData))
                 PushCommand(buffer);
-        }
+        }//
         private void clearActionScriptsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ScriptBuffer buffer = new ScriptBuffer(Bits.Copy(scriptData), treeViewWrapper.SelectedIndex);
@@ -1795,7 +1811,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current script. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             commandStack.Clear();
             commandTree.BeginUpdate();
@@ -1894,7 +1910,7 @@ namespace LAZYSHELL
             }
             else
             {
-                MessageBox.Show("Could not add element to notes database.", "LAZY SHELL",
+                MessageBox.Show("Could not add element to notes database.", "LAZYSHELL++",
                     MessageBoxButtons.OK);
             }
         }

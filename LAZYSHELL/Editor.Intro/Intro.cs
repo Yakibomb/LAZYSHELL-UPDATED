@@ -50,7 +50,7 @@ namespace LAZYSHELL
             if (!this.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
-                "Opening Credits and Main Title have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Opening Credits and Main Title have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();

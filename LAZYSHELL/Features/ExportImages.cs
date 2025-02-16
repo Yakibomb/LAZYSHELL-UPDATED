@@ -35,7 +35,7 @@ namespace LAZYSHELL
             InitializeComponent();
             if (this.element == "levels")
             {
-                this.Text = "EXPORT LEVEL IMAGES - Lazy Shell";
+                this.Text = "EXPORT LEVEL IMAGES - LAZYSHELL++";
                 this.current.Text = "Export current level image";
                 this.range.Text = "Export level images within level index range";
                 this.oneImageDefault.Text = "One image per level, default size (all levels will be 1024x1024!)";

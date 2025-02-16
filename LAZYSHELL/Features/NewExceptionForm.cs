@@ -17,16 +17,16 @@ namespace LAZYSHELL
         {
             Model.Crashing = true;
             InitializeComponent();
-            Bitmap icon = SystemIcons.Error.ToBitmap();
+            Bitmap icon = SystemIcons.Error.ToBitmap(); //global::LAZYSHELL.Properties.Resources.bigYoshi;
             pictureBox1.Size = icon.Size;
             pictureBox1.Image = icon;
-            string forumthreadA = "http://acmlm.no-ip.org/board/thread.php?id=7005";
-            string forumthreadB = "http://www.smwcentral.net/?p=viewthread&t=45572";
-            label1.Text = "Lazy Shell has encountered an error. Please copy ALL of the contents of the box below and post them as a new reply to one of these threads:\n\n";
+            string forumthreadA = "https://discord.gg/p4epwWmTqf";
+        //    string forumthreadB = "";
+            label1.Text = "LAZYSHELL++ has encountered an error.\nPlease copy ALL of the contents of the box below and send to The Big Yoshi Santuary on Discord:\n\n";
             label1.Links.Add(label1.Text.Length, forumthreadA.Length, forumthreadA);
-            label1.Text += forumthreadA + "\n";
-            label1.Links.Add(label1.Text.Length, forumthreadB.Length, forumthreadB);
-            label1.Text += forumthreadB + "\n\n";
+            label1.Text += forumthreadA + "\n\n";
+        //    label1.Links.Add(label1.Text.Length, forumthreadB.Length, forumthreadB);
+        //    label1.Text += forumthreadB + "\n\n";
             label1.Text += "Also please briefly explain what you did to cause the error and which # and name of the element you were editing.";
             //
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -69,6 +69,7 @@ namespace LAZYSHELL
         }
         private void close_Click(object sender, EventArgs e)
         {
+            Application.ExitThread();
             Application.Exit();
         }
         private void label1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

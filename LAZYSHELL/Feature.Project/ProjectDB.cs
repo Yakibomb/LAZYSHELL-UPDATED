@@ -13,6 +13,7 @@ namespace LAZYSHELL
         private string author; public string Author { get { return author; } set { author = value; } }
         private string date; public string Date { get { return date; } set { date = value; } }
         private string webpage; public string Webpage { get { return webpage; } set { webpage = value; } }
+        private string romname; public string ROMname { get { return romname; } set { romname = value; } }
         private string description; public string Description { get { return description; } set { description = value; } }
         private string generalNotes; public string OtherInfo { get { return generalNotes; } set { generalNotes = value; } }
         // element notes
@@ -31,6 +32,8 @@ namespace LAZYSHELL
         private List<EIndex> shops; public List<EIndex> Shops { get { return shops; } set { shops = value; } }
         private List<EIndex> spells; public List<EIndex> Spells { get { return spells; } set { spells = value; } }
         private List<EIndex> sprites; public List<EIndex> Sprites { get { return sprites; } set { sprites = value; } }
+        private List<EIndex> monsterBehaviorAnims; public List<EIndex> MonsterBehaviorAnims { get { return monsterBehaviorAnims; } set { monsterBehaviorAnims = value; } }
+        private List<EIndex> battleEvents; public List<EIndex> BattleEvents { get { return battleEvents; } set { battleEvents = value; } }
         // element lists
         private List<EList> elists; public List<EList> ELists { get { return elists; } set { elists = value; } }
         // keystrokes
@@ -63,6 +66,8 @@ namespace LAZYSHELL
             shops = new List<EIndex>();
             spells = new List<EIndex>();
             sprites = new List<EIndex>();
+            battleEvents = new List<EIndex>();
+            monsterBehaviorAnims = new List<EIndex>();
             // element lists
             elists = new List<EList>();
             foreach (EList elist in Model.ELists)

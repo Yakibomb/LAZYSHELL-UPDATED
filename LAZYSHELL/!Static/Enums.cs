@@ -9,7 +9,7 @@ namespace LAZYSHELL
     public enum Status
     {
         Mute = 1, Sleep = 2, Poison = 4, Fear = 8,
-        Angry = 16, Mushroom = 32, Scarecrow = 64, Invincible = 128
+        Berserk = 16, Mushroom = 32, Scarecrow = 64, Invincible = 128
     }
     [Flags]
     public enum Targetting
@@ -22,7 +22,8 @@ namespace LAZYSHELL
     {
         GameSelect, OverworldMain, OverworldItem, OverworldStatus,
         OverworldSpecial, OverworldEquip, OverworldSpecialItem,
-        OverworldSwitch, Shop, ShopBuy, ShopSellItems, ShopSellWeapons
+        OverworldSwitch, OverworldStarPieces,
+        Shop, ShopBuy, ShopSellItems, ShopSellWeapons
     }
     public enum FontType
     {
@@ -83,7 +84,9 @@ namespace LAZYSHELL
         MineCart,
         SPCBattle,
         SPCEvent,
-        SPCTrack
+        SPCTrack,
+        Sprites,
+        Effects
     }
     public enum MessageIcon
     {

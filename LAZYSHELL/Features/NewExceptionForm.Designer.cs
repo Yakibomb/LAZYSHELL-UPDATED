@@ -26,6 +26,7 @@ namespace LAZYSHELL
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewExceptionForm));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.close = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.LinkLabel();
@@ -37,13 +38,13 @@ namespace LAZYSHELL
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(12, 167);
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(12, 155);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(476, 247);
+            this.richTextBox1.Size = new System.Drawing.Size(476, 259);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             this.richTextBox1.WordWrap = false;
@@ -63,7 +64,7 @@ namespace LAZYSHELL
             // 
             this.label1.Location = new System.Drawing.Point(60, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(296, 118);
+            this.label1.Size = new System.Drawing.Size(296, 108);
             this.label1.TabIndex = 0;
             this.label1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.label1_LinkClicked);
             // 
@@ -80,7 +81,7 @@ namespace LAZYSHELL
             // 
             // copyContents
             // 
-            this.copyContents.Location = new System.Drawing.Point(12, 138);
+            this.copyContents.Location = new System.Drawing.Point(12, 126);
             this.copyContents.Name = "copyContents";
             this.copyContents.Size = new System.Drawing.Size(195, 23);
             this.copyContents.TabIndex = 3;
@@ -90,9 +91,10 @@ namespace LAZYSHELL
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 11);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -109,11 +111,12 @@ namespace LAZYSHELL
             this.Controls.Add(this.richTextBox1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewExceptionForm";
-            this.Text = "ERROR - Lazy Shell";
+            this.Text = "ERROR - LAZYSHELL++";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+
         }
         #endregion
         private System.Windows.Forms.RichTextBox richTextBox1;

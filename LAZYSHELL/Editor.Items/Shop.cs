@@ -70,6 +70,8 @@ namespace LAZYSHELL
             discount25 = false;
             discount50 = false;
             items = new byte[15];
+            for (int i = 0; i < 15; i++)
+                items[i] = 255;
         }
     }
 }

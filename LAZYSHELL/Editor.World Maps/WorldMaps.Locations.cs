@@ -231,7 +231,7 @@ namespace LAZYSHELL
                     pointer += (ushort)pointNames[i].Length;
                     Model.ROM[dOffset] = 6; dOffset++; pointer++;
                     if (i != locations.Length - 1 && !isdup[i + 1] && dOffset > 0x3EFF1F)
-                        MessageBox.Show("The total compressed size of all location names is too large. Some data might not have been saved correctly. Please reduce the length of one or more location names.", "LAZY SHELL");
+                        MessageBox.Show("The total compressed size of all location names is too large. Some data might not have been saved correctly. Please reduce the length of one or more location names.", "LAZYSHELL++");
                 }
             }
             // set duplicates

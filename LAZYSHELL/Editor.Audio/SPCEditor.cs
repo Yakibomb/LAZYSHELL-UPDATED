@@ -91,6 +91,7 @@ namespace LAZYSHELL
                 this.groupBoxI.Controls.Add(activeInstruments[i]);
             }
             //
+            Type = 0;
             if (settings.RememberLastIndex)
                 Type = settings.LastSoundType;
             percussiveName.Items.AddRange(Lists.Numerize(Lists.SampleNames));
@@ -114,6 +115,7 @@ namespace LAZYSHELL
                 labelWindow.SetElement("Sound FX (Battle)");
             }
             trackNum.Maximum = spcs.Length - 1;
+            Index = 0;
             if (settings.RememberLastIndex)
                 Index = settings.LastSPC;
             trackName.SelectedIndex = Index;
@@ -310,11 +312,11 @@ namespace LAZYSHELL
             if (warning && left < 0)
             {
                 if (type == 0)
-                    MessageBox.Show("Not enough space to save all SPCs.", "LAZY SHELL");
+                    MessageBox.Show("Not enough space to save all SPCs.", "LAZYSHELL++");
                 if (type == 1)
-                    MessageBox.Show("Not enough space to save all event sound effects.", "LAZY SHELL");
+                    MessageBox.Show("Not enough space to save all event sound effects.", "LAZYSHELL++");
                 if (type == 2)
-                    MessageBox.Show("Not enough space to save all battle sound effects.", "LAZY SHELL");
+                    MessageBox.Show("Not enough space to save all battle sound effects.", "LAZYSHELL++");
             }
             return left >= 0;
         }
@@ -969,9 +971,9 @@ namespace LAZYSHELL
                 lineNumber++;
             }
             if (error == "")
-                MessageBox.Show("Import successful.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Import successful.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-                new NewMessageBox("LAZY SHELL", "There were some errors importing the channel script.", error, "", MessageIcon.Warning).ShowDialog();
+                new NewMessageBox("LAZYSHELL++", "There were some errors importing the channel script.", error, "", MessageIcon.Warning).ShowDialog();
             tr.Close();
             sourceCommands = commands;
             return true;
@@ -1646,9 +1648,9 @@ namespace LAZYSHELL
                 lineNumber++;
             }
             if (error == "")
-                MessageBox.Show("Import successful.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Import successful.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-                new NewMessageBox("LAZY SHELL", "There were some errors importing the channel script.", error, "", MessageIcon.Warning).ShowDialog();
+                new NewMessageBox("LAZYSHELL++", "There were some errors importing the channel script.", error, "", MessageIcon.Warning).ShowDialog();
             //
             #region Finalize
             this.Updating = true;
@@ -1770,7 +1772,7 @@ namespace LAZYSHELL
             if (type == 0)
             {
                 if (MessageBox.Show("Would you like to include nested loops? Selecting \"No\" will save the file to a loopless, uncompressed format.",
-                    "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     channels = ((SPCTrack)spc).DecompToMML(nativeFormat);
                 else
                     channels = spc.Channels;
@@ -2452,7 +2454,7 @@ namespace LAZYSHELL
         {
             if (spc.Percussives.Count >= 12)
             {
-                MessageBox.Show("No more than 12 percussives allowed.", "LAZY SHELL");
+                MessageBox.Show("No more than 12 percussives allowed.", "LAZYSHELL++");
                 return;
             }
             int index = percussives.SelectedIndex + 1;
@@ -2469,7 +2471,7 @@ namespace LAZYSHELL
                 return;
             if (percussives.SelectedIndex < 0)
             {
-                MessageBox.Show("No percussives selected.", "LAZY SHELL");
+                MessageBox.Show("No percussives selected.", "LAZYSHELL++");
                 return;
             }
             int index = percussives.SelectedIndex;
@@ -2524,7 +2526,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to reset the current SPC? You will lose all unsaved changes.",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
             if (Type == 0)
                 Model.SPCs[Index] = new SPCTrack(Index);
@@ -2557,6 +2559,10 @@ namespace LAZYSHELL
                 previewer = new Previewer(Index, autoLaunch.Checked, EType.SPCEvent);
             else if (Type == 2)
                 previewer = new Previewer(Index, autoLaunch.Checked, EType.SPCBattle);
+            //
+            if (previewer.IsDisposed)
+                return;
+            //
             if (!autoLaunch.Checked)
                 previewer.Show();
         }
@@ -2868,7 +2874,7 @@ namespace LAZYSHELL
                                 {
                                     DialogResult dialogResult = MessageBox.Show(
                                         "Found command in " + type + " index " + s + ", channel " + c + "." +
-                                        "\n\nGo to command, continue searching, or stop searching?", "LAZY SHELL",
+                                        "\n\nGo to command, continue searching, or stop searching?", "LAZYSHELL++",
                                         MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                                     if (dialogResult == DialogResult.Yes)
                                     {
@@ -3481,7 +3487,7 @@ namespace LAZYSHELL
         }
         private void clearChannel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Clear all data in this channel -- are you sure?", "LAZY SHELL",
+            if (MessageBox.Show("Clear all data in this channel -- are you sure?", "LAZYSHELL++",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
             spc.Channels[mouseOverChannel] = new List<SPCCommand>();
@@ -3504,6 +3510,23 @@ namespace LAZYSHELL
                 return;
             if (Type == 0)
                 ((SPCTrack)spc).AssembleSPCData();
+            RefreshSPC();
+        }
+        private void tESTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Type != 0 || spc.Percussives.Count == 0)
+                return;
+            //new ClearElements(Model.SPCs, Index, "CLEAR SPCS PERCUSSION...");
+            for (int index = 0; spc.Percussives.Count > 0;)
+            {
+                if (spc.Percussives.Count == 0)
+                    break;
+                spc.Percussives.RemoveAt(index);
+            }
+            this.Updating = true;
+            percussives.Items.Clear();
+            RefreshPercussive();
+            this.Updating = false;
             RefreshSPC();
         }
         //
@@ -3696,5 +3719,6 @@ namespace LAZYSHELL
             }
         }
         #endregion
+
     }
 }

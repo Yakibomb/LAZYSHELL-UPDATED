@@ -319,7 +319,7 @@ namespace LAZYSHELL
             // shiftTableUp
             // 
             this.shiftTableUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.shiftTableUp.Image = global::LAZYSHELL.Properties.Resources.moveup;
+            this.shiftTableUp.Image = global::LAZYSHELL.Properties.Resources.moveUp;
             this.shiftTableUp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.shiftTableUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.shiftTableUp.Name = "shiftTableUp";
@@ -330,7 +330,7 @@ namespace LAZYSHELL
             // shiftTableDown
             // 
             this.shiftTableDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.shiftTableDown.Image = global::LAZYSHELL.Properties.Resources.movedown;
+            this.shiftTableDown.Image = global::LAZYSHELL.Properties.Resources.moveDown;
             this.shiftTableDown.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.shiftTableDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.shiftTableDown.Name = "shiftTableDown";

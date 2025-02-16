@@ -19,7 +19,7 @@ namespace LAZYSHELL.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -123,6 +123,16 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap alwaysOnTop {
+            get {
+                object obj = ResourceManager.GetObject("alwaysOnTop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap apply {
             get {
                 object obj = ResourceManager.GetObject("apply", resourceCulture);
@@ -156,6 +166,16 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap broom {
             get {
                 object obj = ResourceManager.GetObject("broom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap btn_donate_LG {
+            get {
+                object obj = ResourceManager.GetObject("btn_donate_LG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,6 +303,16 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap buttonToggleLevelsFlatMode {
+            get {
+                object obj = ResourceManager.GetObject("buttonToggleLevelsFlatMode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap buttonToggleMask {
             get {
                 object obj = ResourceManager.GetObject("buttonToggleMask", resourceCulture);
@@ -333,16 +363,6 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Caroboscis {
-            get {
-                object obj = ResourceManager.GetObject("Caroboscis", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap cartridge {
             get {
                 object obj = ResourceManager.GetObject("cartridge", resourceCulture);
@@ -373,9 +393,9 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap clear_small {
+        public static System.Drawing.Bitmap checkAll {
             get {
-                object obj = ResourceManager.GetObject("clear_small", resourceCulture);
+                object obj = ResourceManager.GetObject("checkAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,9 +403,19 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap clearModel {
+        public static System.Drawing.Bitmap checkerboard {
             get {
-                object obj = ResourceManager.GetObject("clearModel", resourceCulture);
+                object obj = ResourceManager.GetObject("checkerboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap clear_small {
+            get {
+                object obj = ResourceManager.GetObject("clear_small", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -573,6 +603,16 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap download {
+            get {
+                object obj = ResourceManager.GetObject("download", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap dragSolid {
             get {
                 object obj = ResourceManager.GetObject("dragSolid", resourceCulture);
@@ -626,6 +666,16 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap duplicate_small {
             get {
                 object obj = ResourceManager.GetObject("duplicate_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap edit_list {
+            get {
+                object obj = ResourceManager.GetObject("edit_list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -873,16 +923,6 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap HAMMER {
-            get {
-                object obj = ResourceManager.GetObject("HAMMER", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap heightDecrease {
             get {
                 object obj = ResourceManager.GetObject("heightDecrease", resourceCulture);
@@ -926,16 +966,6 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap history {
             get {
                 object obj = ResourceManager.GetObject("history", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap iconTools {
-            get {
-                object obj = ResourceManager.GetObject("iconTools", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1053,6 +1083,26 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap jumpToLeft {
+            get {
+                object obj = ResourceManager.GetObject("jumpToLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap jumpToRight {
+            get {
+                object obj = ResourceManager.GetObject("jumpToRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap keys_load {
             get {
                 object obj = ResourceManager.GetObject("keys_load", resourceCulture);
@@ -1149,11 +1199,11 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;LAZYSHELL_xsl.xsl&quot;?&gt;
-        ///&lt;LAZYSHELL form=&quot;Editor&quot; icon=&quot;icons/main.gif&quot; title=&quot;LAZY SHELL - Super Mario RPG Editor&quot;&gt;
-        ///  &lt;Properties version=&quot;3.19.0&quot; date=&quot;January 22, 2014&quot; homepage=&quot;http://home.comcast.net/~giangurgolo/smrpg/&quot; author=&quot;giangurgolo and Omega&quot; /&gt;
+        ///&lt;LAZYSHELL form=&quot;Editor&quot; icon=&quot;icons/main.gif&quot; title=&quot;LAZYSHELL++  Super Mario RPG Editor&quot;&gt;
+        ///  &lt;Properties version=&quot;2.0.0&quot; date=&quot;February 15, 2025&quot; homepage=&quot;https://github.com/Yakibomb/LAZYSHELL-UPDATED/&quot; author=&quot;Yaki, giangurgolo and Omega&quot; /&gt;
         ///  &lt;Read&gt;
         ///    &lt;header&gt;Read this first&lt;/header&gt;
-        ///    &lt;introduction&gt;If this is your first time using Lazy Shell, please take the time to read the following advice:&lt;/introducti [rest of string was truncated]&quot;;.
+        ///    &lt;introduction&gt;If this is your first time using Lazy Shell, please take the time to read the following advice:&lt;/i [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LAZYSHELL_xml {
             get {
@@ -1179,16 +1229,6 @@ namespace LAZYSHELL.Properties {
         public static string LAZYSHELL_xsl {
             get {
                 return ResourceManager.GetString("LAZYSHELL_xsl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap location {
-            get {
-                object obj = ResourceManager.GetObject("location", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -1223,11 +1263,71 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainAllies_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainAllies_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainAlliesBig {
+            get {
+                object obj = ResourceManager.GetObject("mainAlliesBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainAnimations {
             get {
                 object obj = ResourceManager.GetObject("mainAnimations", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainAnimations_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainAnimations_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainAnimations_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainAnimations_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainAnimationsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainAnimationsBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainAnimationsBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainAnimationsBig_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1243,6 +1343,36 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainAttacks_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainAttacks_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainAttacksBig {
+            get {
+                object obj = ResourceManager.GetObject("mainAttacksBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainAttacksBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainAttacksBig_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainAudio {
@@ -1253,11 +1383,51 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainAudio_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainAudio_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainAudioBig {
+            get {
+                object obj = ResourceManager.GetObject("mainAudioBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainBattlefields {
             get {
                 object obj = ResourceManager.GetObject("mainBattlefields", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainBattlefields_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainBattlefields_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainBattlefieldsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainBattlefieldsBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1275,9 +1445,59 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap mainBig {
+            get {
+                object obj = ResourceManager.GetObject("mainBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap mainDialogues {
             get {
                 object obj = ResourceManager.GetObject("mainDialogues", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainDialogues_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainDialogues_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainDialogues_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainDialogues_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainDialoguesBig {
+            get {
+                object obj = ResourceManager.GetObject("mainDialoguesBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainDialoguesBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainDialoguesBig_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1293,11 +1513,91 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainEffects_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainEffects_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainEffects_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainEffects_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainEffectsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainEffectsBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainEffectsBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainEffectsBig_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainEventScripts {
             get {
                 object obj = ResourceManager.GetObject("mainEventScripts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainEventScripts_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainEventScripts_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainEventScripts_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainEventScripts_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainEventScriptsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainEventScriptsBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainEventScriptsBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainEventScriptsBig_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1313,11 +1613,91 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainFormations_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainFormations_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainFormationsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainFormationsBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainItems {
             get {
                 object obj = ResourceManager.GetObject("mainItems", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainItems_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainItems_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainItems_3_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainItems_3_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainItems_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainItems_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainItemsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainItemsBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainItemsBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainItemsBig_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainItemsBig_3 {
+            get {
+                object obj = ResourceManager.GetObject("mainItemsBig_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1333,11 +1713,111 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainLevels_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainLevels_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainLevels_3_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainLevels_3_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainLevels_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainLevels_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainLevelsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainLevelsBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainLevelsBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainLevelsBig_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainLevelsBig_3 {
+            get {
+                object obj = ResourceManager.GetObject("mainLevelsBig_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainMainTitle {
             get {
                 object obj = ResourceManager.GetObject("mainMainTitle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainMainTitle_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainMainTitle_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainMainTitleBig {
+            get {
+                object obj = ResourceManager.GetObject("mainMainTitleBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainMario_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainMario_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainMarioBig {
+            get {
+                object obj = ResourceManager.GetObject("mainMarioBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1353,6 +1833,26 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainMenus_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainMenus_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainMenusBig {
+            get {
+                object obj = ResourceManager.GetObject("mainMenusBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainMiniGames {
@@ -1363,11 +1863,51 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainMinigames_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainMinigames_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainMiniGamesBig {
+            get {
+                object obj = ResourceManager.GetObject("mainMiniGamesBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mainMonsters {
             get {
                 object obj = ResourceManager.GetObject("mainMonsters", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainMonsters_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainMonsters_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainMonstersBig {
+            get {
+                object obj = ResourceManager.GetObject("mainMonstersBig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1395,9 +1935,89 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap mainPatchesBig {
+            get {
+                object obj = ResourceManager.GetObject("mainPatchesBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainProject {
+            get {
+                object obj = ResourceManager.GetObject("mainProject", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainProject_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainProject_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainProjectBig {
+            get {
+                object obj = ResourceManager.GetObject("mainProjectBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap mainSprites {
             get {
                 object obj = ResourceManager.GetObject("mainSprites", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainSprites_2_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainSprites_2_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainSprites_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainSprites_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainSpritesBig {
+            get {
+                object obj = ResourceManager.GetObject("mainSpritesBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainSpritesBig_2 {
+            get {
+                object obj = ResourceManager.GetObject("mainSpritesBig_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1413,11 +2033,41 @@ namespace LAZYSHELL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon mainWorldMaps_ico {
+            get {
+                object obj = ResourceManager.GetObject("mainWorldMaps_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mainWorldMapsBig {
+            get {
+                object obj = ResourceManager.GetObject("mainWorldMapsBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap mapBanner {
             get {
                 object obj = ResourceManager.GetObject("mapBanner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mapPoint {
+            get {
+                object obj = ResourceManager.GetObject("mapPoint", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1475,9 +2125,9 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap movedown {
+        public static System.Drawing.Bitmap moveDown {
             get {
-                object obj = ResourceManager.GetObject("movedown", resourceCulture);
+                object obj = ResourceManager.GetObject("moveDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1485,9 +2135,9 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap moveToFront {
+        public static System.Drawing.Bitmap moveLeft {
             get {
-                object obj = ResourceManager.GetObject("moveToFront", resourceCulture);
+                object obj = ResourceManager.GetObject("moveLeft", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1495,9 +2145,19 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap moveup {
+        public static System.Drawing.Bitmap moveRight {
             get {
-                object obj = ResourceManager.GetObject("moveup", resourceCulture);
+                object obj = ResourceManager.GetObject("moveRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap moveUp {
+            get {
+                object obj = ResourceManager.GetObject("moveUp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1548,6 +2208,16 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap newLineA {
             get {
                 object obj = ResourceManager.GetObject("newLineA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap No_Image_Image {
+            get {
+                object obj = ResourceManager.GetObject("No_Image_Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2035,6 +2705,26 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap openAnimationsBehaviors {
+            get {
+                object obj = ResourceManager.GetObject("openAnimationsBehaviors", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openAnimationsMisc {
+            get {
+                object obj = ResourceManager.GetObject("openAnimationsMisc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap openAttacks {
             get {
                 object obj = ResourceManager.GetObject("openAttacks", resourceCulture);
@@ -2055,6 +2745,16 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap openBonusFlower {
+            get {
+                object obj = ResourceManager.GetObject("openBonusFlower", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap openDialogues {
             get {
                 object obj = ResourceManager.GetObject("openDialogues", resourceCulture);
@@ -2068,6 +2768,16 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap openEffectSequences {
             get {
                 object obj = ResourceManager.GetObject("openEffectSequences", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openFlunkie {
+            get {
+                object obj = ResourceManager.GetObject("openFlunkie", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2118,6 +2828,26 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap openMolds {
             get {
                 object obj = ResourceManager.GetObject("openMolds", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openMonsterBehaviors {
+            get {
+                object obj = ResourceManager.GetObject("openMonsterBehaviors", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openMonsterEntrances {
+            get {
+                object obj = ResourceManager.GetObject("openMonsterEntrances", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2268,6 +2998,26 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap openTilesets {
             get {
                 object obj = ResourceManager.GetObject("openTilesets", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openToadTutorial {
+            get {
+                object obj = ResourceManager.GetObject("openToadTutorial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap openWeapons {
+            get {
+                object obj = ResourceManager.GetObject("openWeapons", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2875,6 +3625,26 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap shield_check {
+            get {
+                object obj = ResourceManager.GetObject("shield_check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap shield_question {
+            get {
+                object obj = ResourceManager.GetObject("shield_question", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap showMain {
             get {
                 object obj = ResourceManager.GetObject("showMain", resourceCulture);
@@ -2888,6 +3658,16 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap signature {
             get {
                 object obj = ResourceManager.GetObject("signature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap silence {
+            get {
+                object obj = ResourceManager.GetObject("silence", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2988,6 +3768,26 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap stairsUpRightLow {
             get {
                 object obj = ResourceManager.GetObject("stairsUpRightLow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap star {
+            get {
+                object obj = ResourceManager.GetObject("star", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap statistics {
+            get {
+                object obj = ResourceManager.GetObject("statistics", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3118,6 +3918,16 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap tremolo {
             get {
                 object obj = ResourceManager.GetObject("tremolo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap uncheckAll {
+            get {
+                object obj = ResourceManager.GetObject("uncheckAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

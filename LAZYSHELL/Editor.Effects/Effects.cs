@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using LAZYSHELL.Properties;
+using static LAZYSHELL.NotesDB;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LAZYSHELL
 {
@@ -43,6 +45,7 @@ namespace LAZYSHELL
         private GraphicEditor graphicEditor;
         private Search searchWindow;
         private EditLabel labelWindow;
+        private Previewer previewer;
         // special controls
         #endregion
         #region Functions
@@ -132,7 +135,7 @@ namespace LAZYSHELL
             e_availableBytes.BackColor = availableBytes > 0 ? Color.Lime : Color.Red;
             e_availableBytes.Text = availableBytes.ToString() + " bytes free";
         }
-        private void Assemble()
+        public void Assemble()
         {
             effect.Assemble();
             animation.Assemble();
@@ -149,7 +152,7 @@ namespace LAZYSHELL
                 offset += animations[i].BUFFER.Length;
             }
             if (i < 39)
-                MessageBox.Show("The available space for animation data in bank 0x330000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 38 will not saved. Please make sure the available animation bytes is not negative.", "LAZY SHELL");
+                MessageBox.Show("The available space for animation data in bank 0x330000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 38 will not saved. Please make sure the available animation bytes is not negative.", "LAZYSHELL++");
             offset = 0x340000;
             for (; i < 64 && offset < 0x34CFFF; i++, pointer += 3)
             {
@@ -161,7 +164,7 @@ namespace LAZYSHELL
                 offset += animations[i].BUFFER.Length;
             }
             if (i < 64)
-                MessageBox.Show("The available space for animation data in bank 0x340000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 63 will not saved. Please make sure the available animation bytes is not negative.", "LAZY SHELL");
+                MessageBox.Show("The available space for animation data in bank 0x340000 has exceeded the alotted space.\nAnimation #'s " + i.ToString() + " through 63 will not saved. Please make sure the available animation bytes is not negative.", "LAZYSHELL++");
             molds.Modified = false;
             sequences.Modified = false;
             this.Modified = false;
@@ -251,7 +254,7 @@ namespace LAZYSHELL
             if (!this.Modified && !molds.Modified && !sequences.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
-                "Effects have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Effects have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -418,7 +421,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current effect and animation index. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             animation = new E_Animation(effect.AnimationPacket);
             effect = new Effect(index);
@@ -428,7 +431,7 @@ namespace LAZYSHELL
         {
             if (MessageBox.Show("This will clean all unused graphics, tiles, and palettes. " +
                 "It will increase the amount of free space by thousands of bytes.\n\n" +
-                "Go ahead with process?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                "Go ahead with process?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
             foreach (E_Animation image in animations)
             {
@@ -500,6 +503,22 @@ namespace LAZYSHELL
                 animation.Assemble();
             }
             RefreshEffectsEditor();
+        }
+        private void previewerButton_Click(object sender, EventArgs e)
+        {
+            settings.PreviewSprites = index;
+            if (previewer == null || !previewer.Visible)
+                previewer = new Previewer(index, false, EType.Effects);
+            else
+                previewer.Reload(index, EType.Effects);
+            previewer.Show();
+            previewer.BringToFront();
+        }
+        private void hexViewer_Click(object sender, EventArgs e)
+        {
+            Model.HexEditor.SetOffset(animation.AnimationOffset);
+            Model.HexEditor.Compare();
+            Model.HexEditor.Show();
         }
         #endregion
     }

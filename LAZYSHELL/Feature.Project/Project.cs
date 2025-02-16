@@ -136,18 +136,26 @@ namespace LAZYSHELL
             InitializeComponent();
             this.elementIndexes.ListViewItemSorter = elementsColumnSorter;
             this.listViewList.ListViewItemSorter = listsColumnSorter;
-            if (project == null)
+            if (settings.NotePathCustom == "")
                 return;
-            projectFile.Text = settings.NotePathCustom;
+            projectFile.Text = Model.GetFileNameWithoutPath() + ".lsproj";
             InitializeFields();
         }
         #region Functions
         private void InitializeFields()
         {
+            if (project.ROMname != Model.GetFileNameWithoutPath())
+            {
+                DialogResult result = MessageBox.Show("The ROM's file name does not match this project notes.\n\nLoad anyway?", "LAZYSHELL++",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                    return;
+            }
             projectTitle.Text = project.Title;
             projectAuthor.Text = project.Author;
             projectDate.Text = project.Date;
             projectWebpage.Text = project.Webpage;
+            projectROMname.Text = project.ROMname;
             projectDescription.Text = project.Description;
             projectOtherInfo.Text = project.OtherInfo;
             //
@@ -165,10 +173,22 @@ namespace LAZYSHELL
             //
             fontType.SelectedIndex = 0;
             InitializeKeystrokes();
-            tabControl1.Enabled = true;
-            closeButton.Enabled = true;
-            save.Enabled = true;
-            saveAs.Enabled = true;
+            if (project != null)
+            { 
+                tabControl1.Enabled = true;
+                refreshButton.Enabled = true;
+                closeButton.Enabled = true;
+                save.Enabled = true;
+                saveAs.Enabled = true;
+            }
+            else
+            {
+                tabControl1.Enabled = false;
+                refreshButton.Enabled = false;
+                closeButton.Enabled = false;
+                save.Enabled = false;
+                saveAs.Enabled = false;
+            }
         }
         private void RefreshElementIndexes()
         {
@@ -180,41 +200,13 @@ namespace LAZYSHELL
             elementIndexes.Items.Clear();
             switch ((string)elementType.SelectedItem)
             {
-                case "Action Scripts":
-                    currentIndexes = project.ActionScripts;
-                    indexNumber.Maximum = 1023;
-                    break;
-                case "Attacks":
-                    currentIndexes = project.Attacks;
-                    indexNumber.Maximum = 128;
-                    break;
-                case "Battlefields":
-                    currentIndexes = project.Battlefields;
-                    indexNumber.Maximum = 63;
+                case "Levels":
+                    currentIndexes = project.Levels;
+                    indexNumber.Maximum = 509;
                     break;
                 case "Dialogues":
                     currentIndexes = project.Dialogues;
                     indexNumber.Maximum = 4095;
-                    break;
-                case "Effects":
-                    currentIndexes = project.Effects;
-                    indexNumber.Maximum = 127;
-                    break;
-                case "Event Scripts":
-                    currentIndexes = project.EventScripts;
-                    indexNumber.Maximum = 4095;
-                    break;
-                case "Formations":
-                    currentIndexes = project.Formations;
-                    indexNumber.Maximum = 511;
-                    break;
-                case "Items":
-                    currentIndexes = project.Items;
-                    indexNumber.Maximum = 255;
-                    break;
-                case "Levels":
-                    currentIndexes = project.Levels;
-                    indexNumber.Maximum = 509;
                     break;
                 case "Memory Bits":
                     currentIndexes = project.MemoryBits;
@@ -222,25 +214,61 @@ namespace LAZYSHELL
                     panelAddressBit.Visible = true;
                     panelAddressBit.BringToFront();
                     break;
+                case "Event Scripts":
+                    currentIndexes = project.EventScripts;
+                    indexNumber.Maximum = 4095;
+                    break;
+                case "Action Scripts":
+                    currentIndexes = project.ActionScripts;
+                    indexNumber.Maximum = 1023;
+                    break;
+                case "Battle Events":
+                    currentIndexes = project.BattleEvents;
+                    indexNumber.Maximum = 101;
+                    break;
+                case "Monster Behavior Animations":
+                    currentIndexes = project.MonsterBehaviorAnims;
+                    indexNumber.Maximum = 54;
+                    break;
                 case "Monsters":
                     currentIndexes = project.Monsters;
                     indexNumber.Maximum = 255;
+                    break;
+                case "Formations":
+                    currentIndexes = project.Formations;
+                    indexNumber.Maximum = 511;
                     break;
                 case "Packs":
                     currentIndexes = project.Packs;
                     indexNumber.Maximum = 255;
                     break;
-                case "Shops":
-                    currentIndexes = project.Shops;
-                    indexNumber.Maximum = 32;
+                case "Attacks":
+                    currentIndexes = project.Attacks;
+                    indexNumber.Maximum = 128;
                     break;
                 case "Spells":
                     currentIndexes = project.Spells;
                     indexNumber.Maximum = 127;
                     break;
+                case "Items":
+                    currentIndexes = project.Items;
+                    indexNumber.Maximum = 255;
+                    break;
+                case "Battlefields":
+                    currentIndexes = project.Battlefields;
+                    indexNumber.Maximum = 63;
+                    break;
+                case "Effects":
+                    currentIndexes = project.Effects;
+                    indexNumber.Maximum = 127;
+                    break;
                 case "Sprites":
                     currentIndexes = project.Sprites;
                     indexNumber.Maximum = 1023;
+                    break;
+                case "Shops":
+                    currentIndexes = project.Shops;
+                    indexNumber.Maximum = 32;
                     break;
                 default:
                     panel1.Enabled = false;
@@ -270,6 +298,7 @@ namespace LAZYSHELL
             List<ListViewItem> listViewItems = new List<ListViewItem>();
             foreach (EIndex index in currentIndexes)
             {
+#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
                 ListViewItem lvitem = new ListViewItem(new string[]
                 {
                     (elementType.SelectedItem == "Memory Bits" ? 
@@ -278,6 +307,7 @@ namespace LAZYSHELL
                     ":" + index.AddressBit.ToString() : ""),
                     index.Label
                 });
+#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
                 lvitem.Tag = counter++;
                 listViewItems.Add(lvitem);
             }
@@ -325,7 +355,7 @@ namespace LAZYSHELL
                 else if (extension == ".lsnotes")
                 {
                     if (MessageBox.Show("This is a notes file -- in order to load this file it must be converted into a project.\n\n" +
-                        "Continue loading file?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                        "Continue loading file?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     {
                         s.Close();
                         return false;
@@ -336,30 +366,32 @@ namespace LAZYSHELL
                 }
                 if (project == null)
                 {
-                    MessageBox.Show("This is not a valid project file.", "LAZY SHELL", MessageBoxButtons.OK);
+                    MessageBox.Show("This is not a valid project file.", "LAZYSHELL++", MessageBoxButtons.OK);
                     s.Close();
                     return false;
                 }
             }
             catch
             {
-                MessageBox.Show("This is not a valid project file.", "LAZY SHELL", MessageBoxButtons.OK);
+                MessageBox.Show("This is not a valid project file.", "LAZYSHELL++", MessageBoxButtons.OK);
                 s.Close();
                 return false;
             }
             Model.RefreshListCollections();
             //
             settings.NotePathCustom = openFileDialog.FileName;
-            projectFile.Text = openFileDialog.FileName;
+            projectFile.Text = Model.GetFileNameWithoutPath() + ".lsproj";
+        //    projectFile.Text = openFileDialog.FileName;
+            s.Close();
             InitializeFields();
             return true;
         }
         private bool CreateNewProject()
         {
-            if (project != null)
+            if (project != null && settings.NotePathCustom != "")
             {
-                DialogResult result = MessageBox.Show("Save changes to currently loaded project?",
-                    "LAZY SHELL", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Save changes to project database?",
+                    "LAZYSHELL++", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                     SaveLoadedProject();
             }
@@ -383,7 +415,8 @@ namespace LAZYSHELL
             b = new BinaryFormatter();
             project = (ProjectDB)b.Deserialize(s);
             s.Close();
-            projectFile.Text = saveFileDialog.FileName;
+            projectFile.Text = Model.GetFileNameWithoutPath() + ".lsproj";
+            projectROMname.Text = Model.GetFileNameWithoutPath();
             InitializeFields();
             return true;
         }
@@ -397,17 +430,24 @@ namespace LAZYSHELL
         }
         private void SaveLoadedProject()
         {
-            if (projectFile.Text == "")
+            if (project == null || settings.NotePathCustom == "")
             {
                 SaveAsNewProject();
                 return;
             }
             Model.RefreshListCollections();
-            Stream s = File.Create(projectFile.Text);
+            Stream s = File.Create(settings.NotePathCustom);
             BinaryFormatter b = new BinaryFormatter();
             b.Serialize(s, project);
             s.Close();
         }
+
+        private void AutoUpdate()
+        {
+            if (autoUpdate.Checked)
+                Model.RefreshListCollections();
+        }
+
         private void SaveAsNewProject()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -420,7 +460,7 @@ namespace LAZYSHELL
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
             settings.NotePathCustom = saveFileDialog.FileName;
-            projectFile.Text = saveFileDialog.FileName;
+            projectFile.Text = Model.GetFileNameWithoutPath() + ".lsproj";
             //
             Model.RefreshListCollections();
             Stream s = File.Create(saveFileDialog.FileName);
@@ -525,6 +565,7 @@ namespace LAZYSHELL
                 {
                     i.ToString(), list[i]
                 });
+                
                 listViewItems.Add(lvitem);
             }
             listViewList.Items.AddRange(listViewItems.ToArray());
@@ -628,20 +669,22 @@ namespace LAZYSHELL
         {
             ProjectDB project = new ProjectDB();
             project.OtherInfo = notes.GeneralNotes;
-            foreach (NotesDB.Index index in notes.ActionScripts) project.ActionScripts.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.Attacks) project.Attacks.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.Dialogues) project.Dialogues.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.Effects) project.Effects.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.EventScripts) project.EventScripts.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.Formations) project.Formations.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.Items) project.Items.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Levels) project.Levels.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.Dialogues) project.Dialogues.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.EventScripts) project.EventScripts.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.ActionScripts) project.ActionScripts.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.Items) project.Items.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.MemoryBits) project.MemoryBits.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Monsters) project.Monsters.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Packs) project.Packs.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.Shops) project.Shops.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.Formations) project.Formations.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.BattleEvents) project.EventScripts.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.MonsterBehaviorAnims) project.EventScripts.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.Attacks) project.Attacks.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Spells) project.Spells.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Sprites) project.Sprites.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.Effects) project.Effects.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.Shops) project.Shops.Add(new EIndex(index));
             return project;
         }
         //
@@ -709,24 +752,21 @@ namespace LAZYSHELL
         #region Event Handlers
         private void Project_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (project == null)
+            if (project == null || settings.NotePathCustom == "")
                 return;
-            if (!this.Modified)
-            {
-                return;
-            }
-            DialogResult result = MessageBox.Show("Save changes to project?", "LAZY SHELL",
+
+            DialogResult result = MessageBox.Show("Save changes to project database?", "LAZYSHELL++",
             MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
-                SaveLoadedProject();
+                save.PerformClick();
             else if (result == DialogResult.Cancel)
                 e.Cancel = true;
-            else if (result == DialogResult.No && projectFile.Text != "")
+            else if (result == DialogResult.No && project != null)
             {
                 // reload notes file
                 try
                 {
-                    Stream s = File.OpenRead(projectFile.Text);
+                    Stream s = File.OpenRead(settings.NotePathCustom);
                     BinaryFormatter b = new BinaryFormatter();
                     project = (ProjectDB)b.Deserialize(s);
                     s.Close();
@@ -737,20 +777,11 @@ namespace LAZYSHELL
                 }
             }
         }
-        private void buttonOK_Click(object sender, EventArgs e)
-        {
-            SaveLoadedProject();
-            this.Close();
-        }
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         private void buttonBrowse_Click(object sender, EventArgs e)
         {
             if (project != null)
             {
-                DialogResult result = MessageBox.Show("Save changes to currently loaded notes?", "LAZY SHELL",
+                DialogResult result = MessageBox.Show("Save changes to project database?", "LAZYSHELL++",
                     MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
                     SaveLoadedProject();
@@ -768,22 +799,73 @@ namespace LAZYSHELL
         {
             LoadProject();
         }
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            Model.Project = null;
-            Model.ResetListCollections();
-            Model.Program.Project.Close();
-            if (Model.Program.Project == null || !Model.Program.Project.Visible)
-                Model.Program.CreateProjectWindow();
-        }
         private void save_Click(object sender, EventArgs e)
         {
+            // Check if read only, if it is do a "Save As" routine
+            FileInfo file = new FileInfo(settings.NotePathCustom);
+            if ((file.Attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+            {
+                saveAs.PerformClick();
+                return;
+            }
+            // Check if currently in use by another application
+            FileStream fs = null;
+            try
+            {
+                fs = File.Open(settings.NotePathCustom, FileMode.Open);
+                fs.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Lazy Shell could not save the Project Database.\n\nThe file is currently in use by another application.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             SaveLoadedProject();
         }
         private void saveAs_Click(object sender, EventArgs e)
         {
             SaveAsNewProject();
         }
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            if (project == null || settings.NotePathCustom == "")
+                return;
+            DialogResult result = MessageBox.Show("Reload project database?", "LAZYSHELL++",
+            MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                return;
+            else if (settings.NotePathCustom != "")
+            {
+                // reload notes file
+                try
+                {
+                    // now load the notes
+                    Stream s = File.OpenRead(settings.NotePathCustom);
+                    BinaryFormatter b = new BinaryFormatter();
+                    project = (ProjectDB)b.Deserialize(s);
+                    s.Close();
+                    InitializeFields();
+                }
+                catch
+                {
+                    return;
+                }
+            }
+
+        }
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Close the project database?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+            Model.Project = null;
+            settings.NotePathCustom = "";
+            Model.ResetListCollections();
+            Model.Program.Project.Close();
+            if (Model.Program.Project == null || !Model.Program.Project.Visible)
+                Model.Program.CreateProjectWindow();
+        }
+
         private void alwaysOnTop_CheckedChanged(object sender, EventArgs e)
         {
             this.TopMost = alwaysOnTop.Checked;
@@ -792,7 +874,8 @@ namespace LAZYSHELL
         {
             int selectedIndex = Do.GetSelectedIndex(elementIndexes);
             RefreshElementIndexes();
-            elementIndexes.Items[selectedIndex].Selected = true;
+            if (selectedIndex > 0 )
+                elementIndexes.Items[selectedIndex].Selected = true;
         }
         // project information
         private void projectTitle_TextChanged(object sender, EventArgs e)
@@ -818,6 +901,12 @@ namespace LAZYSHELL
             if (this.Updating)
                 return;
             project.Webpage = projectWebpage.Text;
+        }
+        private void projectROMname_TextChanged(object sender, EventArgs e)
+        {
+            if (this.Updating)
+                return;
+            project.ROMname = projectROMname.Text;
         }
         private void projectDescription_TextChanged(object sender, EventArgs e)
         {
@@ -846,7 +935,7 @@ namespace LAZYSHELL
             if (listIndex < 0)
             {
                 MessageBox.Show("Must select an item in the list before adding it to the notes.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             int number = elist.Indexes[listIndex].Index;
@@ -863,6 +952,8 @@ namespace LAZYSHELL
                 return;
             elist.Indexes[listIndex].Label = listLabel.Text;
             listViewList.SelectedItems[0].SubItems[1].Text = listLabel.Text;
+            
+            AutoUpdate();
         }
         private void listDescription_TextChanged(object sender, EventArgs e)
         {
@@ -891,7 +982,7 @@ namespace LAZYSHELL
         private void resetAllLists_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You are about to reset all lists in the current project to their default labels.\n\n" +
-                "Continue with process?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                "Continue with process?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             foreach (EList elist in project.ELists)
                 elist.Reset();
@@ -900,7 +991,7 @@ namespace LAZYSHELL
         private void resetCurrentList_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You are about to reset the current list to it's default labels.\n\n" +
-                "Continue with process?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                "Continue with process?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             elist.Reset();
             RefreshElementList();
@@ -918,20 +1009,22 @@ namespace LAZYSHELL
             List<EIndex> eindexes = null;
             switch (item)
             {
-                case "Action Scripts": eindexes = project.ActionScripts; break;
-                case "Attacks": eindexes = project.Attacks; break;
-                case "Battlefields": eindexes = project.Battlefields; break;
-                case "Dialogues": eindexes = project.Dialogues; break;
-                case "Effects": eindexes = project.Effects; break;
-                case "Event Scripts": eindexes = project.EventScripts; break;
-                case "Formations": eindexes = project.Formations; break;
-                case "Items": eindexes = project.Items; break;
                 case "Levels": eindexes = project.Levels; break;
+                case "Dialogues": eindexes = project.Dialogues; break;
+                case "Event Scripts": eindexes = project.EventScripts; break;
+                case "Action Scripts": eindexes = project.ActionScripts; break;
+                case "Items": eindexes = project.Items; break;
                 case "Monsters": eindexes = project.Monsters; break;
                 case "Packs": eindexes = project.Packs; break;
+                case "Formations": eindexes = project.Formations; break;
+                case "Battlefields": eindexes = project.Battlefields; break;
                 case "Shops": eindexes = project.Shops; break;
+                case "Attacks": eindexes = project.Attacks; break;
                 case "Spells": eindexes = project.Spells; break;
+                case "Effects": eindexes = project.Effects; break;
                 case "Sprites": eindexes = project.Sprites; break;
+                case "Battle Events": eindexes = project.BattleEvents; break;
+                case "Monster Behavior Animations": eindexes = project.MonsterBehaviorAnims; break;
                 default: break;
             }
             if (eindexes == null)
@@ -952,6 +1045,8 @@ namespace LAZYSHELL
         }
         private void elementIndexes_ColumnClick(object sender, ColumnClickEventArgs e)
         {
+            if (Do.GetSelectedIndex(elementIndexes) == -1) 
+                return;
             SortIndexes(e.Column);
             int selectedIndex = Do.GetSelectedIndex(elementIndexes);
             RefreshElementIndexes();
@@ -985,12 +1080,16 @@ namespace LAZYSHELL
             int selectedIndex = Do.GetSelectedIndex(elementIndexes);
             RefreshElementIndexes();
             elementIndexes.Items[selectedIndex].Selected = true;
+            
+            AutoUpdate();
         }
         private void indexDescription_TextChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
             currentIndex.Description = indexDescription.Text;
+
+            AutoUpdate();
         }
         private void address_ValueChanged(object sender, EventArgs e)
         {
@@ -1018,24 +1117,11 @@ namespace LAZYSHELL
         {
             switch ((string)elementType.SelectedItem)
             {
-                case "Action Scripts":
-                    if (Model.Program.EventScripts == null || !Model.Program.EventScripts.Visible)
-                        Model.Program.CreateEventScriptsWindow();
-                    Model.Program.EventScripts.EventName.SelectedIndex = 1;
-                    Model.Program.EventScripts.EventNum.Value = indexNumber.Value;
-                    Model.Program.EventScripts.BringToFront();
-                    break;
-                case "Attacks":
-                    if (Model.Program.Attacks == null || !Model.Program.Attacks.Visible)
-                        Model.Program.CreateAttacksWindow();
-                    Model.Program.Attacks.attacksEditor.Index = (int)indexNumber.Value;
-                    Model.Program.Attacks.BringToFront();
-                    break;
-                case "Battlefields":
-                    if (Model.Program.Battlefields == null || !Model.Program.Battlefields.Visible)
-                        Model.Program.CreateBattlefieldsWindow();
-                    Model.Program.Battlefields.Index = (int)indexNumber.Value;
-                    Model.Program.Battlefields.BringToFront();
+                case "Levels":
+                    if (Model.Program.Levels == null || !Model.Program.Levels.Visible)
+                        Model.Program.CreateLevelsWindow();
+                    Model.Program.Levels.LevelNum.Value = indexNumber.Value;
+                    Model.Program.Levels.BringToFront();
                     break;
                 case "Dialogues":
                     if (Model.Program.Dialogues == null || !Model.Program.Dialogues.Visible)
@@ -1043,11 +1129,7 @@ namespace LAZYSHELL
                     Model.Program.Dialogues.index = (int)indexNumber.Value;
                     Model.Program.Dialogues.BringToFront();
                     break;
-                case "Effects":
-                    if (Model.Program.Effects == null || !Model.Program.Effects.Visible)
-                        Model.Program.CreateEffectsWindow();
-                    Model.Program.Effects.index = (int)indexNumber.Value;
-                    Model.Program.Effects.BringToFront();
+                case "Memory Bits":
                     break;
                 case "Event Scripts":
                     if (Model.Program.EventScripts == null || !Model.Program.EventScripts.Visible)
@@ -1056,25 +1138,18 @@ namespace LAZYSHELL
                     Model.Program.EventScripts.EventNum.Value = indexNumber.Value;
                     Model.Program.EventScripts.BringToFront();
                     break;
-                case "Formations":
-                    if (Model.Program.Formations == null || !Model.Program.Formations.Visible)
-                        Model.Program.CreateFormationsWindow();
-                    Model.Program.Formations.FormationIndex = (int)indexNumber.Value;
-                    Model.Program.Formations.BringToFront();
+                case "Action Scripts":
+                    if (Model.Program.EventScripts == null || !Model.Program.EventScripts.Visible)
+                        Model.Program.CreateEventScriptsWindow();
+                    Model.Program.EventScripts.EventName.SelectedIndex = 1;
+                    Model.Program.EventScripts.EventNum.Value = indexNumber.Value;
+                    Model.Program.EventScripts.BringToFront();
                     break;
-                case "Items":
-                    if (Model.Program.Items == null || !Model.Program.Items.Visible)
-                        Model.Program.CreateItemsWindow();
-                    Model.Program.Items.itemsEditor.Index = (int)indexNumber.Value;
-                    Model.Program.Items.BringToFront();
-                    break;
-                case "Levels":
-                    if (Model.Program.Levels == null || !Model.Program.Levels.Visible)
-                        Model.Program.CreateLevelsWindow();
-                    Model.Program.Levels.LevelNum.Value = indexNumber.Value;
-                    Model.Program.Levels.BringToFront();
-                    break;
-                case "Memory Bits":
+                case "Battlefields":
+                    if (Model.Program.Battlefields == null || !Model.Program.Battlefields.Visible)
+                        Model.Program.CreateBattlefieldsWindow();
+                    Model.Program.Battlefields.Index = (int)indexNumber.Value;
+                    Model.Program.Battlefields.BringToFront();
                     break;
                 case "Monsters":
                     if (Model.Program.Monsters == null || !Model.Program.Monsters.Visible)
@@ -1082,17 +1157,23 @@ namespace LAZYSHELL
                     Model.Program.Monsters.Index = (int)indexNumber.Value;
                     Model.Program.Monsters.BringToFront();
                     break;
+                case "Formations":
+                    if (Model.Program.Formations == null || !Model.Program.Formations.Visible)
+                        Model.Program.CreateFormationsWindow();
+                    Model.Program.Formations.FormationIndex = (int)indexNumber.Value;
+                    Model.Program.Formations.BringToFront();
+                    break;
                 case "Packs":
                     if (Model.Program.Formations == null || !Model.Program.Formations.Visible)
                         Model.Program.CreateFormationsWindow();
                     Model.Program.Formations.PackIndex = (int)indexNumber.Value;
                     Model.Program.Formations.BringToFront();
                     break;
-                case "Shops":
-                    if (Model.Program.Items == null || !Model.Program.Items.Visible)
-                        Model.Program.CreateItemsWindow();
-                    Model.Program.Items.shopsEditor.Index = (int)indexNumber.Value;
-                    Model.Program.Items.BringToFront();
+                case "Attacks":
+                    if (Model.Program.Attacks == null || !Model.Program.Attacks.Visible)
+                        Model.Program.CreateAttacksWindow();
+                    Model.Program.Attacks.attacksEditor.Index = (int)indexNumber.Value;
+                    Model.Program.Attacks.BringToFront();
                     break;
                 case "Spells":
                     if (Model.Program.Attacks == null || !Model.Program.Attacks.Visible)
@@ -1100,11 +1181,35 @@ namespace LAZYSHELL
                     Model.Program.Attacks.spellsEditor.Index = (int)indexNumber.Value;
                     Model.Program.Attacks.BringToFront();
                     break;
+                case "Items":
+                    if (Model.Program.Items == null || !Model.Program.Items.Visible)
+                        Model.Program.CreateItemsWindow();
+                    Model.Program.Items.itemsEditor.Index = (int)indexNumber.Value;
+                    Model.Program.Items.BringToFront();
+                    break;
+                case "Allies":
+                    if (Model.Program.Allies == null || !Model.Program.Allies.Visible)
+                        Model.Program.CreateAnimationsWindow();
+                    Model.Program.Allies.alliesEditor.Index = (int)indexNumber.Value;
+                    Model.Program.Allies.BringToFront();
+                    break;
+                case "Effects":
+                    if (Model.Program.Effects == null || !Model.Program.Effects.Visible)
+                        Model.Program.CreateEffectsWindow();
+                    Model.Program.Effects.index = (int)indexNumber.Value;
+                    Model.Program.Effects.BringToFront();
+                    break;
                 case "Sprites":
                     if (Model.Program.Sprites == null || !Model.Program.Sprites.Visible)
                         Model.Program.CreateSpritesWindow();
                     Model.Program.Sprites.Index = (int)indexNumber.Value;
                     Model.Program.Sprites.BringToFront();
+                    break;
+                case "Shops":
+                    if (Model.Program.Items == null || !Model.Program.Items.Visible)
+                        Model.Program.CreateItemsWindow();
+                    Model.Program.Items.shopsEditor.Index = (int)indexNumber.Value;
+                    Model.Program.Items.BringToFront();
                     break;
             }
         }
@@ -1187,7 +1292,7 @@ namespace LAZYSHELL
                 {
                     MessageBox.Show("There was a problem opening the keystroke table.\n" +
                         "One or more of the assigned keystrokes has an invalid length.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
                 }
                 keystrokes[i] = line;
@@ -1221,7 +1326,7 @@ namespace LAZYSHELL
         private void resetKeystrokes_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to reset all keystroke tables to their default values?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             switch (FontType)
             {
@@ -1231,6 +1336,17 @@ namespace LAZYSHELL
             }
             RefreshKeystrokes();
         }
+        private void projectFile_Click(object sender, EventArgs e)
+        {
+            if (project == null || settings.NotePathCustom == "")
+                return;
+
+            if (projectFile.Text == Model.GetFileNameWithoutPath() + ".lsproj")
+                projectFile.Text = settings.NotePathCustom;
+            else
+                projectFile.Text = Model.GetFileNameWithoutPath() + ".lsproj";
+        }
+
         #endregion
     }
 }

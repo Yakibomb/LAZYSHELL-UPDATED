@@ -12,8 +12,11 @@ namespace LAZYSHELL
     public partial class ItemsEditor : NewForm
     {
         private Settings settings = Settings.Default;
+
         public Items itemsEditor;
+        
         public Shops shopsEditor;
+       
         // constructor
         public ItemsEditor()
         {
@@ -23,12 +26,12 @@ namespace LAZYSHELL
             Do.AddShortcut(toolStrip3, Keys.F2, baseConvertor);
             this.toolTip1.InitialDelay = 0;
             // create editors
-            shopsEditor = new Shops(this);
+            itemsEditor = new Items(this);
+            shopsEditor = new Shops(this, itemsEditor);
             shopsEditor.TopLevel = false;
             shopsEditor.Dock = DockStyle.Left;
             panel1.Controls.Add(shopsEditor);
             shopsEditor.Visible = true;
-            itemsEditor = new Items(shopsEditor);
             itemsEditor.TopLevel = false;
             itemsEditor.Dock = DockStyle.Left;
             panel1.Controls.Add(itemsEditor);
@@ -36,6 +39,13 @@ namespace LAZYSHELL
             new ToolTipLabel(this, baseConvertor, helpTips);
             //
             this.History = new History(this, false);
+            //
+            optionSortItemList.Checked = settings.ItemsSortItemList;
+            optionDrawItemIconsOnList.Checked = settings.ItemsDrawItemIconsOnList;
+            optionFilterOutDUMMY.Checked = settings.ItemsFilterOutDUMMY;
+            //
+            shopsEditor.RefreshShops();
+
         }
         // functions
         public void Assemble()
@@ -62,7 +72,7 @@ namespace LAZYSHELL
             if (!this.Modified && !itemsEditor.Modified && !shopsEditor.Modified)
                 return;
             DialogResult result = MessageBox.Show(
-                "Items and shops have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Items and shops have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -113,7 +123,7 @@ namespace LAZYSHELL
         private void resetItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current item. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             itemsEditor.Item = new Item(itemsEditor.Index);
             itemsEditor.RefreshItems();
@@ -121,7 +131,7 @@ namespace LAZYSHELL
         private void resetShopToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current shop. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             shopsEditor.Shop = new Shop(shopsEditor.Index);
             shopsEditor.RefreshShops();
@@ -134,6 +144,51 @@ namespace LAZYSHELL
         {
             shopsEditor.Visible = showShops.Checked;
         }
+
+        // hex editor jump to offset
+        private void showitem_hexname(object sender, EventArgs e)
+        {
+            Model.HexEditor.SetOffset(itemsEditor.Item.BaseOffsetName);
+            Model.HexEditor.Compare();
+            Model.HexEditor.Show();
+        }
+        private void showitem_hexstats(object sender, EventArgs e)
+        {
+            Model.HexEditor.SetOffset(itemsEditor.Item.BaseOffsetStats);
+            Model.HexEditor.Compare();
+            Model.HexEditor.Show();
+        }
+        private void showitem_hexprice(object sender, EventArgs e)
+        {
+            Model.HexEditor.SetOffset(itemsEditor.Item.BaseOffsetPrice);
+            Model.HexEditor.Compare();
+            Model.HexEditor.Show();
+        }
+        //Extra options for list
+
+        private void optionSortItemList_Click(object sender, EventArgs e)
+        {
+            settings.ItemsSortItemList = optionSortItemList.Checked;
+            itemsEditor.RefreshItemList();
+            itemsEditor.RefreshItems();
+            shopsEditor.ResortStrings(-1);
+        }
+        private void optionDrawItemIconsOnList_Click(object sender, EventArgs e)
+        {
+            settings.ItemsDrawItemIconsOnList = optionDrawItemIconsOnList.Checked;
+            itemsEditor.RefreshItemList();
+            itemsEditor.RefreshItems();
+            shopsEditor.ResortStrings(-1);
+        }
+
+        private void optionFilterOutDUMMY_Click(object sender, EventArgs e)
+        {
+            settings.ItemsFilterOutDUMMY = optionFilterOutDUMMY.Checked;
+            itemsEditor.RefreshItemList();
+            itemsEditor.RefreshItems();
+            shopsEditor.ResortStrings(-1);
+        }
+
         #endregion
     }
 }

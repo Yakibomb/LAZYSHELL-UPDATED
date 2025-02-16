@@ -19,7 +19,8 @@ namespace LAZYSHELL
         private Slot[] slots { get { return Model.Slots; } set { Model.Slots = value; } }
         private Slot slot { get { return slots[(int)slotNum.Value]; } set { slots[(int)slotNum.Value] = value; } }
         //
-        private int index = 0; public int Index { get { return index; } }
+        private int index = 0;
+        public int Index { get { return index; } set { index = value; } }
         #endregion
         #region Functions
         public Allies()
@@ -132,6 +133,7 @@ namespace LAZYSHELL
                 return;
             character.Name = Do.ASCIIToRaw(textBoxCharacterName.Text, Lists.KeystrokesMenu, 10);
             this.Updating = true;
+            Model.CharacterNames.SetName(index, new string(character.Name));
             this.characterName.Items.Clear();
             for (int i = 0; i < characters.Length; i++)
                 this.characterName.Items.Add(new string(characters[i].Name));
@@ -256,7 +258,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current character. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             character = new Character(index);
             characterName_SelectedIndexChanged(null, null);

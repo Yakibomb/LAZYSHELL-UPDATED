@@ -41,6 +41,7 @@ namespace LAZYSHELL
             this.resetCurrentTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetCurrentTilemapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@ namespace LAZYSHELL
             this.toolStripSeparator1,
             this.toolStripDropDownButton1,
             this.toolStripDropDownButton2,
+            this.toolStripSeparator2,
             this.toolStripDropDownButton3,
             this.helpTips});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -93,27 +95,27 @@ namespace LAZYSHELL
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importTilesetsToolStripMenuItem,
             this.importTilemapsToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = global::LAZYSHELL.Properties.Resources.importBinary;
+            this.toolStripDropDownButton1.Image = global::LAZYSHELL.Properties.Resources.importData;
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
             // 
             // importTilesetsToolStripMenuItem
             // 
-            this.importTilesetsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importBinary;
+            this.importTilesetsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importData;
             this.importTilesetsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importTilesetsToolStripMenuItem.Name = "importTilesetsToolStripMenuItem";
-            this.importTilesetsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.importTilesetsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importTilesetsToolStripMenuItem.Text = "Import Tileset(s)...";
             this.importTilesetsToolStripMenuItem.Click += new System.EventHandler(this.importTilesetsToolStripMenuItem_Click);
             // 
             // importTilemapsToolStripMenuItem
             // 
-            this.importTilemapsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importBinary;
+            this.importTilemapsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importData;
             this.importTilemapsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importTilemapsToolStripMenuItem.Name = "importTilemapsToolStripMenuItem";
-            this.importTilemapsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.importTilemapsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importTilemapsToolStripMenuItem.Text = "Import Tilemap(s)...";
             this.importTilemapsToolStripMenuItem.Click += new System.EventHandler(this.importTilemapsToolStripMenuItem_Click);
             // 
@@ -123,27 +125,27 @@ namespace LAZYSHELL
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportTilesetsToolStripMenuItem,
             this.exportTilemapsToolStripMenuItem});
-            this.toolStripDropDownButton2.Image = global::LAZYSHELL.Properties.Resources.exportBinary;
+            this.toolStripDropDownButton2.Image = global::LAZYSHELL.Properties.Resources.exportData;
             this.toolStripDropDownButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 22);
             // 
             // exportTilesetsToolStripMenuItem
             // 
-            this.exportTilesetsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportBinary;
+            this.exportTilesetsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportData;
             this.exportTilesetsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportTilesetsToolStripMenuItem.Name = "exportTilesetsToolStripMenuItem";
-            this.exportTilesetsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.exportTilesetsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportTilesetsToolStripMenuItem.Text = "Export Tileset(s)...";
             this.exportTilesetsToolStripMenuItem.Click += new System.EventHandler(this.exportTilesetsToolStripMenuItem_Click);
             // 
             // exportTilemapsToolStripMenuItem
             // 
-            this.exportTilemapsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportBinary;
+            this.exportTilemapsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportData;
             this.exportTilemapsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportTilemapsToolStripMenuItem.Name = "exportTilemapsToolStripMenuItem";
-            this.exportTilemapsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.exportTilemapsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportTilemapsToolStripMenuItem.Text = "Export Tilemap(s)...";
             this.exportTilemapsToolStripMenuItem.Click += new System.EventHandler(this.exportTilemapsToolStripMenuItem_Click);
             // 
@@ -158,14 +160,14 @@ namespace LAZYSHELL
             this.toolStripDropDownButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(29, 22);
             // 
             // resetAllObjectsToolStripMenuItem
             // 
             this.resetAllObjectsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.resetAllObjectsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.resetAllObjectsToolStripMenuItem.Name = "resetAllObjectsToolStripMenuItem";
-            this.resetAllObjectsToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.resetAllObjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resetAllObjectsToolStripMenuItem.Text = "Reset all objects";
             this.resetAllObjectsToolStripMenuItem.Click += new System.EventHandler(this.resetAllObjectsToolStripMenuItem_Click);
             // 
@@ -174,7 +176,7 @@ namespace LAZYSHELL
             this.resetCurrentTilesetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.resetCurrentTilesetToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.resetCurrentTilesetToolStripMenuItem.Name = "resetCurrentTilesetToolStripMenuItem";
-            this.resetCurrentTilesetToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.resetCurrentTilesetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resetCurrentTilesetToolStripMenuItem.Text = "Reset current tileset";
             this.resetCurrentTilesetToolStripMenuItem.Click += new System.EventHandler(this.resetCurrentTilesetToolStripMenuItem_Click);
             // 
@@ -183,12 +185,13 @@ namespace LAZYSHELL
             this.resetCurrentTilemapToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.resetCurrentTilemapToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.resetCurrentTilemapToolStripMenuItem.Name = "resetCurrentTilemapToolStripMenuItem";
-            this.resetCurrentTilemapToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.resetCurrentTilemapToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.resetCurrentTilemapToolStripMenuItem.Text = "Reset current tilemap";
             this.resetCurrentTilemapToolStripMenuItem.Click += new System.EventHandler(this.resetCurrentTilemapToolStripMenuItem_Click);
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -198,6 +201,11 @@ namespace LAZYSHELL
             this.helpTips.Size = new System.Drawing.Size(23, 22);
             this.helpTips.Text = "Help Tips";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // MiniGames
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,17 +214,18 @@ namespace LAZYSHELL
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainMinigames_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "MiniGames";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MINI GAMES - Lazy Shell";
+            this.Text = "MINI GAMES - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MiniGames_FormClosing);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.Panel panel1;
@@ -234,5 +243,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripMenuItem resetCurrentTilesetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetCurrentTilemapToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton helpTips;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

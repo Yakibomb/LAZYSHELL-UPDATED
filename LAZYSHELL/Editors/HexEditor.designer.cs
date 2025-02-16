@@ -26,10 +26,11 @@ namespace LAZYSHELL
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HexEditor));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.gotoAddress = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.gotoAddress = new System.Windows.Forms.ToolStripTextBox();
+            this.gotoAddressButton = new System.Windows.Forms.ToolStripButton();
             this.searchBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.baseConvDec = new System.Windows.Forms.ToolStripTextBox();
@@ -48,14 +49,19 @@ namespace LAZYSHELL
             this.originalROMData = new LAZYSHELL.NewRichTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.viewCurrent = new System.Windows.Forms.ToolStripButton();
+            this.compareButton = new System.Windows.Forms.ToolStripButton();
             this.viewOriginal = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.copy = new System.Windows.Forms.ToolStripButton();
             this.paste = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.undo = new System.Windows.Forms.ToolStripButton();
             this.redo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.findRecentChangeLeft = new System.Windows.Forms.ToolStripButton();
+            this.findRecentChangeRight = new System.Windows.Forms.ToolStripButton();
             this.ROMOffsets = new LAZYSHELL.NewRichTextBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -68,9 +74,9 @@ namespace LAZYSHELL
             this.toolStrip1.CanOverflow = false;
             this.toolStrip1.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.gotoAddress,
             this.toolStripLabel2,
+            this.gotoAddress,
+            this.gotoAddressButton,
             this.searchBox,
             this.toolStripLabel4,
             this.baseConvDec,
@@ -85,14 +91,14 @@ namespace LAZYSHELL
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripLabel1
+            // toolStripLabel2
             // 
-            this.toolStripLabel1.AutoSize = false;
-            this.toolStripLabel1.Image = global::LAZYSHELL.Properties.Resources.jumpTo;
-            this.toolStripLabel1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(22, 22);
-            this.toolStripLabel1.ToolTipText = "Goto address";
+            this.toolStripLabel2.AutoSize = false;
+            this.toolStripLabel2.Image = global::LAZYSHELL.Properties.Resources.jumpTo;
+            this.toolStripLabel2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(22, 22);
+            this.toolStripLabel2.ToolTipText = "Search for value(s)";
             // 
             // gotoAddress
             // 
@@ -103,14 +109,17 @@ namespace LAZYSHELL
             this.gotoAddress.Size = new System.Drawing.Size(70, 25);
             this.gotoAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gotoAddress_KeyDown);
             // 
-            // toolStripLabel2
+            // gotoAddressButton
             // 
-            this.toolStripLabel2.AutoSize = false;
-            this.toolStripLabel2.Image = global::LAZYSHELL.Properties.Resources.search;
-            this.toolStripLabel2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(22, 22);
-            this.toolStripLabel2.ToolTipText = "Search for value(s)";
+            this.gotoAddressButton.AutoSize = false;
+            this.gotoAddressButton.Image = global::LAZYSHELL.Properties.Resources.jumpToRight;
+            this.gotoAddressButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.gotoAddressButton.Name = "gotoAddressButton";
+            this.gotoAddressButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.gotoAddressButton.Size = new System.Drawing.Size(22, 22);
+            this.gotoAddressButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.gotoAddressButton.ToolTipText = "Search address (forwards)";
+            this.gotoAddressButton.Click += new System.EventHandler(this.gotoAddressButton_Click);
             // 
             // searchBox
             // 
@@ -119,7 +128,9 @@ namespace LAZYSHELL
             this.searchBox.MaxLength = 24;
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(132, 25);
+            this.searchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             this.searchBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchValues_KeyDown);
+            this.searchBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.searchBox_MouseDown);
             // 
             // toolStripLabel4
             // 
@@ -308,15 +319,20 @@ namespace LAZYSHELL
             this.toolStrip2.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewCurrent,
+            this.compareButton,
             this.viewOriginal,
             this.toolStripSeparator3,
             this.save,
             this.helpTips,
-            this.toolStripSeparator2,
+            this.toolStripSeparator1,
             this.copy,
             this.paste,
+            this.toolStripSeparator2,
             this.undo,
-            this.redo});
+            this.redo,
+            this.toolStripSeparator4,
+            this.findRecentChangeLeft,
+            this.findRecentChangeRight});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -336,6 +352,20 @@ namespace LAZYSHELL
             this.viewCurrent.ToolTipText = "Current ROM";
             this.viewCurrent.Click += new System.EventHandler(this.viewCurrent_Click);
             // 
+            // compareButton
+            // 
+            this.compareButton.Checked = true;
+            this.compareButton.CheckOnClick = true;
+            this.compareButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.compareButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.compareButton.Image = global::LAZYSHELL.Properties.Resources.update;
+            this.compareButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.compareButton.Name = "compareButton";
+            this.compareButton.Size = new System.Drawing.Size(23, 22);
+            this.compareButton.Text = "toolStripButton1";
+            this.compareButton.ToolTipText = "Compare new changes between ROMs";
+            this.compareButton.Click += new System.EventHandler(this.compareButton_Click);
+            // 
             // viewOriginal
             // 
             this.viewOriginal.Image = global::LAZYSHELL.Properties.Resources.cartridge;
@@ -354,6 +384,7 @@ namespace LAZYSHELL
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -362,10 +393,10 @@ namespace LAZYSHELL
             this.helpTips.Size = new System.Drawing.Size(23, 22);
             this.helpTips.Text = "Help Tips";
             // 
-            // toolStripSeparator2
+            // toolStripSeparator1
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // copy
             // 
@@ -389,6 +420,11 @@ namespace LAZYSHELL
             this.paste.Text = "Paste";
             this.paste.Click += new System.EventHandler(this.paste_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // undo
             // 
             this.undo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -410,6 +446,32 @@ namespace LAZYSHELL
             this.redo.Size = new System.Drawing.Size(23, 22);
             this.redo.Text = "Redo";
             this.redo.Click += new System.EventHandler(this.redo_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // findRecentChangeLeft
+            // 
+            this.findRecentChangeLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.findRecentChangeLeft.Image = ((System.Drawing.Image)(resources.GetObject("findRecentChangeLeft.Image")));
+            this.findRecentChangeLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.findRecentChangeLeft.Name = "findRecentChangeLeft";
+            this.findRecentChangeLeft.Size = new System.Drawing.Size(23, 22);
+            this.findRecentChangeLeft.Text = "findRecentChangeLeft";
+            this.findRecentChangeLeft.ToolTipText = "Go left to new change";
+            this.findRecentChangeLeft.Click += new System.EventHandler(this.findRecentChangeLeft_Click);
+            // 
+            // findRecentChangeRight
+            // 
+            this.findRecentChangeRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.findRecentChangeRight.Image = ((System.Drawing.Image)(resources.GetObject("findRecentChangeRight.Image")));
+            this.findRecentChangeRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.findRecentChangeRight.Name = "findRecentChangeRight";
+            this.findRecentChangeRight.Size = new System.Drawing.Size(23, 22);
+            this.findRecentChangeRight.ToolTipText = "Go right to new change";
+            this.findRecentChangeRight.Click += new System.EventHandler(this.findRecentChangeRight_Click);
             // 
             // ROMOffsets
             // 
@@ -445,7 +507,7 @@ namespace LAZYSHELL
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
             this.Name = "HexEditor";
-            this.Text = "HEX EDITOR - Lazy Shell";
+            this.Text = "HEX EDITOR - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HexViewer_FormClosing);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -459,7 +521,6 @@ namespace LAZYSHELL
         }
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox gotoAddress;
         private LAZYSHELL.NewRichTextBox ROMOffsets;
         private LAZYSHELL.NewRichTextBox currentROMData;
@@ -489,5 +550,11 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton viewCurrent;
         private System.Windows.Forms.ToolStripButton viewOriginal;
         private System.Windows.Forms.ToolStripButton helpTips;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton compareButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton findRecentChangeRight;
+        private System.Windows.Forms.ToolStripButton findRecentChangeLeft;
+        private System.Windows.Forms.ToolStripButton gotoAddressButton;
     }
 }

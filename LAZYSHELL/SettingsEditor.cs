@@ -13,6 +13,22 @@ namespace LAZYSHELL
 {
     public partial class SettingsEditor : NewForm
     {
+        private Editor editor
+        {
+            get
+            {
+                if (Application.OpenForms.Count == 0)
+                    return null;
+                return (Editor)Application.OpenForms[0];
+            }
+            set
+            {
+                if (Application.OpenForms.Count == 0)
+                    return;
+                Editor main = (Editor)Application.OpenForms[0];
+                main = value;
+            }
+        }
         private Settings settings = Settings.Default;
         private ListViewColumnSorter lvwColumnSorter = new ListViewColumnSorter();
         // constructor
@@ -55,7 +71,8 @@ namespace LAZYSHELL
                 visualThemeStandard.Checked = true;
                 Application.VisualStyleState = System.Windows.Forms.VisualStyles.VisualStyleState.NoneEnabled;
             }
-            this.patchHTTPServer.Text = this.settings.PatchServerURL;
+            
+
         }
         // event handlers
         private void buttonCustomDirectory_Click(object sender, EventArgs e)
@@ -71,9 +88,12 @@ namespace LAZYSHELL
         {
             DialogResult result = MessageBox.Show(
                 "You are about to reset the application's settings. You will lose all custom settings.\n\n" +
-                "Are you sure you want to do this?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                "Are you sure you want to do this?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
+            {
                 settings.Reset();
+                editor.InitializeLayout();
+            }
             InitializeSettings();
         }
         private void buttonApply_Click(object sender, EventArgs e)
@@ -91,7 +111,6 @@ namespace LAZYSHELL
             else if (romDirectory.Checked)
                 settings.BackupROMDirectory = "";
             settings.VisualThemeSystem = visualThemeSystem.Checked;
-            settings.PatchServerURL = patchHTTPServer.Text;
             settings.Save();
         }
         private void buttonOK_Click(object sender, EventArgs e)
@@ -103,5 +122,6 @@ namespace LAZYSHELL
         {
             this.Close();
         }
+
     }
 }

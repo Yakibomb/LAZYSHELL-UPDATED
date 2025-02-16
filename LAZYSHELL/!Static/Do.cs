@@ -9,6 +9,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Media;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -593,7 +594,7 @@ namespace LAZYSHELL
                 {
                     MessageBox.Show(
                         "Imported graphics were too large to fit into the tileset.",
-                        "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
                 }
                 Bits.SetShort(culledTileset, c * tileLength, (ushort)(tile.Index + tileIndexStart));

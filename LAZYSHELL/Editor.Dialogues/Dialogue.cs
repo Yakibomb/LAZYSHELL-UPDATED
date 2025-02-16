@@ -60,8 +60,28 @@ namespace LAZYSHELL
         // assemblers
         private void Disassemble()
         {
-            text = GetText();
+            GetText();
+            //text = GetText();
         }
+        public void Assemble(int offset)
+        {
+            Assemble(ref offset);
+        }
+        public void Assemble(ref int offset)
+        {
+            if (Index >= 2048)
+                Bits.SetShort(rom, 0x37E000 + Index * 2, (ushort)(offset - 4));
+            else
+                Bits.SetShort(rom, 0x37E000 + Index * 2, (ushort)(offset - 8));
+            this.Offset = offset;
+
+            // Write the dialogue to ROM
+            Bits.SetChars(rom, this.Offset, Text);
+
+            // Add dialogue length to offset
+            offset += Text.Length;
+        }
+        /*
         public void Assemble(int offset)
         {
             Assemble(ref offset);
@@ -83,9 +103,107 @@ namespace LAZYSHELL
             Bits.SetChars(rom, dlgOffset, text);
             offset += text.Length;
         }
+        */
         // class functions
-        private char[] GetText()
+        // Read/write ROM
+        // class functions
+        private void GetText()
         {
+
+            int pointer = Bits.GetShort(rom, 0x37E000 + (Index * 2));
+
+            /* This operation checks if pointer points to beyond capacity of the dialogue in the bank.
+             * If it is, then it sets the pointer to the last dialogue, thus making it a duplicate.
+             * This fixes the problems with dialogues 3066 to 3071. */
+
+            // Get pointer to dialogue in bank
+            int secPtr;
+            if (Index >= 0xC00)
+                secPtr = Bits.GetShort(rom, 0x240000 + (((Index - 0xC00) >> 8) & 0xFE));
+            else if (Index >= 0x800)
+                secPtr = Bits.GetShort(rom, 0x230000 + (((Index - 0x800) >> 8) & 0xFE));
+            else
+                secPtr = Bits.GetShort(rom, 0x220000 + ((Index >> 8) & 0xFE));
+
+            // Total size of the pointer table in the respective bank
+            int ptrTblSize = Index >= 0x800 ? 4 : 8;
+
+
+            // Set pointer of dialogue
+            pointer = pointer + secPtr - ptrTblSize;
+            Bits.SetShort(rom, 0x37E000 + (Index * 2), (ushort)pointer);
+
+            // Actually replace the invalid pointer with a duplicate
+            if (Index >= 0xC00)
+            {
+                if (pointer >= 0xFFFF - 4 || (pointer >= 0x9000 - 4 && pointer < 0xEDE0 - 4))
+                {
+                    Bits.SetShort(rom, 0x37E000 + (Index * 2), (ushort)(Bits.GetShort(rom, 0x37E000 + ((Index - 1) * 2))));
+                    MessageBox.Show("Warning: Invalid pointer for dialogue #" + Index.ToString() + ".  Replaced with duplicate.",
+                            "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else if (Index >= 0x800)
+            {
+                if (pointer >= 0xF2D5 - 4)
+                {
+                    Bits.SetShort(rom, 0x37E000 + (Index * 2), (ushort)(Bits.GetShort(rom, 0x37E000 + ((Index - 1) * 2))));
+                    MessageBox.Show("Warning: Invalid pointer for dialogue #" + Index.ToString() + ".  Replaced with duplicate.",
+                            "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                if (pointer >= 0xFD18 - 8)
+                {
+                    Bits.SetShort(rom, 0x37E000 + (Index * 2), (ushort)(Bits.GetShort(rom, 0x37E000 + ((Index - 1) * 2))));
+                    MessageBox.Show("Warning: Invalid pointer for dialogue #" + Index.ToString() + ".  Replaced with duplicate.",
+                            "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+            // Simplify all of the section pointers
+            if (Index == 0xFFF)
+            {
+                Bits.SetShort(rom, 0x220002, 0x0008);
+                Bits.SetShort(rom, 0x220004, 0x0008);
+                Bits.SetShort(rom, 0x220006, 0x0008);
+                Bits.SetShort(rom, 0x230002, 0x0004);
+                Bits.SetShort(rom, 0x240002, 0x0004);
+            }
+
+            // Set this offset
+            if (Index >= 0x0C00)
+                this.Offset = this.Pointer + 4 + 0x240000;
+            else if (Index >= 0x0800)
+                this.Offset = this.Pointer + 4 + 0x230000;
+            else
+                this.Offset = this.Pointer + 8 + 0x220000;
+
+            // Get total length of text
+            int offset = this.Offset;
+            int length = 0;
+            byte symbol = 0x01;
+            while (symbol != 0x00 && symbol != 0x06)
+            {
+                symbol = rom[offset];
+
+                // Values with a parameter
+                if (symbol == 0x0B || symbol == 0x0D || symbol == 0x1C)
+                {
+                    length++;
+                    offset++;
+                }
+                length++;
+                offset++;
+            }
+
+            // Finally, initialize the text
+            this.Text = new char[length];
+            for (int i = 0; i < length; i++)
+                this.Text[i] = (char)rom[this.Offset + i];
+            
+            /*
             int dlgPtr = Bits.GetShort(rom, 0x37E000 + (index * 2));
             int secPtr;
             if (index >= 0xC00)
@@ -145,6 +263,8 @@ namespace LAZYSHELL
             for (int i = 0; i < length; i++)
                 dialogue[i] = (char)rom[this.offset + i];
             return dialogue;
+            */
+
         }
         public string GetText(bool byteView, string[] tables)
         {

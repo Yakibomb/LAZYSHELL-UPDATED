@@ -260,7 +260,7 @@ namespace LAZYSHELL
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ExportImages";
-            this.Text = "EXPORT MOLD IMAGES - Lazy Shell";
+            this.Text = "EXPORT MOLD IMAGES - LAZYSHELL++";
             ((System.ComponentModel.ISupportInitialize)(this.maximumWidth)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

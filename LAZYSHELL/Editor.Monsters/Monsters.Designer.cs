@@ -98,8 +98,8 @@ namespace LAZYSHELL
             this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.hackingTools = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.showMonster = new System.Windows.Forms.ToolStripButton();
             this.showBattleScripts = new System.Windows.Forms.ToolStripButton();
+            this.showMonster = new System.Windows.Forms.ToolStripButton();
             this.MonsterSoundOther = new System.Windows.Forms.ComboBox();
             this.MonsterSoundStrike = new System.Windows.Forms.ComboBox();
             this.MonsterMorphSuccess = new System.Windows.Forms.ComboBox();
@@ -281,6 +281,7 @@ namespace LAZYSHELL
             "Sleep",
             "Poison",
             "Fear",
+            "Berserk",
             "Mushroom",
             "Scarecrow",
             "Invincible"});
@@ -677,7 +678,7 @@ namespace LAZYSHELL
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1142, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1142, 26);
             this.toolStrip1.TabIndex = 1;
             // 
             // monsterName
@@ -689,12 +690,12 @@ namespace LAZYSHELL
             this.monsterName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.monsterName.DropDownWidth = 197;
             this.monsterName.ItemHeight = 15;
-            this.monsterName.Location = new System.Drawing.Point(8, 1);
+            this.monsterName.Location = new System.Drawing.Point(10, 2);
             this.monsterName.Name = "monsterName";
             this.monsterName.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.monsterName.SelectedIndex = -1;
             this.monsterName.SelectedItem = null;
-            this.monsterName.Size = new System.Drawing.Size(174, 22);
+            this.monsterName.Size = new System.Drawing.Size(174, 23);
             this.monsterName.SelectedIndexChanged += new System.EventHandler(this.monsterName_SelectedIndexChanged);
             this.monsterName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.monsterName_DrawItem);
             // 
@@ -708,7 +709,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.monsterNum.Location = new System.Drawing.Point(181, 2);
+            this.monsterNum.Location = new System.Drawing.Point(183, 2);
             this.monsterNum.Maximum = new decimal(new int[] {
             255,
             0,
@@ -732,19 +733,20 @@ namespace LAZYSHELL
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 26);
             // 
             // monsterNameText
             // 
+            this.monsterNameText.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.monsterNameText.MaxLength = 13;
             this.monsterNameText.Name = "monsterNameText";
-            this.monsterNameText.Size = new System.Drawing.Size(140, 25);
+            this.monsterNameText.Size = new System.Drawing.Size(140, 26);
             this.monsterNameText.TextChanged += new System.EventHandler(this.monsterNameText_TextChanged);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 26);
             // 
             // battlePreview
             // 
@@ -773,8 +775,8 @@ namespace LAZYSHELL
             this.baseConvertor,
             this.hackingTools,
             this.toolStripSeparator6,
-            this.showMonster,
-            this.showBattleScripts});
+            this.showBattleScripts,
+            this.showMonster});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -807,7 +809,7 @@ namespace LAZYSHELL
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
             // 
             // import
             // 
@@ -839,7 +841,7 @@ namespace LAZYSHELL
             this.toolStripDropDownButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 22);
             // 
             // export
             // 
@@ -882,7 +884,7 @@ namespace LAZYSHELL
             this.toolStripDropDownButton4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton4.Name = "toolStripDropDownButton4";
-            this.toolStripDropDownButton4.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton4.Size = new System.Drawing.Size(29, 22);
             // 
             // resetCurrentMonsterToolStripMenuItem
             // 
@@ -912,7 +914,7 @@ namespace LAZYSHELL
             this.toolStripDropDownButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(28, 22);
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(29, 22);
             // 
             // clear
             // 
@@ -939,6 +941,7 @@ namespace LAZYSHELL
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -950,6 +953,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
@@ -972,25 +976,13 @@ namespace LAZYSHELL
             // 
             // toolStripSeparator6
             // 
+            this.toolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
-            // showMonster
-            // 
-            this.showMonster.Checked = true;
-            this.showMonster.CheckOnClick = true;
-            this.showMonster.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showMonster.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.showMonster.Image = global::LAZYSHELL.Properties.Resources.mainMonsters;
-            this.showMonster.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showMonster.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.showMonster.Name = "showMonster";
-            this.showMonster.Size = new System.Drawing.Size(23, 22);
-            this.showMonster.Text = "Monsters";
-            this.showMonster.Click += new System.EventHandler(this.showMonster_Click);
-            // 
             // showBattleScripts
             // 
+            this.showBattleScripts.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.showBattleScripts.Checked = true;
             this.showBattleScripts.CheckOnClick = true;
             this.showBattleScripts.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -1002,6 +994,21 @@ namespace LAZYSHELL
             this.showBattleScripts.Size = new System.Drawing.Size(23, 22);
             this.showBattleScripts.Text = "Battlescripts";
             this.showBattleScripts.Click += new System.EventHandler(this.showBattleScripts_Click);
+            // 
+            // showMonster
+            // 
+            this.showMonster.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.showMonster.Checked = true;
+            this.showMonster.CheckOnClick = true;
+            this.showMonster.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showMonster.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.showMonster.Image = global::LAZYSHELL.Properties.Resources.mainMonsters;
+            this.showMonster.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showMonster.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.showMonster.Name = "showMonster";
+            this.showMonster.Size = new System.Drawing.Size(23, 22);
+            this.showMonster.Text = "Monsters";
+            this.showMonster.Click += new System.EventHandler(this.showMonster_Click);
             // 
             // MonsterSoundOther
             // 
@@ -1159,7 +1166,7 @@ namespace LAZYSHELL
             this.panel13.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel13.Location = new System.Drawing.Point(0, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(388, 673);
+            this.panel13.Size = new System.Drawing.Size(388, 672);
             this.panel13.TabIndex = 0;
             this.panel13.Paint += new System.Windows.Forms.PaintEventHandler(this.panel13_Paint);
             // 
@@ -1476,9 +1483,9 @@ namespace LAZYSHELL
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.panel13);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 50);
+            this.panel1.Location = new System.Drawing.Point(0, 51);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1142, 677);
+            this.panel1.Size = new System.Drawing.Size(1142, 676);
             this.panel1.TabIndex = 2;
             // 
             // Monsters
@@ -1490,12 +1497,12 @@ namespace LAZYSHELL
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolStrip4);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainMonsters_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "Monsters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "MONSTERS - Lazy Shell";
+            this.Text = "MONSTERS - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Monsters_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.MonsterValElevation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MonsterFlowerOdds)).EndInit();
@@ -1537,6 +1544,7 @@ namespace LAZYSHELL
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.CheckedListBox MonsterProperties;

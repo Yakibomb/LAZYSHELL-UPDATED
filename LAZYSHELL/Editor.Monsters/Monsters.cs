@@ -109,9 +109,10 @@ namespace LAZYSHELL
                 this.MonsterEffectsNullify.SetItemChecked(1, monster.EffectNullSleep);
                 this.MonsterEffectsNullify.SetItemChecked(2, monster.EffectNullPoison);
                 this.MonsterEffectsNullify.SetItemChecked(3, monster.EffectNullFear);
-                this.MonsterEffectsNullify.SetItemChecked(4, monster.EffectNullMushroom);
-                this.MonsterEffectsNullify.SetItemChecked(5, monster.EffectNullScarecrow);
-                this.MonsterEffectsNullify.SetItemChecked(6, monster.EffectNullInvincible);
+                this.MonsterEffectsNullify.SetItemChecked(4, monster.EffectNullBerserk);
+                this.MonsterEffectsNullify.SetItemChecked(5, monster.EffectNullMushroom);
+                this.MonsterEffectsNullify.SetItemChecked(6, monster.EffectNullScarecrow);
+                this.MonsterEffectsNullify.SetItemChecked(7, monster.EffectNullInvincible);
                 this.MonsterElementsWeakness.SetItemChecked(0, monster.ElemWeakIce);
                 this.MonsterElementsWeakness.SetItemChecked(1, monster.ElemWeakFire);
                 this.MonsterElementsWeakness.SetItemChecked(2, monster.ElemWeakThunder);
@@ -189,7 +190,7 @@ namespace LAZYSHELL
             if (i != monsters.Length)
                 MessageBox.Show(
                     "The allotted space for psychopath dialogues has been exceeded. Not all psychopath dialogues have been saved.",
-                    "LAZY SHELL");
+                    "LAZYSHELL++");
             battleScriptsEditor.Assemble();
             battleScriptsEditor.Modified = false;
             this.Modified = false;
@@ -204,7 +205,7 @@ namespace LAZYSHELL
                 return;
             }
             DialogResult result = MessageBox.Show(
-                "Monsters and battlescripts have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Monsters and battlescripts have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -372,9 +373,10 @@ namespace LAZYSHELL
             monster.EffectNullSleep = MonsterEffectsNullify.GetItemChecked(1);
             monster.EffectNullPoison = MonsterEffectsNullify.GetItemChecked(2);
             monster.EffectNullFear = MonsterEffectsNullify.GetItemChecked(3);
-            monster.EffectNullMushroom = MonsterEffectsNullify.GetItemChecked(4);
-            monster.EffectNullScarecrow = MonsterEffectsNullify.GetItemChecked(5);
-            monster.EffectNullInvincible = MonsterEffectsNullify.GetItemChecked(6);
+            monster.EffectNullBerserk = MonsterEffectsNullify.GetItemChecked(4);
+            monster.EffectNullMushroom = MonsterEffectsNullify.GetItemChecked(5);
+            monster.EffectNullScarecrow = MonsterEffectsNullify.GetItemChecked(6);
+            monster.EffectNullInvincible = MonsterEffectsNullify.GetItemChecked(7);
         }
         private void MonsterElementsWeakness_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -452,7 +454,7 @@ namespace LAZYSHELL
         private void resetCurrentMonsterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current monster. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             monster = new Monster(Index);
             monsterNum_ValueChanged(null, null);
@@ -460,7 +462,7 @@ namespace LAZYSHELL
         private void resetCurrentBattleScriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current battle script. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             battleScriptsEditor.BattleScript = new LAZYSHELL.ScriptsEditor.BattleScript(battleScriptsEditor.index);
             monsterNum_ValueChanged(null, null);

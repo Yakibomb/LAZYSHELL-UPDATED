@@ -305,7 +305,7 @@ namespace LAZYSHELL
         {
             if (frames.Tag == null)
                 return;
-            if (molds.ShowBG)
+            if (!molds.ShowBG)
                 e.Graphics.Clear(Color.FromArgb(palette[0]));
             if (sequenceImage != null)
                 e.Graphics.DrawImage(sequenceImage, -bounds.X, -bounds.Y, 256, 256);
@@ -317,7 +317,7 @@ namespace LAZYSHELL
             e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic;
             PictureBox frame = (PictureBox)sender;
             int index = (int)frame.Tag;
-            if (molds.ShowBG)
+            if (!molds.ShowBG)
                 e.Graphics.Clear(Color.FromArgb(palette[0]));
             if (index < sequence.Frames.Count && sequence.Frames[index].Mold < animation.Molds.Count)
             {
@@ -537,7 +537,7 @@ namespace LAZYSHELL
         {
             if (animation.Sequences.Count == 16)
             {
-                MessageBox.Show("Animations cannot contain more than 16 sequences total.", "LAZY SHELL",
+                MessageBox.Show("Animations cannot contain more than 16 sequences total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -556,7 +556,7 @@ namespace LAZYSHELL
         {
             if (animation.Sequences.Count == 1)
             {
-                MessageBox.Show("Animations must contain at least one sequence.", "LAZY SHELL",
+                MessageBox.Show("Animations must contain at least one sequence.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -578,7 +578,7 @@ namespace LAZYSHELL
         {
             if (animation.Sequences.Count == 16)
             {
-                MessageBox.Show("Animations cannot contain more than 16 sequences total.", "LAZY SHELL",
+                MessageBox.Show("Animations cannot contain more than 16 sequences total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -617,7 +617,7 @@ namespace LAZYSHELL
         {
             if (sequence.Frames.Count == 256)
             {
-                MessageBox.Show("Sequences cannot contain more than 256 frames total.", "LAZY SHELL",
+                MessageBox.Show("Sequences cannot contain more than 256 frames total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -647,7 +647,7 @@ namespace LAZYSHELL
         {
             if (sequence.Frames.Count + copiedFrames.Count >= 256)
             {
-                MessageBox.Show("Sequences cannot contain more than 256 frames total.", "LAZY SHELL",
+                MessageBox.Show("Sequences cannot contain more than 256 frames total.", "LAZYSHELL++",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -731,7 +731,7 @@ namespace LAZYSHELL
         private void reverseFrames_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You are about to reverse the order of all frames in the current sequence.\n\n" +
-                "Continue with process?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                "Continue with process?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
             for (int i = 1; i < sequence.Frames.Count; i++)
             {

@@ -126,7 +126,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("Font does not support the current selected styles.", "LAZY SHELL");
+                MessageBox.Show("Font does not support the current selected styles.", "LAZYSHELL++");
             }
         }
         private void fontItalics_Click(object sender, EventArgs e)
@@ -138,7 +138,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("Font does not support the current selected styles.", "LAZY SHELL");
+                MessageBox.Show("Font does not support the current selected styles.", "LAZYSHELL++");
             }
         }
         private void fontBold_Click(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("Font does not support the current selected styles.", "LAZY SHELL");
+                MessageBox.Show("Font does not support the current selected styles.", "LAZYSHELL++");
             }
         }
         private void fontFamily_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,7 +194,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("Font does not support the current selected styles.", "LAZY SHELL");
+                MessageBox.Show("Font does not support the current selected styles.", "LAZYSHELL++");
             }
         }
         private void fontSize_ValueChanged(object sender, EventArgs e)
@@ -205,7 +205,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("Font does not support the current selected size.", "LAZY SHELL");
+                MessageBox.Show("Font does not support the current selected size.", "LAZYSHELL++");
             }
         }
         private void shiftTableUp_Click(object sender, EventArgs e)

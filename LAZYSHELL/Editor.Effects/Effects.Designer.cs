@@ -47,20 +47,22 @@ namespace LAZYSHELL
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.import = new System.Windows.Forms.ToolStripButton();
             this.export = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.reset = new System.Windows.Forms.ToolStripButton();
             this.clear = new System.Windows.Forms.ToolStripButton();
             this.cullAnimations = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
             this.baseConvertor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.openSequences = new System.Windows.Forms.ToolStripButton();
+            this.openMolds = new System.Windows.Forms.ToolStripButton();
+            this.showMain = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.previewerButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.name = new System.Windows.Forms.ToolStripComboBox();
             this.searchBox = new System.Windows.Forms.ToolStripTextBox();
             this.searchEffectNames = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.showMain = new System.Windows.Forms.ToolStripButton();
-            this.openMolds = new System.Windows.Forms.ToolStripButton();
-            this.openSequences = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.openPalettes = new System.Windows.Forms.ToolStripButton();
             this.openGraphics = new System.Windows.Forms.ToolStripButton();
@@ -69,6 +71,7 @@ namespace LAZYSHELL
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelSequences = new System.Windows.Forms.Panel();
+            this.hexViewer = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.yNegShift)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xNegShift)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e_paletteIndex)).BeginInit();
@@ -91,7 +94,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.number.Location = new System.Drawing.Point(223, 2);
+            this.number.Location = new System.Drawing.Point(225, 2);
             this.number.Maximum = new decimal(new int[] {
             127,
             0,
@@ -314,12 +317,19 @@ namespace LAZYSHELL
             this.toolStripSeparator1,
             this.import,
             this.export,
+            this.toolStripSeparator12,
             this.reset,
             this.clear,
             this.cullAnimations,
-            this.toolStripSeparator12,
             this.helpTips,
-            this.baseConvertor});
+            this.baseConvertor,
+            this.toolStripSeparator2,
+            this.openSequences,
+            this.openMolds,
+            this.showMain,
+            this.toolStripSeparator3,
+            this.hexViewer,
+            this.previewerButton});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -362,6 +372,11 @@ namespace LAZYSHELL
             this.export.ToolTipText = "Export";
             this.export.Click += new System.EventHandler(this.export_Click);
             // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
+            // 
             // reset
             // 
             this.reset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -394,13 +409,9 @@ namespace LAZYSHELL
             this.cullAnimations.ToolTipText = "Clean unused animation data";
             this.cullAnimations.Click += new System.EventHandler(this.cullAnimations_Click);
             // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
-            // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
             this.helpTips.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -411,6 +422,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
             this.baseConvertor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -419,6 +431,65 @@ namespace LAZYSHELL
             this.baseConvertor.Size = new System.Drawing.Size(23, 22);
             this.baseConvertor.ToolTipText = "Base Convertor";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // openSequences
+            // 
+            this.openSequences.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.openSequences.CheckOnClick = true;
+            this.openSequences.Image = global::LAZYSHELL.Properties.Resources.openEffectSequences;
+            this.openSequences.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openSequences.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openSequences.Name = "openSequences";
+            this.openSequences.Size = new System.Drawing.Size(23, 22);
+            this.openSequences.ToolTipText = "Frames";
+            this.openSequences.Click += new System.EventHandler(this.openSequences_Click);
+            // 
+            // openMolds
+            // 
+            this.openMolds.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.openMolds.CheckOnClick = true;
+            this.openMolds.Image = global::LAZYSHELL.Properties.Resources.mainEffects;
+            this.openMolds.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openMolds.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openMolds.Name = "openMolds";
+            this.openMolds.Size = new System.Drawing.Size(23, 22);
+            this.openMolds.ToolTipText = "Molds";
+            this.openMolds.Click += new System.EventHandler(this.openMolds_Click);
+            // 
+            // showMain
+            // 
+            this.showMain.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.showMain.Checked = true;
+            this.showMain.CheckOnClick = true;
+            this.showMain.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showMain.Image = global::LAZYSHELL.Properties.Resources.showMain;
+            this.showMain.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showMain.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.showMain.Name = "showMain";
+            this.showMain.Size = new System.Drawing.Size(23, 22);
+            this.showMain.ToolTipText = "Main";
+            this.showMain.Click += new System.EventHandler(this.showMain_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // previewerButton
+            // 
+            this.previewerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.previewerButton.Image = global::LAZYSHELL.Properties.Resources.preview;
+            this.previewerButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.previewerButton.Name = "previewerButton";
+            this.previewerButton.Size = new System.Drawing.Size(23, 22);
+            this.previewerButton.Text = "toolStripButton1";
+            this.previewerButton.Click += new System.EventHandler(this.previewerButton_Click);
+            // 
             // toolStrip3
             // 
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -426,10 +497,6 @@ namespace LAZYSHELL
             this.number,
             this.searchBox,
             this.searchEffectNames,
-            this.toolStripSeparator2,
-            this.showMain,
-            this.openMolds,
-            this.openSequences,
             this.toolStripSeparator4,
             this.openPalettes,
             this.openGraphics});
@@ -453,6 +520,7 @@ namespace LAZYSHELL
             // 
             // searchBox
             // 
+            this.searchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(200, 25);
             // 
@@ -465,46 +533,6 @@ namespace LAZYSHELL
             this.searchEffectNames.Name = "searchEffectNames";
             this.searchEffectNames.Size = new System.Drawing.Size(23, 22);
             this.searchEffectNames.Text = "Search for effect";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // showMain
-            // 
-            this.showMain.Checked = true;
-            this.showMain.CheckOnClick = true;
-            this.showMain.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showMain.Image = global::LAZYSHELL.Properties.Resources.showMain;
-            this.showMain.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showMain.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.showMain.Name = "showMain";
-            this.showMain.Size = new System.Drawing.Size(23, 22);
-            this.showMain.ToolTipText = "Main";
-            this.showMain.Click += new System.EventHandler(this.showMain_Click);
-            // 
-            // openMolds
-            // 
-            this.openMolds.CheckOnClick = true;
-            this.openMolds.Image = global::LAZYSHELL.Properties.Resources.mainEffects;
-            this.openMolds.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openMolds.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openMolds.Name = "openMolds";
-            this.openMolds.Size = new System.Drawing.Size(23, 22);
-            this.openMolds.ToolTipText = "Molds";
-            this.openMolds.Click += new System.EventHandler(this.openMolds_Click);
-            // 
-            // openSequences
-            // 
-            this.openSequences.CheckOnClick = true;
-            this.openSequences.Image = global::LAZYSHELL.Properties.Resources.openEffectSequences;
-            this.openSequences.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openSequences.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openSequences.Name = "openSequences";
-            this.openSequences.Size = new System.Drawing.Size(23, 22);
-            this.openSequences.ToolTipText = "Frames";
-            this.openSequences.Click += new System.EventHandler(this.openSequences_Click);
             // 
             // toolStripSeparator4
             // 
@@ -588,6 +616,16 @@ namespace LAZYSHELL
             this.panelSequences.Size = new System.Drawing.Size(792, 370);
             this.panelSequences.TabIndex = 3;
             // 
+            // hexViewer
+            // 
+            this.hexViewer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.hexViewer.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
+            this.hexViewer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.hexViewer.Name = "hexViewer";
+            this.hexViewer.Size = new System.Drawing.Size(23, 22);
+            this.hexViewer.Text = "toolStripButton1";
+            this.hexViewer.Click += new System.EventHandler(this.hexViewer_Click);
+            // 
             // Effects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -599,12 +637,12 @@ namespace LAZYSHELL
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.panelSequences);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainEffects_2_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "Effects";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "EFFECTS - Lazy Shell";
+            this.Text = "EFFECTS - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Effects_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.yNegShift)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xNegShift)).EndInit();
@@ -647,7 +685,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripComboBox name;
         private System.Windows.Forms.ToolStripButton searchEffectNames;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton openPalettes;
         private System.Windows.Forms.ToolStripButton openGraphics;
         private System.Windows.Forms.ToolStripButton openSequences;
@@ -667,5 +704,9 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton cullAnimations;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panelSequences;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton previewerButton;
+        private System.Windows.Forms.ToolStripButton hexViewer;
     }
 }

@@ -237,7 +237,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.formationNum.Location = new System.Drawing.Point(267, 2);
+            this.formationNum.Location = new System.Drawing.Point(269, 2);
             this.formationNum.Maximum = new decimal(new int[] {
             511,
             0,
@@ -260,6 +260,7 @@ namespace LAZYSHELL
             // 
             // searchBox
             // 
+            this.searchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchBox.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(240, 25);
@@ -474,17 +475,17 @@ namespace LAZYSHELL
             this.toggleAllies.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toggleAllies.Name = "toggleAllies";
             this.toggleAllies.Size = new System.Drawing.Size(23, 22);
-            this.toggleAllies.Text = "Show/hide Allies";
+            this.toggleAllies.Text = "Show/hide Allies (P)";
             this.toggleAllies.Click += new System.EventHandler(this.toggleAllies_Click);
             // 
             // moveUp
             // 
             this.moveUp.FlatAppearance.BorderSize = 0;
             this.moveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveUp.Image = global::LAZYSHELL.Properties.Resources.moveup;
+            this.moveUp.Image = global::LAZYSHELL.Properties.Resources.moveUp;
             this.moveUp.Location = new System.Drawing.Point(381, 28);
             this.moveUp.Name = "moveUp";
-            this.moveUp.Size = new System.Drawing.Size(17, 14);
+            this.moveUp.Size = new System.Drawing.Size(17, 17);
             this.moveUp.TabIndex = 0;
             this.toolTip1.SetToolTip(this.moveUp, "Move Monster Up");
             this.moveUp.UseVisualStyleBackColor = true;
@@ -494,10 +495,10 @@ namespace LAZYSHELL
             // 
             this.moveDown.FlatAppearance.BorderSize = 0;
             this.moveDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.moveDown.Image = global::LAZYSHELL.Properties.Resources.movedown;
+            this.moveDown.Image = global::LAZYSHELL.Properties.Resources.moveDown;
             this.moveDown.Location = new System.Drawing.Point(398, 28);
             this.moveDown.Name = "moveDown";
-            this.moveDown.Size = new System.Drawing.Size(17, 14);
+            this.moveDown.Size = new System.Drawing.Size(17, 17);
             this.moveDown.TabIndex = 0;
             this.toolTip1.SetToolTip(this.moveDown, "Move Monster Down");
             this.moveDown.UseVisualStyleBackColor = true;

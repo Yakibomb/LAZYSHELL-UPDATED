@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
@@ -12,22 +13,31 @@ namespace LAZYSHELL
     {
         // variables
         private delegate void Function();
+        private byte[] bootupLogoData;
         private Tileset tileset;
-        private byte[] openingGraphics;
-        private byte[] openingTileset;
+        private byte[] titleCardGraphics;
+        private byte[] bootupLogoGraphics;
+        private byte[] titleCardTileset;
         private Bitmap tilesetImage;
         private Intro intro;
-        private PaletteEditor paletteEditor;
-        private GraphicEditor graphicEditor;
-        private PaletteSet paletteSet { get { return Model.OpeningPalette; } set { Model.OpeningPalette = value; } }
+        private PaletteEditor paletteEditorBootup;
+        private PaletteEditor paletteEditorTitleCard;
+        private GraphicEditor graphicEditorBootup;
+        private GraphicEditor graphicEditorTitleCard;
+        private PaletteSet paletteSetTitleCard { get { return Model.OpeningPalette; } set { Model.OpeningPalette = value; } }
+        private PaletteSet paletteSetBootupLogo { get { return Model.BootupPalettes; } set { Model.BootupPalettes = value; } }
         // constructor
         public Opening(Intro intro)
         {
             this.intro = intro;
             //
-            openingTileset = Bits.GetBytes(Model.OpeningData, 0, 0x480);
-            openingGraphics = Bits.GetBytes(Model.OpeningData, 0x480);
-            tileset = new Tileset(openingTileset, openingGraphics, paletteSet, 16, 9, TilesetType.Opening);
+            titleCardTileset = Bits.GetBytes(Model.OpeningData, 0, 0x480);
+            titleCardGraphics = Bits.GetBytes(Model.OpeningData, 0x480);
+            tileset = new Tileset(titleCardTileset, titleCardGraphics, paletteSetTitleCard, 16, 9, TilesetType.Opening);
+            //
+            bootupLogoData = Model.BootupLogoData;
+            bootupLogoGraphics = Bits.GetBytes(bootupLogoData, 0x510);
+            //
             InitializeComponent();
             if (Model.ROM[0x00087D] == 0xEA &&
                 Model.ROM[0x00087E] == 0xEA &&
@@ -40,6 +50,7 @@ namespace LAZYSHELL
                 disableGardenNew.Checked = true;
             //
             SetTilesetImage();
+            //
         }
         // functions
         private void SetTilesetImage()
@@ -48,62 +59,118 @@ namespace LAZYSHELL
             tilesetImage = Do.PixelsToImage(pixels, 256, 144);
             pictureBox1.Invalidate();
         }
-        private void LoadPaletteEditor()
+        private void LoadPaletteEditorBootup()
         {
-            if (paletteEditor == null)
+            if (paletteEditorBootup == null)
             {
-                paletteEditor = new PaletteEditor(new Function(PaletteUpdate), paletteSet, 1, 0, 1);
-                paletteEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
+                paletteEditorBootup = new PaletteEditor(new Function(PaletteUpdateBootup), paletteSetBootupLogo, 1, 0, 1);
+                paletteEditorBootup.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
-                paletteEditor.Reload(new Function(PaletteUpdate), paletteSet, 1, 0, 1);
+                paletteEditorBootup.Reload(new Function(PaletteUpdateBootup), paletteSetBootupLogo, 1, 0, 1);
         }
-        private void LoadGraphicEditor()
+        private void LoadGraphicEditorBootup()
         {
-            if (graphicEditor == null)
+            if (graphicEditorBootup == null)
             {
-                graphicEditor = new GraphicEditor(new Function(GraphicUpdate), openingGraphics,
-                    openingGraphics.Length, 0, paletteSet, 0, 0x10);
-                graphicEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
+                graphicEditorBootup = new GraphicEditor(new Function(GraphicUpdateBootup), bootupLogoGraphics,
+                    bootupLogoGraphics.Length, 0, paletteSetBootupLogo, 0, 0x20);
+                graphicEditorBootup.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
-                graphicEditor.Reload(new Function(GraphicUpdate), openingGraphics,
-                    openingGraphics.Length, 0, paletteSet, 0, 0x10);
+                graphicEditorBootup.Reload(new Function(GraphicUpdateBootup), bootupLogoGraphics,
+                    bootupLogoGraphics.Length, 0, paletteSetBootupLogo, 0, 0x20);
+        }
+        private void LoadPaletteEditorTitleCard()
+        {
+            if (paletteEditorTitleCard == null)
+            {
+                paletteEditorTitleCard = new PaletteEditor(new Function(PaletteUpdateTitleCard), paletteSetTitleCard, 1, 0, 1);
+                paletteEditorTitleCard.FormClosing += new FormClosingEventHandler(editor_FormClosing);
+            }
+            else
+                paletteEditorTitleCard.Reload(new Function(PaletteUpdateTitleCard), paletteSetTitleCard, 1, 0, 1);
+        }
+        private void LoadGraphicEditorTitleCard()
+        {
+            if (graphicEditorTitleCard == null)
+            {
+                graphicEditorTitleCard = new GraphicEditor(new Function(GraphicUpdateTitleCard), titleCardGraphics,
+                    titleCardGraphics.Length, 0, paletteSetTitleCard, 0, 0x10);
+                graphicEditorTitleCard.FormClosing += new FormClosingEventHandler(editor_FormClosing);
+            }
+            else
+                graphicEditorTitleCard.Reload(new Function(GraphicUpdateTitleCard), titleCardGraphics,
+                    titleCardGraphics.Length, 0, paletteSetTitleCard, 0, 0x10);
         }
         // updating
-        private void PaletteUpdate()
+        private void PaletteUpdateTitleCard()
         {
-            tileset = new Tileset(openingTileset, openingGraphics, paletteSet, 16, 9, TilesetType.Opening);
+            tileset = new Tileset(titleCardTileset, titleCardGraphics, paletteSetTitleCard, 16, 9, TilesetType.Opening);
             SetTilesetImage();
-            LoadGraphicEditor();
+            LoadGraphicEditorTitleCard();
             this.Modified = true;   // b/c switching colors won't modify checksum
         }
-        private void GraphicUpdate()
+        private void GraphicUpdateTitleCard()
         {
             tileset.Assemble(16);
-            tileset = new Tileset(openingTileset, openingGraphics, paletteSet, 16, 9, TilesetType.Opening);
+            tileset = new Tileset(titleCardTileset, titleCardGraphics, paletteSetTitleCard, 16, 9, TilesetType.Opening);
             SetTilesetImage();
+        }
+        private void PaletteUpdateBootup()
+        {
+            LoadGraphicEditorBootup();
+            this.Modified = true;   // b/c switching colors won't modify checksum
+        }
+        private void GraphicUpdateBootup()
+        {
         }
         public void CloseEditors()
         {
-            if (paletteEditor != null)
+            if (paletteEditorBootup != null)
             {
-                paletteEditor.Close();
-                paletteEditor.Dispose();
+                paletteEditorBootup.Close();
+                paletteEditorBootup.Dispose();
             }
-            if (graphicEditor != null)
+            if (graphicEditorBootup != null)
             {
-                graphicEditor.Close();
-                graphicEditor.Dispose();
+                graphicEditorBootup.Close();
+                graphicEditorBootup.Dispose();
+            }
+            if (paletteEditorTitleCard != null)
+            {
+                paletteEditorTitleCard.Close();
+                paletteEditorTitleCard.Dispose();
+            }
+            if (graphicEditorTitleCard != null)
+            {
+                graphicEditorTitleCard.Close();
+                graphicEditorTitleCard.Dispose();
             }
         }
         public void Assemble()
         {
-            paletteSet.Assemble();
+            paletteSetBootupLogo.Assemble();
+            paletteSetTitleCard.Assemble();
             tileset.Assemble(256);
-            if (Model.Compress(Model.OpeningData, 0x3F1913, 0x17C0, 0x85A, "Opening"))
+            if (Model.Compress(Model.OpeningData, 0x3F1913, 0x17C0, 0x85A, "Title Card"))
                 this.Modified = false;
             //
+        /* Couldn't get Bootup Logo Graphics to work sadly, due to the weird compression of it
+            // bootupLogoGraphics.CopyTo(bootupLogoGFX, 0x510);
+            //  public static bool Compress(bootupLogoGFX, byte[] dst, ref int offset, int maxComp, string label)
+            byte[] BootupLogoGFX_compressed = new byte[0x2200];
+            int offset = 0x0;
+            Model.Compress(bootupLogoGraphics, BootupLogoGFX_compressed, ref offset, 0x1BFB, "Bootup Logo");
+            byte[] bootupLogoGFX = new byte[0x2710];
+            Array.Copy(bootupLogoData, 0, bootupLogoGFX, 0, 0x510);
+            Array.Copy(BootupLogoGFX_compressed, 0, bootupLogoGFX, 0x510, BootupLogoGFX_compressed.Length);
+            bootupLogoGFX.CopyTo(Model.ROM, 0x3EFD18);
+            //    if (Model.Compress(bootupLogoGFX, 0x3EFD17, 0x2710, 0x1BFB, "Bootup Logo"))
+            //       this.Modified = false;
+            //bootupLogoData.CopyTo(bootupLogoGFX, 0x3EFD18);
+            //
+        */
             if (disableGardenLoad.Checked)
             {
                 Model.ROM[0x00087D] = 0xEA;
@@ -134,30 +201,42 @@ namespace LAZYSHELL
         // event handlers
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if (toggleBG.Checked)
+            if (!toggleBG.Checked)
                 e.Graphics.FillRectangle(
-                    new SolidBrush(Color.FromArgb(paletteSet.Palettes[0][0])),
+                    new SolidBrush(Color.FromArgb(paletteSetTitleCard.Palettes[0][0])),
                     new Rectangle(new Point(0, 0), pictureBox1.Size));
             if (tilesetImage != null)
                 e.Graphics.DrawImage(tilesetImage, 0, 0);
         }
-        private void openPalettes_Click(object sender, EventArgs e)
+        private void openPalettesTitleCard_Click(object sender, EventArgs e)
         {
-            if (paletteEditor == null)
-                LoadPaletteEditor();
-            paletteEditor.Show();
+            if (paletteEditorTitleCard == null)
+                LoadPaletteEditorTitleCard();
+            paletteEditorTitleCard.Show();
         }
-        private void openGraphics_Click(object sender, EventArgs e)
+        private void openGraphicsTitleCard_Click(object sender, EventArgs e)
         {
-            if (graphicEditor == null)
-                LoadGraphicEditor();
-            graphicEditor.Show();
+            if (graphicEditorTitleCard == null)
+                LoadGraphicEditorTitleCard();
+            graphicEditorTitleCard.Show();
+        }
+        private void openPalettesBootup_Click(object sender, EventArgs e)
+        {
+            if (paletteEditorBootup == null)
+                LoadPaletteEditorBootup();
+            paletteEditorBootup.Show();
+        }
+        private void openGraphicsBootup_Click(object sender, EventArgs e)
+        {
+            if (graphicEditorBootup == null)
+                LoadGraphicEditorBootup();
+            graphicEditorBootup.Show();
         }
         private void importImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = LAZYSHELL.Properties.Settings.Default.LastRomPath;
-            openFileDialog1.Title = "Import opening credits";
+            openFileDialog1.Title = "Import opening title cards";
             openFileDialog1.Filter = "Image files (*.gif,*.jpg,*.png)|*.gif;*.jpg;*.png";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
@@ -170,25 +249,25 @@ namespace LAZYSHELL
             {
                 MessageBox.Show(
                     "The dimensions of the imported image must be 256 x 144.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             byte[] graphics = new byte[0x4000];
-            int[] palette = paletteSet.Palettes[0];
+            int[] palette = paletteSetTitleCard.Palettes[0];
             Do.PixelsToBPP(
                 Do.ImageToPixels(import, new Size(256, 144), new Rectangle(0, 0, 256, 144)), graphics,
                 new Size(256 / 8, 144 / 8), palette, 0x10);
             byte[] tileset = new byte[0x800];
             byte[] temp = new byte[graphics.Length]; graphics.CopyTo(temp, 0);
             Do.CopyToTileset(graphics, tileset, palette, 0, true, false, 0x10, 2, new Size(256, 144), 0);
-            Buffer.BlockCopy(tileset, 0, openingTileset, 0, 0x480);
-            Buffer.BlockCopy(graphics, 0, openingGraphics, 0, 0x1340);
-            this.tileset = new Tileset(openingTileset, openingGraphics, paletteSet, 16, 9, TilesetType.Opening);
+            Buffer.BlockCopy(tileset, 0, titleCardTileset, 0, 0x480);
+            Buffer.BlockCopy(graphics, 0, titleCardGraphics, 0, 0x1340);
+            this.tileset = new Tileset(titleCardTileset, titleCardGraphics, paletteSetTitleCard, 16, 9, TilesetType.Opening);
             SetTilesetImage();
         }
         private void exportImage_Click(object sender, EventArgs e)
         {
-            Do.Export(tilesetImage, "openingCredits.png");
+            Do.Export(tilesetImage, "openingTitleCards.png");
         }
         private void toggleBG_Click(object sender, EventArgs e)
         {

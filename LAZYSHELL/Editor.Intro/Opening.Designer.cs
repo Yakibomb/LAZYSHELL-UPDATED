@@ -27,7 +27,6 @@ namespace LAZYSHELL
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Opening));
             this.disableGardenLoad = new System.Windows.Forms.CheckBox();
             this.disableGardenNew = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -38,6 +37,12 @@ namespace LAZYSHELL
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.openPalettes = new System.Windows.Forms.ToolStripButton();
             this.openGraphics = new System.Windows.Forms.ToolStripButton();
+            this.openPalettesDropdown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openGraphicsDropdown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.bootupGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.titleCardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.importImage = new System.Windows.Forms.ToolStripButton();
             this.exportImage = new System.Windows.Forms.ToolStripButton();
@@ -89,14 +94,14 @@ namespace LAZYSHELL
             this.saveImageAsToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(156, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 48);
             // 
             // importImageToolStripMenuItem
             // 
             this.importImageToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importImage;
             this.importImageToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importImageToolStripMenuItem.Name = "importImageToolStripMenuItem";
-            this.importImageToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.importImageToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.importImageToolStripMenuItem.Text = "Import image...";
             this.importImageToolStripMenuItem.Click += new System.EventHandler(this.importImage_Click);
             // 
@@ -105,7 +110,7 @@ namespace LAZYSHELL
             this.saveImageAsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportImage;
             this.saveImageAsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.saveImageAsToolStripMenuItem.Text = "Save image as...";
             this.saveImageAsToolStripMenuItem.Click += new System.EventHandler(this.exportImage_Click);
             // 
@@ -125,6 +130,8 @@ namespace LAZYSHELL
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openPalettes,
             this.openGraphics,
+            this.openPalettesDropdown,
+            this.openGraphicsDropdown,
             this.toolStripSeparator1,
             this.importImage,
             this.exportImage,
@@ -141,23 +148,82 @@ namespace LAZYSHELL
             // 
             this.openPalettes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.openPalettes.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
-            this.openPalettes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openPalettes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openPalettes.Name = "openPalettes";
             this.openPalettes.Size = new System.Drawing.Size(23, 22);
             this.openPalettes.Text = "Palette";
-            this.openPalettes.Click += new System.EventHandler(this.openPalettes_Click);
+            this.openPalettes.ToolTipText = "Open palette";
+            this.openPalettes.Click += new System.EventHandler(this.openPalettesTitleCard_Click);
             // 
             // openGraphics
             // 
             this.openGraphics.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.openGraphics.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
-            this.openGraphics.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openGraphics.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openGraphics.Name = "openGraphics";
             this.openGraphics.Size = new System.Drawing.Size(23, 22);
             this.openGraphics.Text = "Graphics";
-            this.openGraphics.Click += new System.EventHandler(this.openGraphics_Click);
+            this.openGraphics.ToolTipText = "Open Graphics";
+            this.openGraphics.Click += new System.EventHandler(this.openGraphicsTitleCard_Click);
+            // 
+            // openPalettesDropdown
+            // 
+            this.openPalettesDropdown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openPalettesDropdown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem1});
+            this.openPalettesDropdown.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.openPalettesDropdown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openPalettesDropdown.Name = "openPalettesDropdown";
+            this.openPalettesDropdown.Size = new System.Drawing.Size(29, 22);
+            this.openPalettesDropdown.Text = "Palettes";
+            this.openPalettesDropdown.Visible = false;
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(166, 22);
+            this.toolStripMenuItem2.Text = "Bootup Graphics";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.openPalettesBootup_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
+            this.toolStripMenuItem1.Text = "Title Card Graphics";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.openPalettesTitleCard_Click);
+            // 
+            // openGraphicsDropdown
+            // 
+            this.openGraphicsDropdown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openGraphicsDropdown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bootupGraphicsToolStripMenuItem,
+            this.titleCardsToolStripMenuItem});
+            this.openGraphicsDropdown.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.openGraphicsDropdown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openGraphicsDropdown.Name = "openGraphicsDropdown";
+            this.openGraphicsDropdown.Size = new System.Drawing.Size(29, 22);
+            this.openGraphicsDropdown.Text = "Graphics";
+            this.openGraphicsDropdown.ToolTipText = "Open graphics";
+            this.openGraphicsDropdown.Visible = false;
+            // 
+            // bootupGraphicsToolStripMenuItem
+            // 
+            this.bootupGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.bootupGraphicsToolStripMenuItem.Name = "bootupGraphicsToolStripMenuItem";
+            this.bootupGraphicsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.bootupGraphicsToolStripMenuItem.Text = "Bootup Graphics";
+            this.bootupGraphicsToolStripMenuItem.Click += new System.EventHandler(this.openGraphicsBootup_Click);
+            // 
+            // titleCardsToolStripMenuItem
+            // 
+            this.titleCardsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.titleCardsToolStripMenuItem.Name = "titleCardsToolStripMenuItem";
+            this.titleCardsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.titleCardsToolStripMenuItem.Text = "Title Card Graphics";
+            this.titleCardsToolStripMenuItem.Click += new System.EventHandler(this.openGraphicsTitleCard_Click);
             // 
             // toolStripSeparator1
             // 
@@ -196,12 +262,11 @@ namespace LAZYSHELL
             this.toggleBG.Checked = true;
             this.toggleBG.CheckOnClick = true;
             this.toggleBG.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toggleBG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toggleBG.Image = ((System.Drawing.Image)(resources.GetObject("toggleBG.Image")));
+            this.toggleBG.Image = global::LAZYSHELL.Properties.Resources.checkerboard;
             this.toggleBG.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toggleBG.Name = "toggleBG";
             this.toggleBG.Size = new System.Drawing.Size(23, 22);
-            this.toggleBG.Text = "BG";
+            this.toggleBG.ToolTipText = "Background Transparency (B)";
             this.toggleBG.Click += new System.EventHandler(this.toggleBG_Click);
             // 
             // Opening
@@ -228,6 +293,7 @@ namespace LAZYSHELL
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.CheckBox disableGardenLoad;
@@ -235,8 +301,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton openPalettes;
-        private System.Windows.Forms.ToolStripButton openGraphics;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton importImage;
         private System.Windows.Forms.ToolStripButton exportImage;
@@ -245,5 +309,13 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripMenuItem saveImageAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toggleBG;
+        private System.Windows.Forms.ToolStripDropDownButton openGraphicsDropdown;
+        private System.Windows.Forms.ToolStripMenuItem titleCardsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bootupGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton openPalettesDropdown;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripButton openGraphics;
+        private System.Windows.Forms.ToolStripButton openPalettes;
     }
 }

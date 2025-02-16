@@ -800,7 +800,7 @@ namespace LAZYSHELL
             "Target null invincibility",
             "Target remove",
             "Target set",
-            "Target set invicibility",
+            "Target set invincibility",
             "Wait 1 turn",
             "Wait 1 turn, return all"});
             this.listBoxCommands.Location = new System.Drawing.Point(96, 0);
@@ -813,7 +813,7 @@ namespace LAZYSHELL
             // 
             this.BatScrMoveUp.AutoSize = false;
             this.BatScrMoveUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BatScrMoveUp.Image = global::LAZYSHELL.Properties.Resources.moveup;
+            this.BatScrMoveUp.Image = global::LAZYSHELL.Properties.Resources.moveUp;
             this.BatScrMoveUp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.BatScrMoveUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BatScrMoveUp.Name = "BatScrMoveUp";
@@ -825,7 +825,7 @@ namespace LAZYSHELL
             // 
             this.BatScrMoveDown.AutoSize = false;
             this.BatScrMoveDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BatScrMoveDown.Image = global::LAZYSHELL.Properties.Resources.movedown;
+            this.BatScrMoveDown.Image = global::LAZYSHELL.Properties.Resources.moveDown;
             this.BatScrMoveDown.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.BatScrMoveDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BatScrMoveDown.Name = "BatScrMoveDown";

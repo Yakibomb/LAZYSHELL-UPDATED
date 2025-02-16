@@ -85,7 +85,7 @@ namespace LAZYSHELL.ScriptsEditor.Commands
             "Sprite sequence = {0} ({1}, {2})",			// 0x43
             "",			// 0x44
             "AMEM $60 = current target",			// 0x45
-            "",			// 0x46
+            "Check ally mortal status, if all allies down set game over",			// 0x46
             "",			// 0x47
             "",			// 0x48
             "",			// 0x49
@@ -229,18 +229,17 @@ namespace LAZYSHELL.ScriptsEditor.Commands
             "Sprite sequence speed = {0}",			// 0xCB
             "Timing: Start tracking ally button inputs",			// 0xCC
             "Timing: End tracking ally button inputs ",			// 0xCD
-            "Timing: Press A/B/X/Y within range {1}-{0} frames. Press before {2}-{3}-{4} frame to Time, else jump to {5}",  // 0xCE
-            "Timing: Press A/B/X/Y within range {1}-{0} frames. Press before {2} frame to Time, else jump to {3}",			// 0xCF
-			
-            "Timing: Push A/B/X/Y within {0} frames before jumping to {1}",			// 0xD0
-            "Timing: for Button Mash... ???",			// 0xD1
+            "Timing: Press A/B/X/Y within range {0}-{1} frames. Press before {2}-{3}-{4} frame to Time, else jump to ${5}",  // 0xCE
+            "Timing: Press A/B/X/Y within range {0}-{1} frames. Press before {2} frame to Time, else jump to ${3}",			// 0xCF
+            "Timing: Push A/B/X/Y within {0} frames before jumping to ${1}",			// 0xD0
+            "Timing: ??? for Button Mash",			// 0xD1
             "Timing: Mash A/B/X/Y up to {0} times ",			// 0xD2
             "Timing: Rotate D-Pad from {1}-{0} frames, up to {2} times",			// 0xD3
             "Timing: Hold to Charge for {0}-{1}-{2}-{3}-{4} frames",			// 0xD4
             "Summon monster: {0}, formation position #{1}",			// 0xD5
             "",			// 0xD6
             "",			// 0xD7
-            "Timing: ... for Mute: Jump to {0}",			// 0xD8
+            "Timing: ??? for Mute: Jump to ${0}",			// 0xD8
             "Display \"Can\'t run\" dialogue",			// 0xD9
             "",			// 0xDA
             "",			// 0xDB
@@ -371,6 +370,7 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                     switch (asc.Param1)
                     {
                         case 0x06: vars[0] = "shift complete"; break;
+                        case 0x08: vars[0] = "button pressed"; break;
                         case 0x10: vars[0] = Bits.GetShort(asc.CommandData, 2) + " frames elapsed"; break;
                         default: vars[0] = "{" + BitConverter.ToString(asc.CommandData, 1) + "}"; break;
                     }
@@ -669,8 +669,8 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                     break;
               //Timing
                 case 0xCE:
-                    vars[0] = asc.Param1.ToString();
-                    vars[1] = asc.Param2.ToString();
+                    vars[0] = asc.Param2.ToString();
+                    vars[1] = asc.Param1.ToString();
                     vars[2] = asc.Param3.ToString();
                     vars[3] = asc.Param4.ToString();
                     vars[4] = asc.Param5.ToString();
@@ -678,15 +678,17 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                         Bits.GetShort(asc.CommandData, 6).ToString("X4");
                     break;
                 case 0xCF:
-                    vars[0] = asc.Param1.ToString();
-                    vars[1] = asc.Param2.ToString();
+                    vars[0] = asc.Param2.ToString();
+                    vars[1] = asc.Param1.ToString();
                     vars[2] = asc.Param3.ToString();
                     vars[3] = ((asc.InternalOffset & 0xFF0000) >> 16).ToString("X2") +
                         Bits.GetShort(asc.CommandData, 4).ToString("X4");
                     break;
                 case 0xD0:
+                case 0xD1:
                     vars[0] = asc.Param1.ToString();
-                    vars[1] = asc.Param2.ToString();
+                    vars[1] = ((asc.InternalOffset & 0xFF0000) >> 16).ToString("X2") +
+                        Bits.GetShort(asc.CommandData, 2).ToString("X4");
                     break;
                 case 0xD2:
                     vars[0] = asc.Param1.ToString();

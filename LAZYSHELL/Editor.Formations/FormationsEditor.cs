@@ -63,7 +63,7 @@ namespace LAZYSHELL
             if (!this.Modified && !formationsEditor.Modified && ! packsEditor.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
-                "Formations have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Formations have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -117,7 +117,7 @@ namespace LAZYSHELL
         private void resetFormationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current formation. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             formationsEditor.Formation = new Formation(formationsEditor.Index);
             formationsEditor.RefreshFormations();
@@ -125,7 +125,7 @@ namespace LAZYSHELL
         private void resetPackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current pack. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             packsEditor.Pack = new FormationPack(packsEditor.Index);
             packsEditor.RefreshFormationPacks();

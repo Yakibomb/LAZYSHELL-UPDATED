@@ -491,7 +491,7 @@ namespace LAZYSHELL
             this.Name = "SpritePartitions";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "PARTITIONS - Lazy Shell";
+            this.Text = "PARTITIONS - LAZYSHELL++";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.extraSpriteBuffer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allyCount)).EndInit();

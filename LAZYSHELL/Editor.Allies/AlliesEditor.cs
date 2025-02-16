@@ -15,7 +15,7 @@ namespace LAZYSHELL
     {
         // variables
         private Settings settings = Settings.Default;
-        private Allies alliesEditor;
+        public Allies alliesEditor;
         private LevelUps levelUpsEditor;
         // constructor
         public AlliesEditor()
@@ -58,7 +58,7 @@ namespace LAZYSHELL
                 return;
             //
             DialogResult result = MessageBox.Show(
-                "Allies have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Allies have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();

@@ -112,15 +112,36 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>116, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="findRecentChangeLeft.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADeSURBVDhPYxgFqMCrh+G/SxPDWSBTDSJCAnDpYPh/6k7T
+        f7dOhv9ArjFElEjg1M7w//Ttvv8LDjL8r1/H8B/EBxnoCsVuIAwUcwdhINsTaIlbPcMeoFYlBvcuhv+X
+        H8z6P3cnw//Z+xj+zzvM8P/Mo6z/Jx5G/j/4wPv/3vt2/7ffN/i/6YHy/zUPxP4ve8Txf/lzhv9eQH1A
+        A4yxGrDwJMP/RaeB9HkgvgRkXwXim0B8B4gfMKAaAALIXmgAesEFyAeFhTsMA52NjFG8AAOQQGwmLxBh
+        gKJoHLGAgQEAPPeXad9fQ5AAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="findRecentChangeRight.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADWSURBVDhP7ZHNCkFRFIXXe3gDUzPjyyVmJt7AGxgaGMjv
+        3MC/qYGBiSQJ3VKUXOW3KBl4iWWfXDEgV2ayarXP2bv11T4Hf9lXMIdRIAvK0XXtfChvEmwuQ9SlyvUO
+        EWrTmwY1GTzaY1kFtQQYa4PDc4ixLuiTnkSvEF3Cp3Oe62OC80OUk32Exi7M/tbPzsbN1sbJxsrB4hws
+        LMDyDowPwEDGgiiAuY2w2gErPbAqw5ohHoP1qdSZ9Eyw9AqgVlAQtcbNeurB71awKwV6+oh29fU3/qyA
+        C88glzDBVrBGAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

@@ -222,6 +222,7 @@ namespace LAZYSHELL
         private void SetLevelInfo()
         {
             List<string[]> items = new List<string[]>();
+            items.Add(new string[] { "Palette", paletteSet.OFFSET.ToString("X6") });
             items.Add(new string[] { "Layer", ((index * 18) + 0x1D0040).ToString("X6") });
             items.Add(new string[] { "Map", ((index * 2) + 0x148000).ToString("X6") });
             int pointer = Bits.GetShort(Model.ROM, (index * 2) + 0x148000);
@@ -249,6 +250,7 @@ namespace LAZYSHELL
             levelInfo.Columns[1].Text = "Offset";
             levelInfo.Items.Clear();
             levelInfo.Items.AddRange(listViewItems);
+            levelInfo.Height = 181;
         }
         private string MaximumSpaceExceeded(string name)
         {
@@ -270,7 +272,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("Sorry, there was an error trying to create the directory : " + dir, "LAZY SHELL");
+                MessageBox.Show("Sorry, there was an error trying to create the directory : " + dir, "LAZYSHELL++");
                 return false;
             }
         }
@@ -317,7 +319,7 @@ namespace LAZYSHELL
                     levels[i].LevelExits.Assemble(ref offsetStart);
             }
             else
-                MessageBox.Show("Exit fields were not saved because they exceed the maximum alotted space.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Exit fields were not saved because they exceed the maximum alotted space.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             offsetStart = 0xE400;
             if (CalculateFreeEventSpace() >= 6)
             {
@@ -325,7 +327,7 @@ namespace LAZYSHELL
                     levels[i].LevelEvents.Assemble(ref offsetStart);
             }
             else
-                MessageBox.Show("Event fields were not saved because they exceed the maximum alotted space.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Event fields were not saved because they exceed the maximum alotted space.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             offsetStart = 0x8400;
             if (CalculateFreeNPCSpace() >= 4)
             {
@@ -333,7 +335,7 @@ namespace LAZYSHELL
                     levels[i].LevelNPCs.Assemble(ref offsetStart);
             }
             else
-                MessageBox.Show("NPCs were not saved because they exceed the maximum alotted space.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("NPCs were not saved because they exceed the maximum alotted space.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             offsetStart = 0x4D05;
             if (CalculateFreeOverlapSpace() >= 0)
             {
@@ -341,7 +343,7 @@ namespace LAZYSHELL
                     levels[i].LevelOverlaps.Assemble(ref offsetStart);
             }
             else
-                MessageBox.Show("Overlaps were not saved because they exceed the maximum alotted space.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Overlaps were not saved because they exceed the maximum alotted space.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             int offset = 0x1D62BD;
             if (CalculateFreeTileModSpace() >= 0)
             {
@@ -349,7 +351,7 @@ namespace LAZYSHELL
                     levels[i].LevelTileMods.Assemble(ref offset);
             }
             else
-                MessageBox.Show("Tile mods were not saved because they exceed the maximum alotted space.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Tile mods were not saved because they exceed the maximum alotted space.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             offset = 0x1D91B0;
             if (CalculateFreeSolidModSpace() >= 0)
             {
@@ -357,7 +359,7 @@ namespace LAZYSHELL
                     levels[i].LevelSolidMods.Assemble(ref offset);
             }
             else
-                MessageBox.Show("Solid mods were not saved because they exceed the maximum alotted space.", "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Solid mods were not saved because they exceed the maximum alotted space.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Model.Compress(Model.GraphicSets, Model.EditGraphicSets, 0x0A0000, 0x146000, "GRAPHIC SET", 0, 78, 94, 111, 129, 147, 167, 184, 204, 236, 261);
             tilemap.Assemble();
             Model.Compress(Model.Tilemaps, Model.EditTilemaps, 0x160000, 0x1A8000, "TILE MAP", 0, 109, 163, 219, 275);
@@ -470,13 +472,13 @@ namespace LAZYSHELL
             if (!this.Refreshing)
                 RefreshLevel();
             if (CalculateFreeNPCSpace() < 0)
-                MessageBox.Show(MaximumSpaceExceeded("npcs"), "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(MaximumSpaceExceeded("npcs"), "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (CalculateFreeExitSpace() < 0)
-                MessageBox.Show(MaximumSpaceExceeded("exits"), "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(MaximumSpaceExceeded("exits"), "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (CalculateFreeEventSpace() < 0)
-                MessageBox.Show(MaximumSpaceExceeded("events"), "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(MaximumSpaceExceeded("events"), "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (CalculateFreeOverlapSpace() < 0)
-                MessageBox.Show(MaximumSpaceExceeded("overlaps"), "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(MaximumSpaceExceeded("overlaps"), "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void exportLevelDataAll_Click(object sender, EventArgs e)
         {
@@ -531,7 +533,7 @@ namespace LAZYSHELL
             DialogResult result = MessageBox.Show(
                 "You are about to clear all level data, tilesets, tilemaps, physical maps and battlefields.\n" +
                 "This will essentially wipe the slate clean for anything having to do with levels.\n\n" +
-                "Are you sure you want to do this?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                "Are you sure you want to do this?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result != DialogResult.Yes)
                 return;
             for (int i = 0; i < 510; i++)
@@ -603,7 +605,7 @@ namespace LAZYSHELL
             DialogResult result = MessageBox.Show(
                 "You are about to clear all UNUSED graphic sets.\n\n" +
                 "Do you wish to continue?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
             // Clear unused tilesets
@@ -636,7 +638,7 @@ namespace LAZYSHELL
             DialogResult result = MessageBox.Show(
                 "You are about to clear all UNUSED tilesets.\n\n" +
                 "Do you wish to continue?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
             // Clear unused tilesets
@@ -666,7 +668,7 @@ namespace LAZYSHELL
             DialogResult result = MessageBox.Show(
               "You are about to clear all UNUSED tilemaps.\n\n" +
               "Do you wish to continue?",
-              "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+              "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
             // Clear unused tilemaps
@@ -696,7 +698,7 @@ namespace LAZYSHELL
             DialogResult result = MessageBox.Show(
               "You are about to clear all UNUSED solidity maps.\n\n" +
               "Do you wish to continue?",
-              "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+              "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
             // Clear unused physical maps
@@ -859,7 +861,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("There was a problem importing the arrays.", "LAZY SHELL");
+                MessageBox.Show("There was a problem importing the arrays.", "LAZYSHELL++");
             }
         }
         private void graphicSetsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -882,7 +884,7 @@ namespace LAZYSHELL
             }
             catch (Exception ioexc)
             {
-                MessageBox.Show("Lazy Shell was unable to save the graphic sets.\n\n" + ioexc.Message, "LAZY SHELL");
+                MessageBox.Show("Lazy Shell was unable to save the graphic sets.\n\n" + ioexc.Message, "LAZYSHELL++");
             }
         }
         private void graphicSetsToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -905,7 +907,7 @@ namespace LAZYSHELL
                 FileInfo fInfo = new FileInfo(filename);
                 if (fInfo.Length != 8192)
                 {
-                    MessageBox.Show("File is incorrect size, Graphic Sets are 8192 bytes", "LAZY SHELL");
+                    MessageBox.Show("File is incorrect size, Graphic Sets are 8192 bytes", "LAZYSHELL++");
                     return;
                 }
                 FileStream fStream = new FileStream(filename, FileMode.Open, FileAccess.Read);
@@ -920,7 +922,7 @@ namespace LAZYSHELL
             }
             catch (Exception ioexc)
             {
-                MessageBox.Show("Lazy Shell was unable to Import the Graphic Set.\n\n" + ioexc.Message, "LAZY SHELL");
+                MessageBox.Show("Lazy Shell was unable to Import the Graphic Set.\n\n" + ioexc.Message, "LAZYSHELL++");
                 return;
             }
         }
@@ -988,7 +990,7 @@ namespace LAZYSHELL
         private void resetLevelMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current level map. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             levelMap = new LevelMap(level.LevelMap);
             mapNum_ValueChanged(null, null);
@@ -996,7 +998,7 @@ namespace LAZYSHELL
         private void resetLayerDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current layer data. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             layer = new LevelLayer(index);
             levelNum_ValueChanged(null, null);
@@ -1004,7 +1006,7 @@ namespace LAZYSHELL
         private void resetNPCDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current NPCs. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             npcs = new LevelNPCs(index);
             overlay.NPCImages = null;
@@ -1013,7 +1015,7 @@ namespace LAZYSHELL
         private void resetEventDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current events. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             events = new LevelEvents(index);
             InitializeEventProperties();
@@ -1021,7 +1023,7 @@ namespace LAZYSHELL
         private void resetExitDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current exits. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             exits = new LevelExits(index);
             InitializeExitFieldProperties();
@@ -1029,7 +1031,7 @@ namespace LAZYSHELL
         private void resetOverlapDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current overlaps. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             overlaps = new LevelOverlaps(index);
             InitializeOverlapProperties();
@@ -1037,7 +1039,7 @@ namespace LAZYSHELL
         private void resetTilemapModsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current tilemap mods. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             tileMods = new LevelTileMods(index);
             foreach (Level l in levels)
@@ -1053,7 +1055,7 @@ namespace LAZYSHELL
         private void resetSolidityModsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current solidity mods. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             solidMods = new LevelSolidMods(index);
             foreach (Level l in levels)
@@ -1065,7 +1067,7 @@ namespace LAZYSHELL
         private void resetGraphicSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current graphic sets. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             Model.Decompress(Model.GraphicSets, 0x0A0000, 0x150000, 0x2000, "", levelMap.GraphicSetA + 0x48, levelMap.GraphicSetA + 0x49, false);
             Model.Decompress(Model.GraphicSets, 0x0A0000, 0x150000, 0x2000, "", levelMap.GraphicSetB + 0x48, levelMap.GraphicSetB + 0x49, false);
@@ -1079,7 +1081,7 @@ namespace LAZYSHELL
         private void resetPaletteSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current palette set. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             int palette = levelMap.PaletteSet;
             paletteSet = new PaletteSet(Model.ROM, palette, (palette * 0xD4) + 0x249FE2, 8, 16, 30);
@@ -1090,7 +1092,7 @@ namespace LAZYSHELL
         private void resetTilesetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current tilesets. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             Model.Decompress(Model.Tilesets, 0x3B0000, 0x3E0000, 0x1000, "", levelMap.TilesetL1 + 0x20, levelMap.TilesetL1 + 0x21, false);
             Model.Decompress(Model.Tilesets, 0x3B0000, 0x3E0000, 0x1000, "", levelMap.TilesetL2 + 0x20, levelMap.TilesetL2 + 0x21, false);
@@ -1102,7 +1104,7 @@ namespace LAZYSHELL
         private void resetTilemapsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current tilemaps. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             Model.Decompress(Model.Tilemaps, 0x160000, 0x1B0000, 0x1000, 0x2000, "", 0x40, levelMap.TilemapL1 + 0x40, levelMap.TilemapL1 + 0x41, false);
             Model.Decompress(Model.Tilemaps, 0x160000, 0x1B0000, 0x1000, 0x2000, "", 0x40, levelMap.TilemapL2 + 0x40, levelMap.TilemapL2 + 0x41, false);
@@ -1114,7 +1116,7 @@ namespace LAZYSHELL
         private void resetSolidityMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current solidity map. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             Model.Decompress(Model.SolidityMaps, 0x1B0000, 0x1D0000, 0x20C2, "", levelMap.SolidityMap, levelMap.SolidityMap + 1, false);
             fullUpdate = true;
@@ -1125,7 +1127,7 @@ namespace LAZYSHELL
         private void resetAllComponentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to all components. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             levelMap = new LevelMap(level.LevelMap);
             layer = new LevelLayer(index);
@@ -1181,7 +1183,7 @@ namespace LAZYSHELL
             state.TileGrid = false;
             state.IsometricGrid = false;
             DialogResult result;
-            result = MessageBox.Show("Levels have not been saved.\n\nWould you like to save changes?", "LAZY SHELL", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            result = MessageBox.Show("Levels have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
             else if (result == DialogResult.No)
@@ -1229,6 +1231,13 @@ namespace LAZYSHELL
         private void Levels_FormClosed(object sender, FormClosedEventArgs e)
         {
             GC.Collect();
+        }
+
+        private void eventsMusic_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Refreshing)
+                return;
+            this.Modified = true;
         }
         #endregion
     }

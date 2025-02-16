@@ -67,8 +67,8 @@ namespace LAZYSHELL
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("You are about to clear the entire history of all past actions performed within the Lazy Shell application.\n\n" +
-                "Are you sure you want to do this?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+            if (MessageBox.Show("You are about to clear the entire history of all past actions performed within the LAZYSHELL++ application.\n\n" +
+                "Are you sure you want to do this?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
             Model.History = "";
             richTextBox1.Text = "";

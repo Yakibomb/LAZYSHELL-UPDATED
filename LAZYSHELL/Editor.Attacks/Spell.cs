@@ -36,6 +36,7 @@ namespace LAZYSHELL
         private bool effectSleep;
         private bool effectPoison;
         private bool effectFear;
+        private bool effectBerserk;
         private bool effectMushroom;
         private bool effectScarecrow;
         private bool effectInvincible;
@@ -92,6 +93,7 @@ namespace LAZYSHELL
         public bool EffectSleep { get { return this.effectSleep; } set { this.effectSleep = value; } }
         public bool EffectPoison { get { return this.effectPoison; } set { this.effectPoison = value; } }
         public bool EffectFear { get { return this.effectFear; } set { this.effectFear = value; } }
+        public bool EffectBerserk { get { return this.effectBerserk; } set { this.effectBerserk = value; } }
         public bool EffectMushroom { get { return this.effectMushroom; } set { this.effectMushroom = value; } }
         public bool EffectScarecrow { get { return this.effectScarecrow; } set { this.effectScarecrow = value; } }
         public bool EffectInvincible { get { return this.effectInvincible; } set { this.effectInvincible = value; } }
@@ -172,6 +174,7 @@ namespace LAZYSHELL
             effectSleep = (status & Status.Sleep) == Status.Sleep;
             effectPoison = (status & Status.Poison) == Status.Poison;
             effectFear = (status & Status.Fear) == Status.Fear;
+            effectBerserk = (status & Status.Berserk) == Status.Berserk;
             effectMushroom = (status & Status.Mushroom) == Status.Mushroom;
             effectScarecrow = (status & Status.Scarecrow) == Status.Scarecrow;
             effectInvincible = (status & Status.Invincible) == Status.Invincible;
@@ -286,6 +289,7 @@ namespace LAZYSHELL
             Bits.SetBit(rom, offset, 1, effectSleep);
             Bits.SetBit(rom, offset, 2, effectPoison);
             Bits.SetBit(rom, offset, 3, effectFear);
+            Bits.SetBit(rom, offset, 4, effectBerserk);
             Bits.SetBit(rom, offset, 5, effectMushroom);
             Bits.SetBit(rom, offset, 6, effectScarecrow);
             Bits.SetBit(rom, offset++, 7, effectInvincible);
@@ -333,9 +337,9 @@ namespace LAZYSHELL
             magicPower = 0;
             hitRate = 0;
             attackType = 0;
-            effectType = 0;
-            inflictFunction = 0;
-            inflictElement = 0;
+            effectType = 2;
+            inflictFunction = 5;
+            inflictElement = 4;
             checkStats = false;
             ignoreDefense = false;
             checkMortality = false;
@@ -346,6 +350,7 @@ namespace LAZYSHELL
             effectSleep = false;
             effectPoison = false;
             effectFear = false;
+            effectBerserk = false;
             effectMushroom = false;
             effectScarecrow = false;
             effectInvincible = false;

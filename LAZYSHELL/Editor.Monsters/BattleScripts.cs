@@ -699,7 +699,7 @@ namespace LAZYSHELL
             if (fullIndex < 0)
             {
                 MessageBox.Show("Must select a command in the command tree on the left before inserting a new command.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (fullIndex + 1 < this.commandTree.GetNodeCount(true))
@@ -822,7 +822,7 @@ namespace LAZYSHELL
                 AssembleAllBattleScripts();
             }
             else
-                MessageBox.Show("There is not enough available space to save the battle scripts to.\n//\nThe battle scripts were not saved.", "LAZY SHELL");
+                MessageBox.Show("There is not enough available space to save the battle scripts to.\n//\nThe battle scripts were not saved.", "LAZYSHELL++");
         }
         public void AssembleAllBattleScripts()
         {
@@ -845,7 +845,7 @@ namespace LAZYSHELL
             }
             if (i != battleScripts.Length)
                 MessageBox.Show("Not enough space to save all battlescripts.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         public void DumpBattlescriptText()
         {
@@ -937,7 +937,7 @@ namespace LAZYSHELL
             {
                 MessageBox.Show(
                     "Cannot check command(s).\n\nThe two counter command barriers cannot be removed, modified, or moved.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 e.Cancel = true;
             }
         }
@@ -1344,7 +1344,7 @@ namespace LAZYSHELL
             {
                 MessageBox.Show(
                     "Cannot edit command(s).\n\nThe two counter command barriers cannot be removed, modified, or moved.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 commandTree.SelectedNode.Checked = false;
             }
         }

@@ -76,22 +76,23 @@ namespace LAZYSHELL
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(191, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(191, 26);
             this.toolStrip1.TabIndex = 0;
             // 
             // shopName
             // 
             this.shopName.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.shopName.ContextMenuStrip = null;
             this.shopName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.shopName.DropDownHeight = 497;
             this.shopName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.shopName.DropDownWidth = 250;
             this.shopName.ItemHeight = 15;
-            this.shopName.Location = new System.Drawing.Point(7, 1);
+            this.shopName.Location = new System.Drawing.Point(9, 2);
             this.shopName.Name = "shopName";
             this.shopName.SelectedIndex = -1;
             this.shopName.SelectedItem = null;
-            this.shopName.Size = new System.Drawing.Size(180, 22);
+            this.shopName.Size = new System.Drawing.Size(180, 23);
             this.shopName.SelectedIndexChanged += new System.EventHandler(this.shopName_SelectedIndexChanged);
             this.shopName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.shopName_DrawItem);
             // 
@@ -169,6 +170,7 @@ namespace LAZYSHELL
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.CheckedListBox shopDiscounts;

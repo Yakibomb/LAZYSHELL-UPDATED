@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LAZY SHELL")]
+[assembly: AssemblyTitle("LAZY SHELL++")]
 [assembly: AssemblyDescription("Super Mario RPG Editor")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LAZY SHELL")]
-[assembly: AssemblyCopyright("Copyright ©  2007-2014  giangurgolo & Omega, Modified by Yakibomb")]
+[assembly: AssemblyProduct("LAZYSHELL++")]
+[assembly: AssemblyCopyright("Copyright ©  2007-2014  giangurgolo & Omega")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -25,5 +25,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("3.19.0.1")]
-[assembly: AssemblyFileVersion("3.19.0.1")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

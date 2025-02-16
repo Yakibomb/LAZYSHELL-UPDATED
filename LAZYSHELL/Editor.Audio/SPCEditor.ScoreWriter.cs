@@ -676,7 +676,7 @@ namespace LAZYSHELL
                     case "Tie":
                         if (mouseDownNote == 0)
                         {
-                            MessageBox.Show("Cannot put a tied note at the beginning of the staff.", "LAZY SHELL");
+                            MessageBox.Show("Cannot put a tied note at the beginning of the staff.", "LAZYSHELL++");
                             return;
                         }
                         if (ticksNoteButton.Checked || ticksRestButton.Checked)
@@ -777,7 +777,7 @@ namespace LAZYSHELL
                     case "Tie":
                         if (mouseDownNote == 0)
                         {
-                            MessageBox.Show("Cannot put a tied note at the beginning of the staff.", "LAZY SHELL");
+                            MessageBox.Show("Cannot put a tied note at the beginning of the staff.", "LAZYSHELL++");
                             return;
                         }
                         if (rTicksNoteButton.Checked || rTicksRestButton.Checked)
@@ -899,7 +899,7 @@ namespace LAZYSHELL
                     {
                         MessageBox.Show("The current selection contains a repeat command.\n\n" +
                             "Any notes after the repeat command will NOT be copied.",
-                            "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     }
                     index = note.Index;
@@ -1403,7 +1403,7 @@ namespace LAZYSHELL
             }
             catch
             {
-                MessageBox.Show("This is not a valid score file.", "LAZY SHELL",
+                MessageBox.Show("This is not a valid score file.", "LAZYSHELL++",
                 MessageBoxButtons.OK);
                 s.Close();
                 return;

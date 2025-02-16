@@ -48,7 +48,7 @@ namespace LAZYSHELL
                     System.Text.Encoding encoding = System.Text.Encoding.UTF8;
                     if (encoding.GetString(Bits.GetBytes(temp, 0x7FB2, 4)) != "ARWE")
                     {
-                        MessageBox.Show("The game code for this ROM is invalid.", "LAZY SHELL");
+                        MessageBox.Show("The game code for this ROM is invalid.", "LAZYSHELL++");
                         return;
                     }
                     romSrc = temp;
@@ -58,7 +58,7 @@ namespace LAZYSHELL
                 catch (Exception ex)
                 {
                     if (MessageBox.Show("Lazy Shell was unable to load the rom.\n\n" + ex.Message,
-                        "LAZY SHELL", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) != DialogResult.Cancel)
+                        "LAZYSHELL++", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) != DialogResult.Cancel)
                         goto Retry;
                 }
             }
@@ -255,15 +255,43 @@ namespace LAZYSHELL
                 Buffer.BlockCopy(romSrc, 0x1B0000, romDst, 0x1B0000, 0x18000);
             }
             // Menus
-            if (elements.Nodes["Menus"].Checked)
+            if (elements.Nodes["Menus"].Nodes["Text"].Checked)
+            {
+                Buffer.BlockCopy(romSrc, 0x3EEF00, romDst, 0x3EEF00, 0x3EF700 - 0x3EEF00);    // menu texts
+            }
+            if (elements.Nodes["Menus"].Nodes["Graphics"].Checked)
+            {
+                Buffer.BlockCopy(romSrc, 0x3E0002, romDst, 0x3E0002, 0x3E0008 - 0x3E0002);    // pointers of compressed data GFX (MenuBGGraphics, MenuFrameGraphics, MenuCursorGraphics)
+                Buffer.BlockCopy(romSrc, 0x3E000C, romDst, 0x3E000C, 0x3E000E - 0x3E000C);    // pointers of compressed data PAL (MenuPalettes)
+                //ShopBGPalette: 0x3E9A05
+                //MenuBGPalette: 0x3E9A28
+                //GameSelectGraphics 0x3E9A4A
+                //GameSelectPalettes 0x3EB510 (end 0x3EB624)
+                //Model.Compress(Model.GameSelectGraphics, 0x3E9A49, 0x2000, 0x3EB2CD - 0x3E9A49, "Game select graphics");
+                //Model.Compress(Model.GameSelectTileset, 0x3EB2CD, 0x800, 0x3EB50F - 0x3EB2CD, "Game select tileset");
+                //Model.Compress(Model.GameSelectPalettes, 0x3EB50F, 0x200, 0x3EB624 - 0x3EB50F, "Game select palettes");
+                //Model.Compress(Model.GameSelectSpeakers, 0x3EB624, 0x600, 0x3EB94A - 0x3EB624, "Game select speakers");
+                Buffer.BlockCopy(romSrc, 0x3E9A05, romDst, 0x3E9A05, 0x3EB94A - 0x3E9A05);    // compressed data (everything above, GameSelectSpeakers, GameSelectBGPalette)
+                Buffer.BlockCopy(romSrc, 0x3E0E68, romDst, 0x3E0E68, 0x3E2606 - 0x3E0E68);    // compressed data (MenuBGGraphics, other)
+                //Buffer.BlockCopy(romSrc, 0x3E99E0, romDst, 0x3E99E0, 0x3EB94A - 0x3E99E0);    // compressed data (GameSelectSpeakers, GameSelectBGPalette)
+            }
+            if (elements.Nodes["Menus"].Nodes["Tilesets"].Checked)
+            {
+                Buffer.BlockCopy(romSrc, 0x3E0008, romDst, 0x3E0008, 0x02);                   // pointers of compressed data (MenuBGTileset)
+                Buffer.BlockCopy(romSrc, 0x3E2869, romDst, 0x3E2869, 0x3E2C80 - 0x3E2869);    // compressed data (MenuBGTileset)
+
+                Buffer.BlockCopy(romSrc, 0x3E0034, romDst, 0x3E0034, 0x02);                   // pointers of compressed data (GameSelectTileset)
+                Buffer.BlockCopy(romSrc, 0x3EB2CE, romDst, 0x3EB2CE, 0x3EB50F - 0x3EB2CE);    // compressed data (GameSelectTileset)
+
+                Buffer.BlockCopy(romSrc, 0x3E000A, romDst, 0x3E000A, 0x02);                   // pointers of compressed data (OverworldStarPiecesMenuTileset)
+                Buffer.BlockCopy(romSrc, 0x3E2C81, romDst, 0x3E2C81, 0x3E2D53 - 0x3E2C81);    // compressed data (OverworldStarPiecesMenuTileset)
+            }
+            if (elements.Nodes["Menus"].Nodes["Misc"].Checked)
             {
                 romDst[0x03462D] = romSrc[0x03462D]; // music track
-                Buffer.BlockCopy(romSrc, 0x03327A, romDst, 0x03327A, 0x03328F - 0x03327A);    // X coord of some texts
                 Buffer.BlockCopy(romSrc, 0x0340AA, romDst, 0x0340AA, 0x035023 - 0x0340AA);    // game select sprite sequences
-                Buffer.BlockCopy(romSrc, 0x3E0002, romDst, 0x3E0002, 0x3E000E - 0x3E0002);    // pointers of compressed data
-                Buffer.BlockCopy(romSrc, 0x3E0E68, romDst, 0x3E0E68, 0x3E2C80 - 0x3E0E68);    // compressed data
-                Buffer.BlockCopy(romSrc, 0x3E99E0, romDst, 0x3E99E0, 0x3EB94A - 0x3E99E0);    // compressed data
-                Buffer.BlockCopy(romSrc, 0x3EEF00, romDst, 0x3EEF00, 0x3EF700 - 0x3EEF00);    // menu texts
+                Buffer.BlockCopy(romSrc, 0x03170D, romDst, 0x03170D, 0x09);     // Overworld Menu List
+                Buffer.BlockCopy(romSrc, 0x03327A, romDst, 0x03327A, 0x03328F - 0x03327A);    // X coord of some texts
             }
             // Mini-games
             if (elements.Nodes["MiniGames"].Nodes["MineCarts"].Checked)
@@ -306,6 +334,11 @@ namespace LAZYSHELL
             {
                 Buffer.BlockCopy(romSrc, 0x3E0000, romDst, 0x3E0000, 0x0E68); // world map logo, banners
                 Buffer.BlockCopy(romSrc, 0x3E2E82, romDst, 0x3E2E82, 0x69B6); // world map graphics, tilesets
+                Buffer.BlockCopy(romSrc, 0x3E8578, romDst, 0x3E8578, 0xB06); // world map background (clouds/ocean) graphics
+            }
+            if (elements.Nodes["WorldMaps"].Nodes["Sprites"].Checked)   // world map sprites
+            {
+                Buffer.BlockCopy(romSrc, 0x3E90A7, romDst, 0x3E90A7, 0x1FB); // world map sprites (Mario, location point) graphics
             }
             this.Close();
         }

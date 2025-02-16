@@ -38,6 +38,7 @@ namespace LAZYSHELL
         {
             DropDownControl.EndUpdate();
         }
+
         protected override void OnSubscribeControlEvents(Control c)
         {
             base.OnSubscribeControlEvents(c);
@@ -62,6 +63,7 @@ namespace LAZYSHELL
             if (DrawItem != null)
                 DrawItem(this, e);
         }
+
         public class NewComboBox : ComboBox
         {
             private ComboEditWindow EditBox = new ComboEditWindow(); // the NativeWindow object, used to access and repaint the TextBox.

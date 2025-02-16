@@ -47,6 +47,7 @@ namespace LAZYSHELL
             spcEditor.Assemble(warning);
             sampleEditor.Modified = false;
             spcEditor.Modified = false;
+            Model.HexEditor.Compare();
         }
         //
         private void Audio_FormClosing(object sender, FormClosingEventArgs e)
@@ -56,7 +57,7 @@ namespace LAZYSHELL
                 return;
             sampleEditor.SoundPlayer.Stop();
             DialogResult result = MessageBox.Show(
-              "Audio has not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+              "Audio has not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
               MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 save.PerformClick();
@@ -64,6 +65,8 @@ namespace LAZYSHELL
             {
                 Model.AudioSamples = null;
                 Model.SPCs = null;
+                Model.SPCBattle = null;
+                Model.SPCEvent = null;
                 return;
             }
             else if (result == DialogResult.Cancel)

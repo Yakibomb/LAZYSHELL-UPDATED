@@ -1,25 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="LAZYSHELL_xsl.xsl"?>
-<LAZYSHELL form="Editor" icon="icons/main.gif" title="LAZY SHELL - Super Mario RPG Editor">
-  <Properties version="3.19.0" date="January 22, 2014" homepage="http://home.comcast.net/~giangurgolo/smrpg/" author="giangurgolo and Omega" />
+<LAZYSHELL form="Editor" icon="icons/main.gif" title="LAZYSHELL++  Super Mario RPG Editor">
+  <Properties version="2.0.0" date="February 15, 2025" homepage="https://github.com/Yakibomb/LAZYSHELL-UPDATED/" author="Yaki, giangurgolo and Omega" />
   <Read>
     <header>Read this first</header>
     <introduction>If this is your first time using Lazy Shell, please take the time to read the following advice:</introduction>
     <precaution>1. When planning a hack project, the wisest thing to do is to make sure you have the back-up option enabled in the settings. Click the cog icon and check either "Create Back-up ROM on Load" or "Create Back-up ROM on Save" to enable it. I often hear about users throwing in the towel when the application corrupts the ROM, never having bothered to use the back-up feature.</precaution>
     <precaution>2. If you receive an error prompt, please follow the directions in the prompt window and copy ALL of the contents of the error message and post them to the given link in the window. Unless you do this, there is little hope of the bug ever being fixed unless someone else encounters it and posts it to the link. Keep in mind, I do read bug reports and I do attempt to fix the reported bugs, so your post will not be a waste of time.</precaution>
     <precaution>3. If the unfortunate occasion might arise that the application actually does corrupt your ROM, you can try resetting the corrupted elements by importing those specific elements from a fresh SMRPG ROM. Click the button "Import elements from another ROM" (a down-arrow over a small white box), select a fresh ROM, and check the elements you want to import.</precaution>
-    <conclusion>Should you encounter any issues, errors, problems, or irritations using the application, please post them to one of the following links:
-http://acmlm.kafuka.org/board/thread.php?id=7005
-http://www.smwcentral.net/?p=viewthread&amp;t=45572
+    <conclusion>Should you encounter any issues, errors, problems, or irritations using the application, please post them on the following Discord:
+https://discord.gg/p4epwWmTqf
 Press Ctrl+Ins to copy the contents of this message box to the clipboard. Thank you for using the program.</conclusion>
   </Read>
   <section>
     <header>Introduction</header>
-    <body>Lazy Shell is a third party .NET application written in the C# programming language which is capable of editing a wide range of elements within the Super Mario RPG (US) ROM image file. These elements include allies, battle animations, attacks, spells, sound effects, music, battlefields, dialogues, fonts, effects, events, formations, items, shops, level/location maps, the main title, menus, the mine-cart maps, monsters, sprites, world maps, and more. In addition, it also includes a help database and a project manager to help organize a full hack project.</body>
+    <body>Lazy Shell is a third party .NET application written in the C# programming language which is capable of editing a wide range of elements within the Super Mario RPG (US) ROM image file. These elements include allies, battle animations, attacks, spells, sound effects, music, battlefields, dialogues, fonts, effects, events, formations, items, shops, level/location maps, the main title, menus, the mine-cart maps, monsters, sprites, world maps, and more. In addition, it also includes a help database, support for a patch server network, and a project manager to help organize a full hack project.</body>
   </section>
   <section>
     <header>Program Requirements</header>
-    <body>Microsoft .NET Framework 2.0 or higher must be installed on the system for the application to run at all.
+    <body>Microsoft .NET Framework 4.8 or higher must be installed on the system for the application to run at all.
 Minimal system requirements:
 512MB of RAM (1GB recommended)
 10MB HD space (more if ROM back-ups used)</body>
@@ -32,7 +31,7 @@ The Levels portion allows the user to modify the maps of areas (aka locations) u
 The two scripts editors in Lazy Shell enable the user to modify the event scripts, action scripts, and animations scripts. Commands within event scripts and action scripts may be added, modified, deleted, moved, or copied and pasted. Commands within animation scripts may be modified, moved, or replaced with new commands of the same or smaller length, but adding/deleting entirely new commands within animations is not supported and never will be due to the fickle and erratic nature of the animation script engine. 
 The Sprites editor is able to modify a sprite's graphics, palette, and animations. The effects editor allows the user to edit spell effects and their respective graphics, palettes, and animations. 
 In the Dialogue editor, the user may view and edit the dialogues (aka the game script) as well as the dialogues which appear in battles and the graphics of the dialogue background tiles. Fonts, font colors, and a new font generator will let the user create an entirely new font table based upon manual editing or a supportive font installed on the OS.
-In the World Maps editor World maps, world map palettes, and the locations that appear on world maps can be modified. The logo banner graphics and palettes can be modified as well.
+In the World Maps editor World maps, world map palettes, world map sprites, and the locations that appear on world maps can be modified. The logo banner graphics and palettes can be modified as well.
 The Audio editor can export, import, clear, and playback the audio samples used by the SPC engine. The .wav files can be edited in a third party program such as Audacity. SPC data can be edited in a variety of ways, allowing the user to create entirely new pieces of music. Instruments can be changed as well as well as the raw SPC track data, which can even import custom scripts from a text document.
 The mini-games editor so far can modify the minecart mini game maps for all four stages and the objects in the same manner as levels. The menus editor allows the user to modify the menu palettes and import an external image into the menu backgrounds, as well as import an image into the frame image.</body>
   </section>
@@ -98,31 +97,41 @@ Base savestates for SNES9X and ZSNES, respectively. These are needed for preview
     <header>Bugs, errors, exceptions and complications in functionality.</header>
     <body>The editor may occasionally crash or not function properly due to certain errors in the code (although with each new bugfix I am aiming to completely remove the possibility of this ever happening). Please remember that this is almost certainly the programmer's fault and NOT yours, the user's. As often is the case, when an error surfaces or the program behaves in a buggy fashion, the user tends to immediately feel that they are to blame or the programmer is blaming them for the error. This is not correct: almost all of the time, it's the programmer's fault. Incidences when it might be the fault of the user may be due to a corrupt ROM being loaded (a corrupt ROM basically means any SMRPG rom which has been modified in any way, shape or form). This includes a ROM edited by Lazy Shell, but errors may occur if a ROM has been modified outside of Lazy Shell (ie. a hex editor), or often times in much older versions of Lazy Shell (v2.5 seems to be popular among users who find problems with v3.x).
 If the editor crashes, make sure it is the latest version of Lazy Shell by clicking the "(i)" button in the main window and comparing the version there to the version posted on the home page (http://home.comcast.net/~giangurgolo/smrpg/).
-If you are using the latest version, make a new post in one of these threads:
-http://acmlm.kafuka.org/board/thread.php?id=7005
-http://www.smwcentral.net/?p=viewthread&amp;t=45572
+If you are using the latest version, make a post in this Discord:
+https://discord.gg/p4epwWmTqf
 Explain exactly what you did to produce this error or cause this disfunctionality to occur, what editor it was in, what order you did your actions to produce this error or disfunctionality, etc. Also, when the editor bugs out, an exception prompt appears. If you can manage to copy the error message after this:
 ************** Exception Text **************
 and include it in your post, it will definitely help. But most importantly, you must explain in your post what you did. Only posting the exception text alone will not be adequate enough.
 The suggestions above are only suggestions. Sometimes only five words might be enough for me to quickly locate the bug and fix it. Remember, an error or bug is most likely NOT YOUR FAULT. Don't be afraid to report an error should it occur. I do notice and try to fix every bug that is reported, so your post won't be in vain (unless you're making a request for an addition to the editor, which I am now ignoring due to how time-consuming it can be).</body>
   </section>
   <section>
-    <header>Special Thanks</header>
-    <body>Yakibomb - discovered many bugs with later versions
-ElementalPowerStar - feedback, discovered several bugs
-Bregalad - source code for BRR encoding and decoding
-FuSoYa - for permission to use Lunar Compress.dll
-KP9000 - beta testing, discovered many bugs with pre-release version
-MathOnNapkins - helped with some coding
-Alex Farber - MRU list manager
-spel werdz rite - resolution for running program under a 64-bit OS
-romhacking community - various feedback</body>
+    <header>Yaki's Special Thanks</header>
+    <body>
+		Pidgezero_one, SMRPG Randomizer Team - Feedback, bug finders
+		Doomsday31415 - Released source code to fix Dialogues editor save corruptions
+		Will319 - Positive feedback, bug finder, feature requests (flat mode in particular)
+		jpmac26 - For their LazyShell 4.0 source code fork
+		AnAxemRanger - Bug finder, positive feedback
+		
+</body>
+
+		<header>Lazy Shell's Contributors, Supporters and Special Thanks:</header>
+	  <body>
+		Yaki - discovered many bugs with later versions
+		ElementalPowerStar - feedback, discovered several bugs
+		Bregalad - source code for BRR encoding and decoding
+		FuSoYa - for permission to use Lunar Compress.dll
+		KP9000 - beta testing, discovered many bugs with pre-release version
+		MathOnNapkins - helped with some coding
+		Alex Farber - MRU list manager
+		spel werdz rite - resolution for running program under a 64-bit OS
+		romhacking community - various feedback</body>
   </section>
   <FAQ>
     <header>F.A.Q. (Frequently Asked Questions)</header>
     <entry>
       <question>The editor will not run at all.</question>
-      <answer>You need .NET Framework 2 or higher installed on your system.</answer>
+      <answer>You need .NET Framework 4.8 or higher installed on your system.</answer>
     </entry>
     <entry>
       <question>I have no idea what this stuff means!</question>
@@ -549,8 +558,7 @@ Click a node to edit its properties in the panel on the right. Note that not all
         </entry>
         <entry>
           <question>Where's the list of command opcodes for animations?</question>
-          <answer>Download the documents archive at: http://home.comcast.net/~giangurgolo/smrpg/smrpg_docs.zip
-The docs_ani-code.txt file contains all opcodes decoded thus far.</answer>
+          <answer>The docs_ani-code.txt file that comes packed with Lazy Shell++ contains all opcodes decoded thus far.</answer>
         </entry>
         <entry>
           <question>How do I make custom items with custom animations?</question>
@@ -1368,9 +1376,13 @@ The actual boundaries of the image are beyond the visible boundaries as seen her
           <title>Item Index</title>
           <description>Select the item to load.</description>
         </tooltip>
-        <tooltip control="textBoxItemName">
-          <title>Item Name</title>
-          <description>The item's displayed name in all menus.</description>
+		<tooltip control="textBoxItemName">
+			<title>Item Name</title>
+			<description>The item's displayed name in all menus.</description>
+		</tooltip>
+        <tooltip control="toggleSortedList">
+          <title>Sort List Options</title>
+          <description>Several options to sort the item list in all menus. Settings carry over to other editors.</description>
         </tooltip>
         <tooltip control="itemNameIcon">
           <title>Icon</title>
@@ -1451,9 +1463,9 @@ These properties are used based on the value for "Effect Type".</description>
           <title>Element Nullification</title>
           <description>All attacks with the following checked elemental properties will always cause 0 damage to the wearer of the item. This property only applies to equipment.</description>
         </tooltip>
-        <tooltip control="itemElemWeak">
-          <title>Element Weaknesses</title>
-          <description>All attacks with the following checked elemental properties will double the damage to the wearer of the item. This property only applies to equipment.</description>
+        <tooltip control="itemElemResist">
+          <title>Element Resistance</title>
+          <description>All attacks with the following checked elemental properties will halve the damage to the wearer of the item. This property only applies to equipment.</description>
         </tooltip>
         <tooltip control="itemStatusChange">
           <title>Status &lt;. . . .&gt;</title>
@@ -2489,7 +2501,6 @@ Right-click the images below for more options, or simply use the buttons in the 
         <title>Menu Text</title>
         <description>Change the menu text in this box. Beware, not all menu texts use the same keystroke table.</description>
       </tooltip>
-      <Menus form="Menus" icon="icons/mainMenus.gif" title="Menus" type="subwindow">
         <tooltip control="menuName">
           <title>Menu</title>
           <description>Select the menu to load.</description>
@@ -2500,17 +2511,38 @@ Right-click the images below for more options, or simply use the buttons in the 
         </tooltip>
         <tooltip control="cursorName">
           <title>Sprite Cursor</title>
-          <description>Select the Mario sprite cursor to change its properties to the right.</description>
+          <description>Select the Mario cursor sprite to change its properties to the right.</description>
         </tooltip>
         <tooltip control="cursorSpriteNum">
           <title>Sprite</title>
-          <description>Set the sprite cursor's sprite to use.</description>
+          <description>Set the cursor's sprite to use.</description>
         </tooltip>
         <tooltip control="cursorSequence">
           <title>Sequence</title>
           <description>Change the sprite cursor's sequence corresponding to the sequences in the sprites editor.</description>
         </tooltip>
-      </Menus>
+		<tooltip control="menuName">
+			<title>Menus</title>
+			<description>Tells you what menu you are editting.</description>
+		</tooltip>
+		<tooltip control="pictureBoxPreview">
+			<title>Preview</title>
+			<description>Shows how the menus might look in game. Click text in the preview image to edit it. The Game Select Menu has an option to edit the cursor sprite.</description>
+		</tooltip>
+		<tooltip control="menuChooseBgOrFg">
+			<title>Foreground or Background</title>
+			<description>Displays which tileset you are editting. Can edit menu's foreground, background, and frames.</description>
+		</tooltip>
+		<tooltip control="pictureBoxEditor">
+			<title>Tileset Editor</title>
+			<description>Allows editting of the tileset. Right-click to import or export an image.</description>
+		</tooltip>
+	  <MenusBox form="MenusBox" icon="icons/mainMenus.gif" title="Overworld Menu List" type="subwindow">
+		<tooltip control="MenusBox">
+			<title>Overworld Menu List</title>
+			<description>The list of menus on the overworld main menu. The first five entries are displayed by default, while the latter four are controlled by Memory $7062 bits 0-3 in the Event Scripts Editor.</description>
+		</tooltip>
+      </MenusBox>
       <FAQ></FAQ>
     </Menus>
     <MiniGames form="MiniGames" icon="icons/mainMiniGames.gif" title="Mini-games" type="editor">
@@ -2908,6 +2940,18 @@ The map may appear disoriented in correlation with the locations, because the ga
         <title>Show Locations</title>
         <description>Show or hide the locations in the image below. If the lo- cations are shown, they can be clicked to edit them in the "Location Properties" box below.</description>
       </tooltip>
+		<tooltip control="music">
+			<title>Music</title>
+			<description>The music played while on the world map.</description>
+		</tooltip>
+		<tooltip control="showBanner">
+			<title>Show Banner</title>
+			<description>Show or hide the banner graphics in the image below. If shown, the graphics cannot be editted.</description>
+		</tooltip>
+		<tooltip control="showCharacter">
+			<title>Show Character Graphic</title>
+			<description>Show or hide an animated mouse cursor of overworld character graphic in the image below.</description>
+		</tooltip>
       <tooltip control="pointCount">
         <title>Locations</title>
         <description>The total # of locations that the current map uses. The collection of locations used by the map is based on the locations used by the earlier maps.
@@ -3051,6 +3095,82 @@ These bits are always set in an event script.</description>
       </Locations>
       <FAQ />
     </WorldMaps>
+	  <GamePatches form="GamePatches" icon="icons/mainPatches.gif" title="Patches" type="editor">
+		  <description>Shows the entire ROM in hexadecimal format in an interactive hex editor. Many editors have a button to open the hex editor and automatically jump to the location of the element index's data in the ROM.</description>
+		  <tooltip control="verifyIPSButton">
+			  <title>Verify IPS Patch</title>
+			  <description>This verifies if the IPS patch is a real patch. This option only matters the first time it is downloaded onto the patch browser. Disabling it speeds up downloading onto the browser, but there is a chance of an error when patching. It is recommended to use for debugging a patch server, and to turn off for weaker internet connections.</description>
+		  </tooltip>
+		  <tooltip control="maxImagesLabel">
+			  <title>Max Images Downloaded</title>
+			  <description>The max amount of images that are downloaded per patch.</description>
+		  </tooltip>
+		  <tooltip control="openSettings">
+			  <title>Patch Servers List</title>
+			  <description>This lists all the servers this Lazy Shell tries to connect to. To add, paste a link into the box and press enter. To remove, click the link and press delete.</description>
+		  </tooltip>
+		  <tooltip control="reloadPatchServer">
+			  <title>Reload/Stop Patch Server Downloading</title>
+			  <description>Reloads or Stops downloading from the patch server(s). Reloading will close and reopen this window.</description>
+		  </tooltip>
+		  <tooltip control="versionDisplayComboBox">
+			  <title>Patch Version(s)</title>
+			  <description>This lists all versions of the patch on the server. For server owners, the last patch added is the first patch seen.</description>
+		  </tooltip>
+		  <tooltip control="DetailsBox">
+			  <title>Patch Details</title>
+			  <description>Displays details of the patch.</description>
+		  </tooltip>
+		  <tooltip control="DescriptionTextBox">
+			  <title>Patch Description</title>
+			  <description>This box describes the patch. While loading the browser, it shows all patches found on the server by Lazy Shell.</description>
+		  </tooltip>
+		  <tooltip control="WebsiteBox">
+			  <title>Patch Website</title>
+			  <description>The website is any link that is connected to the patch's information. For your safety, do not go to websites you do not trust.</description>
+		  </tooltip>
+		  <tooltip control="downloadIPStoFileButton">
+			  <title>Download IPS Patch</title>
+			  <description>Downloads the raw IPS patch file.</description>
+		  </tooltip>
+		  <tooltip control="downloadReadmeButton">
+			  <title>Download Patch readme.txt</title>
+			  <description>Downloads the readme.txt of the patch, if available.</description>
+		  </tooltip>
+		  <tooltip control="applyButton">
+			  <title>Download and Patch to ROM image</title>
+			  <description>Downloads, verifies and patches the IPS to the ROM file. The ROM must be saved in the editor after patching. Additional note, the "Verify IPS Patch" button does not apply here, as it always verifies the patch before patching.</description>
+		  </tooltip>
+		  <tooltip control="PatchListBox">
+			  <title>Patch Browser</title>
+			  <description>Displays all patches found and approved by the server. Can reorder by download or alphabetically, and sort by tag and/or author in the options found on the toolbar.</description>
+		  </tooltip>
+		  <tooltip control="sortByButtons">
+			  <title>Sort Options</title>
+			  <description>Sort alphabetically or by download order.</description>
+		  </tooltip>
+		  <tooltip control="sortByCategoryComboBox">
+			  <title>Sort by Tag</title>
+			  <description>Each patch can be categorized by the tags it is given. This drop-down list shows common tags found in the patchinfo. Choosing one consolidates the list of the patches that have that tag.</description>
+		  </tooltip>
+		  <tooltip control="sortByAuthorComboBox">
+			  <title>Sort by Author</title>
+			  <description>Patches usually have someone that created them. This drop-down list can consolidate the patches who have that author in their detais.</description>
+		  </tooltip>
+		  <tooltip control="DetailsLabel">
+			  <title>Patch Recommended by Patch Server</title>
+			  <description>Displays a star to show this patch is recommended by the server provider.</description>
+		  </tooltip>
+		  <tooltip control="ImagePictureBox">
+			  <title>Patch Preview</title>
+			  <description>Displays a preview image of the patch provided by the server. The max images downloaded is controlled by the "Max Images" number, just above this box.</description>
+		  </tooltip>
+		  <tooltip control="GameImageDescriptions">
+			  <title>Patch Preview Caption</title>
+			  <description>Displays a short description of the image.</description>
+		  </tooltip>
+		<FAQ />
+	</GamePatches>
   </Editors>
   <Other>
     <header>Sub-editors</header>
@@ -3426,9 +3546,9 @@ Uncheck this only to manually edit one or more tiles in the tileset.</descriptio
         <title>Goto Address</title>
         <description>Type the address (in hexadecimal) and hit enter to jump to the address in the ROM data below.</description>
       </tooltip>
-      <tooltip control="searchValues">
+      <tooltip control="searchBox">
         <title>Search for value(s)</title>
-        <description>Search for one or more byte values (in hexadecimal) in the ROM. Hit enter to move through every search result.</description>
+        <description>Search for one or more byte values (in hexadecimal) in the ROM. Hit enter to move through every search result. Click the button on the left of this box to switch which direction it moves, either forwards or backwards.</description>
       </tooltip>
       <tooltip control="baseConvDec">
         <title>Decimal Value</title>
@@ -3450,7 +3570,11 @@ Copying, pasting, and deleting values is supported with the typical keyboard sho
       </tooltip>
       <tooltip control="ROMOffsets">
         <title>ROM Offsets</title>
-        <description>Offsets of each row currently visible in the ROM data box to the right. Each row is 16 bytes long.</description>
+		  <description>Offsets of each row currently visible in the ROM data box to the right. Each row is 16 bytes long.</description>
+	  </tooltip>
+	  <tooltip control="compareButton">
+        <title>ROM Offsets</title>
+        <description>Compares the new changes (set in green text) from the current ROM data with the original ROM data. Toggling this option off will not set the text green.</description>
       </tooltip>
       <FAQ />
     </HexEditor>

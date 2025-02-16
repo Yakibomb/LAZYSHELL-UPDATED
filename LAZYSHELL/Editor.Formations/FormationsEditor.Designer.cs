@@ -61,14 +61,14 @@ namespace LAZYSHELL
             this.toolStripSeparator4,
             this.import,
             this.export,
+            this.toolStripSeparator12,
             this.toolStripDropDownButton1,
             this.clear,
-            this.toolStripSeparator12,
             this.helpTips,
             this.baseConvertor,
             this.toolStripSeparator1,
-            this.showFormations,
-            this.showPacks});
+            this.showPacks,
+            this.showFormations});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -100,7 +100,7 @@ namespace LAZYSHELL
             this.import.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.import.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.import.Name = "import";
-            this.import.Size = new System.Drawing.Size(27, 22);
+            this.import.Size = new System.Drawing.Size(29, 22);
             // 
             // importFormationsToolStripMenuItem
             // 
@@ -129,7 +129,7 @@ namespace LAZYSHELL
             this.export.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.export.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.export.Name = "export";
-            this.export.Size = new System.Drawing.Size(27, 22);
+            this.export.Size = new System.Drawing.Size(29, 22);
             // 
             // exportFormationsToolStripMenuItem
             // 
@@ -159,7 +159,7 @@ namespace LAZYSHELL
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(27, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
             // 
             // resetFormationToolStripMenuItem
             // 
@@ -188,7 +188,7 @@ namespace LAZYSHELL
             this.clear.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.clear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(28, 22);
+            this.clear.Size = new System.Drawing.Size(29, 22);
             // 
             // clearFormationsToolStripMenuItem
             // 
@@ -215,6 +215,7 @@ namespace LAZYSHELL
             // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
             this.helpTips.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -225,6 +226,7 @@ namespace LAZYSHELL
             // 
             // baseConvertor
             // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.baseConvertor.CheckOnClick = true;
             this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
             this.baseConvertor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -235,11 +237,13 @@ namespace LAZYSHELL
             // 
             // toolStripSeparator1
             // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // showFormations
             // 
+            this.showFormations.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.showFormations.Checked = true;
             this.showFormations.CheckOnClick = true;
             this.showFormations.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -253,6 +257,7 @@ namespace LAZYSHELL
             // 
             // showPacks
             // 
+            this.showPacks.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.showPacks.Checked = true;
             this.showPacks.CheckOnClick = true;
             this.showPacks.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -286,17 +291,18 @@ namespace LAZYSHELL
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip3);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainFormations_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "FormationsEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FORMATIONS - Lazy Shell";
+            this.Text = "FORMATIONS - LAZYSHELL++";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormationsEditor_FormClosing);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip3;

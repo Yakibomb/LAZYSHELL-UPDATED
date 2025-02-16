@@ -59,6 +59,7 @@ namespace LAZYSHELL
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditLabel_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.TextBox labelText;

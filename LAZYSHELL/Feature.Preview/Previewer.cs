@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Collections;
 using LAZYSHELL.Properties;
 using LAZYSHELL.ScriptsEditor;
+using System.Diagnostics;
 
 namespace LAZYSHELL
 {
@@ -47,30 +48,44 @@ namespace LAZYSHELL
         // Constructor
         public Previewer(int num, EType behavior)
         {
-            this.selectNum = num;
-            this.eventTriggers = new List<Entrance>();
-            this.behavior = behavior;
-            InitializeComponent();
-            InitializePreviewer();
-            this.emulator = GetEmulator();
-            if (num == 0)
-                this.selectNumericUpDown_ValueChanged(null, null);
-            UpdateGUI();
             if (settings.PreviewFirstTime)
             {
-                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     settings.PreviewFirstTime = false;
                     settings.Save();
                 }
             }
+            this.selectNum = num;
+            this.eventTriggers = new List<Entrance>();
+            this.behavior = behavior;
+            InitializeComponent();
+            InitializePreviewer();
+            if (!(this.emulator = GetEmulator()))
+            {
+                MessageBox.Show("The Previewer must contain an emulator file path.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
+            if (num == 0)
+                this.selectNumericUpDown_ValueChanged(null, null);
+            UpdateGUI();
             Do.AddShortcut(toolStrip1, Keys.F1, helpTips);
             Do.AddShortcut(toolStrip1, Keys.F2, baseConvertor);
             new ToolTipLabel(this, baseConvertor, helpTips);
         }
         public Previewer(int category, int index, bool automatic)
         {
+            if (settings.PreviewFirstTime)
+            {
+                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    settings.PreviewFirstTime = false;
+                    settings.Save();
+                }
+            }
             this.category = category;
             this.index = index;
             this.selectNum = index;
@@ -78,25 +93,30 @@ namespace LAZYSHELL
             this.behavior = EType.AnimationScript;
             InitializeComponent();
             InitializePreviewer();
-            this.emulator = GetEmulator();
+            if (!(this.emulator = GetEmulator()))
+            {
+                MessageBox.Show("The Previewer must contain an emulator file path.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
             if (index == 0)
                 this.selectNumericUpDown_ValueChanged(null, null);
             UpdateGUI();
-            if (settings.PreviewFirstTime)
-            {
-                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
-                    settings.PreviewFirstTime = false;
-                    settings.Save();
-                }
-            }
             Do.AddShortcut(toolStrip1, Keys.F1, helpTips);
             Do.AddShortcut(toolStrip1, Keys.F2, baseConvertor);
             new ToolTipLabel(this, baseConvertor, helpTips);
         }
         public Previewer(int index, bool automatic, EType behavior) // SPC Previewer
         {
+            if (settings.PreviewFirstTime)
+            {
+                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    settings.PreviewFirstTime = false;
+                    settings.Save();
+                }
+            }
             this.index = index;
             this.selectNum = index;
             this.eventTriggers = new List<Entrance>();
@@ -104,19 +124,15 @@ namespace LAZYSHELL
             this.automatic = automatic;
             InitializeComponent();
             InitializePreviewer();
-            this.emulator = GetEmulator();
+            if (!(this.emulator = GetEmulator()))
+            {
+                MessageBox.Show("The Previewer must contain an emulator file path.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
             if (index == 0)
                 this.selectNumericUpDown_ValueChanged(null, null);
             UpdateGUI();
-            if (settings.PreviewFirstTime)
-            {
-                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
-                    settings.PreviewFirstTime = false;
-                    settings.Save();
-                }
-            }
             Do.AddShortcut(toolStrip1, Keys.F1, helpTips);
             Do.AddShortcut(toolStrip1, Keys.F2, baseConvertor);
             new ToolTipLabel(this, baseConvertor, helpTips);
@@ -125,69 +141,84 @@ namespace LAZYSHELL
         }
         public void Reload(int num, EType behavior)
         {
+            if (settings.PreviewFirstTime)
+            {
+                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    settings.PreviewFirstTime = false;
+                    settings.Save();
+                }
+            }
             if (this.selectNum == num && this.behavior == behavior)
                 return;
             this.selectNum = num;
             this.eventTriggers = new List<Entrance>();
             this.behavior = behavior;
             InitializePreviewer();
-            this.emulator = GetEmulator();
+            if (!(this.emulator = GetEmulator()))
+            {
+                MessageBox.Show("The Previewer must contain an emulator file path.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
             if (this.selectIndex.Value == selectNum)
                 this.selectNumericUpDown_ValueChanged(null, null);
             UpdateGUI();
+        }
+        public void Reload(int category, int index, bool automatic)
+        {
             if (settings.PreviewFirstTime)
             {
-                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews.\nDoing so will yield unpredictable results. Do you understand?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     settings.PreviewFirstTime = false;
                     settings.Save();
                 }
             }
-        }
-        public void Reload(int category, int index, bool automatic)
-        {
             this.category = category;
             this.index = index;
             this.selectNum = index;
             this.eventTriggers = new List<Entrance>();
             this.behavior = EType.AnimationScript;
             InitializePreviewer();
-            this.emulator = GetEmulator();
+            if (!(this.emulator = GetEmulator()))
+            {
+                MessageBox.Show("The Previewer must contain an emulator file path.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
             if (index == 0)
                 this.selectNumericUpDown_ValueChanged(null, null);
             UpdateGUI();
+        }
+        public void Reload(int index, bool automatic, EType behavior)
+        {
             if (settings.PreviewFirstTime)
             {
-                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     settings.PreviewFirstTime = false;
                     settings.Save();
                 }
             }
-        }
-        public void Reload(int index, bool automatic, EType behavior)
-        {
             this.index = index;
             this.selectNum = index;
             this.eventTriggers = new List<Entrance>();
             this.behavior = behavior;
             this.automatic = automatic;
             InitializePreviewer();
-            this.emulator = GetEmulator();
+            if (!(this.emulator = GetEmulator()))
+            {
+                MessageBox.Show("The Previewer must contain an emulator file path.", "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
+            }
             if (index == 0)
                 this.selectNumericUpDown_ValueChanged(null, null);
             UpdateGUI();
-            if (settings.PreviewFirstTime)
-            {
-                DialogResult result = MessageBox.Show("The generated Preview ROM should not be used for anything other than Previews. Doing so will yield unpredictable results.\n\nDo you understand?", "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
-                    settings.PreviewFirstTime = false;
-                    settings.Save();
-                }
-            }
             if (automatic)
                 launchButton_Click(null, null);
         }
@@ -200,41 +231,40 @@ namespace LAZYSHELL
             this.level.Value = settings.PreviewLevel;
             if (behavior == EType.EventScript)
             {
-                this.Text = "PREVIEW EVENT - Lazy Shell";
+                this.Text = "PREVIEW EVENT - LAZYSHELL++";
                 this.label1.Text = "Event #";
                 this.selectIndex.Maximum = 4095;
                 this.groupBox2.Enabled = false;
             }
             else if (behavior == EType.Level)
             {
-                this.Text = "PREVIEW LEVEL - Lazy Shell";
+                this.Text = "PREVIEW LEVEL - LAZYSHELL++";
                 this.label1.Text = "Level #";
                 this.selectIndex.Maximum = 511;
                 this.groupBox2.Enabled = false;
             }
             else if (behavior == EType.MineCart)
             {
-                this.Text = "PREVIEW MINE CART - Lazy Shell";
+                this.Text = "PREVIEW MINE CART - LAZYSHELL++";
                 this.selectIndex.Enabled = false;
                 this.groupBox1.Enabled = false;
                 this.groupBox2.Enabled = false;
             }
             else if (behavior == EType.ActionScript)
             {
-                this.Text = "PREVIEW ACTION - Lazy Shell";
+                this.Text = "PREVIEW ACTION - LAZYSHELL++";
                 this.label1.Text = "Action #";
                 this.selectIndex.Maximum = 1023;
                 this.groupBox2.Enabled = false;
             }
             else if (behavior == EType.BattleScript)
             {
-                this.Text = "PREVIEW BATTLE - Lazy Shell";
+                this.Text = "PREVIEW BATTLE - LAZYSHELL++";
                 this.label1.Text = "Monster #";
                 this.selectIndex.Maximum = 255;
                 this.groupBox1.Enabled = false;
                 this.groupBox2.Enabled = true;
                 this.battleBG.Items.AddRange(Lists.Numerize(Lists.BattlefieldNames));
-                this.battleBG.Enabled = true;
                 this.battleBG.Enabled = true;
                 this.battleBG.SelectedIndex = settings.PreviewBattlefield;
             }
@@ -245,9 +275,23 @@ namespace LAZYSHELL
                 groupBox1.Enabled = false;
                 groupBox2.Enabled = false;
             }
+            else if (behavior == EType.Sprites)
+            {
+                this.Text = "PREVIEW SPRITES - LAZYSHELL++";
+                this.label1.Text = "Sprite #";
+                this.selectIndex.Maximum = 1023;
+                this.selectIndex.Value = settings.PreviewSprites;
+                groupBox1.Enabled = false;
+                groupBox2.Enabled = true;
+                this.battleBG.Items.AddRange(Lists.Numerize(Lists.BattlefieldNames));
+                this.battleBG.Enabled = true;
+                this.battleBG.SelectedIndex = settings.PreviewBattlefield;
+                //this.enableDebug.Checked = true;
+                this.enableDebug.Enabled = false;
+            }
             else if (behavior == EType.AnimationScript)
             {
-                this.Text = "PREVIEW ANIMATION - Lazy Shell";
+                this.Text = "PREVIEW ANIMATION - LAZYSHELL++";
                 this.label1.Text = "Monster #";
                 this.selectIndex.Maximum = 255;
                 if (category == 1)
@@ -317,6 +361,11 @@ namespace LAZYSHELL
             this.allyAccessory.SelectedIndex = Model.ItemNames.GetSortedIndex(Bits.StringToByte(settings.AllyEquipment, allyName.SelectedIndex * 3 + 2));
             //
             this.maxOutStats.Checked = settings.PreviewMaxStats;
+
+            alliesInParty.Items.Clear();
+            for (int i = 1; i < Model.Characters.Length; i++)
+                alliesInParty.Items.Add(Model.CharacterNames.GetUnsortedName(i));
+
             for (int i = 0; i < 4; i++)
                 alliesInParty.SetItemChecked(i, Bits.GetBit(settings.PreviewAllies, i));
             this.enableDebug.Checked = settings.EnableDebug;
@@ -365,7 +414,7 @@ namespace LAZYSHELL
         private void UpdateGUI()
         {
             this.emuPathTextBox.Text = this.emulatorPath;
-            this.romPathTextBox.Text = this.romPath;
+            this.romPathTextBox.Text = GetRomPath();
             this.selectIndex.Value = this.selectNum;
             this.eventListBox.Items.Clear();
             Entrance ent;
@@ -450,13 +499,13 @@ namespace LAZYSHELL
             else
             {
                 if (!rom)
-                    MessageBox.Show("There was a problem generating the preview rom", "LAZY SHELL");
+                    MessageBox.Show("There was a problem generating the preview rom", "LAZYSHELL++");
                 if (!emulator)
-                    MessageBox.Show("There is a problem with the emulator.\nSNES9X and ZSNESW are the only emulators supported.", "LAZY SHELL");
+                    MessageBox.Show("There is a problem with the emulator.\nSNES9X and ZSNESW are the only emulators supported.", "LAZYSHELL++");
                 if (!savestate)
-                    MessageBox.Show("There was a problem generating the preview save state.", "LAZY SHELL");
+                    MessageBox.Show("There was a problem generating the preview save state.", "LAZYSHELL++");
                 if (!eventchoice)
-                    MessageBox.Show("An invalid destination was selected to preview.", "LAZY SHELL");
+                    MessageBox.Show("An invalid destination was selected to preview.", "LAZYSHELL++");
             }
         }
         private bool GeneratePreviewRom()
@@ -472,24 +521,37 @@ namespace LAZYSHELL
             if (!((this.behavior == EType.EventScript || this.behavior == EType.ActionScript) &&
                 this.eventListBox.SelectedIndex < 0 || this.eventListBox.SelectedIndex >= this.eventTriggers.Count))
             {
-                if (this.behavior == EType.BattleScript)
-                    Model.Program.Monsters.Assemble();
-                if (this.behavior == EType.EventScript ||
-                    this.behavior == EType.ActionScript)
-                    Model.Program.EventScripts.Assemble();
-                if (this.behavior == EType.Level)
-                    Model.Program.Levels.Assemble();
-                if (this.behavior == EType.MineCart)
-                    Model.Program.MiniGames.Assemble();
-                if (this.behavior == EType.SPCTrack ||
-                    this.behavior == EType.SPCEvent ||
-                    this.behavior == EType.SPCBattle)
+                switch (this.behavior)
                 {
-                    Model.Program.Audio.Assemble(false);
-                    if (this.behavior == EType.SPCEvent)
-                        soundFX = Bits.GetBytes(Model.ROM, 0x042826, 0x1600);
-                    else if (this.behavior == EType.SPCBattle)
-                        soundFX = Bits.GetBytes(Model.ROM, 0x043E26, 0x1600);
+                    case EType.BattleScript:
+                        Model.Program.Monsters.Assemble();
+                        break;
+                    case EType.EventScript:
+                    case EType.ActionScript:
+                        Model.Program.EventScripts.Assemble();
+                        Model.Program.Levels.Assemble();        //might need to disable this, trying to fix solidity tiles not updating
+                        break;
+                    case EType.Level:
+                        Model.Program.Levels.Assemble();
+                        break;
+                    case EType.MineCart:
+                        Model.Program.MiniGames.Assemble();
+                        break;
+                    case EType.SPCTrack:
+                    case EType.SPCEvent:
+                    case EType.SPCBattle:
+                        Model.Program.Audio.Assemble(false);
+                        if (this.behavior == EType.SPCEvent)
+                            soundFX = Bits.GetBytes(Model.ROM, 0x042826, 0x1600);
+                        else if (this.behavior == EType.SPCBattle)
+                            soundFX = Bits.GetBytes(Model.ROM, 0x043E26, 0x1600);
+                        break;
+                    case EType.Sprites:
+                        Model.Program.Sprites.Assemble();
+                        break;
+                    case EType.Effects:
+                        Model.Program.Effects.Assemble();
+                        break;
                 }
                 PrepareImage();
                 // Backup filename
@@ -498,7 +560,7 @@ namespace LAZYSHELL
                 this.romPath = GetRomPath();
                 string oldFileName = Model.FileName;
                 Model.FileName = romPath;
-                ret = Model.WriteRom(); // Save temp rom
+                ret = Model.WriteRom(false); // Save temp rom WITHOUT backing it up
                 // Restore name
                 Model.FileName = oldFileName;
             }
@@ -516,7 +578,7 @@ namespace LAZYSHELL
             {
                 snes9x = Do.Contains(this.emulatorPath, "snes9x", StringComparison.CurrentCultureIgnoreCase);
                 string ext = snes9x ? ".000" : ".zst";
-                FileInfo fInfo = new FileInfo(Model.GetEditorPathWithoutFileName() + "RomPreviewBaseSave" + ext);
+                FileInfo fInfo = new FileInfo(Model.GetPathWithoutFileName(this.emulatorPath) + "RomPreviewBaseSave" + ext);
                 if (!fInfo.Exists)
                 {
                     byte[] lc;
@@ -524,7 +586,7 @@ namespace LAZYSHELL
                         lc = Resources.RomPreviewBaseSave;
                     else
                         lc = Resources.RomPreviewBaseSave1;
-                    File.WriteAllBytes(Model.GetEditorPathWithoutFileName() + "RomPreviewBaseSave" + ext, lc);
+                    File.WriteAllBytes(Model.GetPathWithoutFileName(this.emulatorPath) + "RomPreviewBaseSave" + ext, lc);
                 }
                 FileStream fs = fInfo.OpenRead();
                 BinaryReader br = new BinaryReader(fs);
@@ -600,7 +662,11 @@ namespace LAZYSHELL
                 if (behavior == EType.SPCEvent ||
                     behavior == EType.SPCBattle)
                     Buffer.BlockCopy(soundFX, 0, state, snes9x ? 0x5BDA4 : 0x33C13, 0x1600);
-                //
+                if (behavior == EType.Sprites)
+                {
+
+                }
+                    //
                 offset = snes9x ? 0x53C9D : 0x41533;
                 byte allyCount = 1;
                 for (byte i = 0, a = 1; i < alliesInParty.Items.Count; i++)
@@ -730,6 +796,41 @@ namespace LAZYSHELL
                 Model.Levels[0].LevelEvents.Music = 53;
                 new byte[] { 0x9C, (byte)this.index }.CopyTo(Model.ROM, 0x1E0C00);
             }
+            else if (this.behavior == EType.Sprites
+                || this.behavior == EType.Effects)
+            {
+                PrepareBattlePack(0xFFFF);
+                byte[] eventData = new byte[] { 0x4A, 0x00, 0x00, 0x00, 0xFE };
+                eventData[3] = (byte)this.battleBG.SelectedIndex;
+                eventData.CopyTo(Model.ROM, 0x1E0C00);
+            //debug menu stuff
+                Model.ROM[0x0106B6] = 0x80; //enables debug menu
+                Model.ROM[0x0106AF] = 0x80; //forces debug menu to open w/out pressing Start button
+                //
+                byte[] InjectedCodePointer = new byte[] { 0x30, 0xB1 }; //pointer (for JSR) to injected code
+                InjectedCodePointer.CopyTo(Model.ROM, 0x01AD85);
+                //Sets up the boilerplate code that allows us to jump to a custom index
+                byte[] InjectedCode = new byte[] {  //
+                    0xA9, 0x00, 0x00,           //LDA 0000
+                    0x8F, 0x2A, 0x05, 0x7E,     //STA 7E:052A (sets OBJ's sprite number to zero)
+                    0x20, 0x00, 0x00,           //JSR to nothing
+                    0x60 };
+                InjectedCode[1] = (byte)((int)selectIndex.Value & 255);
+                InjectedCode[2] = (byte)((int)selectIndex.Value >> 8);
+                // sets up pointers to open a debug menu option
+                byte[] DebugMenuOption = new byte[] { 0x1A, 0x07 };
+                byte[] OBJ = new byte[] { 0x1A, 0x07 };     //pointer (for JSR) to OBJ Debug Menu Option
+                byte[] EFFECTS = new byte[] { 0x25, 0x07 }; //pointer (for JSR) to EFFECTS Debug Menu Option
+                if (this.behavior == EType.Sprites) DebugMenuOption = OBJ;
+                else if (this.behavior == EType.Effects) DebugMenuOption = EFFECTS;
+                //Finish
+                DebugMenuOption.CopyTo(InjectedCode, 8);
+                InjectedCode.CopyTo(Model.ROM, 0x01B130);
+                //This prevents the menu number from being cleared in the beginning (allowing us to set a custom one)
+                byte[] blank = new byte[] { 0xEA, 0xEA, 0xEA }; //wipes code with NOP
+                blank.CopyTo(Model.ROM, 0x01A1CA);      //(for Animations) Removes STA 7E:052A
+                blank.CopyTo(Model.ROM, 0x01A3F9);      //(for Animations) Removes STA 7E:052A
+            }
             else
             {
                 Model.Levels[storage.Destination].LevelEvents.EntranceEvent = save;
@@ -752,13 +853,21 @@ namespace LAZYSHELL
         {
             if (formationNum == 0xFFFF)
             {
+                if (this.behavior != EType.AnimationScript)
+                {
+                    Model.Monsters[0].EntranceStyle = 0;
+                    int length = 0xA1D1;
+                    Model.Monsters[0].Assemble(ref length);
+                }
                 int formationIndex = 4;
                 byte monster1 = Model.Formations[formationIndex].Monsters[0];
                 byte xcoord = Model.Formations[formationIndex].X[0];
                 byte ycoord = Model.Formations[formationIndex].Y[0];
                 Model.Formations[formationIndex].X[0] = 167;
                 Model.Formations[formationIndex].Y[0] = 135;
-                Model.Formations[formationIndex].Monsters[0] = (byte)this.selectIndex.Value;
+                Model.Formations[formationIndex].Monsters[0] = 0;
+                if (this.behavior != EType.Sprites)
+                    Model.Formations[formationIndex].Monsters[0] = (byte)this.selectIndex.Value;
                 bool[] uses = new bool[8];
                 uses[0] = Model.Formations[formationIndex].Use[0];
                 uses[1] = Model.Formations[formationIndex].Use[1];
@@ -811,17 +920,17 @@ namespace LAZYSHELL
         private string GetRomPath()
         {
             if (settings.PreviewDynamicRomName)
-                return Model.GetPathWithoutFileName() + "PreviewROM_" + Model.GetFileNameWithoutPath();
+                return Model.GetPathWithoutFileName(this.emulatorPath) + "PreviewROM_" + Model.GetFileNameWithoutPath();
             else
-                return Model.GetEditorPathWithoutFileName() + "PreviewRom.smc";
+                return Model.GetPathWithoutFileName(this.emulatorPath) + "PreviewRom.smc";
         }
         private string GetStatePath()
         {
             string ext = snes9x ? ".000" : ".zst";
             if (settings.PreviewDynamicRomName)
-                return Model.GetPathWithoutFileName() + "PreviewROM_" + Model.GetFileNameWithoutPathOrExtension() + ext;
+                return Model.GetPathWithoutFileName(this.emulatorPath) + "PreviewROM_" + Model.GetFileNameWithoutPathOrExtension() + ext;
             else
-                return Model.GetEditorPathWithoutFileName() + "PreviewRom" + ext;
+                return Model.GetPathWithoutFileName(this.emulatorPath) + "PreviewRom" + ext;
         }
         private void LaunchEmulator(string emulatorPath, string romPath, string args)
         {
@@ -1196,7 +1305,7 @@ namespace LAZYSHELL
         private void reset_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to clear all equipement for all allies. Go ahead with process?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             settings.AllyEquipment = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
             settings.Save();

@@ -64,6 +64,16 @@ namespace LAZYSHELL
         {
         }
         // public functions
+
+        /// <summary>
+        /// Converts an array of symbols in Mario RPG binary format to a character array 
+        /// for viewing and editing in a user interface.
+        /// </summary>
+        /// <param name="input">The symbols to convert.</param>
+        /// <param name="byteView">Indicates whether the array's unparsed symbols will be 
+        /// converted to a byte string or a descriptive tag.</param>
+        /// <param name="dte">The compression table to use for converting compressed values to strings.</param>
+        /// <returns></returns>
         public char[] Decode(char[] text, bool byteView, string[] tables)
         {
             List<char> letters = new List<char>();
@@ -193,6 +203,16 @@ namespace LAZYSHELL
             }
             return letters.ToArray();
         }
+
+        /// <summary>
+        /// Converts an array of symbols which have been decoded for viewing and
+        /// editing in a user interface into Mario RPG binary format.
+        /// </summary>
+        /// <param name="input">The symbols to convert.</param>
+        /// <param name="byteView">Indicates whether the unparsed symbols in a formatted string 
+        /// should be interpreted as a byte string or a descriptive tag.</param>
+        /// <param name="dte">The compression table to use for converting strings to compressed values.</param>
+        /// <returns></returns>
         public char[] Encode(char[] text, bool byteView, string[] tables)
         {
             bool openQuote = true;

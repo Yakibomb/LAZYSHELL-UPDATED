@@ -106,7 +106,7 @@ namespace LAZYSHELL
             if (!this.Modified && !attacksEditor.Modified && !spellsEditor.Modified)
                 return;
             DialogResult result = MessageBox.Show(
-                "Attacks and spells have not been saved.\n\nWould you like to save changes?", "LAZY SHELL",
+                "Attacks and spells have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
                 Assemble();
@@ -136,7 +136,7 @@ namespace LAZYSHELL
         private void resetSpellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current spell. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             spellsEditor.Spell = new Spell(spellsEditor.Index);
             spellsEditor.RefreshSpells();
@@ -144,7 +144,7 @@ namespace LAZYSHELL
         private void resetAttackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the current attack. Go ahead with reset?",
-                "LAZY SHELL", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
             attacksEditor.Attack = new Attack(attacksEditor.Index);
             attacksEditor.RefreshAttacks();

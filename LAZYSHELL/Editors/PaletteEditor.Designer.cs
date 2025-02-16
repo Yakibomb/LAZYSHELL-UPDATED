@@ -100,7 +100,6 @@ namespace LAZYSHELL
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.alwaysOnTop = new System.Windows.Forms.CheckBox();
             this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
@@ -108,8 +107,6 @@ namespace LAZYSHELL
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.importPaletteSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportPaletteSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.autoUpdate = new System.Windows.Forms.CheckBox();
-            this.buttonUpdate = new System.Windows.Forms.Button();
             this.importPaletteSet = new System.Windows.Forms.ToolStripButton();
             this.exportPaletteSet = new System.Windows.Forms.ToolStripButton();
             this.invertSelectedCols = new System.Windows.Forms.Button();
@@ -117,9 +114,13 @@ namespace LAZYSHELL
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
+            this.baseConvertor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.autoUpdate = new System.Windows.Forms.ToolStripButton();
+            this.buttonUpdate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.alwaysOnTop = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPalette)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -175,7 +176,7 @@ namespace LAZYSHELL
             this.pictureBoxPalette.BackgroundImage = global::LAZYSHELL.Properties.Resources._transparent;
             this.pictureBoxPalette.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxPalette.Name = "pictureBoxPalette";
-            this.pictureBoxPalette.Size = new System.Drawing.Size(128, 64);
+            this.pictureBoxPalette.Size = new System.Drawing.Size(128, 80);
             this.pictureBoxPalette.TabIndex = 416;
             this.pictureBoxPalette.TabStop = false;
             this.pictureBoxPalette.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxPalette_Paint);
@@ -186,7 +187,7 @@ namespace LAZYSHELL
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 125);
+            this.tabControl1.Location = new System.Drawing.Point(12, 139);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(260, 276);
@@ -610,7 +611,7 @@ namespace LAZYSHELL
             this.colorizeApply.AutoSize = true;
             this.colorizeApply.Location = new System.Drawing.Point(6, 0);
             this.colorizeApply.Name = "colorizeApply";
-            this.colorizeApply.Size = new System.Drawing.Size(63, 17);
+            this.colorizeApply.Size = new System.Drawing.Size(64, 17);
             this.colorizeApply.TabIndex = 0;
             this.colorizeApply.Text = "Colorize";
             this.colorizeApply.UseVisualStyleBackColor = false;
@@ -863,7 +864,7 @@ namespace LAZYSHELL
             this.negative.AutoSize = true;
             this.negative.Location = new System.Drawing.Point(88, 6);
             this.negative.Name = "negative";
-            this.negative.Size = new System.Drawing.Size(101, 17);
+            this.negative.Size = new System.Drawing.Size(102, 17);
             this.negative.TabIndex = 1;
             this.negative.Text = "Negative Image";
             this.negative.Click += new System.EventHandler(this.negative_CheckedChanged);
@@ -894,7 +895,7 @@ namespace LAZYSHELL
             // 
             this.buttonSetToColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSetToColor.FlatAppearance.BorderSize = 2;
-            this.buttonSetToColor.Location = new System.Drawing.Point(351, 181);
+            this.buttonSetToColor.Location = new System.Drawing.Point(351, 195);
             this.buttonSetToColor.Name = "buttonSetToColor";
             this.buttonSetToColor.Size = new System.Drawing.Size(75, 23);
             this.buttonSetToColor.TabIndex = 8;
@@ -1015,7 +1016,7 @@ namespace LAZYSHELL
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonOK.Location = new System.Drawing.Point(231, 405);
+            this.buttonOK.Location = new System.Drawing.Point(231, 421);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 13;
@@ -1026,7 +1027,7 @@ namespace LAZYSHELL
             // buttonCancel
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCancel.Location = new System.Drawing.Point(312, 405);
+            this.buttonCancel.Location = new System.Drawing.Point(312, 421);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 14;
@@ -1037,7 +1038,7 @@ namespace LAZYSHELL
             // buttonReset
             // 
             this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonReset.Location = new System.Drawing.Point(393, 405);
+            this.buttonReset.Location = new System.Drawing.Point(393, 421);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(75, 23);
             this.buttonReset.TabIndex = 15;
@@ -1050,7 +1051,7 @@ namespace LAZYSHELL
             this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel13.Controls.Add(this.pictureBoxSwatchColor);
-            this.panel13.Location = new System.Drawing.Point(432, 169);
+            this.panel13.Location = new System.Drawing.Point(432, 183);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(36, 36);
             this.panel13.TabIndex = 9;
@@ -1069,24 +1070,10 @@ namespace LAZYSHELL
             this.panel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel11.Controls.Add(this.pictureBoxColorMap);
-            this.panel11.Location = new System.Drawing.Point(278, 211);
+            this.panel11.Location = new System.Drawing.Point(278, 225);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(190, 190);
             this.panel11.TabIndex = 10;
-            // 
-            // alwaysOnTop
-            // 
-            this.alwaysOnTop.AutoSize = true;
-            this.alwaysOnTop.Checked = true;
-            this.alwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.alwaysOnTop.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.alwaysOnTop.Location = new System.Drawing.Point(378, 3);
-            this.alwaysOnTop.Name = "alwaysOnTop";
-            this.alwaysOnTop.Size = new System.Drawing.Size(94, 15);
-            this.alwaysOnTop.TabIndex = 5;
-            this.alwaysOnTop.Text = "Always on top";
-            this.alwaysOnTop.UseVisualStyleBackColor = true;
-            this.alwaysOnTop.CheckedChanged += new System.EventHandler(this.alwaysOnTop_CheckedChanged);
             // 
             // trackBar3
             // 
@@ -1136,7 +1123,7 @@ namespace LAZYSHELL
             this.panel7.Controls.Add(this.pictureBoxPalette);
             this.panel7.Location = new System.Drawing.Point(24, 41);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(132, 68);
+            this.panel7.Size = new System.Drawing.Size(132, 84);
             this.panel7.TabIndex = 2;
             // 
             // contextMenuStrip3
@@ -1146,14 +1133,14 @@ namespace LAZYSHELL
             this.exportPaletteSetToolStripMenuItem});
             this.contextMenuStrip3.Name = "contextMenuStrip3";
             this.contextMenuStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuStrip3.Size = new System.Drawing.Size(174, 48);
+            this.contextMenuStrip3.Size = new System.Drawing.Size(177, 48);
             // 
             // importPaletteSetToolStripMenuItem
             // 
             this.importPaletteSetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importData;
             this.importPaletteSetToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importPaletteSetToolStripMenuItem.Name = "importPaletteSetToolStripMenuItem";
-            this.importPaletteSetToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.importPaletteSetToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.importPaletteSetToolStripMenuItem.Text = "Import palette set...";
             // 
             // exportPaletteSetToolStripMenuItem
@@ -1161,32 +1148,8 @@ namespace LAZYSHELL
             this.exportPaletteSetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportData;
             this.exportPaletteSetToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportPaletteSetToolStripMenuItem.Name = "exportPaletteSetToolStripMenuItem";
-            this.exportPaletteSetToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.exportPaletteSetToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.exportPaletteSetToolStripMenuItem.Text = "Export palette set...";
-            // 
-            // autoUpdate
-            // 
-            this.autoUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.autoUpdate.AutoSize = true;
-            this.autoUpdate.Checked = true;
-            this.autoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoUpdate.Location = new System.Drawing.Point(93, 411);
-            this.autoUpdate.Name = "autoUpdate";
-            this.autoUpdate.Size = new System.Drawing.Size(87, 17);
-            this.autoUpdate.TabIndex = 12;
-            this.autoUpdate.Text = "Auto-update";
-            this.autoUpdate.UseVisualStyleBackColor = false;
-            // 
-            // buttonUpdate
-            // 
-            this.buttonUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonUpdate.Location = new System.Drawing.Point(12, 405);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
-            this.buttonUpdate.TabIndex = 11;
-            this.buttonUpdate.Text = "Update";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
-            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
             // importPaletteSet
             // 
@@ -1256,9 +1219,13 @@ namespace LAZYSHELL
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importPaletteSet,
             this.exportPaletteSet,
-            this.toolStripSeparator1,
+            this.helpTips,
             this.baseConvertor,
-            this.helpTips});
+            this.toolStripSeparator1,
+            this.alwaysOnTop,
+            this.toolStripSeparator2,
+            this.autoUpdate,
+            this.buttonUpdate});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -1266,23 +1233,9 @@ namespace LAZYSHELL
             this.toolStrip2.TabIndex = 16;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
-            // 
-            // baseConvertor
-            // 
-            this.baseConvertor.CheckOnClick = true;
-            this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
-            this.baseConvertor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.baseConvertor.Name = "baseConvertor";
-            this.baseConvertor.Size = new System.Drawing.Size(23, 20);
-            this.baseConvertor.Text = "Base Convertor";
-            // 
             // helpTips
             // 
+            this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpTips.CheckOnClick = true;
             this.helpTips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.helpTips.Image = global::LAZYSHELL.Properties.Resources.help_small;
@@ -1292,19 +1245,78 @@ namespace LAZYSHELL
             this.helpTips.Size = new System.Drawing.Size(23, 20);
             this.helpTips.Text = "Help Tips";
             // 
+            // baseConvertor
+            // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.baseConvertor.CheckOnClick = true;
+            this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
+            this.baseConvertor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.baseConvertor.Name = "baseConvertor";
+            this.baseConvertor.Size = new System.Drawing.Size(23, 20);
+            this.baseConvertor.Text = "Base Convertor";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
+            // 
+            // autoUpdate
+            // 
+            this.autoUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.autoUpdate.Checked = true;
+            this.autoUpdate.CheckOnClick = true;
+            this.autoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.autoUpdate.Image = global::LAZYSHELL.Properties.Resources.synchronize;
+            this.autoUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.autoUpdate.Name = "autoUpdate";
+            this.autoUpdate.Size = new System.Drawing.Size(23, 20);
+            this.autoUpdate.Text = "Auto-Update";
+            // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.buttonUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonUpdate.Image = global::LAZYSHELL.Properties.Resources.update;
+            this.buttonUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(23, 20);
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.ToolTipText = "Manual Update";
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            // 
+            // alwaysOnTop
+            // 
+            this.alwaysOnTop.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.alwaysOnTop.Checked = true;
+            this.alwaysOnTop.CheckOnClick = true;
+            this.alwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.alwaysOnTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.alwaysOnTop.Image = global::LAZYSHELL.Properties.Resources.alwaysOnTop;
+            this.alwaysOnTop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.alwaysOnTop.Name = "alwaysOnTop";
+            this.alwaysOnTop.Size = new System.Drawing.Size(23, 20);
+            this.alwaysOnTop.Text = "Window Always on Top";
+            this.alwaysOnTop.CheckedChanged += new System.EventHandler(this.alwaysOnTop_CheckedChanged);
+            // 
             // PaletteEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 440);
-            this.Controls.Add(this.alwaysOnTop);
+            this.ClientSize = new System.Drawing.Size(480, 454);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.invertSelectedRows);
             this.Controls.Add(this.invertSelectedCols);
-            this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.panel7);
-            this.Controls.Add(this.autoUpdate);
             this.Controls.Add(this.panel13);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonSetToColor);
@@ -1383,7 +1395,6 @@ namespace LAZYSHELL
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
         #endregion
@@ -1450,8 +1461,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.TrackBar trackBarThreshold;
         private System.Windows.Forms.NumericUpDown threshold;
         private System.Windows.Forms.CheckBox thresholdApply;
-        private System.Windows.Forms.CheckBox autoUpdate;
-        private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.ToolStripButton importPaletteSet;
         private System.Windows.Forms.ToolStripButton exportPaletteSet;
         private System.Windows.Forms.NumericUpDown colorizeSaturation;
@@ -1460,7 +1469,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.NumericUpDown colorizeHue;
         private System.Windows.Forms.TrackBar colorizeHueBar;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.CheckBox alwaysOnTop;
         private System.Windows.Forms.Button invertSelectedCols;
         private System.Windows.Forms.Button invertSelectedRows;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -1480,5 +1488,9 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton baseConvertor;
         private System.Windows.Forms.ToolStripButton helpTips;
+        private System.Windows.Forms.ToolStripButton alwaysOnTop;
+        private System.Windows.Forms.ToolStripButton autoUpdate;
+        private System.Windows.Forms.ToolStripButton buttonUpdate;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

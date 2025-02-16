@@ -101,9 +101,6 @@
     <Setting Name="NotePathCustom" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PatchServerURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://home.comcast.net/~giangurgolo/patches/</Value>
-    </Setting>
     <Setting Name="PreviewAllies" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
@@ -145,6 +142,95 @@
     </Setting>
     <Setting Name="ZSNESPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ItemsSortItemList" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ItemsDrawItemIconsOnList" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ItemsFilterOutDUMMY" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PreviewSprites" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="EditorMainLayout" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="EditorMainLayoutList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;Allies&lt;/string&gt;
+  &lt;string&gt;Animations&lt;/string&gt;
+  &lt;string&gt;Attacks&lt;/string&gt;
+  &lt;string&gt;Audio&lt;/string&gt;
+  &lt;string&gt;Battlefields&lt;/string&gt;
+  &lt;string&gt;Dialogues&lt;/string&gt;
+  &lt;string&gt;Effects&lt;/string&gt;
+  &lt;string&gt;Event Scripts&lt;/string&gt;
+  &lt;string&gt;Formations&lt;/string&gt;
+  &lt;string&gt;Intro&lt;/string&gt;
+  &lt;string&gt;Items&lt;/string&gt;
+  &lt;string&gt;Levels&lt;/string&gt;
+  &lt;string&gt;Menus&lt;/string&gt;
+  &lt;string&gt;Mini-games&lt;/string&gt;
+  &lt;string&gt;Monsters&lt;/string&gt;
+  &lt;string&gt;Sprites&lt;/string&gt;
+  &lt;string&gt;World Maps&lt;/string&gt;
+  &lt;string&gt;System.Windows.Forms.ToolStripSeparator&lt;/string&gt;
+  &lt;string&gt;Notes&lt;/string&gt;
+  &lt;string&gt;Patches&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="EditorMainLayoutDefault" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;Allies&lt;/string&gt;
+  &lt;string&gt;Animations&lt;/string&gt;
+  &lt;string&gt;Attacks&lt;/string&gt;
+  &lt;string&gt;Audio&lt;/string&gt;
+  &lt;string&gt;Battlefields&lt;/string&gt;
+  &lt;string&gt;Dialogues&lt;/string&gt;
+  &lt;string&gt;Effects&lt;/string&gt;
+  &lt;string&gt;Event Scripts&lt;/string&gt;
+  &lt;string&gt;Formations&lt;/string&gt;
+  &lt;string&gt;Intro&lt;/string&gt;
+  &lt;string&gt;Items&lt;/string&gt;
+  &lt;string&gt;Levels&lt;/string&gt;
+  &lt;string&gt;Menus&lt;/string&gt;
+  &lt;string&gt;Mini-games&lt;/string&gt;
+  &lt;string&gt;Monsters&lt;/string&gt;
+  &lt;string&gt;Sprites&lt;/string&gt;
+  &lt;string&gt;World Maps&lt;/string&gt;
+  &lt;string&gt;System.Windows.Forms.ToolStripSeparator&lt;/string&gt;
+  &lt;string&gt;Notes&lt;/string&gt;
+  &lt;string&gt;Patches&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="EditorMainDockTrayHide" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EditorMain_showROMInfo" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PatchServerURLs" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;https://github.com/Yakibomb/SMRPG-Patch-Server/&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="PatchServerEnabled" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="OpenPatchesFirstTime" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PatchServerMaxImageDownload" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="PatchServerVerify" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -176,7 +176,7 @@ namespace LAZYSHELL
             this.Name = "PickInstruments";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "SELECT INSTRUMENTS - Lazy Shell";
+            this.Text = "SELECT INSTRUMENTS - LAZYSHELL++";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

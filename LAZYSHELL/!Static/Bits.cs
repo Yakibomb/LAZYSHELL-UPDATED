@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace LAZYSHELL
         {
             MessageBox.Show(
                 "Error accessing data at $" + offset + " in " + length + " byte array.\n\n" + "Please report this.",
-                "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         public static bool GetBit(byte[] data, int offset, int bit)
         {
@@ -579,13 +580,26 @@ namespace LAZYSHELL
         }
         public static int Find(byte[] data, byte[] value, int startOffset)
         {
-            for (int i = startOffset; i < data.Length; i++)
-            {
-                if (value.Length + i > data.Length)
-                    return -1;
-                if (Compare(value, GetBytes(data, i, value.Length)))
-                    return i;
-            }
+            return Find(data, value, startOffset, true);
+        }
+        public static int Find(byte[] data, byte[] value, int startOffset, bool searchLeftToRight)
+        {
+            if (searchLeftToRight)
+                for (int i = startOffset; i < data.Length; i++)
+                {
+                    if (value.Length + i > data.Length)
+                        return -1;
+                    if (Compare(value, GetBytes(data, i, value.Length)))
+                        return i;
+                }
+            else
+                for (int i = startOffset - value.Length - 3; i > 0; --i)
+                {
+                    if (value.Length + i < 0)
+                        return -1;
+                    if (Compare(value, GetBytes(data, i, value.Length)))
+                        return i;
+                }
             return -1;
         }
         public static short Reverse(short value)
@@ -613,6 +627,19 @@ namespace LAZYSHELL
             int temp = valueA;
             valueA = valueB;
             valueB = temp;
+        }
+
+        // EndsWith
+        public static bool EndsWith(char[] source, char[] value)
+        {
+            if (value.Length > source.Length)
+                return false;
+            for (int a = source.Length - 1, b = value.Length - 1; a >= 0 && b >= 0; a--, b--)
+            {
+                if (source[a] != value[b])
+                    return false;
+            }
+            return true;
         }
     }
 }

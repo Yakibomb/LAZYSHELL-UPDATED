@@ -28,6 +28,7 @@ namespace LAZYSHELL
         private EList elist;
         private ProjectDB project { get { return Model.Project; } set { Model.Project = value; } }
         private ComboBox name;
+        private TextBox textbox;
         private ToolStripNumericUpDown number;
         private bool initialized = false;
         private Point editLabelLocation
@@ -43,7 +44,7 @@ namespace LAZYSHELL
             }
         }
         private Timer timer = new Timer();
-                // constructor
+        // constructor
         public EditLabel(ToolStripControlHost name, ToolStripNumericUpDown number, string element, bool canEditLabel)
         {
             InitializeComponent();
@@ -58,8 +59,8 @@ namespace LAZYSHELL
                 }
                 catch
                 {
-                    TextBox textbox = (TextBox)name.Control;
-                    textbox.ContextMenuStrip = labelToolStrip;
+                    this.textbox = (TextBox)name.Control;
+                    this.textbox.ContextMenuStrip = labelToolStrip;
                 }
             }
             if (number != null)
@@ -135,7 +136,7 @@ namespace LAZYSHELL
             else if (elist != null && index >= elist.Labels.Length)
                 MessageBox.Show("Error loading label in \"" + elist.Name +
                     "\" for index " + index + ". Please report this.",
-                    "LAZY SHELL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
             this.Updating = false;
         }
         private bool CheckLoadedProject()
@@ -211,26 +212,33 @@ namespace LAZYSHELL
             else
             {
                 MessageBox.Show("Could not add element to project database.",
-                    "LAZY SHELL", MessageBoxButtons.OK);
+                    "LAZYSHELL++", MessageBoxButtons.OK);
             }
         }
         private void labelText_TextChanged(object sender, EventArgs e)
         {
             if (this.Updating)
                 return;
+
             if (elist == null)
                 return;
             elist.Indexes[index].Label = labelText.Text;
-            if (name != null)
+            if (name != null || textbox != null)
             {
-                int digits = name.Items.Count.ToString().Length;
-                for (int i = 0; i < name.Items.Count; i++)
-                    name.Items[i] = Lists.Numerize(elist.Indexes[i].Label, index, digits);
+                if (elist.Name == "Event Scripts"
+                    || elist.Name == "Action Scripts")
+                    textbox.Text = labelText.Text;
+                else
+                {
+                    int digits = name.Items.Count.ToString().Length;
+                    for (int i = 0; i < name.Items.Count; i++)
+                        name.Items[i] = Lists.Numerize(elist.Indexes[i].Label, i, digits);
+                }
             }
         }
         private void EditLabel_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Escape)
+            if (e.KeyData == Keys.Escape || e.KeyData == Keys.Enter)
             {
                 this.Hide();
             }
