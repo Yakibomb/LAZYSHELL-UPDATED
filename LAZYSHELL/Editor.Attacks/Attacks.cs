@@ -48,9 +48,10 @@ namespace LAZYSHELL
             this.attackStatusEffect.SetItemChecked(1, attacks[index].EffectSleep);
             this.attackStatusEffect.SetItemChecked(2, attacks[index].EffectPoison);
             this.attackStatusEffect.SetItemChecked(3, attacks[index].EffectFear);
-            this.attackStatusEffect.SetItemChecked(4, attacks[index].EffectMushroom);
-            this.attackStatusEffect.SetItemChecked(5, attacks[index].EffectScarecrow);
-            this.attackStatusEffect.SetItemChecked(6, attacks[index].EffectInvincible);
+            this.attackStatusEffect.SetItemChecked(4, attacks[index].EffectBerserk);
+            this.attackStatusEffect.SetItemChecked(5, attacks[index].EffectMushroom);
+            this.attackStatusEffect.SetItemChecked(6, attacks[index].EffectScarecrow);
+            this.attackStatusEffect.SetItemChecked(7, attacks[index].EffectInvincible);
             this.attackStatusUp.SetItemChecked(0, attacks[index].UpAttack);
             this.attackStatusUp.SetItemChecked(1, attacks[index].UpDefense);
             this.attackStatusUp.SetItemChecked(2, attacks[index].UpMagicAttack);
@@ -106,9 +107,10 @@ namespace LAZYSHELL
             attacks[index].EffectSleep = this.attackStatusEffect.GetItemChecked(1);
             attacks[index].EffectPoison = this.attackStatusEffect.GetItemChecked(2);
             attacks[index].EffectFear = this.attackStatusEffect.GetItemChecked(3);
-            attacks[index].EffectMushroom = this.attackStatusEffect.GetItemChecked(4);
-            attacks[index].EffectScarecrow = this.attackStatusEffect.GetItemChecked(5);
-            attacks[index].EffectInvincible = this.attackStatusEffect.GetItemChecked(6);
+            attacks[index].EffectBerserk = this.attackStatusEffect.GetItemChecked(4);
+            attacks[index].EffectMushroom = this.attackStatusEffect.GetItemChecked(5);
+            attacks[index].EffectScarecrow = this.attackStatusEffect.GetItemChecked(6);
+            attacks[index].EffectInvincible = this.attackStatusEffect.GetItemChecked(7);
         }
         private void attackStatusUp_SelectedIndexChanged(object sender, EventArgs e)
         {
