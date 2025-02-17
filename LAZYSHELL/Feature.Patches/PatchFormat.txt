@@ -40,6 +40,7 @@ Each extra patchinfo# is a separate version for your patch.
 patchinfo uses the same format for each, so you needn't wonder if there's anything more or less about writing each.
 Each patch can be accessed by a drop-down menu in the Patches window.
 
+The last version you add is the first version people see in the browser, i.e. adding up to "patchinfo4", patchinfo4 is the first shown.
 
 -------------------------------------------------------
     How to Setup "patchinfo" -- About the Parser
