@@ -11,8 +11,7 @@
     <RootNamespace>LAZYSHELL</RootNamespace>
     <AssemblyName>LAZYSHELL++</AssemblyName>
     <StartupObject>LAZYSHELL.Program</StartupObject>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>LAZYSHELL_icon.ico</ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -771,6 +770,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LAZYSHELL_icon.ico" />
     <Content Include="Resources\Arrows\heightDecrease.png" />
     <Content Include="Resources\Arrows\heightIncrease.png" />
     <Content Include="Resources\Arrows\insert.png" />

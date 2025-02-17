@@ -119,6 +119,12 @@
   </resheader>
   <data name="changeslog1.Text" xml:space="preserve">
     <value>===========================
+=======V2.0.1 CHANGELOG========
+===========================
+ATTACKS
+ - Fixed Berserk status in Monster Attacks not applying correctly
+
+===========================
 =======V2.0.0 CHANGELOG========
 ===========================
 MAIN
