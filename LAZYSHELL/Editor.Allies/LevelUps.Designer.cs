@@ -50,8 +50,7 @@ namespace LAZYSHELL
             this.expNeeded = new System.Windows.Forms.NumericUpDown();
             this.label124 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.characterName = new LAZYSHELL.ToolStripComboBox();
-            this.reset = new System.Windows.Forms.ToolStripButton();
+            this.calculatorButton = new System.Windows.Forms.ToolStripButton();
             this.levelNum = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -352,41 +351,21 @@ namespace LAZYSHELL
             this.toolStrip1.CanOverflow = false;
             this.toolStrip1.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.characterName,
-            this.reset});
+            this.calculatorButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(166, 25);
             this.toolStrip1.TabIndex = 0;
             // 
-            // characterName
+            // calculatorButton
             // 
-            this.characterName.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.characterName.ContextMenuStrip = null;
-            this.characterName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.characterName.DropDownHeight = 506;
-            this.characterName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.characterName.DropDownWidth = 120;
-            this.characterName.ItemHeight = 15;
-            this.characterName.Location = new System.Drawing.Point(7, 1);
-            this.characterName.Name = "characterName";
-            this.characterName.SelectedIndex = -1;
-            this.characterName.SelectedItem = null;
-            this.characterName.Size = new System.Drawing.Size(133, 22);
-            this.characterName.SelectedIndexChanged += new System.EventHandler(this.characterName_SelectedIndexChanged);
-            this.characterName.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.characterName_DrawItem);
-            // 
-            // reset
-            // 
-            this.reset.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.reset.Image = global::LAZYSHELL.Properties.Resources.reset;
-            this.reset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.reset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(23, 22);
-            this.reset.ToolTipText = "Reset";
-            this.reset.Click += new System.EventHandler(this.reset_Click);
+            this.calculatorButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.calculatorButton.Image = global::LAZYSHELL.Properties.Resources.calculator;
+            this.calculatorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.calculatorButton.Name = "calculatorButton";
+            this.calculatorButton.Size = new System.Drawing.Size(23, 22);
+            this.calculatorButton.Click += new System.EventHandler(this.calculatorButton_Click);
             // 
             // levelNum
             // 
@@ -438,7 +417,7 @@ namespace LAZYSHELL
             this.groupBox1.Size = new System.Drawing.Size(160, 131);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Level-up Status Increments";
+            this.groupBox1.Text = "Initial Level-up Increments";
             // 
             // groupBox2
             // 
@@ -449,7 +428,7 @@ namespace LAZYSHELL
             this.groupBox2.Size = new System.Drawing.Size(160, 48);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Level-up Experience Needed";
+            this.groupBox2.Text = "Experience Needed to Level";
             // 
             // groupBox3
             // 
@@ -468,7 +447,7 @@ namespace LAZYSHELL
             this.groupBox3.Size = new System.Drawing.Size(160, 131);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Level-up Bonus Increments";
+            this.groupBox3.Text = "Bonus Level-up Increments";
             // 
             // groupBox4
             // 
@@ -478,7 +457,7 @@ namespace LAZYSHELL
             this.groupBox4.Size = new System.Drawing.Size(160, 47);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Level-up learned spell";
+            this.groupBox4.Text = "Level-up Learned spell";
             // 
             // LevelUps
             // 
@@ -524,6 +503,7 @@ namespace LAZYSHELL
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.ComboBox levelUpSpellLearned;
@@ -550,13 +530,12 @@ namespace LAZYSHELL
         private System.Windows.Forms.NumericUpDown expNeeded;
         private System.Windows.Forms.Label label124;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private LAZYSHELL.ToolStripComboBox characterName;
         private System.Windows.Forms.NumericUpDown levelNum;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripButton reset;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ToolStripButton calculatorButton;
     }
 }

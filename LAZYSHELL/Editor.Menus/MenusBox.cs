@@ -57,7 +57,7 @@ namespace LAZYSHELL
             this.History = new History(this);
         }
         // functions
-        private void InitializeStrings()
+        public void InitializeStrings()
         {
             for (int i = 0; i < 9; i++)
             {

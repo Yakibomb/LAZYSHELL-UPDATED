@@ -83,7 +83,7 @@ namespace LAZYSHELL
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = settings.LastRomPath;
             openFileDialog1.Title = "Select a SMRPG ROM";
-            openFileDialog1.Filter = "SMC/SFC files (*.SMC; *.SFC)|*.SMC;*.SFC|All files (*.*)|*.*";
+            openFileDialog1.Filter = "SMC/SFC files (*.SMC; *.SFC)|*.SMC;*.SFC|SMRPG ROM Backup (*.BAK)|*.BAK|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
             //

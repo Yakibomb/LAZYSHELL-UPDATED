@@ -758,11 +758,11 @@ namespace LAZYSHELL
             this.toolStripSeparator9,
             this.openSettings,
             this.help,
+            this.info,
             this.toolStripSeparator6,
             this.layoutUpdate,
             this.hideDock,
-            this.showROMInfo,
-            this.info});
+            this.showROMInfo});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -942,6 +942,7 @@ namespace LAZYSHELL
             // 
             // info
             // 
+            this.info.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.info.Image = global::LAZYSHELL.Properties.Resources.mainBig;
             this.info.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.info.Name = "info";

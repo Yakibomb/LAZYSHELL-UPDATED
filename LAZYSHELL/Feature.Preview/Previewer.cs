@@ -363,11 +363,12 @@ namespace LAZYSHELL
             this.maxOutStats.Checked = settings.PreviewMaxStats;
 
             alliesInParty.Items.Clear();
-            for (int i = 1; i < Model.Characters.Length; i++)
+            for (int i = 0; i < Model.Characters.Length; i++)
                 alliesInParty.Items.Add(Model.CharacterNames.GetUnsortedName(i));
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < Model.Characters.Length; i++)
                 alliesInParty.SetItemChecked(i, Bits.GetBit(settings.PreviewAllies, i));
+
             this.enableDebug.Checked = settings.EnableDebug;
             //
             this.Updating = false;
@@ -529,7 +530,6 @@ namespace LAZYSHELL
                     case EType.EventScript:
                     case EType.ActionScript:
                         Model.Program.EventScripts.Assemble();
-                        Model.Program.Levels.Assemble();        //might need to disable this, trying to fix solidity tiles not updating
                         break;
                     case EType.Level:
                         Model.Program.Levels.Assemble();
@@ -659,6 +659,13 @@ namespace LAZYSHELL
                 // if previewing item, add item to inventory
                 if (behavior == EType.AnimationScript && category == 4)
                     state[snes9x ? 0x30509 : 0x20495] = (byte)index;
+                // else add new game inventory
+                else
+                {
+                    foreach (Slot ind in Model.Slots)
+                        state[snes9x ? 0x30509 + ind.Index: 0x20495 + ind.Index] = (byte)ind.Item;
+                }
+
                 if (behavior == EType.SPCEvent ||
                     behavior == EType.SPCBattle)
                     Buffer.BlockCopy(soundFX, 0, state, snes9x ? 0x5BDA4 : 0x33C13, 0x1600);
@@ -668,17 +675,17 @@ namespace LAZYSHELL
                 }
                     //
                 offset = snes9x ? 0x53C9D : 0x41533;
-                byte allyCount = 1;
-                for (byte i = 0, a = 1; i < alliesInParty.Items.Count; i++)
+                byte allyCount = 0;
+                for (byte i = 0, a = 0; i < alliesInParty.Items.Count; i++)
                 {
                     if (alliesInParty.GetItemChecked(i))
                     {
-                        state[offset + 0x33 + a] = (byte)(i + 1);
+                        state[offset + 0x33 + a] = (byte)(i);
                         a++; allyCount++;
                     }
                 }
                 state[offset + 0x32] = allyCount;
-                state[offset + 0x33] = 0;   // Mario always in party and in first slot
+                //state[offset + 0x33] = 0;   // Mario always in party and in first slot
                 state[offset + 0x3F] &= 0xFC;
                 state[offset + 0x3F] |= Math.Min((byte)3, allyCount);
                 //
@@ -1226,7 +1233,7 @@ namespace LAZYSHELL
             if (this.Updating || initializing)
                 return;
             byte bits = settings.PreviewAllies;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
                 Bits.SetBit(ref bits, i, alliesInParty.GetItemChecked(i));
             settings.PreviewAllies = bits;
             settings.Save();

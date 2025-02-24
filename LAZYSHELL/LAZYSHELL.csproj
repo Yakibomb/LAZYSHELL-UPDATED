@@ -11,8 +11,7 @@
     <RootNamespace>LAZYSHELL</RootNamespace>
     <AssemblyName>LAZYSHELL++</AssemblyName>
     <StartupObject>LAZYSHELL.Program</StartupObject>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>LAZYSHELL_icon.ico</ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -83,6 +82,19 @@
     <Compile Include="!Universal\Tilemap.cs" />
     <Compile Include="!Universal\ToolTipLabel.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Allies\NewGame.cs" />
+    <Compile Include="Editor.Allies\NewGames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Allies\NewGames.Designer.cs">
+      <DependentUpon>NewGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor.Allies\Coordinates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Allies\Coordinates.Designer.cs">
+      <DependentUpon>Coordinates.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor.Audio\Audio.cs">
       <SubType>Form</SubType>
@@ -224,6 +236,12 @@
     <Compile Include="Features\NewMessageBox.Designer.cs">
       <DependentUpon>NewMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\LevelUpsCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\LevelUpsCalculator.Designer.cs">
+      <DependentUpon>LevelUpsCalculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\ToolStripControls.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -261,11 +279,11 @@
     <Compile Include="Features\Search.Designer.cs">
       <DependentUpon>Search.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\StatusCalculator.cs">
+    <Compile Include="Features\DamageCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\StatusCalculator.Designer.cs">
-      <DependentUpon>StatusCalculator.cs</DependentUpon>
+    <Compile Include="Features\DamageCalculator.Designer.cs">
+      <DependentUpon>DamageCalculator.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\ZoomBox.cs">
       <SubType>Form</SubType>
@@ -280,11 +298,11 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Feature.Preview\Preview.cs" />
-    <Compile Include="Editor.Allies\Allies.cs">
+    <Compile Include="Editor.Allies\Characters.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editor.Allies\Allies.Designer.cs">
-      <DependentUpon>Allies.cs</DependentUpon>
+    <Compile Include="Editor.Allies\Characters.Designer.cs">
+      <DependentUpon>Characters.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor.Allies\LevelUps.cs">
       <SubType>Form</SubType>
@@ -595,6 +613,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Allies\NewGames.resx">
+      <DependentUpon>NewGames.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Allies\Coordinates.resx">
+      <DependentUpon>Coordinates.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editor.Audio\Audio.resx">
       <DependentUpon>Audio.cs</DependentUpon>
     </EmbeddedResource>
@@ -639,6 +665,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.Sprites\NPCPackets.resx">
       <DependentUpon>NPCPackets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\LevelUpsCalculator.resx">
+      <DependentUpon>LevelUpsCalculator.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Form1.resx">
       <SubType>Designer</SubType>
@@ -771,9 +801,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LAZYSHELL_icon.ico" />
     <Content Include="Resources\Arrows\heightDecrease.png" />
     <Content Include="Resources\Arrows\heightIncrease.png" />
     <Content Include="Resources\Arrows\insert.png" />
+    <None Include="Resources\Toggle\toggleScarecrow.png" />
+    <None Include="Resources\Test\animation.255.Mold.06.png" />
     <None Include="Resources\Arrows\jumpToRight.png" />
     <None Include="Resources\Arrows\jumpToLeft.png" />
     <Content Include="Resources\Arrows\moveall.png" />
@@ -1202,16 +1235,16 @@
       <DependentUpon>Search.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\StatusCalculator.resx">
-      <DependentUpon>StatusCalculator.cs</DependentUpon>
+    <EmbeddedResource Include="Features\DamageCalculator.resx">
+      <DependentUpon>DamageCalculator.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\ZoomBox.resx">
       <DependentUpon>ZoomBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editor.Allies\Allies.resx">
-      <DependentUpon>Allies.cs</DependentUpon>
+    <EmbeddedResource Include="Editor.Allies\Characters.resx">
+      <DependentUpon>Characters.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.Allies\AlliesEditor.resx">

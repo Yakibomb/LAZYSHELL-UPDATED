@@ -55,8 +55,6 @@ namespace LAZYSHELL
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.projectInformation = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.projectROMname = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -113,6 +111,7 @@ namespace LAZYSHELL
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.alwaysOnTop = new System.Windows.Forms.ToolStripButton();
             this.autoUpdate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.indexNumber)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panelIndexNumber.SuspendLayout();
@@ -462,8 +461,6 @@ namespace LAZYSHELL
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.projectROMname);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label8);
@@ -481,27 +478,10 @@ namespace LAZYSHELL
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Project Information";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 131);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(53, 13);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "File Name";
-            // 
-            // projectROMname
-            // 
-            this.projectROMname.Location = new System.Drawing.Point(72, 128);
-            this.projectROMname.Name = "projectROMname";
-            this.projectROMname.Size = new System.Drawing.Size(247, 21);
-            this.projectROMname.TabIndex = 11;
-            this.projectROMname.TextChanged += new System.EventHandler(this.projectROMname_TextChanged);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 158);
+            this.label9.Location = new System.Drawing.Point(6, 131);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 13);
             this.label9.TabIndex = 8;
@@ -547,10 +527,10 @@ namespace LAZYSHELL
             // 
             this.projectDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.projectDescription.Location = new System.Drawing.Point(72, 155);
+            this.projectDescription.Location = new System.Drawing.Point(72, 128);
             this.projectDescription.Multiline = true;
             this.projectDescription.Name = "projectDescription";
-            this.projectDescription.Size = new System.Drawing.Size(247, 318);
+            this.projectDescription.Size = new System.Drawing.Size(247, 345);
             this.projectDescription.TabIndex = 9;
             this.projectDescription.TextChanged += new System.EventHandler(this.projectDescription_TextChanged);
             // 
@@ -989,6 +969,7 @@ namespace LAZYSHELL
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newButton,
             this.loadButton,
+            this.toolStripSeparator5,
             this.save,
             this.saveAs,
             this.toolStripSeparator1,
@@ -1108,6 +1089,11 @@ namespace LAZYSHELL
             this.autoUpdate.Name = "autoUpdate";
             this.autoUpdate.Size = new System.Drawing.Size(23, 22);
             this.autoUpdate.Text = "Auto-update";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // Project
             // 
@@ -1247,8 +1233,7 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton save;
         private System.Windows.Forms.ToolStripButton refreshButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox projectROMname;
         private System.Windows.Forms.ToolStripButton autoUpdate;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

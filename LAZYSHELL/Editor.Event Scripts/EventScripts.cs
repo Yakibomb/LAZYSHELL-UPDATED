@@ -887,7 +887,7 @@ namespace LAZYSHELL
                     temp.Opcode == 0xDC || temp.Opcode == 0xDD || temp.Opcode == 0xDE)
                 {
                     e.Node.ContextMenuStrip = contextMenuStripGoto;
-                    goToToolStripMenuItem.Text = "Add to project database...";
+                    goToToolStripMenuItem.Text = "Add to Project Database...";
                     goToToolStripMenuItem.Click += new EventHandler(addMemoryToNotesDatabase_Click);
                 }
                 else if (temp.Opcode == 0xFD)
@@ -896,7 +896,7 @@ namespace LAZYSHELL
                         temp.Param1 == 0xDC || temp.Param1 == 0xDD || temp.Param1 == 0xDE)
                     {
                         e.Node.ContextMenuStrip = contextMenuStripGoto;
-                        goToToolStripMenuItem.Text = "Add to project database...";
+                        goToToolStripMenuItem.Text = "Add to Project Database...";
                         goToToolStripMenuItem.Click += new EventHandler(addMemoryToNotesDatabase_Click);
                     }
                 }
@@ -923,7 +923,7 @@ namespace LAZYSHELL
                     temp.Opcode == 0xDC || temp.Opcode == 0xDD || temp.Opcode == 0xDE)
                 {
                     e.Node.ContextMenuStrip = contextMenuStripGoto;
-                    goToToolStripMenuItem.Text = "Add to project database...";
+                    goToToolStripMenuItem.Text = "Add to Project Database...";
                     goToToolStripMenuItem.Click += new EventHandler(addMemoryToNotesDatabase_Click);
                 }
             }
@@ -1902,7 +1902,8 @@ namespace LAZYSHELL
                 Model.Program.CreateProjectWindow();
             Project note = Model.Program.Project;
             if (Model.Project == null)
-                note.LoadProject();
+                if (!note.LoadProject())
+                    return;
             if (Model.Project != null)
             {
                 note.AddingFromEditor("Memory Bits", address, addressBit, label, description);

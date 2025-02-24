@@ -97,7 +97,7 @@ namespace LAZYSHELL
     }
     public enum TilesetType
     {
-        Level, SideScrolling, Mode7, Title, WorldMap, WorldMapLogo, Opening
+        Level, SideScrolling, Mode7, Title, WorldMap, WorldMapLogo, Opening, GameSelectMenu, StarPiecesOverworldMenu, MenuBackground
     }
     public enum TilemapType
     {

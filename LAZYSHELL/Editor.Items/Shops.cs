@@ -149,7 +149,7 @@ namespace LAZYSHELL
                 return;
             Do.DrawName(
                 sender, e, new BattleDialoguePreview(), Model.ItemNames, Model.FontMenu,
-                Model.FontPaletteMenu.Palettes[0], 8, 10, 0, 128, false, false, Model.MenuBG_);
+                Model.FontPaletteMenu.Palettes[0], 8, 10, 0, 128, true, false, Model.MenuBG_);
         }
         private void shopItem_SelectedIndexChanged(object sender, EventArgs e)
         {

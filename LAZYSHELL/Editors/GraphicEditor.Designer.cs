@@ -76,9 +76,7 @@ namespace LAZYSHELL
             this.brushSize = new LAZYSHELL.ToolStripNumericUpDown();
             this.contiguous = new LAZYSHELL.ToolStripCheckBox();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.alwaysOnTop = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.autoUpdate = new System.Windows.Forms.ToolStripButton();
             this.buttonUpdate = new System.Windows.Forms.ToolStripButton();
             this.coordsLabel = new System.Windows.Forms.Label();
@@ -95,6 +93,8 @@ namespace LAZYSHELL
             this.panelButtons = new System.Windows.Forms.Panel();
             this.panelLabels = new System.Windows.Forms.Panel();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.panelColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxColor)).BeginInit();
             this.panelGraphics.SuspendLayout();
@@ -682,11 +682,6 @@ namespace LAZYSHELL
             this.helpTips.Size = new System.Drawing.Size(23, 20);
             this.helpTips.Text = "Help Tips";
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
-            // 
             // alwaysOnTop
             // 
             this.alwaysOnTop.Checked = true;
@@ -700,11 +695,6 @@ namespace LAZYSHELL
             this.alwaysOnTop.Text = "Window Always on Top";
             this.alwaysOnTop.ToolTipText = "Window Always on Top";
             this.alwaysOnTop.CheckedChanged += new System.EventHandler(this.alwaysOnTop_CheckedChanged);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
             // 
             // autoUpdate
             // 
@@ -873,22 +863,33 @@ namespace LAZYSHELL
             // 
             // toolStrip4
             // 
+            this.toolStrip4.AutoSize = false;
             this.toolStrip4.BackColor = System.Drawing.SystemColors.Control;
             this.toolStrip4.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonUpdate,
-            this.autoUpdate,
-            this.toolStripSeparator6,
             this.alwaysOnTop,
             this.toolStripSeparator2,
-            this.helpTips});
+            this.helpTips,
+            this.buttonUpdate,
+            this.toolStripSeparator6,
+            this.autoUpdate});
             this.toolStrip4.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip4.Location = new System.Drawing.Point(325, 2);
+            this.toolStrip4.Location = new System.Drawing.Point(371, 2);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip4.Size = new System.Drawing.Size(105, 23);
+            this.toolStrip4.Size = new System.Drawing.Size(59, 46);
             this.toolStrip4.TabIndex = 15;
             this.toolStrip4.Text = "toolStrip4";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 23);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 23);
             // 
             // GraphicEditor
             // 
@@ -931,7 +932,6 @@ namespace LAZYSHELL
             this.toolStrip4.ResumeLayout(false);
             this.toolStrip4.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
         #endregion
@@ -999,8 +999,8 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton alwaysOnTop;
         private System.Windows.Forms.ToolStripButton buttonUpdate;
         private System.Windows.Forms.ToolStripButton autoUpdate;
+        private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.ToolStrip toolStrip4;
     }
 }

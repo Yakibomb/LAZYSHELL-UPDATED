@@ -53,7 +53,7 @@ namespace LAZYSHELL
             //
         }
         // functions
-        private void SetTilesetImage()
+        public void SetTilesetImage()
         {
             int[] pixels = Do.TilesetToPixels(tileset.Tileset_tiles, 16, 9, 0, false);
             tilesetImage = Do.PixelsToImage(pixels, 256, 144);

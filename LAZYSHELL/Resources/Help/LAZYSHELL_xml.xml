@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="LAZYSHELL_xsl.xsl"?>
 <LAZYSHELL form="Editor" icon="icons/main.gif" title="LAZYSHELL++  Super Mario RPG Editor">
-  <Properties version="2.0.0" date="February 15, 2025" homepage="https://github.com/Yakibomb/LAZYSHELL-UPDATED/" author="Yaki, giangurgolo and Omega" />
+  <Properties version="2.1.0" date="February 15, 2025" homepage="https://github.com/Yakibomb/LAZYSHELL-UPDATED/" author="Yaki, giangurgolo and Omega" />
   <Read>
     <header>Read this first</header>
     <introduction>If this is your first time using Lazy Shell, please take the time to read the following advice:</introduction>
@@ -424,15 +424,15 @@ For example, the equipment and items have 30 slots, therefore they can store 30 
         </Timing>
       </Allies>
       <LevelUps form="LevelUps" icon="icons/openLevelUps.gif" title="Level-ups" type="subwindow">
-        <description>The level-ups subwindow allows the user to change the level-up status increments as well as bonus increments. A field for changing the spells learned at level-up is also available. The current character selected is the base index for all of the properties in this subwindow</description>
-        <tooltip control="characterName">
-          <title>Character</title>
-          <description>The character to edit by name.</description>
+        <description>The level-ups subwindow allows the user to change the level-up status increments, bonus level-up increments, and spells learned at each level. A calculator to total the sums of level-up's stats is also available. The current character selected is the base index for all of the properties in this subwindow.</description>
+        <tooltip control="calculatorButton">
+          <title>Level-Ups Calculator</title>
+          <description>A calculator that gives the sum of each level-up and bonuses. It also displays which spells are learned at each level.</description>
         </tooltip>
         <tooltip control="levelNum">
           <title>Level #</title>
           <description>The character's level to edit by number. All 5 characters have a total of 29 levels (levels 2 through 30) each.
-The level selected is the base index for all of the properties in the "Level-up Status Increments", "Level-up Bonus Increments" and "Level-up learned spell" panels.</description>
+The level selected is the base index for all of the properties in the "Initial Level-up Increments", "Bonus Level-up Increments" and "Level-up learned spell" panels.</description>
         </tooltip>
         <tooltip control="expNeeded">
           <title>Experience</title>
@@ -483,6 +483,21 @@ The level selected is the base index for all of the properties in the "Level-up 
           <description>The spell learned when the currently selected character reaches the currently selected level during a level-up.</description>
         </tooltip>
       </LevelUps>
+      <Coordinates form="Coordinates" icon="icons/numerals.gif" title="Level-ups" type="subwindow">
+        <description>The coordinates subwindow allows the user to edit the location of cursors in battle. Can also edit the scarecrow cursor location.</description>
+        <tooltip control="scarecrowButton">
+          <title>Scarecrow Toggle</title>
+          <description>Displays the Scarecrow version of the character. All scarecrow character variants have the same cursor locations.</description>
+        </tooltip>
+        <tooltip control="pictureBoxCharacter">
+          <title>Character Preview</title>
+          <description>The character's preview with the cursor location. Can click to drag the cursor to your desired location.</description>
+        </tooltip>
+        <tooltip control="cursorSpriteChoice">
+          <title>Cursor Type</title>
+          <description>The cursor you can edit the location for.</description>
+        </tooltip>
+      </Coordinates>
       <FAQ title="ALLIES EDITOR">
         <entry>
           <question>Is it possible to add new allies?</question>

@@ -13,12 +13,12 @@ namespace LAZYSHELL
         private string author; public string Author { get { return author; } set { author = value; } }
         private string date; public string Date { get { return date; } set { date = value; } }
         private string webpage; public string Webpage { get { return webpage; } set { webpage = value; } }
-        private string romname; public string ROMname { get { return romname; } set { romname = value; } }
         private string description; public string Description { get { return description; } set { description = value; } }
         private string generalNotes; public string OtherInfo { get { return generalNotes; } set { generalNotes = value; } }
         // element notes
         private List<EIndex> actionScripts; public List<EIndex> ActionScripts { get { return actionScripts; } set { actionScripts = value; } }
         private List<EIndex> attacks; public List<EIndex> Attacks { get { return attacks; } set { attacks = value; } }
+        private List<EIndex> allies; public List<EIndex> Allies { get { return allies; } set { allies = value; } }
         private List<EIndex> battlefields; public List<EIndex> Battlefields { get { return battlefields; } set { battlefields = value; } }
         private List<EIndex> dialogues; public List<EIndex> Dialogues { get { return dialogues; } set { dialogues = value; } }
         private List<EIndex> effects; public List<EIndex> Effects { get { return effects; } set { effects = value; } }
@@ -53,6 +53,7 @@ namespace LAZYSHELL
             // element notes
             actionScripts = new List<EIndex>();
             attacks = new List<EIndex>();
+            allies = new List<EIndex>();
             battlefields = new List<EIndex>();
             dialogues = new List<EIndex>();
             effects = new List<EIndex>();

@@ -11,6 +11,7 @@ namespace LAZYSHELL
         // class variables and accessors
         private string generalNotes; public string GeneralNotes { get { return generalNotes; } set { generalNotes = value; } }
         //
+        private ArrayList allies; public ArrayList Allies { get { return allies; } set { allies = value; } }
         private ArrayList levels; public ArrayList Levels { get { return levels; } set { levels = value; } }
         private ArrayList eventScripts; public ArrayList EventScripts { get { return eventScripts; } set { eventScripts = value; } }
         private ArrayList actionScripts; public ArrayList ActionScripts { get { return actionScripts; } set { actionScripts = value; } }

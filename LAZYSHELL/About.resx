@@ -119,6 +119,68 @@
   </resheader>
   <data name="changeslog1.Text" xml:space="preserve">
     <value>===========================
+=======V2.1.0 CHANGELOG========
+===========================
+ALLIES
+ - Gave it a new coat of paint.
+ - Added way to set location of target cursor arrow and ABXY
+ - Added level-up calculator to total the sum of level-up increments and show which spells are learned when.
+ - Fixed Clear clearing exp needed to level up when clearing a character
+ - Updated HelpTips
+
+MAIN TITLE
+ - Added title preview
+ - Can edit the locations for Exor, background, main title, and credits for both first boot-up title and after Exor title
+ - Can force the game to use the first boot title or the alternate Exor title
+
+ATTACKS
+ - Fixed Damage Calculator to only have one window open at a time
+
+TOOLS
+ - Previewer: Added way to switch out Mario
+ - Graphics Editor: Fixed bug where backup GFX would overwrite current GFX if the window open, then closed on another sprite index
+ - Restore: Included .SFC/.BAK file types to open
+ - Restore: Reworked Menus (again). Reassembles compressed data just like Menus editor does, instead of just copying chunks of data over.
+ - Restore: Fixed bug where opening a subeditor before would not update the subeditor with the new restored changes
+ - Hex Editor: Fixed crash when opening, typing in the searchBox, closing, then reopening
+ - Tile Editor: Updated toolbar
+ - Graphics Editor: Updated toolbar
+ - Palette Editor: Updated toolbar
+
+MAIN
+ - Included file type to open "SMRPG ROM Backup (*.BAK)"
+
+MENUS
+ - Fixed reload/closing ROM calling function Close(), causing the sub-editor not to close
+ - Fixed Star Pieces assets from not resetting when closing the editor
+ - Fixed Game Select Background palette carrying over from ROMs
+ - Added reset button
+ - Added tile editor
+ - Fixed banner palette being glitched in Preview
+ - Probably fixed more stuff here, but didn't write it down
+
+MONSTERS
+ - Fixed stats from updating by switching the monster's index after typing in a new stat value
+
+PROJECT NOTES
+ - Removed ROM name from notes
+ - No longer asks for ROM name. Instead, it checks to see if the note's file name matches the ROM's file name, and asks if it's ok to load.
+ - Fixed Allies not working
+ - Added hotkey Ctrl+S to save
+ - Fixed project notes file always loading without option being checked in Settings.
+ - The above change also fixes a few other bugs when updating labels.
+
+ITEMS
+ - Shops: Fixed last index not displaying "/// NOTHING ///"
+
+
+===========================
+=======V2.0.1 CHANGELOG========
+===========================
+ATTACKS
+ - Fixed Berserk status in Monster Attacks not applying correctly
+
+===========================
 =======V2.0.0 CHANGELOG========
 ===========================
 MAIN
@@ -405,7 +467,7 @@ WORLD MAPS
 - Added ability to view (not edit) Mario's map sprite</value>
   </data>
   <data name="richTextBox3.Text" xml:space="preserve">
-    <value>LAZYSHELL++ v2.0.0, based off source code of Lazy Shell v3.19.0
+    <value>LAZYSHELL++, based off source code of Lazy Shell v3.19.0
 Source code and software maintained 2021-2025, by Yaki
 
 Lazy Shell, and Lazy Shell's source code,

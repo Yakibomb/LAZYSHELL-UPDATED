@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static LAZYSHELL.MainTitle;
 
 namespace LAZYSHELL
 {
@@ -47,7 +48,7 @@ namespace LAZYSHELL
         }
         private void Intro_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!this.Modified)
+            if (!this.Modified || !opening.Modified || !mainTitle.Modified)
                 goto Close;
             DialogResult result = MessageBox.Show(
                 "Opening Credits and Main Title have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",
@@ -72,6 +73,73 @@ namespace LAZYSHELL
         Close:
             opening.CloseEditors();
             mainTitle.CloseEditors();
+        }
+
+        private void resetTitleGraphicsL1L2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void mainTitleL1L2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Main Title's Layer 1 and Layer 2.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.TitleData = null;
+            mainTitle.SetTilesetImages();
+        }
+
+        private void spriteGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Sprite Graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.TitleSpriteGraphics = null;
+            mainTitle.SetTilesetImages();
+        }
+        private void mainTitleTilesetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Main Title Tileset.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.TitleTileSet = null;
+            mainTitle.SetTilesetImages();
+        }
+
+        private void mainTitlePalettesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Main Title Palettes.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.TitlePalettes = null;
+            mainTitle.SetTilesetImages();
+        }
+
+        private void spritePalettesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Sprite Palettes.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.TitleSpritePalettes = null;
+            mainTitle.SetTilesetImages();
+        }
+
+        private void resetMainTitleCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Main Title Coordinates Locations.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            mainTitle.coords = new MainTitleCoordinates();
+            mainTitle.RefreshCoordinates();
+            mainTitle.SetTilesetImages();
+        }
+
+        private void resetOpeningIntroCardsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Opening Intro Title Cards.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.OpeningData = null;
+            opening.SetTilesetImage();
         }
     }
 }

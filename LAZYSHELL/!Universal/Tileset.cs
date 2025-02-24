@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using static LAZYSHELL.Mold;
+using System.Diagnostics.Eventing.Reader;
 
 namespace LAZYSHELL
 {
@@ -34,6 +36,7 @@ namespace LAZYSHELL
         private byte[] palette_bytes;
         public byte[] Subtile_Bytes { get { return subtile_bytes; } set { subtile_bytes = value; } }
         public byte[] Palette_Bytes { get { return palette_bytes; } set { palette_bytes = value; } }
+        
         // constructors
         // default tileset
         public Tileset(byte[] tileset_Bytes, byte[] graphics, PaletteSet paletteSet, int width, int height, TilesetType type)
@@ -144,6 +147,7 @@ namespace LAZYSHELL
                 Tileset_tiles[i] = new Tile(i);
             DrawTileset(subtile_bytes, Tileset_tiles, graphics, 0x20);
         }
+
         // assemblers
         public void Assemble(int width, int layer)
         {
@@ -230,7 +234,7 @@ namespace LAZYSHELL
                                 Subtile subtile = tile.Subtiles[s];
                                 if (subtile == null) continue;
                                 Bits.SetShort(tilesets_bytes[l], offset, (ushort)subtile.Index);
-                                tilesets_bytes[l][offset + 1] |= (byte)(subtile.Palette << 2);
+                                tilesets_bytes[l][offset + 1] |= (byte)((subtile.Palette & 0x07) << 2);
                                 Bits.SetBit(tilesets_bytes[l], offset + 1, 5, subtile.Priority1);
                                 Bits.SetBit(tilesets_bytes[l], offset + 1, 6, subtile.Mirror);
                                 Bits.SetBit(tilesets_bytes[l], offset + 1, 7, subtile.Invert);
@@ -272,6 +276,21 @@ namespace LAZYSHELL
                 {
                     Buffer.BlockCopy(tilesets_bytes[0], 0, Model.OpeningData, 0, 0x480);
                     Buffer.BlockCopy(graphics, 0, Model.OpeningData, 0x480, 0x1340);
+                }
+                else if (Type == TilesetType.GameSelectMenu)
+                {
+                    Buffer.BlockCopy(tilesets_bytes[0], 0, Model.GameSelectTileset, 0, 0x800);
+                    Buffer.BlockCopy(graphics, 0, Model.GameSelectGraphics, 0, 0x2000);
+                }
+                else if (Type == TilesetType.StarPiecesOverworldMenu)
+                {
+                    Buffer.BlockCopy(tilesets_bytes[0], 0, Model.OverworldStarPiecesMenuTileset, 0, 0x800);
+                    Buffer.BlockCopy(graphics, 0, Model.WorldMapLogos, 0, 0x2000);
+                }
+                else if (Type == TilesetType.MenuBackground)
+                {
+                    Buffer.BlockCopy(tilesets_bytes[0], 0, Model.MenuBGTileset, 0, 0x800);
+                    Buffer.BlockCopy(graphics, 0, Model.MenuBGGraphics, 0, 0x2000);
                 }
             }
             else

@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using LAZYSHELL.Properties;
+using static LAZYSHELL.MenusEditor;
 
 namespace LAZYSHELL
 {
     public partial class Restore : NewForm
     {
         private Settings settings = Settings.Default;
-        private byte[] romDst { get { return Model.ROM; } set { Model.ROM = value; } }
+        private byte[] rom;
+        private byte[] romDst { get { if (rom == null) rom = Model.ROM; return rom; } set { rom = value; } }
         private byte[] romSrc = null;
         // constructor
         public Restore()
@@ -26,8 +29,8 @@ namespace LAZYSHELL
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = settings.LastRomPath;
             openFileDialog1.Title = "Select a SMRPG ROM";
-            openFileDialog1.Filter = "SMC files (*.SMC)|*.SMC|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.Filter = "SMC/SFC/BAK files (*.SMC; *.SFC; *.BAK)|*.SMC;*.SFC;*.BAK|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
             {
@@ -259,39 +262,124 @@ namespace LAZYSHELL
             {
                 Buffer.BlockCopy(romSrc, 0x3EEF00, romDst, 0x3EEF00, 0x3EF700 - 0x3EEF00);    // menu texts
             }
-            if (elements.Nodes["Menus"].Nodes["Graphics"].Checked)
-            {
-                Buffer.BlockCopy(romSrc, 0x3E0002, romDst, 0x3E0002, 0x3E0008 - 0x3E0002);    // pointers of compressed data GFX (MenuBGGraphics, MenuFrameGraphics, MenuCursorGraphics)
-                Buffer.BlockCopy(romSrc, 0x3E000C, romDst, 0x3E000C, 0x3E000E - 0x3E000C);    // pointers of compressed data PAL (MenuPalettes)
-                //ShopBGPalette: 0x3E9A05
-                //MenuBGPalette: 0x3E9A28
-                //GameSelectGraphics 0x3E9A4A
-                //GameSelectPalettes 0x3EB510 (end 0x3EB624)
-                //Model.Compress(Model.GameSelectGraphics, 0x3E9A49, 0x2000, 0x3EB2CD - 0x3E9A49, "Game select graphics");
-                //Model.Compress(Model.GameSelectTileset, 0x3EB2CD, 0x800, 0x3EB50F - 0x3EB2CD, "Game select tileset");
-                //Model.Compress(Model.GameSelectPalettes, 0x3EB50F, 0x200, 0x3EB624 - 0x3EB50F, "Game select palettes");
-                //Model.Compress(Model.GameSelectSpeakers, 0x3EB624, 0x600, 0x3EB94A - 0x3EB624, "Game select speakers");
-                Buffer.BlockCopy(romSrc, 0x3E9A05, romDst, 0x3E9A05, 0x3EB94A - 0x3E9A05);    // compressed data (everything above, GameSelectSpeakers, GameSelectBGPalette)
-                Buffer.BlockCopy(romSrc, 0x3E0E68, romDst, 0x3E0E68, 0x3E2606 - 0x3E0E68);    // compressed data (MenuBGGraphics, other)
-                //Buffer.BlockCopy(romSrc, 0x3E99E0, romDst, 0x3E99E0, 0x3EB94A - 0x3E99E0);    // compressed data (GameSelectSpeakers, GameSelectBGPalette)
-            }
-            if (elements.Nodes["Menus"].Nodes["Tilesets"].Checked)
-            {
-                Buffer.BlockCopy(romSrc, 0x3E0008, romDst, 0x3E0008, 0x02);                   // pointers of compressed data (MenuBGTileset)
-                Buffer.BlockCopy(romSrc, 0x3E2869, romDst, 0x3E2869, 0x3E2C80 - 0x3E2869);    // compressed data (MenuBGTileset)
-
-                Buffer.BlockCopy(romSrc, 0x3E0034, romDst, 0x3E0034, 0x02);                   // pointers of compressed data (GameSelectTileset)
-                Buffer.BlockCopy(romSrc, 0x3EB2CE, romDst, 0x3EB2CE, 0x3EB50F - 0x3EB2CE);    // compressed data (GameSelectTileset)
-
-                Buffer.BlockCopy(romSrc, 0x3E000A, romDst, 0x3E000A, 0x02);                   // pointers of compressed data (OverworldStarPiecesMenuTileset)
-                Buffer.BlockCopy(romSrc, 0x3E2C81, romDst, 0x3E2C81, 0x3E2D53 - 0x3E2C81);    // compressed data (OverworldStarPiecesMenuTileset)
-            }
-            if (elements.Nodes["Menus"].Nodes["Misc"].Checked)
+            if (elements.Nodes["Menus"].Nodes["Misc"].Nodes["Game Select Music Track"].Checked)
             {
                 romDst[0x03462D] = romSrc[0x03462D]; // music track
+            }
+            if (elements.Nodes["Menus"].Nodes["Misc"].Nodes["Game Select Cursor Sequences"].Checked)
+            {
                 Buffer.BlockCopy(romSrc, 0x0340AA, romDst, 0x0340AA, 0x035023 - 0x0340AA);    // game select sprite sequences
+            }
+            if (elements.Nodes["Menus"].Nodes["Misc"].Nodes["Overworld Main Menu List"].Checked)
+            {
                 Buffer.BlockCopy(romSrc, 0x03170D, romDst, 0x03170D, 0x09);     // Overworld Menu List
+            }
+            if (elements.Nodes["Menus"].Nodes["Misc"].Nodes["Status Menu X Coordinates"].Checked)
+            {
                 Buffer.BlockCopy(romSrc, 0x03327A, romDst, 0x03327A, 0x03328F - 0x03327A);    // X coord of some texts
+            }
+            if (elements.Nodes["Menus"].Nodes["Graphics"].Checked || elements.Nodes["Menus"].Nodes["Tilesets"].Checked || elements.Nodes["Menus"].Nodes["Palettes"].Checked)
+            {
+                bool DoGFX, DoTilesets, DoPalettes;
+                DoGFX = elements.Nodes["Menus"].Nodes["Graphics"].Checked;
+                DoTilesets = elements.Nodes["Menus"].Nodes["Tilesets"].Checked;
+                DoPalettes = elements.Nodes["Menus"].Nodes["Palettes"].Checked;
+
+                byte[] dummy = romDst; //initializes it if it hasn't already
+                Model.ClearModel();
+                Model.ROM = romSrc;
+
+                if (DoGFX)
+                {
+                    CursorSprite[] CursorSprites = new CursorSprite[5];
+                    for (int i = 0; i < CursorSprites.Length; i++)
+                        CursorSprites[i] = new CursorSprite(i);
+                    for (int i = 0; i < CursorSprites.Length; i++)
+                        CursorSprites[i].Assemble();
+                }
+                // Graphics
+                if (DoGFX) Model.Compress(Model.GameSelectGraphics, 0x3E9A49, 0x2000, 0x3EB2CD - 0x3E9A49, "Game select graphics");
+                if (DoTilesets) //"Game select tileset"
+                {
+                    //Model.Compress(Model.GameSelectTileset, 0x3EB2CD, 0x800, 0x3EB50F - 0x3EB2CD, "Game select tileset");
+                    byte[] block = new byte[0x3EB50F - 0x3EB2CD];
+                    Buffer.BlockCopy(romSrc, 0x3EB2CD, block, 0, block.Length);
+                    Buffer.BlockCopy(block, 0, romDst, 0x3EB2CD, block.Length);
+                }
+                if (DoPalettes) Model.Compress(Model.GameSelectPalettes, 0x3EB50F, 0x200, 0x3EB624 - 0x3EB50F, "Game select palettes");
+                if (DoGFX) Model.Compress(Model.GameSelectSpeakers, 0x3EB624, 0x600, 0x3EB94A - 0x3EB624, "Game select speakers");
+
+
+                // The rest of GFX/Tilesets/Palettes
+                int offset = 0x4C;
+                byte[] dst = new byte[0x2E81];
+                // copy uncompressed world map logo graphics
+                Bits.SetShort(dst, 0x00, 0x4C);
+                Buffer.BlockCopy(romDst, 0x3E004C, dst, 0x4C, 0xE1C);
+                offset += 0xE1C;
+                //
+                Model.ROM = DoGFX ? romSrc : romDst; dummy = Model.MenuBGGraphics; Model.ROM = romDst;
+                Bits.SetShort(dst, 0x02, offset);
+                Model.Compress(dummy, dst, ref offset, 0x2E81, "BG graphics");
+
+                Model.ROM = DoGFX ? romSrc : romDst; dummy = Model.MenuFrameGraphics; Model.ROM = romDst;
+                Bits.SetShort(dst, 0x04, offset);
+                Model.Compress(dummy, dst, ref offset, 0x2E81, "Frame graphics");
+
+                Model.ROM = DoGFX ? romSrc : romDst; dummy = Model.MenuCursorGraphics; Model.ROM = romDst;
+                Bits.SetShort(dst, 0x06, offset);
+                Model.Compress(dummy, dst, ref offset, 0x2E81, "Cursor graphics");
+
+                Model.ROM = DoTilesets ? romSrc : romDst; dummy = Model.MenuBGTileset; Model.ROM = romDst;
+                Bits.SetShort(dst, 0x08, offset);
+                Model.Compress(dummy, dst, ref offset, 0x2E81, "BG tileset");
+
+                Model.ROM = DoTilesets ? romSrc : romDst; dummy = Model.OverworldStarPiecesMenuTileset; Model.ROM = romDst;
+                Bits.SetShort(dst, 0x0A, offset);
+                Model.Compress(dummy, dst, ref offset, 0x2E81, "Star Pieces Overworld");
+
+                Model.ROM = DoPalettes ? romSrc : romDst; dummy = Model.MenuPalettes; Model.ROM = romDst;
+                Bits.SetShort(dst, 0x0C, offset);
+                Model.Compress(dummy, dst, ref offset, 0x2E81, "Menu palettes");
+
+                // set pointers (just the first 7 for menu data)
+                Buffer.BlockCopy(dst, 0, romDst, 0x3E0000, 0x0E);
+                // store compressed data (starting at start of data)
+                Buffer.BlockCopy(dst, 0x4C, romDst, 0x3E004C, dst.Length - 0x4C);
+
+                // Palettes
+                if (elements.Nodes["Menus"].Nodes["Palettes"].Checked)
+                {
+                    Model.ROM = romSrc;
+                    
+                    PaletteSet dummypal;
+                    dummypal = Model.GameSelectPaletteSet;
+                    if (dummypal.BUFFER.Length == romDst.Length) dummypal.BUFFER = romDst;
+                    dummypal = Model.GameSelectBGPalette;
+                    if (dummypal.BUFFER.Length == romDst.Length) dummypal.BUFFER = romDst;
+                    dummypal = Model.FontPaletteMenu;
+                    if (dummypal.BUFFER.Length == romDst.Length) dummypal.BUFFER = romDst;
+                    dummypal = Model.MenuBGPalette;
+                    if (dummypal.BUFFER.Length == romDst.Length) dummypal.BUFFER = romDst;
+                    dummypal = Model.ShopBGPalette;
+                    if (dummypal.BUFFER.Length == romDst.Length) dummypal.BUFFER = romDst;
+                    dummypal = Model.OverworldStarPiecesMenuPalette;
+                    if (dummypal.BUFFER.Length == romDst.Length) dummypal.BUFFER = romDst;
+                    dummypal = Model.CursorPaletteSet;
+                    if (dummypal.BUFFER.Length == romDst.Length) dummypal.BUFFER = romDst;
+
+
+                    Model.ROM = romDst;
+                    Model.GameSelectPaletteSet.Assemble();
+                    Model.GameSelectBGPalette.Assemble();
+                    Model.FontPaletteMenu.Assemble(Model.MenuPalettes, 0);
+                    Model.MenuBGPalette.Assemble();
+                    Model.ShopBGPalette.Assemble();
+                    Model.OverworldStarPiecesMenuPalette.Assemble(Model.MenuPalettes, 0xC0);
+                    Model.CursorPaletteSet.Assemble(Model.MenuPalettes, 0x100);
+                }
+
+                Model.ROM = romDst;
             }
             // Mini-games
             if (elements.Nodes["MiniGames"].Nodes["MineCarts"].Checked)
@@ -340,8 +428,13 @@ namespace LAZYSHELL
             {
                 Buffer.BlockCopy(romSrc, 0x3E90A7, romDst, 0x3E90A7, 0x1FB); // world map sprites (Mario, location point) graphics
             }
+            //
+            // This fixes the bug where opening any subeditor before Restore would not update the subeditor with new restored changes
+            Model.ClearModel();
+            //
             this.Close();
         }
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();

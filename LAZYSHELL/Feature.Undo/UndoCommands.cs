@@ -341,7 +341,6 @@ namespace LAZYSHELL.Undo
             this.form = form;
             this.index = form.Index;
         }
-        //
         public void Execute()
         {
             if (tileset != null)

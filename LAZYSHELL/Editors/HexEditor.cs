@@ -85,7 +85,11 @@ namespace LAZYSHELL
             Do.AddShortcut(toolStrip2, Keys.F1, helpTips);
             new ToolTipLabel(this, null, helpTips);
             //
-            searchBox_Leave(null, null);
+            if (!searchBox.IsDisposed && searchBox.Text == "")
+            {
+                searchBox.Text = isSearchLeftToRight ? "Find (Right)" : "Find (Left)";
+                searchBox.ForeColor = SystemColors.ControlDark;
+            }
         }
         #region Functions
         public void ClearMemory()
@@ -583,7 +587,6 @@ namespace LAZYSHELL
         {
             if (!searchBoxEnter)
             {
-                searchBox.CharacterCasing = CharacterCasing.Upper;
                 searchBox.ForeColor = SystemColors.WindowText;
             }
             searchBoxEnter = true;
@@ -704,7 +707,6 @@ namespace LAZYSHELL
         {
             if (searchBox.Text == "")
             {
-                searchBox.CharacterCasing = CharacterCasing.Normal;
                 searchBox.Text = isSearchLeftToRight ? "Find (Right)" : "Find (Left)";
                 searchBox.ForeColor = SystemColors.ControlDark;
                 searchBoxEnter = false;
@@ -716,7 +718,6 @@ namespace LAZYSHELL
             if (!searchBoxEnter)
             {
                 searchBox.Text = "";
-                searchBox.CharacterCasing = CharacterCasing.Upper;
                 searchBox.ForeColor = SystemColors.WindowText;
             }
             searchBoxEnter = true;

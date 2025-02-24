@@ -187,8 +187,8 @@ namespace LAZYSHELL
             this.length = length;
             this.startRow = startRow;
             this.currentPalette = startRow;
-            //if (!Bits.Compare(graphics, graphicsBackup))
-            //    graphicsBackup = Bits.Copy(graphics);
+            if (!Bits.Compare(graphics, graphicsBackup))
+                graphicsBackup = Bits.Copy(graphics);
             this.graphics = graphics;
             this.paletteSet = paletteSet;
             this.format = format;
@@ -215,8 +215,8 @@ namespace LAZYSHELL
             this.startRow = startRow;
             this.startCol = startCol;
             this.currentPalette = startRow;
-            //if (!Bits.Compare(character.Graphics, graphicsBackup))
-            //    graphicsBackup = Bits.Copy(character.Graphics);
+            if (!Bits.Compare(character.Graphics, graphicsBackup))
+                graphicsBackup = Bits.Copy(character.Graphics);
             this.character = character;
             this.graphics = character.Graphics;
             this.paletteSet = paletteSet;

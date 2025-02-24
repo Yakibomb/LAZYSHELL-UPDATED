@@ -45,9 +45,6 @@ namespace LAZYSHELL
             this.length = length;
             Disassemble();
         }
-        public PaletteSet()
-        {
-        }
         // assemblers
         private void Disassemble()
         {

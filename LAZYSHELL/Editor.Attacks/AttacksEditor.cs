@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LAZYSHELL.Properties;
+using static LAZYSHELL.NotesDB;
 
 namespace LAZYSHELL
 {
@@ -16,6 +17,7 @@ namespace LAZYSHELL
         private Settings settings = Settings.Default;
         public Spells spellsEditor;
         public Attacks attacksEditor;
+        public DamageCalculator calculator;
         // constructor
         public AttacksEditor()
         {
@@ -130,8 +132,10 @@ namespace LAZYSHELL
         }
         private void damageCalculator_Click(object sender, EventArgs e)
         {
-            StatusCalculator calculator = new StatusCalculator();
+            if (calculator == null || !calculator.Visible)
+                calculator = new DamageCalculator();
             calculator.Show();
+            calculator.BringToFront();
         }
         private void resetSpellToolStripMenuItem_Click(object sender, EventArgs e)
         {

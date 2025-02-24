@@ -73,6 +73,16 @@ namespace LAZYSHELL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap _BowserCameraGawk {
+            get {
+                object obj = ResourceManager.GetObject("_BowserCameraGawk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap _switch {
             get {
                 object obj = ResourceManager.GetObject("_switch", resourceCulture);
@@ -3888,6 +3898,16 @@ namespace LAZYSHELL.Properties {
         public static System.Drawing.Bitmap TITLE_FG {
             get {
                 object obj = ResourceManager.GetObject("TITLE_FG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap toggleScarecrow {
+            get {
+                object obj = ResourceManager.GetObject("toggleScarecrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

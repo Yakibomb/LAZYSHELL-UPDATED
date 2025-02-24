@@ -238,6 +238,8 @@ namespace LAZYSHELL
         // main
         private void monsterNum_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             RefreshMonsterTab();
             battleScriptsEditor.Initialize();
             settings.LastMonster = Index;
@@ -245,6 +247,9 @@ namespace LAZYSHELL
         private void monsterName_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.monsterNum.Value = Model.MonsterNames.GetUnsortedIndex(monsterName.SelectedIndex);
+            RefreshMonsterTab();
+            battleScriptsEditor.Initialize();
+            settings.LastMonster = Index;
         }
         private void monsterName_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -276,47 +281,69 @@ namespace LAZYSHELL
         // vital stats
         private void MonsterValHP_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.HP = (ushort)MonsterValHP.Value;
         }
         private void MonsterValFP_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.FP = (byte)MonsterValFP.Value;
         }
         private void MonsterValAtk_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.Attack = (byte)MonsterValAtk.Value;
         }
         private void MonsterValDef_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.Defense = (byte)MonsterValDef.Value;
         }
         private void MonsterValMgAtk_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.MagicAttack = (byte)MonsterValMgAtk.Value;
         }
         private void MonsterValMgDef_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.MagicDefense = (byte)MonsterValMgDef.Value;
         }
         private void MonsterValSpeed_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.Speed = (byte)MonsterValSpeed.Value;
         }
         private void MonsterValEvd_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.Evade = (byte)MonsterValEvd.Value;
         }
         private void MonsterValMgEvd_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.MagicEvade = (byte)MonsterValMgEvd.Value;
         }
         // reward stats
         private void MonsterValExp_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.Experience = (ushort)MonsterValExp.Value;
         }
         private void MonsterValCoins_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.Coins = (byte)MonsterValCoins.Value;
         }
         private void itemName_DrawItem(object sender, DrawItemEventArgs e)
@@ -327,43 +354,63 @@ namespace LAZYSHELL
         }
         private void ItemWinA_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.ItemWinA = (byte)Model.ItemNames.GetUnsortedIndex(ItemWinA.SelectedIndex);
         }
         private void ItemWinB_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.ItemWinB = (byte)Model.ItemNames.GetUnsortedIndex(ItemWinB.SelectedIndex);
         }
         private void MonsterYoshiCookie_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.YoshiCookie = (byte)Model.ItemNames.GetUnsortedIndex(MonsterYoshiCookie.SelectedIndex);
         }
         // other properties
         private void MonsterMorphSuccess_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.MorphSuccess = (byte)MonsterMorphSuccess.SelectedIndex;
         }
         private void MonsterCoinSize_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.CoinSize = (byte)MonsterCoinSize.SelectedIndex;
         }
         private void MonsterEntranceStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.EntranceStyle = (byte)MonsterEntranceStyle.SelectedIndex;
         }
         private void MonsterBehavior_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.SpriteBehavior = (byte)MonsterBehavior.SelectedIndex;
         }
         private void MonsterSoundStrike_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.StrikeSound = (byte)MonsterSoundStrike.SelectedIndex;
         }
         private void MonsterSoundOther_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.OtherSound = (byte)MonsterSoundOther.SelectedIndex;
         }
         private void MonsterValElevation_ValueChanged(object sender, EventArgs e)
         {
+            if (this.Updating)
+                return;
             monster.Elevation = (byte)MonsterValElevation.Value;
         }
         // effects, elements

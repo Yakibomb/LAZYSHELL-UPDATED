@@ -41,17 +41,7 @@ namespace LAZYSHELL
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.xCoord = new LAZYSHELL.ToolStripNumericUpDown();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.openPalettesBG = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPalettesFG = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPaletteSpeakers = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPaletteCursors = new System.Windows.Forms.ToolStripMenuItem();
-            this.starPieceMenuPaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.openGraphicsBG = new System.Windows.Forms.ToolStripMenuItem();
-            this.openGraphicsFG = new System.Windows.Forms.ToolStripMenuItem();
-            this.openGraphicsSpeakers = new System.Windows.Forms.ToolStripMenuItem();
-            this.openGraphicsCursors = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.importBGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importFGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +49,37 @@ namespace LAZYSHELL
             this.openOverworldMenuList = new System.Windows.Forms.ToolStripButton();
             this.openText = new System.Windows.Forms.ToolStripButton();
             this.openMenus = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.openPalettesBG = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPalettesFG = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPaletteSpeakers = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPaletteCursors = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.openGraphicsBG = new System.Windows.Forms.ToolStripMenuItem();
+            this.openGraphicsFG = new System.Windows.Forms.ToolStripMenuItem();
+            this.openGraphicsSpeakers = new System.Windows.Forms.ToolStripMenuItem();
+            this.openGraphicsCursors = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.resetBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameSelectTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.starPiecesTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameSelectGraphicsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.frameGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.starPiecesGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cursorsGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monoStereoGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameSelectPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.framePaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.starPiecesPaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cursorsPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetOverworldMenuListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripText = new System.Windows.Forms.ToolStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -101,6 +122,7 @@ namespace LAZYSHELL
             this.menuChooseBgOrFg = new System.Windows.Forms.ToolStripComboBox();
             this.buttonToggleGrid = new System.Windows.Forms.ToolStripButton();
             this.showBG = new System.Windows.Forms.ToolStripButton();
+            this.openTileEditor = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.toolStripText.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -265,15 +287,18 @@ namespace LAZYSHELL
             this.toolStrip1.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
+            this.toolStripSeparator9,
+            this.toolStripDropDownButton2,
             this.helpTips,
             this.toolStripSeparator3,
-            this.toolStripDropDownButton1,
-            this.toolStripDropDownButton3,
-            this.toolStripDropDownButton2,
             this.toolStripSeparator1,
             this.openOverworldMenuList,
             this.openText,
-            this.openMenus});
+            this.openMenus,
+            this.toolStripDropDownButton1,
+            this.toolStripDropDownButton3,
+            this.toolStripSeparator8,
+            this.toolStripDropDownButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -281,113 +306,10 @@ namespace LAZYSHELL
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripDropDownButton1
+            // toolStripSeparator9
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openPalettesBG,
-            this.openPalettesFG,
-            this.openPaletteSpeakers,
-            this.openPaletteCursors,
-            this.starPieceMenuPaletteToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
-            this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            // 
-            // openPalettesBG
-            // 
-            this.openPalettesBG.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
-            this.openPalettesBG.Name = "openPalettesBG";
-            this.openPalettesBG.Size = new System.Drawing.Size(190, 22);
-            this.openPalettesBG.Text = "Background Palette";
-            this.openPalettesBG.Click += new System.EventHandler(this.openPalettesBG_Click);
-            // 
-            // openPalettesFG
-            // 
-            this.openPalettesFG.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
-            this.openPalettesFG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openPalettesFG.Name = "openPalettesFG";
-            this.openPalettesFG.Size = new System.Drawing.Size(190, 22);
-            this.openPalettesFG.Text = "Foreground Palette";
-            this.openPalettesFG.Click += new System.EventHandler(this.openPalettesFG_Click);
-            // 
-            // openPaletteSpeakers
-            // 
-            this.openPaletteSpeakers.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
-            this.openPaletteSpeakers.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openPaletteSpeakers.Name = "openPaletteSpeakers";
-            this.openPaletteSpeakers.Size = new System.Drawing.Size(190, 22);
-            this.openPaletteSpeakers.Text = "Mono/Stereo Palette";
-            this.openPaletteSpeakers.Click += new System.EventHandler(this.openPaletteSpeakers_Click);
-            // 
-            // openPaletteCursors
-            // 
-            this.openPaletteCursors.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
-            this.openPaletteCursors.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openPaletteCursors.Name = "openPaletteCursors";
-            this.openPaletteCursors.Size = new System.Drawing.Size(190, 22);
-            this.openPaletteCursors.Text = "Cursors Palette";
-            this.openPaletteCursors.Click += new System.EventHandler(this.openPaletteCursors_Click);
-            // 
-            // starPieceMenuPaletteToolStripMenuItem
-            // 
-            this.starPieceMenuPaletteToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
-            this.starPieceMenuPaletteToolStripMenuItem.Name = "starPieceMenuPaletteToolStripMenuItem";
-            this.starPieceMenuPaletteToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.starPieceMenuPaletteToolStripMenuItem.Text = "Star Piece Menu Palette";
-            this.starPieceMenuPaletteToolStripMenuItem.Click += new System.EventHandler(this.starPieceMenuPaletteToolStripMenuItem_Click);
-            // 
-            // toolStripDropDownButton3
-            // 
-            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openGraphicsBG,
-            this.openGraphicsFG,
-            this.openGraphicsSpeakers,
-            this.openGraphicsCursors});
-            this.toolStripDropDownButton3.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
-            this.toolStripDropDownButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(29, 22);
-            // 
-            // openGraphicsBG
-            // 
-            this.openGraphicsBG.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
-            this.openGraphicsBG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openGraphicsBG.Name = "openGraphicsBG";
-            this.openGraphicsBG.Size = new System.Drawing.Size(181, 22);
-            this.openGraphicsBG.Text = "Background Graphics";
-            this.openGraphicsBG.Click += new System.EventHandler(this.openGraphicsBG_Click);
-            // 
-            // openGraphicsFG
-            // 
-            this.openGraphicsFG.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
-            this.openGraphicsFG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openGraphicsFG.Name = "openGraphicsFG";
-            this.openGraphicsFG.Size = new System.Drawing.Size(181, 22);
-            this.openGraphicsFG.Text = "Foreground Graphics";
-            this.openGraphicsFG.Click += new System.EventHandler(this.openGraphicsFG_Click);
-            // 
-            // openGraphicsSpeakers
-            // 
-            this.openGraphicsSpeakers.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
-            this.openGraphicsSpeakers.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openGraphicsSpeakers.Name = "openGraphicsSpeakers";
-            this.openGraphicsSpeakers.Size = new System.Drawing.Size(181, 22);
-            this.openGraphicsSpeakers.Text = "Mono/Stereo Graphics";
-            this.openGraphicsSpeakers.Click += new System.EventHandler(this.openGraphicsSpeakers_Click);
-            // 
-            // openGraphicsCursors
-            // 
-            this.openGraphicsCursors.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
-            this.openGraphicsCursors.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.openGraphicsCursors.Name = "openGraphicsCursors";
-            this.openGraphicsCursors.Size = new System.Drawing.Size(181, 22);
-            this.openGraphicsCursors.Text = "Cursor Graphics";
-            this.openGraphicsCursors.Click += new System.EventHandler(this.openGraphicsCursors_Click);
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripDropDownButton2
             // 
@@ -466,6 +388,294 @@ namespace LAZYSHELL
             this.openMenus.Size = new System.Drawing.Size(23, 22);
             this.openMenus.Text = "Menus";
             this.openMenus.Click += new System.EventHandler(this.openMenus_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openPalettesBG,
+            this.openPalettesFG,
+            this.openPaletteSpeakers,
+            this.openPaletteCursors});
+            this.toolStripDropDownButton1.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            // 
+            // openPalettesBG
+            // 
+            this.openPalettesBG.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.openPalettesBG.Name = "openPalettesBG";
+            this.openPalettesBG.Size = new System.Drawing.Size(180, 22);
+            this.openPalettesBG.Text = "Background Palette";
+            this.openPalettesBG.Click += new System.EventHandler(this.openPalettesBG_Click);
+            // 
+            // openPalettesFG
+            // 
+            this.openPalettesFG.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.openPalettesFG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openPalettesFG.Name = "openPalettesFG";
+            this.openPalettesFG.Size = new System.Drawing.Size(180, 22);
+            this.openPalettesFG.Text = "Foreground Palette";
+            this.openPalettesFG.Click += new System.EventHandler(this.openPalettesFG_Click);
+            // 
+            // openPaletteSpeakers
+            // 
+            this.openPaletteSpeakers.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.openPaletteSpeakers.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openPaletteSpeakers.Name = "openPaletteSpeakers";
+            this.openPaletteSpeakers.Size = new System.Drawing.Size(180, 22);
+            this.openPaletteSpeakers.Text = "Mono/Stereo Palette";
+            this.openPaletteSpeakers.Click += new System.EventHandler(this.openPaletteSpeakers_Click);
+            // 
+            // openPaletteCursors
+            // 
+            this.openPaletteCursors.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
+            this.openPaletteCursors.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openPaletteCursors.Name = "openPaletteCursors";
+            this.openPaletteCursors.Size = new System.Drawing.Size(180, 22);
+            this.openPaletteCursors.Text = "Cursors Palette";
+            this.openPaletteCursors.Click += new System.EventHandler(this.openPaletteCursors_Click);
+            // 
+            // toolStripDropDownButton3
+            // 
+            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openGraphicsBG,
+            this.openGraphicsFG,
+            this.openGraphicsSpeakers,
+            this.openGraphicsCursors});
+            this.toolStripDropDownButton3.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.toolStripDropDownButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(29, 22);
+            // 
+            // openGraphicsBG
+            // 
+            this.openGraphicsBG.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.openGraphicsBG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openGraphicsBG.Name = "openGraphicsBG";
+            this.openGraphicsBG.Size = new System.Drawing.Size(181, 22);
+            this.openGraphicsBG.Text = "Background Graphics";
+            this.openGraphicsBG.Click += new System.EventHandler(this.openGraphicsBG_Click);
+            // 
+            // openGraphicsFG
+            // 
+            this.openGraphicsFG.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.openGraphicsFG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openGraphicsFG.Name = "openGraphicsFG";
+            this.openGraphicsFG.Size = new System.Drawing.Size(181, 22);
+            this.openGraphicsFG.Text = "Foreground Graphics";
+            this.openGraphicsFG.Click += new System.EventHandler(this.openGraphicsFG_Click);
+            // 
+            // openGraphicsSpeakers
+            // 
+            this.openGraphicsSpeakers.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.openGraphicsSpeakers.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openGraphicsSpeakers.Name = "openGraphicsSpeakers";
+            this.openGraphicsSpeakers.Size = new System.Drawing.Size(181, 22);
+            this.openGraphicsSpeakers.Text = "Mono/Stereo Graphics";
+            this.openGraphicsSpeakers.Click += new System.EventHandler(this.openGraphicsSpeakers_Click);
+            // 
+            // openGraphicsCursors
+            // 
+            this.openGraphicsCursors.Image = global::LAZYSHELL.Properties.Resources.openGraphics;
+            this.openGraphicsCursors.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openGraphicsCursors.Name = "openGraphicsCursors";
+            this.openGraphicsCursors.Size = new System.Drawing.Size(181, 22);
+            this.openGraphicsCursors.Text = "Cursor Graphics";
+            this.openGraphicsCursors.Click += new System.EventHandler(this.openGraphicsCursors_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripDropDownButton4
+            // 
+            this.toolStripDropDownButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resetBackgroundToolStripMenuItem,
+            this.resetGraphicsToolStripMenuItem,
+            this.resetPalettesToolStripMenuItem,
+            this.resetTextToolStripMenuItem,
+            this.resetOverworldMenuListToolStripMenuItem});
+            this.toolStripDropDownButton4.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.toolStripDropDownButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton4.Name = "toolStripDropDownButton4";
+            this.toolStripDropDownButton4.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton4.Text = "toolStripDropDownButton4";
+            // 
+            // resetBackgroundToolStripMenuItem
+            // 
+            this.resetBackgroundToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gameSelectTilesetToolStripMenuItem,
+            this.backgroundTilesetToolStripMenuItem,
+            this.starPiecesTilesetToolStripMenuItem});
+            this.resetBackgroundToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetBackgroundToolStripMenuItem.Name = "resetBackgroundToolStripMenuItem";
+            this.resetBackgroundToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.resetBackgroundToolStripMenuItem.Text = "Reset Tilemap";
+            this.resetBackgroundToolStripMenuItem.Click += new System.EventHandler(this.resetBackgroundToolStripMenuItem_Click);
+            // 
+            // gameSelectTilesetToolStripMenuItem
+            // 
+            this.gameSelectTilesetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.gameSelectTilesetToolStripMenuItem.Name = "gameSelectTilesetToolStripMenuItem";
+            this.gameSelectTilesetToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.gameSelectTilesetToolStripMenuItem.Text = "Game Select Tilemap";
+            this.gameSelectTilesetToolStripMenuItem.Click += new System.EventHandler(this.gameSelectTilesetToolStripMenuItem_Click);
+            // 
+            // backgroundTilesetToolStripMenuItem
+            // 
+            this.backgroundTilesetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.backgroundTilesetToolStripMenuItem.Name = "backgroundTilesetToolStripMenuItem";
+            this.backgroundTilesetToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.backgroundTilesetToolStripMenuItem.Text = "Background Tilemap";
+            this.backgroundTilesetToolStripMenuItem.Click += new System.EventHandler(this.backgroundTilesetToolStripMenuItem_Click);
+            // 
+            // starPiecesTilesetToolStripMenuItem
+            // 
+            this.starPiecesTilesetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.starPiecesTilesetToolStripMenuItem.Name = "starPiecesTilesetToolStripMenuItem";
+            this.starPiecesTilesetToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.starPiecesTilesetToolStripMenuItem.Text = "Star Pieces Tilemap";
+            this.starPiecesTilesetToolStripMenuItem.Click += new System.EventHandler(this.starPiecesTilesetToolStripMenuItem_Click);
+            // 
+            // resetGraphicsToolStripMenuItem
+            // 
+            this.resetGraphicsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gameSelectGraphicsToolStripMenuItem1,
+            this.backgroundGraphicsToolStripMenuItem,
+            this.frameGraphicsToolStripMenuItem,
+            this.starPiecesGraphicsToolStripMenuItem,
+            this.cursorsGraphicsToolStripMenuItem,
+            this.monoStereoGraphicsToolStripMenuItem});
+            this.resetGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetGraphicsToolStripMenuItem.Name = "resetGraphicsToolStripMenuItem";
+            this.resetGraphicsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.resetGraphicsToolStripMenuItem.Text = "Reset Graphics";
+            this.resetGraphicsToolStripMenuItem.Click += new System.EventHandler(this.resetGraphicsToolStripMenuItem_Click);
+            // 
+            // gameSelectGraphicsToolStripMenuItem1
+            // 
+            this.gameSelectGraphicsToolStripMenuItem1.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.gameSelectGraphicsToolStripMenuItem1.Name = "gameSelectGraphicsToolStripMenuItem1";
+            this.gameSelectGraphicsToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
+            this.gameSelectGraphicsToolStripMenuItem1.Text = "Game Select Graphics";
+            this.gameSelectGraphicsToolStripMenuItem1.Click += new System.EventHandler(this.gameSelectGraphicsToolStripMenuItem1_Click);
+            // 
+            // backgroundGraphicsToolStripMenuItem
+            // 
+            this.backgroundGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.backgroundGraphicsToolStripMenuItem.Name = "backgroundGraphicsToolStripMenuItem";
+            this.backgroundGraphicsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.backgroundGraphicsToolStripMenuItem.Text = "Background Graphics";
+            this.backgroundGraphicsToolStripMenuItem.Click += new System.EventHandler(this.backgroundGraphicsToolStripMenuItem_Click);
+            // 
+            // frameGraphicsToolStripMenuItem
+            // 
+            this.frameGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.frameGraphicsToolStripMenuItem.Name = "frameGraphicsToolStripMenuItem";
+            this.frameGraphicsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.frameGraphicsToolStripMenuItem.Text = "Frame Graphics";
+            this.frameGraphicsToolStripMenuItem.Click += new System.EventHandler(this.frameGraphicsToolStripMenuItem_Click);
+            // 
+            // starPiecesGraphicsToolStripMenuItem
+            // 
+            this.starPiecesGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.starPiecesGraphicsToolStripMenuItem.Name = "starPiecesGraphicsToolStripMenuItem";
+            this.starPiecesGraphicsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.starPiecesGraphicsToolStripMenuItem.Text = "Star Pieces Graphics";
+            this.starPiecesGraphicsToolStripMenuItem.Click += new System.EventHandler(this.starPiecesGraphicsToolStripMenuItem_Click);
+            // 
+            // cursorsGraphicsToolStripMenuItem
+            // 
+            this.cursorsGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.cursorsGraphicsToolStripMenuItem.Name = "cursorsGraphicsToolStripMenuItem";
+            this.cursorsGraphicsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.cursorsGraphicsToolStripMenuItem.Text = "Cursors Graphics";
+            this.cursorsGraphicsToolStripMenuItem.Click += new System.EventHandler(this.cursorsGraphicsToolStripMenuItem_Click);
+            // 
+            // monoStereoGraphicsToolStripMenuItem
+            // 
+            this.monoStereoGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.monoStereoGraphicsToolStripMenuItem.Name = "monoStereoGraphicsToolStripMenuItem";
+            this.monoStereoGraphicsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.monoStereoGraphicsToolStripMenuItem.Text = "Mono/Stereo Graphics";
+            this.monoStereoGraphicsToolStripMenuItem.Click += new System.EventHandler(this.monoStereoGraphicsToolStripMenuItem_Click);
+            // 
+            // resetPalettesToolStripMenuItem
+            // 
+            this.resetPalettesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gameSelectPalettesToolStripMenuItem,
+            this.backgroundPalettesToolStripMenuItem,
+            this.framePaletteToolStripMenuItem,
+            this.starPiecesPaletteToolStripMenuItem,
+            this.cursorsPalettesToolStripMenuItem});
+            this.resetPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetPalettesToolStripMenuItem.Name = "resetPalettesToolStripMenuItem";
+            this.resetPalettesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.resetPalettesToolStripMenuItem.Text = "Reset Palettes";
+            this.resetPalettesToolStripMenuItem.Click += new System.EventHandler(this.resetPalettesToolStripMenuItem_Click);
+            // 
+            // gameSelectPalettesToolStripMenuItem
+            // 
+            this.gameSelectPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.gameSelectPalettesToolStripMenuItem.Name = "gameSelectPalettesToolStripMenuItem";
+            this.gameSelectPalettesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.gameSelectPalettesToolStripMenuItem.Text = "Game Select Palette";
+            this.gameSelectPalettesToolStripMenuItem.Click += new System.EventHandler(this.gameSelectPalettesToolStripMenuItem_Click);
+            // 
+            // backgroundPalettesToolStripMenuItem
+            // 
+            this.backgroundPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.backgroundPalettesToolStripMenuItem.Name = "backgroundPalettesToolStripMenuItem";
+            this.backgroundPalettesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.backgroundPalettesToolStripMenuItem.Text = "Background Palette";
+            this.backgroundPalettesToolStripMenuItem.Click += new System.EventHandler(this.backgroundPalettesToolStripMenuItem_Click);
+            // 
+            // framePaletteToolStripMenuItem
+            // 
+            this.framePaletteToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.framePaletteToolStripMenuItem.Name = "framePaletteToolStripMenuItem";
+            this.framePaletteToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.framePaletteToolStripMenuItem.Text = "Frame Palette";
+            this.framePaletteToolStripMenuItem.Click += new System.EventHandler(this.framePaletteToolStripMenuItem_Click);
+            // 
+            // starPiecesPaletteToolStripMenuItem
+            // 
+            this.starPiecesPaletteToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.starPiecesPaletteToolStripMenuItem.Name = "starPiecesPaletteToolStripMenuItem";
+            this.starPiecesPaletteToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.starPiecesPaletteToolStripMenuItem.Text = "Star Pieces Palette";
+            this.starPiecesPaletteToolStripMenuItem.Click += new System.EventHandler(this.starPiecesPaletteToolStripMenuItem_Click);
+            // 
+            // cursorsPalettesToolStripMenuItem
+            // 
+            this.cursorsPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.cursorsPalettesToolStripMenuItem.Name = "cursorsPalettesToolStripMenuItem";
+            this.cursorsPalettesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.cursorsPalettesToolStripMenuItem.Text = "Cursors Palette";
+            this.cursorsPalettesToolStripMenuItem.Click += new System.EventHandler(this.cursorsPalettesToolStripMenuItem_Click);
+            // 
+            // resetTextToolStripMenuItem
+            // 
+            this.resetTextToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetTextToolStripMenuItem.Name = "resetTextToolStripMenuItem";
+            this.resetTextToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.resetTextToolStripMenuItem.Text = "Reset Text";
+            this.resetTextToolStripMenuItem.Click += new System.EventHandler(this.resetTextToolStripMenuItem_Click);
+            // 
+            // resetOverworldMenuListToolStripMenuItem
+            // 
+            this.resetOverworldMenuListToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetOverworldMenuListToolStripMenuItem.Name = "resetOverworldMenuListToolStripMenuItem";
+            this.resetOverworldMenuListToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.resetOverworldMenuListToolStripMenuItem.Text = "Reset Overworld Menu List";
+            this.resetOverworldMenuListToolStripMenuItem.Click += new System.EventHandler(this.resetOverworldMenuListToolStripMenuItem_Click);
             // 
             // toolStripText
             // 
@@ -879,7 +1089,8 @@ namespace LAZYSHELL
             this.toolStripSeparator4,
             this.menuChooseBgOrFg,
             this.buttonToggleGrid,
-            this.showBG});
+            this.showBG,
+            this.openTileEditor});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -961,6 +1172,16 @@ namespace LAZYSHELL
             this.showBG.Size = new System.Drawing.Size(23, 22);
             this.showBG.ToolTipText = "Background Transparency";
             this.showBG.Click += new System.EventHandler(this.showBG_Click);
+            // 
+            // openTileEditor
+            // 
+            this.openTileEditor.Image = global::LAZYSHELL.Properties.Resources.openTileEditor;
+            this.openTileEditor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.openTileEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openTileEditor.Name = "openTileEditor";
+            this.openTileEditor.Size = new System.Drawing.Size(23, 22);
+            this.openTileEditor.ToolTipText = "Tile Editor";
+            this.openTileEditor.Click += new System.EventHandler(this.openTileEditor_Click);
             // 
             // MenusEditor
             // 
@@ -1054,7 +1275,6 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripMenuItem openPalettesFG;
         private System.Windows.Forms.ToolStripMenuItem openPaletteSpeakers;
         private System.Windows.Forms.ToolStripMenuItem openPaletteCursors;
-        private System.Windows.Forms.ToolStripMenuItem starPieceMenuPaletteToolStripMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.ToolStripMenuItem openGraphicsBG;
         private System.Windows.Forms.ToolStripMenuItem openGraphicsFG;
@@ -1074,5 +1294,28 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripComboBox menuChooseBgOrFg;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ToolStripButton openOverworldMenuList;
+        private System.Windows.Forms.ToolStripButton openTileEditor;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton4;
+        private System.Windows.Forms.ToolStripMenuItem resetBackgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameSelectTilesetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backgroundTilesetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem starPiecesTilesetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameSelectGraphicsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem backgroundGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem frameGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem starPiecesGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetPalettesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gameSelectPalettesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backgroundPalettesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem framePaletteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem starPiecesPaletteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cursorsPalettesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cursorsGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem monoStereoGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetTextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetOverworldMenuListToolStripMenuItem;
     }
 }

@@ -70,8 +70,8 @@ namespace LAZYSHELL
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.helpTips = new System.Windows.Forms.ToolStripButton();
+            this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.selectIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adjustY)).BeginInit();
@@ -104,7 +104,7 @@ namespace LAZYSHELL
             this.eventListBox.IntegralHeight = false;
             this.eventListBox.Location = new System.Drawing.Point(3, 17);
             this.eventListBox.Name = "eventListBox";
-            this.eventListBox.Size = new System.Drawing.Size(412, 374);
+            this.eventListBox.Size = new System.Drawing.Size(412, 386);
             this.eventListBox.TabIndex = 0;
             this.eventListBox.SelectedIndexChanged += new System.EventHandler(this.eventListBox_SelectedIndexChanged);
             // 
@@ -112,7 +112,7 @@ namespace LAZYSHELL
             // 
             this.launchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.launchButton.FlatAppearance.BorderSize = 0;
-            this.launchButton.Location = new System.Drawing.Point(6, 369);
+            this.launchButton.Location = new System.Drawing.Point(6, 381);
             this.launchButton.Name = "launchButton";
             this.launchButton.Size = new System.Drawing.Size(81, 23);
             this.launchButton.TabIndex = 8;
@@ -155,7 +155,7 @@ namespace LAZYSHELL
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.FlatAppearance.BorderSize = 0;
-            this.cancelButton.Location = new System.Drawing.Point(89, 369);
+            this.cancelButton.Location = new System.Drawing.Point(89, 381);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(78, 23);
             this.cancelButton.TabIndex = 9;
@@ -291,6 +291,7 @@ namespace LAZYSHELL
             this.alliesInParty.ColumnWidth = 78;
             this.alliesInParty.FormattingEnabled = true;
             this.alliesInParty.Items.AddRange(new object[] {
+            "Mario",
             "Toadstool",
             "Bowser",
             "Geno",
@@ -298,7 +299,7 @@ namespace LAZYSHELL
             this.alliesInParty.Location = new System.Drawing.Point(6, 20);
             this.alliesInParty.MultiColumn = true;
             this.alliesInParty.Name = "alliesInParty";
-            this.alliesInParty.Size = new System.Drawing.Size(162, 36);
+            this.alliesInParty.Size = new System.Drawing.Size(162, 52);
             this.alliesInParty.TabIndex = 0;
             this.alliesInParty.SelectedIndexChanged += new System.EventHandler(this.alliesInParty_SelectedIndexChanged);
             // 
@@ -487,7 +488,7 @@ namespace LAZYSHELL
             // enableDebug
             // 
             this.enableDebug.AutoSize = true;
-            this.enableDebug.Location = new System.Drawing.Point(6, 344);
+            this.enableDebug.Location = new System.Drawing.Point(6, 358);
             this.enableDebug.Name = "enableDebug";
             this.enableDebug.Size = new System.Drawing.Size(151, 17);
             this.enableDebug.TabIndex = 10;
@@ -501,7 +502,7 @@ namespace LAZYSHELL
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Location = new System.Drawing.Point(0, 133);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(174, 62);
+            this.groupBox3.Size = new System.Drawing.Size(174, 78);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Allies in Party";
@@ -520,7 +521,7 @@ namespace LAZYSHELL
             this.groupBox4.Controls.Add(this.label135);
             this.groupBox4.Controls.Add(this.label134);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(0, 195);
+            this.groupBox4.Location = new System.Drawing.Point(0, 211);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(174, 143);
             this.groupBox4.TabIndex = 7;
@@ -610,7 +611,7 @@ namespace LAZYSHELL
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox6.Location = new System.Drawing.Point(0, 133);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(418, 394);
+            this.groupBox6.Size = new System.Drawing.Size(418, 406);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Source of Entrance";
@@ -639,7 +640,7 @@ namespace LAZYSHELL
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(418, 133);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(174, 394);
+            this.panel1.Size = new System.Drawing.Size(174, 406);
             this.panel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -654,17 +655,6 @@ namespace LAZYSHELL
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // baseConvertor
-            // 
-            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.baseConvertor.CheckOnClick = true;
-            this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
-            this.baseConvertor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.baseConvertor.Name = "baseConvertor";
-            this.baseConvertor.Size = new System.Drawing.Size(23, 22);
-            this.baseConvertor.Text = "Base Convertor";
-            // 
             // helpTips
             // 
             this.helpTips.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -676,11 +666,22 @@ namespace LAZYSHELL
             this.helpTips.Size = new System.Drawing.Size(23, 22);
             this.helpTips.Text = "Help Tips";
             // 
+            // baseConvertor
+            // 
+            this.baseConvertor.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.baseConvertor.CheckOnClick = true;
+            this.baseConvertor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.baseConvertor.Image = global::LAZYSHELL.Properties.Resources.baseConversion;
+            this.baseConvertor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.baseConvertor.Name = "baseConvertor";
+            this.baseConvertor.Size = new System.Drawing.Size(23, 22);
+            this.baseConvertor.Text = "Base Convertor";
+            // 
             // Previewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 527);
+            this.ClientSize = new System.Drawing.Size(592, 539);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox5);

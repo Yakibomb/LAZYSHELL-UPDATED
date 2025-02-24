@@ -40,7 +40,7 @@ namespace LAZYSHELL
             get
             {
                 if (index == MenuType.GameSelect)
-                    return Model.GameSelectBGPalette;
+                    return Model.GameSelectPaletteSet;
                 else if (index < MenuType.Shop)
                     return Model.MenuBGPalette;
                 else
@@ -49,7 +49,7 @@ namespace LAZYSHELL
             set
             {
                 if (index == MenuType.GameSelect)
-                    Model.GameSelectBGPalette = value;
+                    Model.GameSelectPaletteSet = value;
                 else if (index < MenuType.Shop)
                     Model.MenuBGPalette = value;
                 else
@@ -95,7 +95,7 @@ namespace LAZYSHELL
                 if (index == MenuType.GameSelect)
                     return Model.GameSelectGraphics;
                 else if (index == MenuType.OverworldStarPieces)
-                    return Model.WorldMapLogos; //Model.OverworldStarPiecesMenuGraphics
+                    return Model.OverworldStarPiecesMenuGraphics; //This pulls the same graphics as worldMapLogos!
                 else
                     return Model.MenuFrameGraphics;
             }
@@ -104,7 +104,7 @@ namespace LAZYSHELL
                 if (index == MenuType.GameSelect)
                     Model.GameSelectGraphics = value;
                 else if (index == MenuType.OverworldStarPieces)
-                    Model.WorldMapLogos = value; // Model.OverworldStarPiecesMenuGraphics = value;
+                    Model.OverworldStarPiecesMenuGraphics = value;
                 else
                     Model.MenuFrameGraphics = value;
             }
@@ -126,14 +126,31 @@ namespace LAZYSHELL
                     fgGraphics = value;
             }
         }
+        private PaletteSet palettesDynamic
+        {
+            get
+            {
+                if (menuChooseBgOrFg.SelectedIndex == 1)
+                    return bgPaletteSet;
+                else
+                    return fgPaletteSet;
+            }
+            set
+            {
+                if (menuChooseBgOrFg.SelectedIndex == 1)
+                    bgPaletteSet = value;
+                else
+                    fgPaletteSet = value;
+            }
+        }
         private PaletteSet cursorPaletteSet { get { return Model.CursorPaletteSet; } set { Model.CursorPaletteSet = value; } }
-        private PaletteSet starPiecesPalette { get { return Model.OverworldStarPiecesMenuPalette; } set { Model.OverworldStarPiecesMenuPalette = value; } }
+        private PaletteSet starPiecesPalettes { get { return Model.OverworldStarPiecesMenuPalette; } set { Model.OverworldStarPiecesMenuPalette = value; } }
         //
-        private Tileset bgTileset;
+        private MenuTileset bgTileset;
 
-        private Tileset fgTilesetGameSelect;
-        private Tileset fgTilesetStarPiecesOverworld;
-        private Tileset fgTileset
+        private MenuTileset fgTilesetGameSelect;
+        private MenuTileset fgTilesetStarPiecesOverworld;
+        private MenuTileset fgTileset
         {
             get
             {
@@ -150,7 +167,7 @@ namespace LAZYSHELL
                     fgTilesetStarPiecesOverworld = value;
             }
         }
-        private Tileset tilesetDynamic
+        private MenuTileset tilesetDynamic
         {
             get
             {
@@ -196,6 +213,7 @@ namespace LAZYSHELL
         //
         // editors
         private MenusBox menusBox;
+        private TileEditor tileEditor;
         private PaletteEditor bgPaletteEditor;
         private GraphicEditor bgGraphicEditor;
         private PaletteEditor fgPaletteEditor;
@@ -258,8 +276,14 @@ namespace LAZYSHELL
             //
             this.Updating = true;
             index = MenuType.GameSelect;
-            this.Updating = false;
             //
+            //bgTileset = new Tileset(Model.MenuBGTileset, Model.MenuBGGraphics, bgPaletteSet, 16, 16, TilesetType.WorldMap);
+            //fgTilesetGameSelect = new Tileset(Model.GameSelectTileset, Model.GameSelectGraphics, Model.GameSelectPaletteSet, 16, 16, TilesetType.WorldMap);
+            //fgTilesetStarPiecesOverworld = new Tileset(Model.OverworldStarPiecesMenuTileset, Model.WorldMapGraphics, Model.OverworldStarPiecesMenuPalette, 16, 16, TilesetType.WorldMap);
+            //
+            bgTileset = new MenuTileset(bgPaletteSet, Model.MenuBGTileset, Model.MenuBGGraphics, TilesetType.MenuBackground);
+            fgTilesetGameSelect = new MenuTileset(Model.GameSelectPaletteSet, Model.GameSelectTileset, Model.GameSelectGraphics, TilesetType.GameSelectMenu);
+            fgTilesetStarPiecesOverworld = new MenuTileset(Model.OverworldStarPiecesMenuPalette, Model.OverworldStarPiecesMenuTileset, Model.OverworldStarPiecesMenuGraphics, TilesetType.StarPiecesOverworldMenu);
             SetAllyImages();
             SetStarPiecesImages();
             menuChooseBgOrFg.SelectedIndex = 0;
@@ -270,10 +294,8 @@ namespace LAZYSHELL
             SetPreviewImage();
             SetTextObjects();
             //
-            bgTileset = new Tileset(Model.MenuBGTileset, Model.MenuBGGraphics, bgPaletteSet, 16, 16, TilesetType.WorldMap);
-            fgTilesetGameSelect = new Tileset(Model.GameSelectTileset, Model.GameSelectGraphics, fgPaletteSet, 16, 16, TilesetType.WorldMap);
-            fgTilesetStarPiecesOverworld = new Tileset(Model.OverworldStarPiecesMenuTileset, Model.WorldMapGraphics, fgPaletteSet, 16, 16, TilesetType.WorldMap);
-            //
+            LoadTileEditor();
+            this.Updating = false;
         }
         public void Reload()
         {
@@ -295,12 +317,20 @@ namespace LAZYSHELL
             else
                 SetForegroundImage();
             */
-            //SetSpeakersImages();
+
+            SetSpeakersImages();
             SetCursorImages();
             SetPreviewImage();
             SetTextObjects();
             BGGraphicUpdate();
             FGGraphicUpdate();
+            LoadTileEditor();
+            //
+            //
+            if (index == MenuType.GameSelect && menuChooseBgOrFg.SelectedIndex == 0)
+                editTilesetGameSelect = true;
+            else if (index == MenuType.OverworldStarPieces && menuChooseBgOrFg.SelectedIndex == 0)
+                editTilesetStarPiecesMenu = true;
             //
             //
             GC.Collect();
@@ -335,9 +365,11 @@ namespace LAZYSHELL
         }
         private void Assemble()
         {
+            // Overworld Main Menu List
             foreach (MenuBox menu in Model.MenuBox)
                 menu.Assemble();
 
+            // Text
             int offset = 0;
             byte[] temp = new byte[0x700];
             MenuTexts lastMenuText = null;
@@ -374,10 +406,16 @@ namespace LAZYSHELL
             Bits.SetBytes(Model.ROM, 0x3EF000, temp);
             //Bits.SetShort(Model.Data, 0x3EF600, 0x344F);
 
+            // Music
             Model.ROM[0x03462D] = (byte)this.music.SelectedIndex;
+            
+            // Graphics
             Model.Compress(Model.GameSelectGraphics, 0x3E9A49, 0x2000, 0x3EB2CD - 0x3E9A49, "Game select graphics");
             if (editTilesetGameSelect)
-                Model.Compress(Model.GameSelectTileset, 0x3EB2CD, 0x800, 0x3EB50F - 0x3EB2CD, "Game select tileset");
+            {
+                fgTilesetGameSelect.Assemble();
+                Model.Compress(fgTilesetGameSelect.Tileset_bytes, 0x3EB2CD, 0x800, 0x3EB50F - 0x3EB2CD, "Game select tileset");
+            }
             Model.Compress(Model.GameSelectPalettes, 0x3EB50F, 0x200, 0x3EB624 - 0x3EB50F, "Game select palettes");
             Model.Compress(Model.GameSelectSpeakers, 0x3EB624, 0x600, 0x3EB94A - 0x3EB624, "Game select speakers");
             //
@@ -385,20 +423,21 @@ namespace LAZYSHELL
                 CursorSprites[i].Assemble();
             
             // Palettes
+
             Model.GameSelectPaletteSet.Assemble();
             Model.GameSelectBGPalette.Assemble();
             Model.FontPaletteMenu.Assemble(Model.MenuPalettes, 0);
             Model.MenuBGPalette.Assemble();
             Model.ShopBGPalette.Assemble();
+            Model.OverworldStarPiecesMenuPalette.Assemble(Model.MenuPalettes, 0xC0);
             Model.CursorPaletteSet.Assemble(Model.MenuPalettes, 0x100);
-            
+
             // Graphics
             offset = 0x4C;
             byte[] dst = new byte[0x2E81];
             // copy uncompressed world map logo graphics
-            Bits.SetShort(dst, 0x00, 0x4C);
-            Buffer.BlockCopy(Model.ROM, 0x3E004C, dst, 0x4C, 0xE1C);
-            offset += 0xE1C;
+            Bits.SetShort(dst, 0x00, offset);
+            if (!Model.Compress(Model.OverworldStarPiecesMenuGraphics, dst, ref offset, 0x2E81, "World map logos, banners")) goto Reset;
             //
             Bits.SetShort(dst, 0x02, offset);
             if (!Model.Compress(Model.MenuBGGraphics, dst, ref offset, 0x2E81, "BG graphics")) goto Reset;
@@ -406,36 +445,24 @@ namespace LAZYSHELL
             if (!Model.Compress(Model.MenuFrameGraphics, dst, ref offset, 0x2E81, "Frame graphics")) goto Reset;
             Bits.SetShort(dst, 0x06, offset);
             if (!Model.Compress(Model.MenuCursorGraphics, dst, ref offset, 0x2E81, "Cursor graphics")) goto Reset;
-            Bits.SetShort(dst, 0x08, offset);
-            if (!Model.Compress(Model.MenuBGTileset, dst, ref offset, 0x2E81, "BG tileset")) goto Reset;
-            //if (editTilesetStarPiecesMenu)
-            //{
-            
-            Bits.SetShort(dst, 0x0A, offset);
-            if (!Model.Compress(Model.OverworldStarPiecesMenuTileset, dst, ref offset, 0x2E81, "Star Pieces Overworld")) goto Reset;
 
-            //}
+            Bits.SetShort(dst, 0x08, offset);
+            bgTileset.Assemble(); //rebuilds tileset by adding tile indexes, so correct graphics are displayed in game
+            if (!Model.Compress(bgTileset.Tileset_bytes, dst, ref offset, 0x2E81, "BG tileset")) goto Reset;
+
+            Bits.SetShort(dst, 0x0A, offset);
+            fgTilesetStarPiecesOverworld.Assemble(); //rebuilds tileset by adding tile indexes, so correct graphics are displayed in game
+            if (!Model.Compress(fgTilesetStarPiecesOverworld.Tileset_bytes, dst, ref offset, 0x2E81, "Star Pieces Menu Tileset")) goto Reset;
+
             Bits.SetShort(dst, 0x0C, offset);
             if (!Model.Compress(Model.MenuPalettes, dst, ref offset, 0x2E81, "Menu palettes")) goto Reset;
             // set pointers (just the first 7 for menu data)
             Buffer.BlockCopy(dst, 0, Model.ROM, 0x3E0000, 0x0E); 
             // store compressed data (starting at start of data)
             Buffer.BlockCopy(dst, 0x4C, Model.ROM, 0x3E004C, dst.Length - 0x4C);
-            
-            // Assembles the star pieces palette after everything else is done
-            int pointer = Bits.GetShort(Model.ROM, 0x3E000A);
-            int OFFSET = 0x3E0000 + pointer + 0x194;
-            Model.OverworldStarPiecesMenuPalette.OFFSET = OFFSET;
-            Model.OverworldStarPiecesMenuPalette.Assemble();
-            // Due to how this palette works, the first color is actually a pointer (or something) used by the pointing-hand cursor.
-            // We change it back to the original 00 36 after assembly.
-            byte[] fix = new byte[] { 0x00, 0x36 };
-            fix.CopyTo(Model.ROM, OFFSET);
 
-            goto Reset;
         Reset:
             this.Modified = false;
-            return;
         }
 
         private void RefreshMenu()
@@ -455,11 +482,19 @@ namespace LAZYSHELL
                 LoadBGPaletteEditor();
             if (fgPaletteEditor != null)
                 LoadFGPaletteEditor();
-
+            //
+            bgTileset = new MenuTileset(bgPaletteSet, Model.MenuBGTileset, Model.MenuBGGraphics, TilesetType.MenuBackground);
+            fgTilesetGameSelect = new MenuTileset(Model.GameSelectPaletteSet, Model.GameSelectTileset, Model.GameSelectGraphics, TilesetType.GameSelectMenu);
+            fgTilesetStarPiecesOverworld = new MenuTileset(Model.OverworldStarPiecesMenuPalette, Model.OverworldStarPiecesMenuTileset, Model.OverworldStarPiecesMenuGraphics, TilesetType.StarPiecesOverworldMenu);
+            //
             SetBackgroundImage();
             SetForegroundImage();
             SetPreviewImage();
             SetTextObjects();
+            //
+            mouseDownTile = 0;
+            LoadTileEditor();
+            TileUpdate();
             //
             if (index == MenuType.GameSelect || index == MenuType.OverworldStarPieces || menuChooseBgOrFg.SelectedIndex == 1)
                 toolStrip3.Enabled = true;
@@ -562,14 +597,14 @@ namespace LAZYSHELL
         {
             if (index == MenuType.GameSelect)
             {
-                Tile[] tileset = new MenuTileset(fgPaletteSet, Model.GameSelectTileset, fgGraphics).Tileset;
+                Tile[] tileset = new MenuTileset(fgPaletteSet, Model.GameSelectTileset, fgGraphics, TilesetType.GameSelectMenu).Tileset_tiles;
                 int[] pixels = Do.TilesetToPixels(tileset, 16, 16, 0, false);
                 fgImage = Do.PixelsToImage(pixels, 256, 256);
                 pictureBoxEditor.Size = new Size(256, 256);
             }
             else if (index == MenuType.OverworldStarPieces)
             {
-                Tile[] tileset = new MenuTileset(fgPaletteSet, Model.OverworldStarPiecesMenuTileset, fgGraphics).Tileset;
+                Tile[] tileset = new MenuTileset(fgPaletteSet, Model.OverworldStarPiecesMenuTileset, fgGraphics, TilesetType.StarPiecesOverworldMenu).Tileset_tiles;
                 int[] pixels = Do.TilesetToPixels(tileset, 16, 16, 0, false);
                 fgImage = Do.PixelsToImage(pixels, 256, 256);
                 pictureBoxEditor.Size = new Size(256, 256);
@@ -826,6 +861,7 @@ namespace LAZYSHELL
         }
 
         #region Functions
+
         private void LoadBGPaletteEditor()
         {
             if (bgPaletteEditor == null)
@@ -855,7 +891,7 @@ namespace LAZYSHELL
                 if (index == MenuType.GameSelect)
                     fgPaletteEditor = new PaletteEditor(new Function(FGPaletteUpdate), fgPaletteSet, 16, 1, 5);
                 else
-                    fgPaletteEditor = new PaletteEditor(new Function(FGPaletteUpdate), fgPaletteSet, 1, 0, 1);
+                    fgPaletteEditor = new PaletteEditor(new Function(FGPaletteUpdate), fgPaletteSet, 2, 0, 2);
                 fgPaletteEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
@@ -863,7 +899,7 @@ namespace LAZYSHELL
                 if (index == MenuType.GameSelect)
                     fgPaletteEditor.Reload(new Function(FGPaletteUpdate), fgPaletteSet, 16, 1, 5);
                 else
-                    fgPaletteEditor.Reload(new Function(FGPaletteUpdate), fgPaletteSet, 1, 0, 1);
+                    fgPaletteEditor.Reload(new Function(FGPaletteUpdate), fgPaletteSet, 2, 0, 2);
             }
         }
         private void LoadFGGraphicEditor()
@@ -871,12 +907,12 @@ namespace LAZYSHELL
             if (fgGraphicEditor == null)
             {
                 fgGraphicEditor = new GraphicEditor(new Function(FGGraphicUpdate),
-                    fgGraphics, fgGraphics.Length, 0, fgPaletteSet, 0, (byte)(index == MenuType.GameSelect ? 0x20 : 0x10));
+                    fgGraphics, fgGraphics.Length, 0, fgPaletteSet, 0, (byte)(index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? 0x20 : 0x10));
                 fgGraphicEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
                 fgGraphicEditor.Reload(new Function(FGGraphicUpdate),
-                    fgGraphics, fgGraphics.Length, 0, fgPaletteSet, 0, (byte)(index == MenuType.GameSelect ? 0x20 : 0x10));
+                    fgGraphics, fgGraphics.Length, 0, fgPaletteSet, 0, (byte)(index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? 0x20 : 0x10));
         }
         private void LoadCursorsPaletteEditor()
         {
@@ -922,16 +958,6 @@ namespace LAZYSHELL
                 speakersGraphicEditor.Reload(new Function(SpeakersGraphicUpdate),
                     Model.GameSelectSpeakers, Model.GameSelectSpeakers.Length, 0, Model.GameSelectPaletteSet, 14, 0x20);
         }
-        private void LoadStarPiecesPaletteEditor()
-        {
-            if (starPiecesPaletteEditor == null)
-            {
-                starPiecesPaletteEditor = new PaletteEditor(new Function(StarPiecesPaletteUpdate), starPiecesPalette, 1, 0, 1);
-                starPiecesPaletteEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
-            }
-            else
-                starPiecesPaletteEditor.Reload(new Function(StarPiecesPaletteUpdate), starPiecesPalette, 1, 0, 1);
-        }
         private void BGPaletteUpdate()
         {
             Model.MenuBG = null;
@@ -940,6 +966,7 @@ namespace LAZYSHELL
             SetBackgroundImage();
             SetPreviewImage();
             LoadBGGraphicEditor();
+            LoadTileEditor();
             this.Modified = true;   // b/c switching colors won't modify
         }
         private void BGGraphicUpdate()
@@ -949,6 +976,7 @@ namespace LAZYSHELL
             Model.GameBG = null;
             SetBackgroundImage();
             SetPreviewImage();
+            LoadTileEditor();
             this.Modified = true;   // b/c switching colors won't modify
         }
         private void FGPaletteUpdate()
@@ -956,12 +984,14 @@ namespace LAZYSHELL
             SetForegroundImage();
             SetPreviewImage();
             LoadFGGraphicEditor();
+            LoadTileEditor();
             this.Modified = true;   // b/c switching colors won't modify
         }
         private void FGGraphicUpdate()
         {
             SetForegroundImage();
             SetPreviewImage();
+            LoadTileEditor();
             this.Modified = true;   // b/c switching colors won't modify
         }
         private void CursorsPaletteUpdate()
@@ -986,12 +1016,26 @@ namespace LAZYSHELL
             SetSpeakersImages();
             this.Modified = true;   // b/c switching colors won't modify
         }
-        private void StarPiecesPaletteUpdate()
+        private void LoadTileEditor()
         {
-            SetForegroundImage();
-            SetPreviewImage();
-            //    LoadCursorsGraphicEditor();
-            this.Modified = true;   // b/c switching colors won't modify
+            if (tileEditor == null)
+            {
+                tileEditor = new TileEditor(new Function(TileUpdate),
+                this.tilesetDynamic.Tileset_tiles[mouseDownTile],
+                graphicsDynamic, palettesDynamic, 0x20, false);
+                tileEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
+            }
+            else
+                tileEditor.Reload(new Function(TileUpdate),
+                this.tilesetDynamic.Tileset_tiles[mouseDownTile],
+                graphicsDynamic, palettesDynamic, 0x20);
+        }
+        private void TileUpdate()
+        {
+            //bgTileset = new Tileset(Model.MenuBGTileset, Model.MenuBGGraphics, bgPaletteSet, 16, 16, TilesetType.WorldMap);
+
+            tilesetDynamic.Tileset.DrawTileset(tilesetDynamic.Tileset_tiles, tilesetDynamic.Tileset_bytes);
+            Reload();
         }
         //
         private void ImportBackground(Bitmap import)
@@ -1086,9 +1130,9 @@ namespace LAZYSHELL
                 int[] palette = Do.ReduceColorDepth(pixels, 16, 0);
                 for (int i = 0; i < palette.Length; i++)
                 {
-                    fgPaletteSet.Reds[16 * 4 + i] = Color.FromArgb(palette[i]).R;
-                    fgPaletteSet.Greens[16 * 4 + i] = Color.FromArgb(palette[i]).G;
-                    fgPaletteSet.Blues[16 * 4 + i] = Color.FromArgb(palette[i]).B;
+                    fgPaletteSet.Reds[i] = Color.FromArgb(palette[i]).R;
+                    fgPaletteSet.Greens[i] = Color.FromArgb(palette[i]).G;
+                    fgPaletteSet.Blues[i] = Color.FromArgb(palette[i]).B;
                 }
                 Do.PixelsToBPP(pixels, graphics, new Size(256 / 8, 256 / 8), palette, 0x20);
                 //
@@ -1097,7 +1141,8 @@ namespace LAZYSHELL
                 int size = Do.CopyToTileset(graphics, tileset, palette, 0, true, false, 0x20, 2, new Size(256, 256), 0);
                 //
                 Buffer.BlockCopy(tileset, 0, Model.OverworldStarPiecesMenuTileset, 0, 0x800);
-                Buffer.BlockCopy(graphics, 0, Model.WorldMapLogos, 0, 0x2000);//Model.OverworldStarPiecesMenuGraphics
+                Buffer.BlockCopy(graphics, 0, Model.OverworldStarPiecesMenuGraphics, 0, 0x2000);
+                fgTilesetStarPiecesOverworld.Tileset_bytes = tileset;
                 if (size > 8192)
                     MessageBox.Show("Not enough space to store the necessary amount of SNES graphics data for the imported images. The total required space (" +
                         size + " bytes) for the new SNES graphics data exceeds 8192 bytes.",
@@ -1146,14 +1191,13 @@ namespace LAZYSHELL
                     Model.MenuFrameGraphics[a] = graphics[b];
                 //
             }
-            SetForegroundImage();
-            SetPreviewImage();
-            LoadFGGraphicEditor();
-            LoadFGPaletteEditor();
+            RefreshMenu();
             this.Modified = true;
         }
-        public new void Close()
+        public void CloseEditors()
         {
+            tileEditor.Close();
+            tileEditor.Dispose();
             if (bgPaletteEditor != null)
             {
                 bgPaletteEditor.Close();
@@ -1302,13 +1346,13 @@ namespace LAZYSHELL
                     tilesetDynamic.Tileset_tiles[(y + y_) * 16 + x + x_].Index = (y + y_) * 16 + x + x_;
                 }
             }
-            tilesetDynamic.DrawTileset(tilesetDynamic.Tileset_tiles, tilesetDynamic.Tileset_bytes);
+            tilesetDynamic.Tileset.DrawTileset(tilesetDynamic.Tileset_tiles, tilesetDynamic.Tileset_bytes);
             commandStack.Push(commandCount + 1);
             commandCount = 0;
             Reload();
             defloating = true;
             //
-            commandStack.Push(new TilesetCommand(tilesetDynamic, oldTileset, graphicsDynamic, 0x20, menuTextName));
+            commandStack.Push(new TilesetCommand(tilesetDynamic.Tileset, oldTileset, graphicsDynamic, 0x20, menuTextName));
         }
         private void Defloat()
         {
@@ -1336,10 +1380,10 @@ namespace LAZYSHELL
                 for (int x = 0; x < overlay.SelectTS.Width / 16 && x + x_ < 0x100; x++)
                     tilesetDynamic.Tileset_tiles[(y + y_) * 16 + x + x_].Clear();
             }
-            tilesetDynamic.DrawTileset(tilesetDynamic.Tileset_tiles, tilesetDynamic.Tileset_bytes);
+            tilesetDynamic.Tileset.DrawTileset(tilesetDynamic.Tileset_tiles, tilesetDynamic.Tileset_bytes);
             Reload();
             //
-            commandStack.Push(new TilesetCommand(tilesetDynamic, oldTileset, graphicsDynamic, 0x20, menuTextName));
+            commandStack.Push(new TilesetCommand(tilesetDynamic.Tileset, oldTileset, graphicsDynamic, 0x20, menuTextName));
             commandCount++;
         }
         private void Flip(string type)
@@ -1366,7 +1410,7 @@ namespace LAZYSHELL
                 Do.FlipVertical(copiedTiles, overlay.SelectTS.Width / 16, overlay.SelectTS.Height / 16);
             buffer.Tiles = copiedTiles;
             Defloat(buffer);
-            tilesetDynamic.DrawTileset(tilesetDynamic.Tileset_tiles, tilesetDynamic.Tileset_bytes);
+            tilesetDynamic.Tileset.DrawTileset(tilesetDynamic.Tileset_tiles, tilesetDynamic.Tileset_bytes);
             Reload();
         }
 
@@ -1729,6 +1773,7 @@ namespace LAZYSHELL
         // drawing buttons
         #region drawingButtons
         private void pictureBoxEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+
         {
             switch (e.KeyData)
             {
@@ -1810,8 +1855,7 @@ namespace LAZYSHELL
                 }
             }
             mouseDownTile = y / 16 * 16 + (x / 16);
-            BGGraphicUpdate();
-            FGGraphicUpdate();
+            LoadTileEditor();
         }
         private void pictureBoxEditor_MouseMove(object sender, MouseEventArgs e)
         {
@@ -1852,14 +1896,6 @@ namespace LAZYSHELL
         //
         //
         //
-        private void buttonToggleCartGrid_Click(object sender, EventArgs e)
-        {
-            pictureBoxEditor.Invalidate();
-        }
-        private void buttonToggleBG_Click(object sender, EventArgs e)
-        {
-            pictureBoxEditor.Invalidate();
-        }
         private void buttonEditDelete_Click(object sender, EventArgs e)
         {
             if (!moving)
@@ -1978,12 +2014,6 @@ namespace LAZYSHELL
                 LoadSpeakersGraphicEditor();
             speakersGraphicEditor.Show();
         }
-        private void starPieceMenuPaletteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (starPiecesPaletteEditor == null)
-                LoadStarPiecesPaletteEditor();
-            starPiecesPaletteEditor.Show();
-        }
         #endregion
 
         private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2073,6 +2103,10 @@ namespace LAZYSHELL
                 Model.GameSelectTileset = null;
                 //
                 Model.MenuTexts = null;
+                //
+                Model.OverworldStarPiecesMenuGraphics = null;
+                Model.OverworldStarPiecesMenuPalette = null;
+                Model.OverworldStarPiecesMenuTileset = null;
             }
             else if (result == DialogResult.Cancel)
             {
@@ -2080,7 +2114,7 @@ namespace LAZYSHELL
                 return;
             }
         Close:
-            this.Close();
+            this.CloseEditors();
         }
         private void menuTextNum_ValueChanged(object sender, EventArgs e)
         {
@@ -2181,6 +2215,201 @@ namespace LAZYSHELL
             pictureBoxEditor.Invalidate();
             pictureBoxPreview.Invalidate();
         }
+        private void openTileEditor_Click(object sender, EventArgs e)
+        {
+            tileEditor.Visible = true;
+        }
+        #region Resets
+        // Text Reset
+        private void resetTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Menu Text.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuTexts = null;
+            int idx = this.Index;
+            this.menuTextName.Items.Clear();
+            for (int i = 0; i < Model.MenuTexts.Length; i++)
+                this.menuTextName.Items.Add(Model.MenuTexts[i].GetMenuString(textView.Checked));
+            this.Index = idx;
+            //
+            Model.MenuBoxNames = null;
+            menusBox.InitializeStrings();
+            //
+            RefreshMenuText();
+        }
+
+        // Overworld Menu List Reset
+        private void resetOverworldMenuListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Overworld Menu List.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuBox = null;
+            menusBox.InitializeStrings();
+        }
+        // Tilesets Reset
+        private void gameSelectTilesetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Game Select Tilemap.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.GameSelectTileset = null;
+            RefreshMenu();
+        }
+
+        private void backgroundTilesetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Background Tilemap.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuBGTileset = null;
+            RefreshMenu();
+
+        }
+
+        private void starPiecesTilesetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Game Select Tilemap.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.OverworldStarPiecesMenuTileset = null;
+            RefreshMenu();
+        }
+
+        private void resetBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to ALL tilemaps.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.GameSelectTileset = null;
+            Model.MenuBGTileset = null;
+            Model.OverworldStarPiecesMenuTileset = null;
+            Reload();
+        }
+
+        // Graphics Reset
+        private void resetGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to ALL graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.GameSelectGraphics = null;
+            Model.MenuBGGraphics = null;
+            Model.MenuFrameGraphics = null;
+            Model.GameSelectSpeakers = null;
+            Model.OverworldStarPiecesMenuGraphics = null;
+            Model.MenuCursorGraphics = null;
+            Reload();
+        }
+        private void gameSelectGraphicsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Game Select Graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.GameSelectGraphics = null;
+            Reload();
+        }
+        private void backgroundGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the Background Graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuBGGraphics = null;
+            Reload();
+        }
+        private void frameGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Frame Graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuFrameGraphics = null;
+            Reload();
+        }
+        private void starPiecesGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Star Pieces Menu Graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.OverworldStarPiecesMenuGraphics = null;
+            Reload();
+        }
+        private void monoStereoGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Star Pieces Menu Graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.GameSelectSpeakers = null;
+            Reload();
+        }
+        private void cursorsGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Menu Cursors Graphics.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuCursorGraphics = null;
+            Reload();
+        }
+
+        // Palette resets
+        private void resetPalettesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to ALL palettes.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.GameSelectPaletteSet = null;
+            Model.MenuBGPalette = null;
+            Model.ShopBGPalette = null;
+            Model.GameSelectBGPalette = null;
+            Model.MenuPalettes = null;
+            Model.OverworldStarPiecesMenuPalette = null;
+            Model.CursorPaletteSet = null;
+            Reload();
+        }
+        private void gameSelectPalettesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Game Select Palette.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.GameSelectPaletteSet = null;
+            Reload();
+        }
+        private void backgroundPalettesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to all Background Palettes.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuBGPalette = null;
+            Model.ShopBGPalette = null;
+            Model.GameSelectBGPalette = null;
+            Reload();
+        }
+        private void framePaletteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Menu Palette.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.MenuPalettes = null;
+            Reload();
+        }
+        private void starPiecesPaletteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Star Pieces Menu Palette.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.OverworldStarPiecesMenuPalette = null;
+            Reload();
+        }
+        private void cursorsPalettesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to Menu Cursor Palette.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.CursorPaletteSet = null;
+            Reload();
+        }
+        #endregion
+
         #endregion
         [Serializable()]
         public class CursorSprite

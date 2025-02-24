@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using LAZYSHELL.Properties;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace LAZYSHELL
 {
@@ -15,26 +16,28 @@ namespace LAZYSHELL
         //
         private Settings settings = Settings.Default;
         private Character[] characters { get { return Model.Characters; } set { Model.Characters = value; } }
-        private Character character { get { return characters[index]; } set { characters[index] = value; } }
-        private int index { get { return characterName.SelectedIndex; } set { characterName.SelectedIndex = value; } }
+        private Character character { get { return parentEditor.Characters[parentEditor.Index]; } set { parentEditor.Characters[parentEditor.Index] = value; } }
+        private int index { get { return parentEditor.Index; } set { parentEditor.Index = value; } }
+        public int Index { get { return index; } set { index = value; } }
+        //
+        private AlliesEditor parentEditor;
+        public LevelUpsCalculator calculator;
         #endregion
         // constructor
-        public LevelUps()
+        public LevelUps(AlliesEditor parentEditor)
         {
+            this.parentEditor = parentEditor;
             InitializeComponent();
             InitializeStrings();
             index = 0;
             RefreshLevel();
             //
-            this.History = new History(this, characterName, null);
+            this.History = new History(this, false);
         }
         // functions
         private void InitializeStrings()
         {
             this.Updating = true;
-            this.characterName.Items.Clear();
-            for (int i = 0; i < characters.Length; i++)
-                this.characterName.Items.Add(new string(characters[i].Name));
             this.levelUpSpellLearned.Items.Clear();
             for (int i = 0; i < 32; i++)
                 this.levelUpSpellLearned.Items.Add(new string(Model.Spells[i].Name));
@@ -59,14 +62,9 @@ namespace LAZYSHELL
             this.mgDefensePlusBonus.Value = character.LevelMgDefensePlusBonus;
             this.expNeeded.Value = characters[0].LevelExpNeeded;
             this.levelUpSpellLearned.SelectedIndex = character.LevelSpellLearned;
-            this.characterName.Invalidate();
             this.Updating = false;
         }
         #region Event Handlers
-        private void characterName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshLevel();
-        }
         private void characterName_DrawItem(object sender, DrawItemEventArgs e)
         {
             Do.DrawName(
@@ -86,46 +84,57 @@ namespace LAZYSHELL
         private void hpPlus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelHpPlus = (byte)this.hpPlus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void attackPlus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelAttackPlus = (byte)this.attackPlus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void defensePlus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelDefensePlus = (byte)this.defensePlus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void mgAttackPlus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelMgAttackPlus = (byte)this.mgAttackPlus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void mgDefensePlus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelMgDefensePlus = (byte)this.mgDefensePlus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void hpPlusBonus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelHpPlusBonus = (byte)this.hpPlusBonus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void attackPlusBonus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelAttackPlusBonus = (byte)this.attackPlusBonus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void defensePlusBonus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelDefensePlusBonus = (byte)this.defensePlusBonus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void mgAttackPlusBonus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelMgAttackPlusBonus = (byte)this.mgAttackPlusBonus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void mgDefensePlusBonus_ValueChanged(object sender, EventArgs e)
         {
             character.LevelMgDefensePlusBonus = (byte)this.mgDefensePlusBonus.Value;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void levelUpSpellLearned_SelectedIndexChanged(object sender, EventArgs e)
         {
             character.LevelSpellLearned = (byte)this.levelUpSpellLearned.SelectedIndex;
+            if (calculator != null) calculator.CalculateLevel();
         }
         private void levelUpSpellLearned_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -133,15 +142,17 @@ namespace LAZYSHELL
                 sender, e, new BattleDialoguePreview(), Lists.Convert(Model.Spells, 33),
                 Model.FontMenu, Model.FontPaletteMenu.Palettes[0], 8, 10, 0, 0, true, false, Model.MenuBG_);
         }
-        //
-        private void reset_Click(object sender, EventArgs e)
+        private void calculatorButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("You're about to undo all changes to the current character's level-up index. Go ahead with reset?",
-                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-                return;
-            character = new Character(index);
-            characterName_SelectedIndexChanged(null, null);
+            settings.PreviewSprites = index;
+            if (calculator == null || !calculator.Visible)
+                calculator = new LevelUpsCalculator(index);
+            else
+                calculator.Reload(index);
+            calculator.Show();
+            calculator.BringToFront();
         }
         #endregion
+
     }
 }

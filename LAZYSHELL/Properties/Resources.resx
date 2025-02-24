@@ -1294,4 +1294,10 @@
   <data name="addToNotes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Data\addToNotes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_BowserCameraGawk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Test\animation.255.Mold.06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="toggleScarecrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Toggle\toggleScarecrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

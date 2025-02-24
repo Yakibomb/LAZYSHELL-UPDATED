@@ -104,6 +104,7 @@ namespace LAZYSHELL
                         "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            
 
             // load layout
             // set defaults for layout
@@ -234,8 +235,11 @@ namespace LAZYSHELL
         {
             if (!File.Exists(filename))
             {
-                MessageBox.Show("Error loading last used database. The file has been moved, renamed, or no longer exists.",
-                    "LAZYSHELL++");
+                MessageBox.Show("Could not load last used database. The file has been moved, renamed, or no longer exists.",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Model.Project = null;
+                settings.NotePathCustom = null;
+                settings.Save();
                 return;
             }
             Stream s = File.OpenRead(filename);

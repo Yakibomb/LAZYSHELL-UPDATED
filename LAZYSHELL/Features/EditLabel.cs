@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using LAZYSHELL.Properties;
 
 namespace LAZYSHELL
 {
@@ -200,7 +201,8 @@ namespace LAZYSHELL
                 Model.Program.CreateProjectWindow();
             Project temp = Model.Program.Project;
             if (Model.Project == null)
-                temp.LoadProject();
+                if (!temp.LoadProject())
+                    return;
             if (Model.Project != null)
             {
                 if (elist != null && index < elist.Indexes.Length)
@@ -245,6 +247,7 @@ namespace LAZYSHELL
         }
         private void EditLabel_FormClosing(object sender, FormClosingEventArgs e)
         {
+            RefreshLabel();
             e.Cancel = true;
             this.Hide();
         }

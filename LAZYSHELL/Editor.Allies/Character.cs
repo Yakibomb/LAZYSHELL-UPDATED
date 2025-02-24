@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
+using static LAZYSHELL.Character;
+using System.Windows.Forms;
 
 namespace LAZYSHELL
 {
@@ -14,6 +17,7 @@ namespace LAZYSHELL
         private byte indexLevel = 2;
         #region class variables
         private LevelUp[] levels;
+        private AllyCoordinate[] coordinates = new AllyCoordinate[5];
         private char[] name;
         // starting stats
         private byte startingLevel;
@@ -29,20 +33,11 @@ namespace LAZYSHELL
         private byte startingArmor;
         private byte startingAccessory;
         private bool[] startingMagic;
-        // starting inventory
-        private ushort startingCoins;
-        private byte startingCurrentFP;
-        private byte startingMaximumFP;
-        private ushort startingFrogCoins;
-        // timing
-        private byte defenseStartL1;
-        private byte defenseStartL2;
-        private byte defenseEndL2;
-        private byte defenseEndL1;
         #endregion
         #region accessors
         public byte IndexLevel { get { return this.indexLevel; } set { this.indexLevel = value; } }
-        public LevelUp[] Levels { get { return levels; } }
+        public LevelUp[] Levels { get { return levels; } set { levels = value; } }
+        public AllyCoordinate[] AllyCoordinates { get { return coordinates; } set { coordinates = value; } }
         public char[] Name { get { return this.name; } set { this.name = value; } }
         // starting stats
         public byte StartingLevel { get { return this.startingLevel; } set { this.startingLevel = value; } }
@@ -59,16 +54,6 @@ namespace LAZYSHELL
         public byte StartingAccessory { get { return this.startingAccessory; } set { this.startingAccessory = value; } }
         // starting magic
         public bool[] StartingMagic { get { return startingMagic; } set { startingMagic = value; } }
-        // starting inventory
-        public ushort StartingCoins { get { return this.startingCoins; } set { this.startingCoins = value; } }
-        public byte StartingCurrentFP { get { return this.startingCurrentFP; } set { this.startingCurrentFP = value; } }
-        public byte StartingMaximumFP { get { return this.startingMaximumFP; } set { this.startingMaximumFP = value; } }
-        public ushort StartingFrogCoins { get { return this.startingFrogCoins; } set { this.startingFrogCoins = value; } }
-        // timing
-        public byte DefenseStartL1 { get { return this.defenseStartL1; } set { this.defenseStartL1 = value; } }
-        public byte DefenseStartL2 { get { return this.defenseStartL2; } set { this.defenseStartL2 = value; } }
-        public byte DefenseEndL2 { get { return this.defenseEndL2; } set { this.defenseEndL2 = value; } }
-        public byte DefenseEndL1 { get { return this.defenseEndL1; } set { this.defenseEndL1 = value; } }
         // level-up
         public ushort LevelExpNeeded { get { return this.levels[indexLevel].ExpNeeded; } set { this.levels[indexLevel].ExpNeeded = value; } }
         public byte LevelSpellLearned { get { return this.levels[indexLevel].SpellLearned; } set { this.levels[indexLevel].SpellLearned = value; } }
@@ -82,55 +67,56 @@ namespace LAZYSHELL
         public byte LevelDefensePlusBonus { get { return this.levels[indexLevel].DefensePlusBonus; } set { this.levels[indexLevel].DefensePlusBonus = value; } }
         public byte LevelMgAttackPlusBonus { get { return this.levels[indexLevel].MgAttackPlusBonus; } set { this.levels[indexLevel].MgAttackPlusBonus = value; } }
         public byte LevelMgDefensePlusBonus { get { return this.levels[indexLevel].MgDefensePlusBonus; } set { this.levels[indexLevel].MgDefensePlusBonus = value; } }
+
         #endregion
         // constructor
-        public Character(int index)
+        public Character(int index, bool characterStats = true, bool characterLevelUps = true, bool characterCoords = true)
+        {
+            Disassemble(index, characterStats, characterLevelUps, characterCoords);
+        }
+        // disassembler
+        public void Disassemble(int index, bool characterStats = true, bool characterLevelUps = true, bool characterCoords = true)
         {
             this.index = index;
             this.indexLevel = 2;
-            Disassemble();
-        }
-        // disassembler
-        private void Disassemble()
-        {
-            int offset = (index * 20) + 0x3A002C;
-            //
-            startingLevel = rom[offset++];
-            startingCurrentHP = Bits.GetShort(rom, offset); offset += 2;
-            startingMaxHP = Bits.GetShort(rom, offset); offset += 2;
-            startingSpeed = rom[offset++];
-            startingAttack = rom[offset++];
-            startingDefense = rom[offset++];
-            startingMgAttack = rom[offset++];
-            startingMgDefense = rom[offset++];
-            startingExperience = Bits.GetShort(rom, offset); offset += 2;
-            startingWeapon = rom[offset++];
-            startingArmor = rom[offset++];
-            startingAccessory = rom[offset]; offset += 2;
-            //
-            startingMagic = new bool[32];
-            int a = 0;
-            for (int o = 0; o < 4; o++, offset++)
-                for (int i = 0; i < 8; i++)
-                    startingMagic[a++] = Bits.GetBit(rom, offset, i);
-            // set up the levels
-            levels = new LevelUp[31];
-            for (int i = 2; i < levels.Length; i++)
-                levels[i] = new LevelUp(i, index);
-            //
-            startingCoins = Bits.GetShort(rom, 0x3A00DB);
-            startingCurrentFP = rom[0x3A00DD];
-            startingMaximumFP = rom[0x3A00DE];
-            startingFrogCoins = Bits.GetShort(rom, 0x3A00DF);
-            //
-            defenseStartL1 = rom[0x02C9B3];
-            defenseStartL2 = rom[0x02C9B9];
-            defenseEndL2 = rom[0x02C9BF];
-            defenseEndL1 = rom[0x02C9C5];
-            //
+
+            // set up the character stats
+            if (characterStats)
+            {
+                int offset = (index * 20) + 0x3A002C;
+                //
+                startingLevel = rom[offset++];
+                startingCurrentHP = Bits.GetShort(rom, offset); offset += 2;
+                startingMaxHP = Bits.GetShort(rom, offset); offset += 2;
+                startingSpeed = rom[offset++];
+                startingAttack = rom[offset++];
+                startingDefense = rom[offset++];
+                startingMgAttack = rom[offset++];
+                startingMgDefense = rom[offset++];
+                startingExperience = Bits.GetShort(rom, offset); offset += 2;
+                startingWeapon = rom[offset++];
+                startingArmor = rom[offset++];
+                startingAccessory = rom[offset]; offset += 2;
+                //
+                startingMagic = new bool[32];
+                int a = 0;
+                for (int o = 0; o < 4; o++, offset++)
+                    for (int i = 0; i < 8; i++)
+                        startingMagic[a++] = Bits.GetBit(rom, offset, i);
+            }
+            // set up the level up
+            if (characterLevelUps)
+            {
+                levels = new LevelUp[31];
+                for (int i = 2; i < levels.Length; i++)
+                    levels[i] = new LevelUp(i, index);
+            }
             name = new char[10];
             for (int i = 0; i < name.Length; i++)
                 name[i] = (char)rom[(index * 10) + 0x3a134d + i];
+            // setup character coordinates
+            if (characterCoords)
+                coordinates[index] = new AllyCoordinate(index);
         }
         public void Assemble()
         {
@@ -157,19 +143,9 @@ namespace LAZYSHELL
             foreach (LevelUp l in levels)
                 if (l != null)
                     l.Assemble();
-            if (index == 0)
-            {
-                Bits.SetShort(rom, 0x3A00DB, startingCoins);
-                rom[0x3A00DD] = startingCurrentFP;
-                rom[0x3A00DE] = startingMaximumFP;
-                Bits.SetShort(rom, 0x3A00DF, startingFrogCoins);
-                //
-                rom[0x02C9B3] = defenseStartL1;
-                rom[0x02C9B9] = defenseStartL2;
-                rom[0x02C9BF] = defenseEndL2;
-                rom[0x02C9C5] = defenseEndL1;
-            }
             Bits.SetChars(rom, 0x3a134d + (index * 10), name);
+            //
+            coordinates[index].Assemble();
         }
         // functions
         public override string ToString()
@@ -192,13 +168,11 @@ namespace LAZYSHELL
             startingArmor = 0;
             startingAccessory = 0;
             startingMagic = new bool[32];
-            startingCoins = 0;
-            startingCurrentFP = 0;
-            startingMaximumFP = 0;
-            startingFrogCoins = 0;
             foreach (LevelUp levelUp in levels)
                 if (levelUp != null)
                     levelUp.Clear();
+
+            coordinates[index].Clear();
         }
         [Serializable()]
         public class LevelUp
@@ -279,7 +253,7 @@ namespace LAZYSHELL
             }
             public void Clear()
             {
-                expNeeded = 0;
+                //expNeeded = 0;
                 hpPlus = 0;
                 attackPlus = 0;
                 defensePlus = 0;
@@ -293,6 +267,66 @@ namespace LAZYSHELL
                 spellLearned = 32;
             }
             // class functions
+        }
+        [Serializable()]
+        public class AllyCoordinate
+        {
+            // universal variables
+            private byte[] rom { get { return Model.ROM; } set { Model.ROM = value; } }
+            private int index; public int Index { get { return index; } }
+            // coordinates
+            private byte cursorX;
+            private byte cursorY;
+            private byte spriteABXY_Y;
+            public byte CursorX { get { return this.cursorX; } set { this.cursorX = value; } }
+            public byte CursorY { get { return this.cursorY; } set { this.cursorY = value; } }
+            public byte SpriteABXY_Y { get { return this.spriteABXY_Y; } set { this.spriteABXY_Y = value; } }
+            //
+            private byte cursorX_Scarecrow;
+            private byte cursorY_Scarecrow;
+            private byte spriteABXY_Y_Scarecrow;
+            public byte CursorX_Scarecrow { get { return this.cursorX_Scarecrow; } set { this.cursorX_Scarecrow = value; } }
+            public byte CursorY_Scarecrow { get { return this.cursorY_Scarecrow; } set { this.cursorY_Scarecrow = value; } }
+            public byte SpriteABXY_Y_Scarecrow { get { return this.spriteABXY_Y_Scarecrow; } set { this.spriteABXY_Y_Scarecrow = value; } }
+            // constructor
+            public AllyCoordinate(int index)
+            {
+                this.index = index;
+                Disassemble();
+            }
+            public void Disassemble()
+            {
+                int temp;
+                temp = rom[0x029752 + index];
+                cursorX = (byte)((temp & 0xF0) >> 4);
+                cursorY = (byte)(temp & 0x0F);
+
+                spriteABXY_Y = rom[0x023685 + (index * 2)];
+                //
+                temp = rom[0x029757];
+                cursorX_Scarecrow = (byte)((temp & 0xF0) >> 4);
+                cursorY_Scarecrow = (byte)(temp & 0x0F);
+
+                spriteABXY_Y_Scarecrow = rom[0x02346E];
+                
+            }
+            public void Assemble()
+            {
+                rom[0x029752 + index] = (byte)((cursorX << 4) + cursorY);
+                rom[0x023685 + (index * 2)] = spriteABXY_Y;
+                //
+                if (index == 0)
+                {
+                    rom[0x029757] = (byte)((cursorX_Scarecrow << 4) + cursorY_Scarecrow);
+                    rom[0x02346E] = spriteABXY_Y_Scarecrow;
+                }
+            }
+            public void Clear()
+            {
+                cursorX = 0;
+                cursorY = 0;
+                spriteABXY_Y = 0xC5;
+            }
         }
     }
 }

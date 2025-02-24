@@ -1176,8 +1176,7 @@ namespace LAZYSHELL
             this.baseConvertor,
             this.toolStripSeparator10,
             this.toolStripDropDownButton2,
-            this.toolStripDropDownButton3,
-            this.openTileEditor});
+            this.toolStripDropDownButton3,});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -1429,6 +1428,7 @@ namespace LAZYSHELL
             this.buttonToggleCartGrid,
             this.buttonToggleBG,
             this.toolStripLabel1,
+            this.openTileEditor,
             this.music,
             this.toolStripLabel2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);

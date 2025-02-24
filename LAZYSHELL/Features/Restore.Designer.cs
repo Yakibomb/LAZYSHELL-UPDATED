@@ -106,31 +106,41 @@ namespace LAZYSHELL
             System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Text");
             System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Graphics");
             System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Tilesets");
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Misc");
-            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Menus", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Palettes");
+            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Game Select Music Track");
+            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Game Select Cursor Sequences");
+            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Overworld Main Menu List");
+            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Status Menu X Coordinates");
+            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Misc", new System.Windows.Forms.TreeNode[] {
+            treeNode49,
+            treeNode50,
+            treeNode51,
+            treeNode52});
+            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Menus", new System.Windows.Forms.TreeNode[] {
             treeNode45,
             treeNode46,
             treeNode47,
-            treeNode48});
-            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Mine Carts");
-            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Mini-games", new System.Windows.Forms.TreeNode[] {
-            treeNode50});
-            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Monsters");
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Battle scripts");
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Monsters", new System.Windows.Forms.TreeNode[] {
-            treeNode52,
+            treeNode48,
             treeNode53});
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Effects");
-            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Sprites");
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("World maps");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Tilesets");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Locations");
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Sprites");
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("World maps", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Mine Carts");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Mini-games", new System.Windows.Forms.TreeNode[] {
+            treeNode55});
+            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Monsters");
+            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Battle scripts");
+            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Monsters", new System.Windows.Forms.TreeNode[] {
             treeNode57,
-            treeNode58,
-            treeNode59,
-            treeNode60});
+            treeNode58});
+            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Effects");
+            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Sprites");
+            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("World maps");
+            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Tilesets");
+            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Locations");
+            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Sprites");
+            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("World maps", new System.Windows.Forms.TreeNode[] {
+            treeNode62,
+            treeNode63,
+            treeNode64,
+            treeNode65});
             this.elements = new System.Windows.Forms.TreeView();
             this.browseFreshRom = new System.Windows.Forms.Button();
             this.freshRomTextBox = new System.Windows.Forms.TextBox();
@@ -242,34 +252,44 @@ namespace LAZYSHELL
             treeNode46.Text = "Graphics";
             treeNode47.Name = "Tilesets";
             treeNode47.Text = "Tilesets";
-            treeNode48.Name = "Misc";
-            treeNode48.Text = "Misc";
-            treeNode49.Name = "Menus";
-            treeNode49.Text = "Menus";
-            treeNode50.Name = "MineCarts";
-            treeNode50.Text = "Mine Carts";
-            treeNode51.Name = "MiniGames";
-            treeNode51.Text = "Mini-games";
-            treeNode52.Name = "Monsters";
-            treeNode52.Text = "Monsters";
-            treeNode53.Name = "BattleScripts";
-            treeNode53.Text = "Battle scripts";
-            treeNode54.Name = "Monsters";
-            treeNode54.Text = "Monsters";
-            treeNode55.Name = "Effects";
-            treeNode55.Text = "Effects";
-            treeNode56.Name = "Sprites";
-            treeNode56.Text = "Sprites";
-            treeNode57.Name = "WorldMaps";
-            treeNode57.Text = "World maps";
-            treeNode58.Name = "Tilesets";
-            treeNode58.Text = "Tilesets";
-            treeNode59.Name = "Locations";
-            treeNode59.Text = "Locations";
-            treeNode60.Name = "Sprites";
-            treeNode60.Text = "Sprites";
-            treeNode61.Name = "WorldMaps";
-            treeNode61.Text = "World maps";
+            treeNode48.Name = "Palettes";
+            treeNode48.Text = "Palettes";
+            treeNode49.Name = "Game Select Music Track";
+            treeNode49.Text = "Game Select Music Track";
+            treeNode50.Name = "Game Select Cursor Sequences";
+            treeNode50.Text = "Game Select Cursor Sequences";
+            treeNode51.Name = "Overworld Main Menu List";
+            treeNode51.Text = "Overworld Main Menu List";
+            treeNode52.Name = "Status Menu X Coordinates";
+            treeNode52.Text = "Status Menu X Coordinates";
+            treeNode53.Name = "Misc";
+            treeNode53.Text = "Misc";
+            treeNode54.Name = "Menus";
+            treeNode54.Text = "Menus";
+            treeNode55.Name = "MineCarts";
+            treeNode55.Text = "Mine Carts";
+            treeNode56.Name = "MiniGames";
+            treeNode56.Text = "Mini-games";
+            treeNode57.Name = "Monsters";
+            treeNode57.Text = "Monsters";
+            treeNode58.Name = "BattleScripts";
+            treeNode58.Text = "Battle scripts";
+            treeNode59.Name = "Monsters";
+            treeNode59.Text = "Monsters";
+            treeNode60.Name = "Effects";
+            treeNode60.Text = "Effects";
+            treeNode61.Name = "Sprites";
+            treeNode61.Text = "Sprites";
+            treeNode62.Name = "WorldMaps";
+            treeNode62.Text = "World maps";
+            treeNode63.Name = "Tilesets";
+            treeNode63.Text = "Tilesets";
+            treeNode64.Name = "Locations";
+            treeNode64.Text = "Locations";
+            treeNode65.Name = "Sprites";
+            treeNode65.Text = "Sprites";
+            treeNode66.Name = "WorldMaps";
+            treeNode66.Text = "World maps";
             this.elements.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4,
             treeNode5,
@@ -282,12 +302,12 @@ namespace LAZYSHELL
             treeNode28,
             treeNode31,
             treeNode44,
-            treeNode49,
-            treeNode51,
             treeNode54,
-            treeNode55,
             treeNode56,
-            treeNode61});
+            treeNode59,
+            treeNode60,
+            treeNode61,
+            treeNode66});
             this.elements.Size = new System.Drawing.Size(333, 490);
             this.elements.TabIndex = 2;
             this.elements.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.elements_AfterCheck);

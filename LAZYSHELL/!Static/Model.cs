@@ -10,6 +10,7 @@ using LAZYSHELL.ScriptsEditor;
 using LAZYSHELL.Properties;
 using System.Reflection;
 using LAZYSHELL.Patches;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace LAZYSHELL
 {
@@ -37,8 +38,8 @@ namespace LAZYSHELL
         {
             get
             {
-                if (project == null)
-                    project = new ProjectDB();
+                //if (project == null)
+                    //project = new ProjectDB();
                 return project;
             }
             set
@@ -1011,7 +1012,7 @@ namespace LAZYSHELL
                 if (menuBG == null)
                     menuBG = Do.PixelsToImage(
                         Do.TilesetToPixels(
-                        new MenuTileset(MenuBGPalette, MenuBGTileset, MenuBGGraphics).Tileset, 16, 16, 0, false), 256, 256);
+                        new MenuTileset(MenuBGPalette, MenuBGTileset, MenuBGGraphics, TilesetType.MenuBackground).Tileset_tiles, 16, 16, 0, false), 256, 256);
                 return menuBG;
             }
             set { menuBG = value; }
@@ -1023,7 +1024,7 @@ namespace LAZYSHELL
                 if (shopBG == null)
                     shopBG = Do.PixelsToImage(
                         Do.TilesetToPixels(
-                        new MenuTileset(ShopBGPalette, MenuBGTileset, MenuBGGraphics).Tileset, 16, 16, 0, false), 256, 256);
+                        new MenuTileset(ShopBGPalette, MenuBGTileset, MenuBGGraphics, TilesetType.MenuBackground).Tileset_tiles, 16, 16, 0, false), 256, 256);
                 return shopBG;
             }
             set { shopBG = value; }
@@ -1035,7 +1036,7 @@ namespace LAZYSHELL
                 if (gameBG == null)
                     gameBG = Do.PixelsToImage(
                         Do.TilesetToPixels(
-                        new MenuTileset(GameSelectBGPalette, MenuBGTileset, MenuBGGraphics).Tileset, 16, 16, 0, false), 256, 256);
+                        new MenuTileset(GameSelectBGPalette, MenuBGTileset, MenuBGGraphics, TilesetType.MenuBackground).Tileset_tiles, 16, 16, 0, false), 256, 256);
                 return gameBG;
             }
             set { gameBG = value; }
@@ -1128,16 +1129,18 @@ namespace LAZYSHELL
         //
         private static byte[] overworldStarPiecesMenuGraphics;
         private static byte[] overworldStarPiecesMenuTileset;
+        private static byte[] overworldStarPiecesMenuPalette_Bytes;
         private static PaletteSet overworldStarPiecesMenuPalette;
+        // NOTE: This is the same as worldMapLogos on purpose!
         public static byte[] OverworldStarPiecesMenuGraphics
         {
             get
             {
-                //if (overworldStarPiecesMenuGraphics == null)
-                    //overworldStarPiecesMenuGraphics = Decompress(rom, 0x3E0000, 0x3E0000, 0x2000);
-                return overworldStarPiecesMenuGraphics;
+                if (worldMapLogos == null)
+                    worldMapLogos = Decompress(rom, 0x3E0000, 0x3E0000, 0x2000);
+                return worldMapLogos;
             }
-            set { overworldStarPiecesMenuGraphics = value; }
+            set { worldMapLogos = value; }
         }
         public static byte[] OverworldStarPiecesMenuTileset
         {
@@ -1156,13 +1159,14 @@ namespace LAZYSHELL
             {
                 if (overworldStarPiecesMenuPalette == null)
                 {
-                    int pointer = Bits.GetShort(rom, 0x3E000A);
-                    int offset = 0x3E0000 + pointer + 0x194;
-                    overworldStarPiecesMenuPalette = new PaletteSet(rom, 0, offset, 1, 16, 32);
+                    overworldStarPiecesMenuPalette = new PaletteSet(MenuPalettes, 6, 0xC0, 2, 16, 32);
                 }
                 return overworldStarPiecesMenuPalette;
             }
-            set { overworldStarPiecesMenuPalette = value; }
+            set
+            {
+                overworldStarPiecesMenuPalette = value;
+            }
         }
         #endregion
         #region Mini-Games
@@ -1744,6 +1748,7 @@ namespace LAZYSHELL
         private static Shop[] shops;
         private static Slot[] slots;
         private static Spell[] spells;
+        private static NewGame[] newGame;
         public static Attack[] Attacks
         {
             get
@@ -1883,6 +1888,19 @@ namespace LAZYSHELL
                 return spells;
             }
             set { spells = value; }
+        }
+        public static NewGame[] NewGame
+        {
+            get
+            {
+                if (newGame == null)
+                {
+                    newGame = new NewGame[1];
+                    newGame[0] = new NewGame();
+                }
+                return newGame;
+            }
+            set { newGame = value; }
         }
         #endregion
         #region Stats Names
@@ -2265,6 +2283,12 @@ namespace LAZYSHELL
         public static string GetFileNameWithoutPathOrExtension()
         {
             string ret = fileName.Substring(fileName.LastIndexOf('\x5c') + 1);
+            return ret.Substring(0, ret.LastIndexOf('.'));
+        }
+        public static string GetNotePathCustomWithoutPathOrExtension()
+        {
+            if (settings.NotePathCustom == "") return "";
+            string ret = settings.NotePathCustom.Substring(settings.NotePathCustom.LastIndexOf('\x5c') + 1);
             return ret.Substring(0, ret.LastIndexOf('.'));
         }
         public static long GetFileSize()
@@ -2756,6 +2780,7 @@ namespace LAZYSHELL
             dummy = FormationMusics;
             dummy = FormationPacks;
             dummy = Formations;
+            dummy = GameSelectBGPalette;
             dummy = GameSelectGraphics;
             dummy = GameSelectPalettes;
             dummy = GameSelectPaletteSet;
@@ -2809,7 +2834,8 @@ namespace LAZYSHELL
             dummy = FontPaletteMenu;
             dummy = MonsterNames;
             dummy = Monsters;
-            dummy = Project;
+            dummy = NewGame;
+            //dummy = Project;
             dummy = NPCProperties;
             dummy = NPCSpritePartitions;
             dummy = NumeralGraphics;
@@ -2903,6 +2929,7 @@ namespace LAZYSHELL
             formationMusics = null;
             formationPacks = null;
             formations = null;
+            gameSelectBGPalette = null;
             gameSelectGraphics = null;
             gameSelectPalettes = null;
             gameSelectPaletteSet = null;
@@ -2929,6 +2956,7 @@ namespace LAZYSHELL
             overworldStarPiecesMenuGraphics = null;
             overworldStarPiecesMenuTileset = null;
             overworldStarPiecesMenuPalette = null;
+            overworldStarPiecesMenuPalette_Bytes = null;
             cursorPaletteSet = null;
             menuTexts = null;
             menuBoxTexts = null;
@@ -2954,6 +2982,7 @@ namespace LAZYSHELL
             cursorPaletteSet = null;
             monsterNames = null;
             monsters = null;
+            newGame = null;
             npcProperties = null;
             npcSpritePartitions = null;
             numeralGraphics = null;
@@ -2966,6 +2995,7 @@ namespace LAZYSHELL
             palettes = null;
             paletteSets = null;
             paletteSetsBF = null;
+            project = null;
             solidityMaps[0] = null;
             solidTiles = null;
             prioritySets = null;
@@ -3078,14 +3108,14 @@ namespace LAZYSHELL
         {
             if (project == null)
             {
-                if (MessageBox.Show("No project file has been loaded. Would you like to load a project file?",
-                    "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                DialogResult result = MessageBox.Show("No project file has been loaded. Would you like to load a project file?",
+                    "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    Project temp = program.Project;
-                    if (temp == null)
-                        temp = new Project();
-                    if (project == null)
-                        temp.LoadProject();
+                    if (program.Project == null || !program.Project.Visible)
+                        program.CreateProjectWindow();
+                    if (program.Project.LoadProject())
+                        return true;
                 }
                 if (project == null)
                 {
