@@ -20,6 +20,9 @@ There's more!
  - Title editor has a title preview with configurable title attributes,
  - and I think that's the bulk of it!
 
+Full changelog is in the release notes on the right of this README -->>
+
+
 
 This Github is only maintained by Yakibomb.
 
