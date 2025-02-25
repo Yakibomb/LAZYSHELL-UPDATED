@@ -118,8 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="changeslog1.Text" xml:space="preserve">
-<<<<<<< HEAD
     <value>===========================
+=======V2.1.2 CHANGELOG========
+===========================
+MAIN TITLE
+ - Title preview should be more accurate
+ - Fixed an issue with the credits at the bottom of the screen would have a non-transparent background
+
+
+===========================
 =======V2.1.1 CHANGELOG========
 ===========================
 DIALOGUES
@@ -132,6 +139,355 @@ MENUS
 
 
 ===========================
+=======V2.1.0 CHANGELOG========
+===========================
+ALLIES
+ - Gave it a new coat of paint.
+ - Added way to set location of target cursor arrow and ABXY
+ - Added level-up calculator to total the sum of level-up increments and show which spells are learned when.
+ - Fixed Clear clearing exp needed to level up when clearing a character
+ - Updated HelpTips
+
+MAIN TITLE
+ - Added title preview
+ - Can edit the locations for Exor, background, main title, and credits for both first boot-up title and after Exor title
+ - Can force the game to use the first boot title or the alternate Exor title
+ - Fixed L1/L2 and L3 graphics overwriting each other, made them separate graphic buttons
+
+ATTACKS
+ - Fixed Damage Calculator to only have one window open at a time
+
+TOOLS
+ - Previewer: Added way to switch out Mario
+ - Graphics Editor: Fixed bug where backup GFX would overwrite current GFX if the window open, then closed on another sprite index
+ - Restore: Included .SFC/.BAK file types to open
+ - Restore: Reworked Menus (again). Reassembles compressed data just like Menus editor does, instead of just copying chunks of data over.
+ - Restore: Fixed bug where opening a subeditor before would not update the subeditor with the new restored changes
+ - Hex Editor: Fixed crash when opening, typing in the searchBox, closing, then reopening
+ - Tile Editor: Updated toolbar
+ - Graphics Editor: Updated toolbar
+ - Palette Editor: Updated toolbar
+
+MAIN
+ - Included file type to open "SMRPG ROM Backup (*.BAK)"
+
+MENUS
+ - Fixed reload/closing ROM calling function Close(), causing the sub-editor not to close
+ - Fixed Star Pieces assets from not resetting when closing the editor
+ - Fixed Game Select Background palette carrying over from ROMs
+ - Added reset button
+ - Added tile editor
+ - Fixed banner palette being glitched in Preview
+ - Probably fixed more stuff here, but didn't write it down
+
+MONSTERS
+ - Fixed stats from updating by switching the monster's index after typing in a new stat value
+
+PROJECT NOTES
+ - Removed ROM name from notes
+ - No longer asks for ROM name. Instead, it checks to see if the note's file name matches the ROM's file name, and asks if it's ok to load.
+ - Fixed Allies not working
+ - Added hotkey Ctrl+S to save
+ - Fixed project notes file always loading without option being checked in Settings.
+ - The above change also fixes a few other bugs when updating labels.
+
+ITEMS
+ - Shops: Fixed last index not displaying "/// NOTHING ///"
+
+
+===========================
+=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 7ba2f053f00c168cf1777d310b87e68341c36183
+=======V2.0.1 CHANGELOG========
+===========================
+ATTACKS
+ - Fixed Berserk status in Monster Attacks not applying correctly
+
+===========================
+=======V2.0.0 CHANGELOG========
+===========================
+MAIN
+ - Updated icons across all editors (using LS4.0 icons+outsourced+custom)
+ --LS 4.0 icons by giangurgolo
+ --New icons outsourced from led24.de/iconset/
+ --New icons outsourced from fatcow.com/free-icons
+ --New icons outsourced from p.yusukekamiyamane.com/
+ --New, custom icons by Yaki
+ --- (All LS 3.19.0 icons still in solution on Github)
+ - Added jumbo icons layout option
+ -- As a bonus, can hold "alt" to drag+drop editor icons on main editor window
+ - Fixed "Close ROM" not closing the HEX editor
+ - Fixed "Project Database" not asking to save if closing full editor
+ - Ally name changes are reflected in lists
+ - Updated toolbar layout across all editors
+ -- Help, Base Converter, and window changing icons are on the right of the toolbar
+ - Included ".SFC" ROM file types to be loaded/saved
+ - Error message window Abort Application now always closes editor (credit jpmac26)
+ - Updated .NET Framework from 2.0 to 4.8
+ - Updated readme.xml
+
+TOOLS
+ - Palette Editor: Fixed throw for HTML, either not being hex, or being greater than $F8F8F8
+ - Palette Editor: Fixed window resolution being slightly smaller than intended
+ - Graphics Editor: Fixed not being able to reset or undo because palette editor was updated
+ - ZoomBox: Fixed being able to close it using Alt-F4 in Sprites.
+ - Hex Editor: Fixed "Jump To Offset" jumping to offset prior to the one searched for
+ - Hex Editor: Added way to search backwards or forwards from offset
+ - Hex Editor: Added button to highlight recent changes in ROM
+ - Hex Editor: Added buttons to jump (forwards or backwards) to recent changes in ROM
+ - Restore: Menus now includes imports for just Text, Graphics, Tilesets, and Misc.
+
+PREVIEWER
+ - Rerouted all PreviewROMs to the emulator path. (ZSNES typically likes to have all saves in a certain folder as it, a setting it defaults to)
+ - Fixed editor generating a backup for PreviewROMs
+ - Added previewer for Sprites and Effects editors
+ - Added warning if no emulator is selected
+
+PROJECT DATABASE
+ - Fixed error where file is "being used by another process" if notes were loaded then saved
+ - Fixed editor buttons not becoming disabled if there were no notes loaded
+ - Added warning for "Close Project" button
+ - Fixed bug with "Close Project" button where the file directory would not reset, causing errors
+ - Added "Reload Project Database" to refresh notes for any reason
+ - Added Auto-Update feature
+
+PATCHES
+ - Now works! Explore ROM patches in a sleek layout, and patch your ROM on-the-fly if you desire. (Just make sure to backup your ROM before patching!)
+ - Host server is Yaki's github by default. Can use one or several sites to connect to.
+ =&gt; Instructions on how to host your own patch server is in the default patch server link on github
+ - Added HelpTips to Patches
+
+LEVELS
+ - Added "Solidity Flat Mode" (Hotkey "R"). Flat Mode reduces the height of all tiles to zero so you can actually see what you're doing.
+ - Updated color codes for solidity tiles
+ - Added new color codes on solidity tiles for Stairs, Doors, Conveyerbelts
+ - Corrected icons for Solid Mods and Tile Mods
+ - Made Priority1 yellow on Solidity Tiles transparent at while opacity set to 100%
+ - Fixed bug where editor would not ask to save if changing area music only then closing
+ - Added Palette offset under "?" level info icon
+ - Renamed a couple levels to more accurately describe them
+
+ATTACKS
+ - Fixed "Damage Modifiers" box not disappearing for non-ally spells
+ - Changed "Clear element" option to reset to NONE (instead of just zero)
+ - Added checkbox for unused Berserk status (doesn't work unless ASM enables it)
+
+ITEMS
+ - Added feature to change how a list sorts itself (Alphabetically, w/ or w/out icons, and sorts DUMMY to the bottom)
+ - Changed "Clear element" option to reset to NONE (instead of just zero)
+ - Added checkbox for unused Berserk status (doesn't work unless ASM enables it)
+ - Renamed "Element Weaknesses" to "Element Halving"
+ - Ally names in Checkboxes update to the ally names in the ROM
+ - Updated HelpTips to reflect new changes
+
+ANIMATIONS
+ - Changed command list to have hex number prefix, instead of decimal
+ -- Additionally for the list, removed names for unused commands
+ - Fixed "Timing for single button inputs" (0xCE, 0xCF) from reversing params when hitting apply
+ - Added blue color highlight for Jump to Address commands (0xCE, 0xCF, 0xD0, 0xD8)
+ - Fixed potential crash selecting command menu child (like Monster's list) for the first time
+
+BATTLEFIELDS
+ - Added "Show/Hide Allies (P)" button, similar to the button in FORMATIONS editor
+ - Added "Screen" button to display a SNES resolution screen (256 x 224)
+ - Fixed bug where copying a selection, then changing battlefield #, would paste the selection in the prior battlefield
+
+DIALOGUES
+ - Fixed dialogues from saving incorrectly, corrupting them. (Thank you Doomsday31415!)
+ - Fixed bug where going above index 5 (or something) in battle messages would break the UI
+
+EVENTS 
+ - Fixed Edit Label window not writing to event label
+ - Added more event names, including complete list of "Intro Demo" (Courtesy of Sukasa of now-defunct Acmlm Kafuka BoardII)
+
+FORMATIONS
+ - Fixed preview ally portraits from being mirrored horizonally
+
+MENUS
+ - Can now edit Foreground and Background using tools found in other editors
+ - Added "Overworld Menu - Star Pieces" to view and edit palettes and tilesets for this menu
+ - Added editable overworld menu list
+ - Fixed bug where menu palettes would carry over from previously loaded ROMs.
+ - Updated HelpTips to reflect new changes
+
+MONSTERS
+ - Fixed typo in battle scripts "Set Target Invicibilty"
+
+WORLD MAPS
+ - Added edit-able Sprite Graphics (yippie!)
+ - Added edit-able Sprite Palettes (yippie!!)
+ - Mario's Overworld sprite can be previewed by clicking the Banners button
+ - Fixed bug where tile editing was enabled when Banners and/or Locations were on
+
+SPRITES
+ - Updated the following names:
+97 - "Toadstool's Parachute" -&gt; "Snifit's Parachute"
+135 - "Mine Cart (bad palette)" -&gt; "Mine Cart (Seq7 Overworld Sprite)"
+144 - "Red Dot?" -&gt; "Apple (Yo'ster Isle intro sequence)"
+174- "Small Candy Cloud" -&gt; "Mario on Nimbus Busman (Bowser's Keep cutscene)"
+222 - "banana peel" -&gt; "Toadstool Marrymore Accessories"
+521 - "light blue stars" -&gt; "Battle stars (on hit)"
+526 - "yellow mist / stream" -&gt; "Geno's Star Form (Ending Credits)"
+527 - "yellow mist / stream forms into small star" -&gt; "Geno's Bullets and Star Gun"
+786 - "Wind Crystal" -&gt; "Wind Crystal and Fire Crystal"
+789 - "Water Crystal" -&gt; "Water Crystal and Earth Crystal"
+956 - "normal yellow 5-pronged star" -&gt; "Geno in Star Form (Ending Credits)"
+957 - "brown object dissipating" -&gt; "The End background (Ending Credits)"
+958 -&gt; "tiny glowing pixel" -&gt; "Geno's Star's glow effect (Ending Credits)"
+
+
+===========================
+=======V1.3.2 CHANGELOG=======
+===========================
+MONSTERS
+- Fixed flower bonus % not saving
+
+===========================
+=======V1.3.1 CHANGELOG=======
+===========================
+MAIN
+- Updated all icons to those of Lazy Shell 4.0.0
+- File path for ROM now shows just the ROM file's name. (Click the ROM file name to reveal full path)
+
+ANIMATIONS
+- Added Weapon Timed-Hit Sounds (for when a weapon is timed correctly)
+- Added Character Weapon Scripts (for when characters draw near to attack a monster)
+
+===========================
+=======V1.3.0 CHANGELOG=======
+===========================
+ANIMATIONS
+- Added documentation of Ally button inputs, used by opcodes CC, CD, CE, CF, D0, D1, D2, D3, D4, D8.
+
+ATTACKS
+- Removed being able to edit the timings for certain ally spells. (i.e. Super Jump, Bowser Crush, etc)
+- In place of that, added ability to change the timing of any ally spell and their damage properties.
+
+===========================
+=======V1.2.8 CHANGELOG=======
+===========================
+ANIMATIONS
+- Changed length displayed for commands A7 and DB.
+
+===========================
+=======V1.2.7 CHANGELOG=======
+===========================
+DIALOGUES
+- Resolved Battle Menu GFX editor displaying the wrong tiles.
+
+===========================
+=======V1.2.6 CHANGELOG=======
+===========================
+ANIMATIONS
+- At 0xD5: Added formation position #, fixed bug
+- At 0x00: Removed "use palette row 4", added "Palette Row #" value
+- A5 0x96: Battle Messages can now be set above 6
+
+MONSTERS
+- Clearing a Monster's Stats will reset win items and Yoshi cookie to the correct value
+
+===========================
+=======V1.2.5 CHANGELOG=======
+===========================
+EVENTS
+- Changed "$70Ax = $7xxx" to "$70Ax = $7000" due to mislabel
+- Increased length of HEX display at the bottom
+- Added "(NOT including {xx})" to randomized number codes.
+- Changed description of 3A and 3B commands to be more accurate
+
+FORMATIONS
+- Clearing a formation will set the event # to 102 (from 0) and music to CURRENT (from Normal)
+
+===========================
+=======V1.2.4 CHANGELOG=======
+===========================
+MAIN
+- Increased height of search box results
+
+ANIMATIONS
+- Fixed bug with monster behavior scripts
+
+ITEMS
+- Added hex editor next to item index
+
+===========================
+=======V1.2.3 CHANGELOG=======
+===========================
+MAIN
+- Added original SMRPG Documents by giangurgolo, updated by Yakibomb
+
+ANIMATIONS
+- At 0xD5: Fixed Summon monster display
+- Added numerals next to opcodes
+
+EVENTS
+- Removed numerals from sound lists
+
+===========================
+=======V1.2.2 CHANGELOG=======
+===========================
+ANIMATIONS
+- Added new scripts: Faint, Run Away and Victory (under Monster Behavior #1-3)
+
+EVENTS
+- To Open menu commands: Added "close menu and refresh VRAM" and now script displays what menu/event will run
+
+===========================
+=======V1.2.1 CHANGELOG=======
+===========================
+EVENTS
+- Switched Memory commands $7xxxx = $7xxxx because it was confusing to read
+
+===========================
+=======V1.2.0 CHANGELOG=======
+===========================
+AUDIO
+- Changed names of event sounds and battle sounds
+
+ANIMATIONS
+- At 0xD5: Added undocumented Summon Monster
+- Added ability to select and edit unused DUMMY spells for allies
+- Changed the ability to select sounds and music using an index number
+- Removed the numbers from the left of the sound list (for faster searching)
+- At 0x00: added undocumented "behind all sprites" and "overlap all sprites" properties
+
+EVENTS
+- Fixed bug where "If Memory $704x [x @ 7000] bit {xx} clear..." auto-jumped to another command
+- Fixed bug where "Shadow On" was unselectable
+- Added undocumented 3A and 3B commands: Jump to if object is less than x tiles close to Mario
+
+===========================
+=======V1.1.0 CHANGELOG=======
+===========================
+EVENTS
+- Switched joypad commands descriptions in category list
+- Updated parameters for "Display pre-game intro title..." to display correctly in the editor script
+
+========================
+=======V1.0.0 RELEASE=======
+========================
+MAIN
+-Changed file icon for LazyShell
+-Changed the ABOUT LAZY SHELL... to this editor's changelog
+
+ANIMATIONS
+- Added ability to edit Flower Bonus Messages, Toad's Battle Tutorial and Weapon Miss Sounds
+- Added ability to select and edit unused DUMMY spells for allies
+
+EVENTS
+- Added undocumented bit 7 of Run Background Event... as "Run as second script"
+- Added move script thread commands under category "Events"
+- Added undocumented commands to walk and transfer to Memory $7016-1B
+- Added undocumented "Play sound (ch4.5.) ..."
+
+LEVELS
+ - Added undocumented commands {B2,b4} and {B3,b0} as "Can't enter doors" and "Can't walk up stairs".
+
+ITEMS
+ - Added new attribute: "Add stats (item)"
+
+WORLD MAPS
+==================================
 =======V2.1.0 CHANGELOG========
 ===========================
 ALLIES
@@ -479,357 +835,7 @@ ITEMS
  - Added new attribute: "Add stats (item)"
 
 WORLD MAPS
-=======
-    <value>===========================
-<<<<<<< HEAD
-=======V2.1.0 CHANGELOG========
-===========================
-ALLIES
- - Gave it a new coat of paint.
- - Added way to set location of target cursor arrow and ABXY
- - Added level-up calculator to total the sum of level-up increments and show which spells are learned when.
- - Fixed Clear clearing exp needed to level up when clearing a character
- - Updated HelpTips
-
-MAIN TITLE
- - Added title preview
- - Can edit the locations for Exor, background, main title, and credits for both first boot-up title and after Exor title
- - Can force the game to use the first boot title or the alternate Exor title
-
-ATTACKS
- - Fixed Damage Calculator to only have one window open at a time
-
-TOOLS
- - Previewer: Added way to switch out Mario
- - Graphics Editor: Fixed bug where backup GFX would overwrite current GFX if the window open, then closed on another sprite index
- - Restore: Included .SFC/.BAK file types to open
- - Restore: Reworked Menus (again). Reassembles compressed data just like Menus editor does, instead of just copying chunks of data over.
- - Restore: Fixed bug where opening a subeditor before would not update the subeditor with the new restored changes
- - Hex Editor: Fixed crash when opening, typing in the searchBox, closing, then reopening
- - Tile Editor: Updated toolbar
- - Graphics Editor: Updated toolbar
- - Palette Editor: Updated toolbar
-
-MAIN
- - Included file type to open "SMRPG ROM Backup (*.BAK)"
-
-MENUS
- - Fixed reload/closing ROM calling function Close(), causing the sub-editor not to close
- - Fixed Star Pieces assets from not resetting when closing the editor
- - Fixed Game Select Background palette carrying over from ROMs
- - Added reset button
- - Added tile editor
- - Fixed banner palette being glitched in Preview
- - Probably fixed more stuff here, but didn't write it down
-
-MONSTERS
- - Fixed stats from updating by switching the monster's index after typing in a new stat value
-
-PROJECT NOTES
- - Removed ROM name from notes
- - No longer asks for ROM name. Instead, it checks to see if the note's file name matches the ROM's file name, and asks if it's ok to load.
- - Fixed Allies not working
- - Added hotkey Ctrl+S to save
- - Fixed project notes file always loading without option being checked in Settings.
- - The above change also fixes a few other bugs when updating labels.
-
-ITEMS
- - Shops: Fixed last index not displaying "/// NOTHING ///"
-
-
-===========================
-=======
->>>>>>> 7ba2f053f00c168cf1777d310b87e68341c36183
-=======V2.0.1 CHANGELOG========
-===========================
-ATTACKS
- - Fixed Berserk status in Monster Attacks not applying correctly
-
-===========================
-=======V2.0.0 CHANGELOG========
-===========================
-MAIN
- - Updated icons across all editors (using LS4.0 icons+outsourced+custom)
- --LS 4.0 icons by giangurgolo
- --New icons outsourced from led24.de/iconset/
- --New icons outsourced from fatcow.com/free-icons
- --New icons outsourced from p.yusukekamiyamane.com/
- --New, custom icons by Yaki
- --- (All LS 3.19.0 icons still in solution on Github)
- - Added jumbo icons layout option
- -- As a bonus, can hold "alt" to drag+drop editor icons on main editor window
- - Fixed "Close ROM" not closing the HEX editor
- - Fixed "Project Database" not asking to save if closing full editor
- - Ally name changes are reflected in lists
- - Updated toolbar layout across all editors
- -- Help, Base Converter, and window changing icons are on the right of the toolbar
- - Included ".SFC" ROM file types to be loaded/saved
- - Error message window Abort Application now always closes editor (credit jpmac26)
- - Updated .NET Framework from 2.0 to 4.8
- - Updated readme.xml
-
-TOOLS
- - Palette Editor: Fixed throw for HTML, either not being hex, or being greater than $F8F8F8
- - Palette Editor: Fixed window resolution being slightly smaller than intended
- - Graphics Editor: Fixed not being able to reset or undo because palette editor was updated
- - ZoomBox: Fixed being able to close it using Alt-F4 in Sprites.
- - Hex Editor: Fixed "Jump To Offset" jumping to offset prior to the one searched for
- - Hex Editor: Added way to search backwards or forwards from offset
- - Hex Editor: Added button to highlight recent changes in ROM
- - Hex Editor: Added buttons to jump (forwards or backwards) to recent changes in ROM
- - Restore: Menus now includes imports for just Text, Graphics, Tilesets, and Misc.
-
-PREVIEWER
- - Rerouted all PreviewROMs to the emulator path. (ZSNES typically likes to have all saves in a certain folder as it, a setting it defaults to)
- - Fixed editor generating a backup for PreviewROMs
- - Added previewer for Sprites and Effects editors
- - Added warning if no emulator is selected
-
-PROJECT DATABASE
- - Fixed error where file is "being used by another process" if notes were loaded then saved
- - Fixed editor buttons not becoming disabled if there were no notes loaded
- - Added warning for "Close Project" button
- - Fixed bug with "Close Project" button where the file directory would not reset, causing errors
- - Added "Reload Project Database" to refresh notes for any reason
- - Added Auto-Update feature
-
-PATCHES
- - Now works! Explore ROM patches in a sleek layout, and patch your ROM on-the-fly if you desire. (Just make sure to backup your ROM before patching!)
- - Host server is Yaki's github by default. Can use one or several sites to connect to.
- =&gt; Instructions on how to host your own patch server is in the default patch server link on github
- - Added HelpTips to Patches
-
-LEVELS
- - Added "Solidity Flat Mode" (Hotkey "R"). Flat Mode reduces the height of all tiles to zero so you can actually see what you're doing.
- - Updated color codes for solidity tiles
- - Added new color codes on solidity tiles for Stairs, Doors, Conveyerbelts
- - Corrected icons for Solid Mods and Tile Mods
- - Made Priority1 yellow on Solidity Tiles transparent at while opacity set to 100%
- - Fixed bug where editor would not ask to save if changing area music only then closing
- - Added Palette offset under "?" level info icon
- - Renamed a couple levels to more accurately describe them
-
-ATTACKS
- - Fixed "Damage Modifiers" box not disappearing for non-ally spells
- - Changed "Clear element" option to reset to NONE (instead of just zero)
- - Added checkbox for unused Berserk status (doesn't work unless ASM enables it)
-
-ITEMS
- - Added feature to change how a list sorts itself (Alphabetically, w/ or w/out icons, and sorts DUMMY to the bottom)
- - Changed "Clear element" option to reset to NONE (instead of just zero)
- - Added checkbox for unused Berserk status (doesn't work unless ASM enables it)
- - Renamed "Element Weaknesses" to "Element Halving"
- - Ally names in Checkboxes update to the ally names in the ROM
- - Updated HelpTips to reflect new changes
-
-ANIMATIONS
- - Changed command list to have hex number prefix, instead of decimal
- -- Additionally for the list, removed names for unused commands
- - Fixed "Timing for single button inputs" (0xCE, 0xCF) from reversing params when hitting apply
- - Added blue color highlight for Jump to Address commands (0xCE, 0xCF, 0xD0, 0xD8)
- - Fixed potential crash selecting command menu child (like Monster's list) for the first time
-
-BATTLEFIELDS
- - Added "Show/Hide Allies (P)" button, similar to the button in FORMATIONS editor
- - Added "Screen" button to display a SNES resolution screen (256 x 224)
- - Fixed bug where copying a selection, then changing battlefield #, would paste the selection in the prior battlefield
-
-DIALOGUES
- - Fixed dialogues from saving incorrectly, corrupting them. (Thank you Doomsday31415!)
- - Fixed bug where going above index 5 (or something) in battle messages would break the UI
-
-EVENTS 
- - Fixed Edit Label window not writing to event label
- - Added more event names, including complete list of "Intro Demo" (Courtesy of Sukasa of now-defunct Acmlm Kafuka BoardII)
-
-FORMATIONS
- - Fixed preview ally portraits from being mirrored horizonally
-
-MENUS
- - Can now edit Foreground and Background using tools found in other editors
- - Added "Overworld Menu - Star Pieces" to view and edit palettes and tilesets for this menu
- - Added editable overworld menu list
- - Fixed bug where menu palettes would carry over from previously loaded ROMs.
- - Updated HelpTips to reflect new changes
-
-MONSTERS
- - Fixed typo in battle scripts "Set Target Invicibilty"
-
-WORLD MAPS
- - Added edit-able Sprite Graphics (yippie!)
- - Added edit-able Sprite Palettes (yippie!!)
- - Mario's Overworld sprite can be previewed by clicking the Banners button
- - Fixed bug where tile editing was enabled when Banners and/or Locations were on
-
-SPRITES
- - Updated the following names:
-97 - "Toadstool's Parachute" -&gt; "Snifit's Parachute"
-135 - "Mine Cart (bad palette)" -&gt; "Mine Cart (Seq7 Overworld Sprite)"
-144 - "Red Dot?" -&gt; "Apple (Yo'ster Isle intro sequence)"
-174- "Small Candy Cloud" -&gt; "Mario on Nimbus Busman (Bowser's Keep cutscene)"
-222 - "banana peel" -&gt; "Toadstool Marrymore Accessories"
-521 - "light blue stars" -&gt; "Battle stars (on hit)"
-526 - "yellow mist / stream" -&gt; "Geno's Star Form (Ending Credits)"
-527 - "yellow mist / stream forms into small star" -&gt; "Geno's Bullets and Star Gun"
-786 - "Wind Crystal" -&gt; "Wind Crystal and Fire Crystal"
-789 - "Water Crystal" -&gt; "Water Crystal and Earth Crystal"
-956 - "normal yellow 5-pronged star" -&gt; "Geno in Star Form (Ending Credits)"
-957 - "brown object dissipating" -&gt; "The End background (Ending Credits)"
-958 -&gt; "tiny glowing pixel" -&gt; "Geno's Star's glow effect (Ending Credits)"
-
-
-===========================
-=======V1.3.2 CHANGELOG=======
-===========================
-MONSTERS
-- Fixed flower bonus % not saving
-
-===========================
-=======V1.3.1 CHANGELOG=======
-===========================
-MAIN
-- Updated all icons to those of Lazy Shell 4.0.0
-- File path for ROM now shows just the ROM file's name. (Click the ROM file name to reveal full path)
-
-ANIMATIONS
-- Added Weapon Timed-Hit Sounds (for when a weapon is timed correctly)
-- Added Character Weapon Scripts (for when characters draw near to attack a monster)
-
-===========================
-=======V1.3.0 CHANGELOG=======
-===========================
-ANIMATIONS
-- Added documentation of Ally button inputs, used by opcodes CC, CD, CE, CF, D0, D1, D2, D3, D4, D8.
-
-ATTACKS
-- Removed being able to edit the timings for certain ally spells. (i.e. Super Jump, Bowser Crush, etc)
-- In place of that, added ability to change the timing of any ally spell and their damage properties.
-
-===========================
-=======V1.2.8 CHANGELOG=======
-===========================
-ANIMATIONS
-- Changed length displayed for commands A7 and DB.
-
-===========================
-=======V1.2.7 CHANGELOG=======
-===========================
-DIALOGUES
-- Resolved Battle Menu GFX editor displaying the wrong tiles.
-
-===========================
-=======V1.2.6 CHANGELOG=======
-===========================
-ANIMATIONS
-- At 0xD5: Added formation position #, fixed bug
-- At 0x00: Removed "use palette row 4", added "Palette Row #" value
-- A5 0x96: Battle Messages can now be set above 6
-
-MONSTERS
-- Clearing a Monster's Stats will reset win items and Yoshi cookie to the correct value
-
-===========================
-=======V1.2.5 CHANGELOG=======
-===========================
-EVENTS
-- Changed "$70Ax = $7xxx" to "$70Ax = $7000" due to mislabel
-- Increased length of HEX display at the bottom
-- Added "(NOT including {xx})" to randomized number codes.
-- Changed description of 3A and 3B commands to be more accurate
-
-FORMATIONS
-- Clearing a formation will set the event # to 102 (from 0) and music to CURRENT (from Normal)
-
-===========================
-=======V1.2.4 CHANGELOG=======
-===========================
-MAIN
-- Increased height of search box results
-
-ANIMATIONS
-- Fixed bug with monster behavior scripts
-
-ITEMS
-- Added hex editor next to item index
-
-===========================
-=======V1.2.3 CHANGELOG=======
-===========================
-MAIN
-- Added original SMRPG Documents by giangurgolo, updated by Yakibomb
-
-ANIMATIONS
-- At 0xD5: Fixed Summon monster display
-- Added numerals next to opcodes
-
-EVENTS
-- Removed numerals from sound lists
-
-===========================
-=======V1.2.2 CHANGELOG=======
-===========================
-ANIMATIONS
-- Added new scripts: Faint, Run Away and Victory (under Monster Behavior #1-3)
-
-EVENTS
-- To Open menu commands: Added "close menu and refresh VRAM" and now script displays what menu/event will run
-
-===========================
-=======V1.2.1 CHANGELOG=======
-===========================
-EVENTS
-- Switched Memory commands $7xxxx = $7xxxx because it was confusing to read
-
-===========================
-=======V1.2.0 CHANGELOG=======
-===========================
-AUDIO
-- Changed names of event sounds and battle sounds
-
-ANIMATIONS
-- At 0xD5: Added undocumented Summon Monster
-- Added ability to select and edit unused DUMMY spells for allies
-- Changed the ability to select sounds and music using an index number
-- Removed the numbers from the left of the sound list (for faster searching)
-- At 0x00: added undocumented "behind all sprites" and "overlap all sprites" properties
-
-EVENTS
-- Fixed bug where "If Memory $704x [x @ 7000] bit {xx} clear..." auto-jumped to another command
-- Fixed bug where "Shadow On" was unselectable
-- Added undocumented 3A and 3B commands: Jump to if object is less than x tiles close to Mario
-
-===========================
-=======V1.1.0 CHANGELOG=======
-===========================
-EVENTS
-- Switched joypad commands descriptions in category list
-- Updated parameters for "Display pre-game intro title..." to display correctly in the editor script
-
-========================
-=======V1.0.0 RELEASE=======
-========================
-MAIN
--Changed file icon for LazyShell
--Changed the ABOUT LAZY SHELL... to this editor's changelog
-
-ANIMATIONS
-- Added ability to edit Flower Bonus Messages, Toad's Battle Tutorial and Weapon Miss Sounds
-- Added ability to select and edit unused DUMMY spells for allies
-
-EVENTS
-- Added undocumented bit 7 of Run Background Event... as "Run as second script"
-- Added move script thread commands under category "Events"
-- Added undocumented commands to walk and transfer to Memory $7016-1B
-- Added undocumented "Play sound (ch4.5.) ..."
-
-LEVELS
- - Added undocumented commands {B2,b4} and {B3,b0} as "Can't enter doors" and "Can't walk up stairs".
-
-ITEMS
- - Added new attribute: "Add stats (item)"
-
-WORLD MAPS
->>>>>>> d0ac249a7695bdfd3238b8787f1acd4636665137
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; d0ac249a7695bdfd3238b8787f1acd4636665137
 - Added ability to view (not edit) Mario's map sprite</value>
   </data>
   <data name="richTextBox3.Text" xml:space="preserve">

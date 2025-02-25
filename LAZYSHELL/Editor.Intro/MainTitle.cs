@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Text;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.AxHost;
 
 namespace LAZYSHELL
 {
@@ -18,8 +20,11 @@ namespace LAZYSHELL
         private PaletteSet spritePaletteSet { get { return Model.TitleSpritePalettes; } set { Model.TitleSpritePalettes = value; } }
         private Tileset tileset { get { return Model.TitleTileSet; } set { Model.TitleTileSet = value; } }
         private Overlay overlay = new Overlay();
-        private Bitmap[] tilesetImage = new Bitmap[3];
-        private Bitmap[] spriteImage = new Bitmap[3];
+        private Bitmap[]
+            tilesetImage = new Bitmap[3],
+            tilesetImageP1 = new Bitmap[3],
+            spriteImage = new Bitmap[3];
+            
         private int layer { get { return tilesetEditor.Layer; } set { tilesetEditor.Layer = value; } }
         // coordinates
         private int TitleX
@@ -243,6 +248,14 @@ namespace LAZYSHELL
             tilesetImage[1] = Do.PixelsToImage(pixels, 256, 512);
             pixels = Do.TilesetToPixels(tileset.Tilesets_tiles[2], 16, 6, 0, false);
             tilesetImage[2] = Do.PixelsToImage(pixels, 256, 96);
+            //
+            pixels = Do.TilesetToPixelsPriority1(tileset.Tilesets_tiles[0], 16, 32, 0);
+            tilesetImageP1[0] = Do.PixelsToImage(pixels, 256, 512);
+            pixels = Do.TilesetToPixelsPriority1(tileset.Tilesets_tiles[1], 16, 32, 0);
+            tilesetImageP1[1] = Do.PixelsToImage(pixels, 256, 512);
+            pixels = Do.TilesetToPixelsPriority1(tileset.Tilesets_tiles[2], 16, 6, 0);
+            tilesetImageP1[2] = Do.PixelsToImage(pixels, 256, 96);
+            //
             pixels = Do.GetPixelRegion(Model.TitleSpriteGraphics, 0x20, Model.TitleSpritePalettes.Palettes[0], 16, 0, 0, 4, 6, 0);
             spriteImage[0] = Do.PixelsToImage(pixels, 32, 48);
             pixels = Do.GetPixelRegion(Model.TitleSpriteGraphics, 0x20, Model.TitleSpritePalettes.Palettes[0], 16, 0, 34, 2, 4, 0);
@@ -251,6 +264,7 @@ namespace LAZYSHELL
             spriteImage[2] = Do.PixelsToImage(pixels, 16, 8);
             pictureBoxTitle.Invalidate();
         }
+
         // loading
         #region EditorFunctions
         private void LoadTilesetEditor()
@@ -399,30 +413,21 @@ namespace LAZYSHELL
         #endregion
         #endregion
         #region Event Handlers
+
         private void pictureBoxTitle_Paint(object sender, PaintEventArgs e)
         {
-            if (tilesetImage[0] != null && tilesetImage[1] != null && tilesetImage[2] != null && spriteImage[0] != null && spriteImage[1] != null && spriteImage[2] != null)
+            if (tilesetImage[0] != null && tilesetImage[1] != null && tilesetImage[2] != null
+                && spriteImage[0] != null && spriteImage[1] != null && spriteImage[2] != null
+                && tilesetImageP1[0] != null && tilesetImageP1[1] != null && tilesetImageP1[2] != null)
             {
                 Color bgcolor = Color.FromArgb(paletteSet.Palette[0]);
                 e.Graphics.FillRectangle(new SolidBrush(bgcolor), new Rectangle(new Point(0, 0), pictureBoxTitle.Size));
 
-                //Layer 2 Background
-                e.Graphics.DrawImage(tilesetImage[1], 0, alternateTitle.Checked ? -coords.BG_Y_Alt - 1 : -coords.BG_Y - 1);
+                //Draw Layer 2 and Layer 1 Background
+                int Y_BG = alternateTitle.Checked ? -coords.BG_Y_Alt - 1 : -coords.BG_Y - 1;
+                e.Graphics.DrawImage(tilesetImage[1], 0, Y_BG);
 
                 Rectangle upperPart, lowerPart;
-                //sprite
-                if (alternateTitle.Checked)
-                {
-                    upperPart = new Rectangle(0, 0, 32, 48);
-                    lowerPart = new Rectangle(0, 0, 16, 32);
-                    Rectangle tip = new Rectangle(0, 0, 16, 8);
-                    e.Graphics.DrawImage(spriteImage[0].Clone(upperPart, PixelFormat.DontCare), (int)spriteCoordinateX.Value, (int)spriteCoordinateY.Value);
-                    e.Graphics.DrawImage(spriteImage[1].Clone(lowerPart, PixelFormat.DontCare), (int)spriteCoordinateX.Value + 8, (int)spriteCoordinateY.Value + (8 * 6));
-                    e.Graphics.DrawImage(spriteImage[2].Clone(tip,       PixelFormat.DontCare), (int)spriteCoordinateX.Value + 8, (int)spriteCoordinateY.Value + (8 * 6) + (8 * 4));
-                }
-
-                //Layer 1 Scenery
-                e.Graphics.DrawImage(tilesetImage[0], 0, alternateTitle.Checked ? -coords.BG_Y_Alt - 1 : -coords.BG_Y - 1);
 
                 //Layer 3 title
                 upperPart = new Rectangle(0, 0, 256, 72);
@@ -434,10 +439,10 @@ namespace LAZYSHELL
 
                 e.Graphics.DrawImage(tilesetImage[2].Clone(upperPart, PixelFormat.DontCare),
                     X_Title,
-                    Y_Title); //208 - 32 - 152 - 1);
+                    Y_Title);
                 e.Graphics.DrawImage(tilesetImage[2].Clone(lowerPart, PixelFormat.DontCare),
                     X_Credits,
-                    Y_Credits); //368 - 16 - 152 - 1);
+                    Y_Credits);
                 
                 // Fake the title wrap around
                 if (TitleX > 0 || TitleX_Alt > 0)
@@ -449,6 +454,44 @@ namespace LAZYSHELL
                         X_Credits - 256,
                         Y_Credits + 8);
 
+                e.Graphics.DrawImage(tilesetImage[0], 0, Y_BG);
+
+                // Draw Priority1 Tiles
+                // First layer 2 Priority1
+                e.Graphics.DrawImage(tilesetImageP1[1], 0, Y_BG);
+
+                // Next layer 3 Priority1
+                e.Graphics.DrawImage(tilesetImageP1[2].Clone(upperPart, PixelFormat.DontCare),
+                    X_Title,
+                    Y_Title);
+                e.Graphics.DrawImage(tilesetImageP1[2].Clone(lowerPart, PixelFormat.DontCare),
+                    X_Credits,
+                    Y_Credits);
+
+                // Fake the title wrap around again
+                if (TitleX > 0 || TitleX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImageP1[2].Clone(upperPart, PixelFormat.DontCare),
+                        X_Title - 256,
+                        Y_Title + 8);
+                if (CreditsX > 0 || CreditsX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImageP1[2].Clone(lowerPart, PixelFormat.DontCare),
+                        X_Credits - 256,
+                        Y_Credits + 8);
+
+                //sprite layer
+                if (alternateTitle.Checked)
+                {
+                    upperPart = new Rectangle(0, 0, 32, 48);
+                    lowerPart = new Rectangle(0, 0, 16, 32);
+                    Rectangle tip = new Rectangle(0, 0, 16, 8);
+                    e.Graphics.DrawImage(spriteImage[0].Clone(upperPart, PixelFormat.DontCare), (int)spriteCoordinateX.Value, (int)spriteCoordinateY.Value);
+                    e.Graphics.DrawImage(spriteImage[1].Clone(lowerPart, PixelFormat.DontCare), (int)spriteCoordinateX.Value + 8, (int)spriteCoordinateY.Value + (8 * 6));
+                    e.Graphics.DrawImage(spriteImage[2].Clone(tip, PixelFormat.DontCare), (int)spriteCoordinateX.Value + 8, (int)spriteCoordinateY.Value + (8 * 6) + (8 * 4));
+                }
+
+                //Finally, draw layer 1 Priority1
+                e.Graphics.DrawImage(tilesetImageP1[0], 0, Y_BG);
+                
             }
         }
         // editors
@@ -708,9 +751,9 @@ namespace LAZYSHELL
                 rom[0x09E9F2] = (byte)((titleY_alt_b2 & 0x07) | 0x48);
                 //
                 rom[0x09E9E4] = (byte)((creditsX_b1 & 0x1F) + ((creditsY_b1 << 2) & 0xE0));
-                rom[0x09E9E5] = (byte)((creditsY_b2 & 0x07) | 0x48);
+                rom[0x09E9E5] = (byte)((creditsY_b2 & 0x07) | 0x50);
                 rom[0x09E9ED] = (byte)((creditsX_alt_b1 & 0x1F) + ((creditsY_alt_b1 << 2) & 0xE0));
-                rom[0x09E9EE] = (byte)((creditsY_alt_b2 & 0x07) | 0x48);
+                rom[0x09E9EE] = (byte)((creditsY_alt_b2 & 0x07) | 0x50);
             }
             public void Clear()
             {

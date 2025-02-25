@@ -3125,6 +3125,23 @@ namespace LAZYSHELL
             }
             return pixels;
         }
+        //
+        public static int[] TilesetToPixelsPriority1(Tile[] tileset, int width, int height, int startAtTile)
+        {
+            int[] pixels = new int[(width * 16) * (height * 16)];
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    int index = (y * width + x) + startAtTile;
+                    if (index >= tileset.Length)
+                        continue;
+                    Do.PixelsToPixels(tileset[index].Pixels_P1_Tileset, pixels, width * 16,
+                        new Rectangle(x * 16, y * 16, 16, 16));
+                }
+            }
+            return pixels;
+        }
         /// <summary>
         /// Determines whether a rectangle is within the bounds of a source rectangle.
         /// </summary>

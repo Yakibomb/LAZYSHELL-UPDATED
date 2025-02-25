@@ -74,6 +74,26 @@ namespace LAZYSHELL
                 return pixels;
             }
         }
+        public int[] Pixels_P1_Tileset
+        {
+            get
+            {
+                int[] pixels = new int[16 * 16];
+                if (subtiles[0] != null && subtiles[0].Priority1)
+                    Do.PixelsToPixels(subtiles[0].Pixels, pixels, 16, new Rectangle(0, 0, 8, 8));
+                if (subtiles[1] != null && subtiles[1].Priority1)
+                    Do.PixelsToPixels(subtiles[1].Pixels, pixels, 16, new Rectangle(8, 0, 8, 8));
+                if (subtiles[2] != null && subtiles[2].Priority1)
+                    Do.PixelsToPixels(subtiles[2].Pixels, pixels, 16, new Rectangle(0, 8, 8, 8));
+                if (subtiles[3] != null && subtiles[3].Priority1)
+                    Do.PixelsToPixels(subtiles[3].Pixels, pixels, 16, new Rectangle(8, 8, 8, 8));
+                if (mirror)
+                    Do.FlipHorizontal(pixels, 16, 16);
+                if (invert)
+                    Do.FlipVertical(pixels, 16, 16);
+                return pixels;
+            }
+        }
         // constructors
         public Tile(int index)
         {
