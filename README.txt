@@ -22,7 +22,7 @@ There's more!
 
 Full changelog is in the release notes on the right of this README -->>
 
-
+-------
 
 This Github is only maintained by Yakibomb.
 
