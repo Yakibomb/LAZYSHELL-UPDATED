@@ -104,13 +104,19 @@ namespace LAZYSHELL
             // 
             // attackerAttack
             // 
+            this.attackerAttack.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.attackerAttack.Location = new System.Drawing.Point(97, 21);
             this.attackerAttack.Maximum = new decimal(new int[] {
-            255,
+            16777216,
             0,
             0,
             0});
             this.attackerAttack.Name = "attackerAttack";
+            this.attackerAttack.ReadOnly = true;
             this.attackerAttack.Size = new System.Drawing.Size(103, 21);
             this.attackerAttack.TabIndex = 9;
             this.attackerAttack.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -119,17 +125,22 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.attackerAttack.ValueChanged += new System.EventHandler(this.calculateTotal);
             // 
             // attackerMgDefense
             // 
+            this.attackerMgDefense.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.attackerMgDefense.Location = new System.Drawing.Point(97, 84);
             this.attackerMgDefense.Maximum = new decimal(new int[] {
-            255,
+            16777216,
             0,
             0,
             0});
             this.attackerMgDefense.Name = "attackerMgDefense";
+            this.attackerMgDefense.ReadOnly = true;
             this.attackerMgDefense.Size = new System.Drawing.Size(103, 21);
             this.attackerMgDefense.TabIndex = 12;
             this.attackerMgDefense.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -138,17 +149,22 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.attackerMgDefense.ValueChanged += new System.EventHandler(this.calculateTotal);
             // 
             // attackerMgAttack
             // 
+            this.attackerMgAttack.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.attackerMgAttack.Location = new System.Drawing.Point(97, 63);
             this.attackerMgAttack.Maximum = new decimal(new int[] {
-            255,
+            16777216,
             0,
             0,
             0});
             this.attackerMgAttack.Name = "attackerMgAttack";
+            this.attackerMgAttack.ReadOnly = true;
             this.attackerMgAttack.Size = new System.Drawing.Size(103, 21);
             this.attackerMgAttack.TabIndex = 11;
             this.attackerMgAttack.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -157,21 +173,25 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.attackerMgAttack.ValueChanged += new System.EventHandler(this.calculateTotal);
             // 
             // attackerDefense
             // 
+            this.attackerDefense.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.attackerDefense.Location = new System.Drawing.Point(97, 42);
             this.attackerDefense.Maximum = new decimal(new int[] {
-            255,
+            16777216,
             0,
             0,
             0});
             this.attackerDefense.Name = "attackerDefense";
+            this.attackerDefense.ReadOnly = true;
             this.attackerDefense.Size = new System.Drawing.Size(103, 21);
             this.attackerDefense.TabIndex = 10;
             this.attackerDefense.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.attackerDefense.ValueChanged += new System.EventHandler(this.calculateTotal);
             // 
             // attackerWeapon
             // 
@@ -262,13 +282,19 @@ namespace LAZYSHELL
             // 
             // attackerHP
             // 
+            this.attackerHP.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.attackerHP.Location = new System.Drawing.Point(97, 0);
             this.attackerHP.Maximum = new decimal(new int[] {
-            65535,
+            16777216,
             0,
             0,
             0});
             this.attackerHP.Name = "attackerHP";
+            this.attackerHP.ReadOnly = true;
             this.attackerHP.Size = new System.Drawing.Size(103, 21);
             this.attackerHP.TabIndex = 8;
             this.attackerHP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -277,7 +303,6 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.attackerHP.ValueChanged += new System.EventHandler(this.calculateTotal);
             // 
             // attackerName
             // 

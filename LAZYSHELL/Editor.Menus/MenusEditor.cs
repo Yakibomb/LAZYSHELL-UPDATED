@@ -429,6 +429,7 @@ namespace LAZYSHELL
             Model.FontPaletteMenu.Assemble(Model.MenuPalettes, 0);
             Model.MenuBGPalette.Assemble();
             Model.ShopBGPalette.Assemble();
+            //Model.FramePalettes.Assemble(Model.MenuPalettes, 0x18);
             Model.OverworldStarPiecesMenuPalette.Assemble(Model.MenuPalettes, 0xC0);
             Model.CursorPaletteSet.Assemble(Model.MenuPalettes, 0x100);
 
@@ -437,7 +438,7 @@ namespace LAZYSHELL
             byte[] dst = new byte[0x2E81];
             // copy uncompressed world map logo graphics
             Bits.SetShort(dst, 0x00, offset);
-            if (!Model.Compress(Model.OverworldStarPiecesMenuGraphics, dst, ref offset, 0x2E81, "World map logos, banners")) goto Reset;
+            if (!Model.Compress(Model.OverworldStarPiecesMenuGraphics, dst, ref offset, 0x2E81, "World map logos, banners and star pieces menu")) goto Reset;
             //
             Bits.SetShort(dst, 0x02, offset);
             if (!Model.Compress(Model.MenuBGGraphics, dst, ref offset, 0x2E81, "BG graphics")) goto Reset;
@@ -907,12 +908,18 @@ namespace LAZYSHELL
             if (fgGraphicEditor == null)
             {
                 fgGraphicEditor = new GraphicEditor(new Function(FGGraphicUpdate),
-                    fgGraphics, fgGraphics.Length, 0, fgPaletteSet, 0, (byte)(index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? 0x20 : 0x10));
+                    fgGraphics, fgGraphics.Length, 0,
+                    index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? fgPaletteSet : Model.FramePalettes,
+                    0,
+                    (byte)(index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? 0x20 : 0x10));
                 fgGraphicEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
                 fgGraphicEditor.Reload(new Function(FGGraphicUpdate),
-                    fgGraphics, fgGraphics.Length, 0, fgPaletteSet, 0, (byte)(index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? 0x20 : 0x10));
+                    fgGraphics, fgGraphics.Length, 0,
+                    index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? fgPaletteSet : Model.FramePalettes,
+                    0,
+                    (byte)(index == MenuType.GameSelect || index == MenuType.OverworldStarPieces ? 0x20 : 0x10));
         }
         private void LoadCursorsPaletteEditor()
         {
@@ -1166,9 +1173,9 @@ namespace LAZYSHELL
                 Do.PixelsToBPP(pixels, graphics, new Size(5, 6), palette, 0x10);
                 for (int i = 0; i < palette.Length; i++)
                 {
-                    Model.FontPaletteMenu.Reds[i] = Color.FromArgb(palette[i]).R;
-                    Model.FontPaletteMenu.Greens[i] = Color.FromArgb(palette[i]).G;
-                    Model.FontPaletteMenu.Blues[i] = Color.FromArgb(palette[i]).B;
+                    Model.FontPaletteMenu.Reds[i + 12] = Color.FromArgb(palette[i]).R;
+                    Model.FontPaletteMenu.Greens[i + 12] = Color.FromArgb(palette[i]).G;
+                    Model.FontPaletteMenu.Blues[i + 12] = Color.FromArgb(palette[i]).B;
                 }
                 // top
                 for (int a = 0; a < 0x50; a++)
@@ -2361,7 +2368,7 @@ namespace LAZYSHELL
             Model.MenuBGPalette = null;
             Model.ShopBGPalette = null;
             Model.GameSelectBGPalette = null;
-            Model.MenuPalettes = null;
+            Model.FontPaletteMenu = null;
             Model.OverworldStarPiecesMenuPalette = null;
             Model.CursorPaletteSet = null;
             Reload();
@@ -2389,7 +2396,7 @@ namespace LAZYSHELL
             if (MessageBox.Show("You're about to undo all changes to Menu Palette.\n\nGo ahead with reset?",
                 "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
-            Model.MenuPalettes = null;
+            Model.FontPaletteMenu = null;
             Reload();
         }
         private void starPiecesPaletteToolStripMenuItem_Click(object sender, EventArgs e)

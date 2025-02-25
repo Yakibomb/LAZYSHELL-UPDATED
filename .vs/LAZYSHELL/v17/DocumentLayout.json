@@ -1,12 +1,36 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jherm\\OneDrive\\Desktop\\SMRPG\\LazyShell\\ls\\LS3.19.0 SOURCE\\LAZYSHELL-UPDATED\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{71AABC1D-6183-4308-84E2-ADFD6DB2C881}|LAZYSHELL\\LAZYSHELL.csproj|c:\\users\\jherm\\onedrive\\desktop\\smrpg\\lazyshell\\ls\\ls3.19.0 source\\lazyshell-updated\\lazyshell\\about.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{71AABC1D-6183-4308-84E2-ADFD6DB2C881}|LAZYSHELL\\LAZYSHELL.csproj|solutionrelative:lazyshell\\about.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "About.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\jherm\\OneDrive\\Desktop\\SMRPG\\LazyShell\\ls\\LS3.19.0 SOURCE\\LAZYSHELL-UPDATED\\LAZYSHELL\\About.cs",
+              "RelativeDocumentMoniker": "LAZYSHELL\\About.cs",
+              "ToolTip": "C:\\Users\\jherm\\OneDrive\\Desktop\\SMRPG\\LazyShell\\ls\\LS3.19.0 SOURCE\\LAZYSHELL-UPDATED\\LAZYSHELL\\About.cs [Design]",
+              "RelativeToolTip": "LAZYSHELL\\About.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T06:05:13.351Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

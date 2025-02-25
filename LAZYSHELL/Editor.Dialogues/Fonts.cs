@@ -367,11 +367,11 @@ namespace LAZYSHELL
         {
             if (menuPaletteEditor == null)
             {
-                menuPaletteEditor = new PaletteEditor(new Function(MenuPaletteUpdate), Model.BattleMenuPalette, 2, 0, 2);
+                menuPaletteEditor = new PaletteEditor(new Function(MenuPaletteUpdate), Model.BattleMenuPalette, 1, 0, 1);
                 menuPaletteEditor.FormClosing += new FormClosingEventHandler(editor_FormClosing);
             }
             else
-                menuPaletteEditor.Reload(new Function(MenuPaletteUpdate), Model.BattleMenuPalette, 2, 0, 2);
+                menuPaletteEditor.Reload(new Function(MenuPaletteUpdate), Model.BattleMenuPalette, 1, 0, 1);
         }
         private void MenuGraphicUpdate()
         {
@@ -408,8 +408,36 @@ namespace LAZYSHELL
             dialoguesEditor.RedrawText();
             dialoguesEditor.Modified = true;
         }
+        public void CloseEditors()
+        { 
+            if (numeralGraphicEditor != null)
+            {
+                numeralGraphicEditor.Close();
+                numeralGraphicEditor.Dispose();
+            }
+            if (numeralPaletteEditor != null)
+            {
+                numeralPaletteEditor.Close();
+                numeralPaletteEditor.Dispose();
+            }
+            if (menuGraphicEditor != null)
+            {
+                menuGraphicEditor.Close();
+                menuGraphicEditor.Dispose();
+            }
+            if (menuPaletteEditor != null)
+            {
+                menuPaletteEditor.Close();
+                menuPaletteEditor.Dispose();
+            }
+            if (fontGraphicEditor != null)
+            {
+                fontGraphicEditor.Close();
+                fontGraphicEditor.Dispose();
+            }
+        }
         #endregion
-        #region Event handlers
+            #region Event handlers
         private void fontType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
@@ -660,6 +688,7 @@ namespace LAZYSHELL
             int[] palette = new int[4];
             fs = File.OpenRead(openFileDialog1.FileName);
             if (Path.GetExtension(openFileDialog1.FileName) == ".jpg" ||
+                Path.GetExtension(openFileDialog1.FileName) == ".bmp" ||
                 Path.GetExtension(openFileDialog1.FileName) == ".gif" ||
                 Path.GetExtension(openFileDialog1.FileName) == ".png")
             {

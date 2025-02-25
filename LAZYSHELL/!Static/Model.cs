@@ -884,6 +884,7 @@ namespace LAZYSHELL
         private static byte[] menuCursorGraphics;
         private static byte[] menuPalettes;
         private static PaletteSet cursorPaletteSet;
+        private static PaletteSet framePalettes;
         private static MenuTexts[] menuTexts;
         private static MenuBox[] menuBoxTexts;
         public static byte[] MenuBGGraphics
@@ -905,6 +906,16 @@ namespace LAZYSHELL
                 return menuFrameGraphics;
             }
             set { menuFrameGraphics = value; }
+        }
+        public static PaletteSet FramePalettes
+        {
+            get
+            {
+                if (framePalettes == null)
+                    framePalettes = new PaletteSet(MenuPalettes, 12, 0x18, 1, 16, 8);
+                return framePalettes;
+            }
+            set { framePalettes = value; }
         }
         public static byte[] MenuCursorGraphics
         {
@@ -2780,6 +2791,7 @@ namespace LAZYSHELL
             dummy = FormationMusics;
             dummy = FormationPacks;
             dummy = Formations;
+            dummy = FramePalettes;
             dummy = GameSelectBGPalette;
             dummy = GameSelectGraphics;
             dummy = GameSelectPalettes;
@@ -2929,6 +2941,7 @@ namespace LAZYSHELL
             formationMusics = null;
             formationPacks = null;
             formations = null;
+            framePalettes = null;
             gameSelectBGPalette = null;
             gameSelectGraphics = null;
             gameSelectPalettes = null;

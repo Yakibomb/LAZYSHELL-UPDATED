@@ -574,6 +574,23 @@ namespace LAZYSHELL
         // Saving
         public void Assemble()
         {
+            // Assemble the overworld menu palette
+            Model.FontPaletteMenu.Assemble(Model.MenuPalettes, 0);
+            byte[] compressed = new byte[0x200];
+            int pointerOffset = Bits.GetShort(Model.ROM, 0x3E000C);  // may have changed when menus last saved
+            int maxSize = Bits.GetShort(Model.ROM, 0x3E000E) - pointerOffset;  // may have changed when menus last saved
+            int totalSize = Comp.Compress(Model.MenuPalettes, compressed);
+            if (totalSize > maxSize)
+                MessageBox.Show("Not enough space for compressed menu palettes. The total required space (" +
+                    totalSize + " bytes) exceeds " + maxSize + " bytes.\n\n" + "The menu palettes were not saved.",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                Bits.SetBytes(Model.ROM, pointerOffset + 0x3E0000 + 1, compressed, 0, totalSize - 1);
+
+            // Save editors
+            fonts.Assemble();
+            battleDialogues.Assemble();
+
             if (!dialogueTextBox.IsDisposed && !dialogueTextBox.Text.EndsWith("[0]") && !dialogueTextBox.Text.EndsWith("[6]"))
             {
                 dialogueTextBox.SelectionStart = dialogueTextBox.Text.Length;
@@ -635,6 +652,10 @@ namespace LAZYSHELL
                 MessageBox.Show("The dialogue in bank 0x24 was not saved. Please delete the necessary number of bytes for space.\n\n" +
                     "Last dialogue saved was #" + i.ToString() + ". It should have been #4095",
                     "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            battleDialogues.Modified = false;
+            fonts.Modified = false;
+            this.Modified = false;
         }
         private void Assemble(int start, int index, ref int offset)
         {
@@ -656,6 +677,7 @@ namespace LAZYSHELL
                 }
             }
             dialogues[index].Assemble(ref offset);
+
         }
         /*
         public void Assemble()
@@ -816,6 +838,7 @@ namespace LAZYSHELL
             }
         Close:
             searchWindow.Close();
+            fonts.CloseEditors();
             fonts.NewFontTable.Close();
             battleDialogues.Close();
         }

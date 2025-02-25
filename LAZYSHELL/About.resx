@@ -119,7 +119,18 @@
   </resheader>
   <data name="changeslog1.Text" xml:space="preserve">
     <value>===========================
-<<<<<<< HEAD
+=======V2.1.1 CHANGELOG========
+===========================
+DIALOGUES
+ - Fixed bug where fonts and palettes wouldn't save
+ - Fixed graphic/palette editors not closing when closing dialogues
+
+MENUS
+ - Fixed frame graphics using wrong palette
+ - Fixed frame graphics not resetting with reset button
+
+
+===========================
 =======V2.1.0 CHANGELOG========
 ===========================
 ALLIES
@@ -177,7 +188,7 @@ ITEMS
 
 ===========================
 =======
->>>>>>> 7ba2f053f00c168cf1777d310b87e68341c36183
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 7ba2f053f00c168cf1777d310b87e68341c36183
 =======V2.0.1 CHANGELOG========
 ===========================
 ATTACKS
