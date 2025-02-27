@@ -139,15 +139,17 @@ namespace LAZYSHELL
             // 
             // clearBaseNewGameToolStripMenuItem
             // 
+            this.clearBaseNewGameToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
             this.clearBaseNewGameToolStripMenuItem.Name = "clearBaseNewGameToolStripMenuItem";
-            this.clearBaseNewGameToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.clearBaseNewGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearBaseNewGameToolStripMenuItem.Text = "Clear new game";
             this.clearBaseNewGameToolStripMenuItem.Click += new System.EventHandler(this.clearBaseNewGameToolStripMenuItem_Click);
             // 
             // clearCharactersToolStripMenuItem
             // 
+            this.clearCharactersToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
             this.clearCharactersToolStripMenuItem.Name = "clearCharactersToolStripMenuItem";
-            this.clearCharactersToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.clearCharactersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearCharactersToolStripMenuItem.Text = "Clear character(s)";
             this.clearCharactersToolStripMenuItem.Click += new System.EventHandler(this.clearCharactersToolStripMenuItem_Click);
             // 

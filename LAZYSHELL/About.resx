@@ -119,6 +119,34 @@
   </resheader>
   <data name="changeslog1.Text" xml:space="preserve">
     <value>===========================
+=======V2.1.3 CHANGELOG========
+===========================
+MAIN TITLE
+ - Updated HelpTips (hotkey "F1")
+ - Made Title Preview graphics layering more accurate to in-game
+ - Added feature to export image of title preview to ".png" format
+ - Fixed an issue where updating sprite graphics wouldn't update the title preview
+ - Added configurable banner graphic for title preview
+
+ALLIES
+ - Coorindates for ABXY's horizonal coordinate now invisible instead of greyed out
+ - Clear New Game now just asks instead of opening the "Clear Range" window
+ - Fixed an issue with custom ABXY would give an error
+
+TOOLS
+ - Previewer: Mario is checked in default settings
+
+EVENTS SCRIPTS
+ - Added undocumented commands "Mario glowing stops" (0xFD 0xFA)
+ - Under Action Scripts, for Object memory, fixed "Remove object @ $70A8 in current level" not being selectable
+ - Fixed "Circle mask, shrink to object {xx] (non-static)" parameters not setting
+ - Corrected "Memory $7000 = quantity of item @ memory $70A7" (addresses Memory 70A7, 7000 were reversed)
+
+ANIMATIONS
+ - Fixed an issue with the toolbar at the bottom not docking fully, causing graphical glitches
+
+
+===========================
 =======V2.1.2 CHANGELOG========
 ===========================
 MAIN TITLE

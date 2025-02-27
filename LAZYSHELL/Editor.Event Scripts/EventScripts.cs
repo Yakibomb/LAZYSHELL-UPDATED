@@ -2087,5 +2087,10 @@ namespace LAZYSHELL
                 this.OldSelectedIndex = oldSelectedIndex;
             }
         }
+
+        private void toolStrip2_SizeChanged(object sender, EventArgs e)
+        {
+            eventHexText.Width = toolStrip2.Width - 405;
+        }
     }
 }

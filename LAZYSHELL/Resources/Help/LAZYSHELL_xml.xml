@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="LAZYSHELL_xsl.xsl"?>
 <LAZYSHELL form="Editor" icon="icons/main.gif" title="LAZYSHELL++  Super Mario RPG Editor">
-  <Properties version="2.1.2" date="February 25, 2025" homepage="https://github.com/Yakibomb/LAZYSHELL-UPDATED/" author="Yaki, giangurgolo and Omega" />
+  <Properties version="2.1.3" date="February 26, 2025" homepage="https://github.com/Yakibomb/LAZYSHELL-UPDATED/" author="Yaki, giangurgolo and Omega" />
   <Read>
     <header>Read this first</header>
     <introduction>If this is your first time using Lazy Shell, please take the time to read the following advice:</introduction>
@@ -2491,11 +2491,56 @@ If one or more rows (ie. maps) at the end of the bank are red, then there is not
       </FAQ>
     </Levels>
     <MainTitle form="MainTitle" icon="icons/mainMainTitle.gif" title="Main Title" type="editor">
-      <description>The main title screen is the first thing you see, after the Squaresoft logo, when the game first initializes. It is a 3-layer image, composed of 3 tilesets with a separate palette applied to each. The 1st layer is the keep and cliffs, the 2nd is the blue background and clouds, and the 3rd is the title art for the Super Mario RPG logo. The 3rd layer is in 4bpp format and 256x56 pixels.</description>
+      <description>The main title screen is the first thing you see, after the Squaresoft logo, when the game first initializes. It is a 3-layer image, composed of 3 tilesets with a separate palette applied to each. The 1st layer is the keep and cliffs, the 2nd is the blue background and clouds, and the 3rd is the title art for the Super Mario RPG logo. The 3rd layer is in 4bpp format and 256x96 pixels.</description>
       <tooltip control="pictureBoxTitle">
         <title>Main Title Preview</title>
-        <description>The final product of all 3 layers as drawn in-game.</description>
+        <description>The final product of all 3 layers as drawn in-game.
+There are two titles--one before Exor when the game first boots up, and alternate after Exor breaks the Star Road.
+Right-click to save an image.</description>
       </tooltip>
+		<tooltip control="alternateTitle">
+			<title>Alternate Main Title</title>
+			<description>Allows editting of both title screens.</description>
+		</tooltip>
+		<tooltip control="titleChoices">
+			<title>Main Title is...</title>
+			<description>Forces the main title to a certain title screen.</description>
+		</tooltip>
+		<tooltip control="syncBannerXY">
+			<title>Sync Banner</title>
+			<description>Syncronizes the Banner to be 48 units under the Title. Unchecking allows for moving the Banner manually.</description>
+		</tooltip>
+		<tooltip control="labelBackground">
+			<title>Background Coordinates</title>
+			<description>Moves the background location to a new one.
+All layers are affected by this position, except for the Sprite.</description>
+		</tooltip>
+		<tooltip control="labelTitle">
+			<title>Title Coordinates</title>
+			<description>Moves the Title to a new location.
+The trademark tile ("TM") is missing for certain instances--After the intro demo ends, and for the event script event "Exor crashes into keep".</description>
+		</tooltip>
+		<tooltip control="labelBanner">
+			<title>Banner Coordinates</title>
+			<description>Moves the Banner to a new location.
+The Banner location is only applicable when the intro demo ends (without the player pressing a button to skip straight to the title screen).</description>
+		</tooltip>
+		<tooltip control="labelCredits">
+			<title>Credits Coordinates</title>
+			<description>Moves the Credits to a new location.</description>
+		</tooltip>
+		<tooltip control="labelSprite">
+			<title>Sprite Coordinates</title>
+			<description>Moves the sprite to a new location.
+The sprite is not affected by the Background location.</description>
+		</tooltip>
+		<Opening form="Opening" icon="icons/mainMainTitle.gif" title="New Font Table" type="subeditor">
+			<description>The opening title cards are what tell the player who each character is.</description>
+			<tooltip control="pictureBox1">
+				<title>Title Cards</title>
+				<description>The opening title cards' tileset, used in the intro demo. The graphics are in 4bpp format, and the black background acts as transparency. You can import/export an image with right-click.</description>
+			</tooltip>
+	    </Opening>
       <FAQ title="MAIN TITLE">
         <entry>
           <question>How do I make my own title screen?</question>
@@ -3522,15 +3567,15 @@ To help with this, you can view what tiles have priority 1 set with the P1 butto
       </tooltip>
       <tooltip control="pictureBoxTilesetL1">
         <title>L1 Tileset</title>
-        <description>Select one or more tiles to draw from by dragging a selection box around them. Right-click the selection to apply a number of changes to the selected tiles ("Lock tileset editing" must be unchecked).</description>
+        <description>Select one or more tiles to draw from by dragging a selection box around them. Right-click the selection to apply a number of changes to the selected tiles.</description>
       </tooltip>
       <tooltip control="pictureBoxTilesetL2">
         <title>L2 Tileset</title>
-        <description>Select one or more tiles to draw from by dragging a selection box around them. Right-click the selection to apply a number of changes to the selected tiles ("Lock tileset editing" must be unchecked).</description>
+        <description>Select one or more tiles to draw from by dragging a selection box around them. Right-click the selection to apply a number of changes to the selected tiles.</description>
       </tooltip>
       <tooltip control="pictureBoxTilesetL3">
         <title>L3 Tileset</title>
-        <description>Select one or more tiles to draw from by dragging a selection box around them. Right-click the selection to apply a number of changes to the selected tiles ("Lock tileset editing" must be unchecked).</description>
+        <description>Select one or more tiles to draw from by dragging a selection box around them. Right-click the selection to apply a number of changes to the selected tiles.</description>
       </tooltip>
       <tooltip control="lockEditing">
         <title>Lock tileset editing</title>

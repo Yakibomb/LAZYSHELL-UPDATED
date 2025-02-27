@@ -73,6 +73,54 @@ namespace LAZYSHELL
                 coords.TitleY_Alt_b2 = (byte)(value / 64);
             }
         }
+        //
+        private int BannerX
+        {
+            get
+            {
+                return coords.BannerX_b1;
+            }
+            set
+            {
+                coords.BannerX_b1 = (byte)(value & 0x1F);
+            }
+        }
+        private int BannerX_Alt
+        {
+            get
+            {
+                return coords.BannerX_Alt_b1;
+            }
+            set
+            {
+                coords.BannerX_Alt_b1 = (byte)(value & 0x1F);
+            }
+        }
+        private int BannerY
+        {
+            get
+            {
+                return coords.BannerY_b1 + (coords.BannerY_b2 * 64);
+            }
+            set
+            {
+                coords.BannerY_b1 = (byte)(value % 64);
+                coords.BannerY_b2 = (byte)(value / 64);
+            }
+        }
+        private int BannerY_Alt
+        {
+            get
+            {
+                return coords.BannerY_Alt_b1 + (coords.BannerY_Alt_b2 * 64);
+            }
+            set
+            {
+                coords.BannerY_Alt_b1 = (byte)(value % 64);
+                coords.BannerY_Alt_b2 = (byte)(value / 64);
+            }
+        }
+        //
         private int CreditsX
         {
             get
@@ -119,6 +167,8 @@ namespace LAZYSHELL
                 coords.CreditsY_Alt_b2 = (byte)(value / 64);
             }
         }
+        //
+        private Bitmap mainTitlePreview = new Bitmap(256, 224);
         // editors
         private Intro intro;
         public MainTitleCoordinates coords;
@@ -149,6 +199,10 @@ namespace LAZYSHELL
             this.panel2.Controls.Add(tilesetEditor);
             tilesetEditor.BringToFront();
             tilesetEditor.Show();
+
+            //disable tileset editor's tileset lock
+            tilesetEditor.lockEditing.Checked = false;
+
             SetTilesetImages();
 
             titleChoices.SelectedIndex = 0;
@@ -183,28 +237,52 @@ namespace LAZYSHELL
         {
             spriteCoordinateX.Value = coords.SpriteX;
             spriteCoordinateY.Value = coords.SpriteY;
-            label119.Visible =
+            labelSprite.Visible =
                 spriteCoordinateY.Visible =
                 spriteCoordinateX.Visible =
                 alternateTitle.Checked;
 
             if (!alternateTitle.Checked)
             {
+                backgroundCoordinatesY.Value = coords.BG_Y;
+                //
                 titleCoordinatesX.Value = TitleX;
                 creditsCoordinatesX.Value = CreditsX;
                 //
-                backgroundCoordinatesY.Value = coords.BG_Y;
                 titleCoordinatesY.Value = TitleY;
                 creditsCoordinatesY.Value = CreditsY;
+                //
+                if (syncBannerXY.Checked && !this.Updating)
+                {
+                    bannerCoordinatesX.Value = TitleX;
+                    bannerCoordinatesY.Value = (ushort)(TitleY + 48 > bannerCoordinatesY.Maximum ? bannerCoordinatesY.Maximum : TitleY + 48);
+                }
+                else
+                {
+                    bannerCoordinatesX.Value = BannerX;
+                    bannerCoordinatesY.Value = BannerY;
+                }
             }
             else
             {
+                backgroundCoordinatesY.Value = coords.BG_Y_Alt;
+                //
                 titleCoordinatesX.Value = TitleX_Alt;
                 creditsCoordinatesX.Value = CreditsX_Alt;
                 //
-                backgroundCoordinatesY.Value = coords.BG_Y_Alt;
                 titleCoordinatesY.Value = TitleY_Alt;
                 creditsCoordinatesY.Value = CreditsY_Alt;
+                //
+                if (syncBannerXY.Checked && !this.Updating)
+                {
+                    bannerCoordinatesX.Value = TitleX_Alt;
+                    bannerCoordinatesY.Value = (ushort)(TitleY_Alt + 48 > bannerCoordinatesY.Maximum ? bannerCoordinatesY.Maximum : TitleY_Alt + 48);
+                }
+                else
+                {
+                    bannerCoordinatesX.Value = BannerX_Alt;
+                    bannerCoordinatesY.Value = BannerY_Alt;
+                }
             }
 
             pictureBoxTitle.Invalidate();
@@ -374,6 +452,7 @@ namespace LAZYSHELL
         }
         private void SpriteGraphicUpdate()
         {
+            SetTilesetImages();
         }
         private void TilesetUpdate()
         {
@@ -426,57 +505,9 @@ namespace LAZYSHELL
                 //Draw Layer 2 and Layer 1 Background
                 int Y_BG = alternateTitle.Checked ? -coords.BG_Y_Alt - 1 : -coords.BG_Y - 1;
                 e.Graphics.DrawImage(tilesetImage[1], 0, Y_BG);
-
-                Rectangle upperPart, lowerPart;
-
-                //Layer 3 title
-                upperPart = new Rectangle(0, 0, 256, 72);
-                lowerPart = new Rectangle(0, 72, 256, 24);
-                int X_Title = alternateTitle.Checked ? TitleX_Alt * 8 : TitleX * 8;
-                int Y_Title = alternateTitle.Checked ? TitleY_Alt - coords.BG_Y_Alt - 1 : TitleY - coords.BG_Y - 1;
-                int X_Credits = alternateTitle.Checked ? CreditsX_Alt * 8 : CreditsX * 8;
-                int Y_Credits = alternateTitle.Checked ? CreditsY_Alt - coords.BG_Y_Alt - 1 : CreditsY - coords.BG_Y - 1;
-
-                e.Graphics.DrawImage(tilesetImage[2].Clone(upperPart, PixelFormat.DontCare),
-                    X_Title,
-                    Y_Title);
-                e.Graphics.DrawImage(tilesetImage[2].Clone(lowerPart, PixelFormat.DontCare),
-                    X_Credits,
-                    Y_Credits);
-                
-                // Fake the title wrap around
-                if (TitleX > 0 || TitleX_Alt > 0)
-                    e.Graphics.DrawImage(tilesetImage[2].Clone(upperPart, PixelFormat.DontCare), 
-                        X_Title - 256,
-                        Y_Title + 8);
-                if (CreditsX > 0 || CreditsX_Alt > 0)
-                    e.Graphics.DrawImage(tilesetImage[2].Clone(lowerPart, PixelFormat.DontCare),
-                        X_Credits - 256,
-                        Y_Credits + 8);
-
                 e.Graphics.DrawImage(tilesetImage[0], 0, Y_BG);
 
-                // Draw Priority1 Tiles
-                // First layer 2 Priority1
-                e.Graphics.DrawImage(tilesetImageP1[1], 0, Y_BG);
-
-                // Next layer 3 Priority1
-                e.Graphics.DrawImage(tilesetImageP1[2].Clone(upperPart, PixelFormat.DontCare),
-                    X_Title,
-                    Y_Title);
-                e.Graphics.DrawImage(tilesetImageP1[2].Clone(lowerPart, PixelFormat.DontCare),
-                    X_Credits,
-                    Y_Credits);
-
-                // Fake the title wrap around again
-                if (TitleX > 0 || TitleX_Alt > 0)
-                    e.Graphics.DrawImage(tilesetImageP1[2].Clone(upperPart, PixelFormat.DontCare),
-                        X_Title - 256,
-                        Y_Title + 8);
-                if (CreditsX > 0 || CreditsX_Alt > 0)
-                    e.Graphics.DrawImage(tilesetImageP1[2].Clone(lowerPart, PixelFormat.DontCare),
-                        X_Credits - 256,
-                        Y_Credits + 8);
+                Rectangle upperPart, lowerPart, banner;
 
                 //sprite layer
                 if (alternateTitle.Checked)
@@ -489,11 +520,82 @@ namespace LAZYSHELL
                     e.Graphics.DrawImage(spriteImage[2].Clone(tip, PixelFormat.DontCare), (int)spriteCoordinateX.Value + 8, (int)spriteCoordinateY.Value + (8 * 6) + (8 * 4));
                 }
 
-                //Finally, draw layer 1 Priority1
+
+                //Layer 3 title
+                upperPart = new Rectangle(0, 0, 256, 56);
+                lowerPart = new Rectangle(0, 72, 256, 24);
+                banner = new Rectangle(0, 48, 256, 24);
+                int X_Title = alternateTitle.Checked ? TitleX_Alt * 8 : TitleX * 8;
+                int Y_Title = alternateTitle.Checked ? TitleY_Alt - coords.BG_Y_Alt - 1 : TitleY - coords.BG_Y - 1;
+                int X_Banner = alternateTitle.Checked ? BannerX_Alt * 8 : BannerX * 8;
+                int Y_Banner = alternateTitle.Checked ? BannerY_Alt - coords.BG_Y_Alt - 1 : BannerY - coords.BG_Y - 1;
+                int X_Credits = alternateTitle.Checked ? CreditsX_Alt * 8 : CreditsX * 8;
+                int Y_Credits = alternateTitle.Checked ? CreditsY_Alt - coords.BG_Y_Alt - 1 : CreditsY - coords.BG_Y - 1;
+
+                e.Graphics.DrawImage(tilesetImage[2].Clone(upperPart, PixelFormat.DontCare),
+                    X_Title,
+                    Y_Title);
+                e.Graphics.DrawImage(tilesetImage[2].Clone(banner, PixelFormat.DontCare),
+                    X_Banner,
+                    Y_Banner);
+                e.Graphics.DrawImage(tilesetImage[2].Clone(lowerPart, PixelFormat.DontCare),
+                    X_Credits,
+                    Y_Credits);
+
+                // Fake the title wrap around
+                if (TitleX > 0 || TitleX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImage[2].Clone(upperPart, PixelFormat.DontCare),
+                        X_Title - 256,
+                        Y_Title + 8);
+                if (BannerX > 0 || BannerX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImage[2].Clone(banner, PixelFormat.DontCare),
+                        X_Banner - 256,
+                        Y_Banner + 8);
+                if (CreditsX > 0 || CreditsX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImage[2].Clone(lowerPart, PixelFormat.DontCare),
+                        X_Credits - 256,
+                        Y_Credits + 8);
+
+
+                // Draw Priority1 Tiles
+                // Draw layer 2 Priority1
+                e.Graphics.DrawImage(tilesetImageP1[1], 0, Y_BG);
+
+                // Next layer 3 Priority1
+                e.Graphics.DrawImage(tilesetImageP1[2].Clone(upperPart, PixelFormat.DontCare),
+                    X_Title,
+                    Y_Title);
+                e.Graphics.DrawImage(tilesetImageP1[2].Clone(banner, PixelFormat.DontCare),
+                    X_Banner,
+                    Y_Banner);
+                e.Graphics.DrawImage(tilesetImageP1[2].Clone(lowerPart, PixelFormat.DontCare),
+                    X_Credits,
+                    Y_Credits);
+
+                // Fake the title wrap around again for priority1
+                if (TitleX > 0 || TitleX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImageP1[2].Clone(upperPart, PixelFormat.DontCare),
+                        X_Title - 256,
+                        Y_Title + 8);
+                if (BannerX > 0 || BannerX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImageP1[2].Clone(banner, PixelFormat.DontCare),
+                        X_Banner - 256,
+                        Y_Banner + 8);
+                if (CreditsX > 0 || CreditsX_Alt > 0)
+                    e.Graphics.DrawImage(tilesetImageP1[2].Clone(lowerPart, PixelFormat.DontCare),
+                        X_Credits - 256,
+                        Y_Credits + 8);
+
+                // Draw Layer 1 Priority1
                 e.Graphics.DrawImage(tilesetImageP1[0], 0, Y_BG);
-                
             }
         }
+        private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBoxTitle.DrawToBitmap(mainTitlePreview, pictureBoxTitle.ClientRectangle);
+            Do.Export(mainTitlePreview, "mainTitlePreview.png");
+        }
+
         // editors
 
         #region EditorEvents
@@ -538,7 +640,9 @@ namespace LAZYSHELL
         #region CoordinatesEvents
         private void alternateTitle_Click(object sender, EventArgs e)
         {
+            this.Updating = true;
             RefreshCoordinates();
+            this.Updating = false;
             this.Modified = true;
         }
 
@@ -548,6 +652,7 @@ namespace LAZYSHELL
                 return;
             coords.SpriteX = (byte)spriteCoordinateX.Value;
             pictureBoxTitle.Invalidate();
+            this.Modified = true;
         }
         private void spriteCoordinateY_ValueChanged(object sender, EventArgs e)
         {
@@ -574,15 +679,15 @@ namespace LAZYSHELL
         {
             if (this.Updating)
                 return;
-            if (titleCoordinatesX.Value == creditsCoordinatesX.Minimum)
+            if (titleCoordinatesX.Value == titleCoordinatesX.Minimum)
             {
-                titleCoordinatesX.Value = creditsCoordinatesX.Maximum - 1;
+                titleCoordinatesX.Value = titleCoordinatesX.Maximum - 1;
                 if (titleCoordinatesY.Value != titleCoordinatesY.Maximum)
                     titleCoordinatesY.Value += 4;
             }
-            else if (titleCoordinatesX.Value == creditsCoordinatesX.Maximum)
+            else if (titleCoordinatesX.Value == titleCoordinatesX.Maximum)
             {
-                titleCoordinatesX.Value = creditsCoordinatesX.Minimum + 1;
+                titleCoordinatesX.Value = titleCoordinatesX.Minimum + 1;
                 if (titleCoordinatesY.Value != titleCoordinatesY.Minimum)
                     titleCoordinatesY.Value -= 4;
             }
@@ -591,6 +696,7 @@ namespace LAZYSHELL
                 TitleX = (ushort)titleCoordinatesX.Value;
             else
                 TitleX_Alt = (ushort)titleCoordinatesX.Value;
+            
             RefreshCoordinates();
             this.Modified = true;
         }
@@ -598,10 +704,51 @@ namespace LAZYSHELL
         {
             if (this.Updating)
                 return;
+
             if (!alternateTitle.Checked)
                 TitleY = (ushort)titleCoordinatesY.Value;
             else
                 TitleY_Alt = (ushort)titleCoordinatesY.Value;
+
+            RefreshCoordinates();
+            this.Modified = true;
+        }
+
+        private void bannerCoordinatesX_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.Updating)
+                return;
+
+            if (bannerCoordinatesX.Value == bannerCoordinatesX.Minimum)
+            {
+                bannerCoordinatesX.Value = bannerCoordinatesX.Maximum - 1;
+                if (bannerCoordinatesY.Value != bannerCoordinatesY.Maximum)
+                    bannerCoordinatesY.Value += 4;
+            }
+            else if (bannerCoordinatesX.Value == bannerCoordinatesX.Maximum)
+            {
+                bannerCoordinatesX.Value = bannerCoordinatesX.Minimum + 1;
+                if (bannerCoordinatesY.Value != bannerCoordinatesY.Minimum)
+                    bannerCoordinatesY.Value -= 4;
+            }
+
+            if (!alternateTitle.Checked)
+                BannerX = (ushort)bannerCoordinatesX.Value;
+            else
+                BannerX_Alt = (ushort)bannerCoordinatesX.Value;
+            RefreshCoordinates();
+            this.Modified = true;
+        }
+
+        private void bannerCoordinatesY_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.Updating)
+                return;
+
+            if (!alternateTitle.Checked)
+                BannerY = (ushort)bannerCoordinatesY.Value;
+            else
+                BannerY_Alt = (ushort)bannerCoordinatesY.Value;
             RefreshCoordinates();
             this.Modified = true;
         }
@@ -648,13 +795,13 @@ namespace LAZYSHELL
             e.Cancel = true;
             ((Form)sender).Hide();
         }
-        private void toolStripButton1_Click(object sender, EventArgs e)
+
+        private void syncBannerXY_CheckedChanged(object sender, EventArgs e)
         {
-            coords.Assemble();
-            coords = new MainTitleCoordinates();
-            RefreshCoordinates();
-            this.Modified = false;
+            bannerCoordinatesX.Enabled = !syncBannerXY.Checked;
+            bannerCoordinatesY.Enabled = !syncBannerXY.Checked;
         }
+
         private void titleChoices_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.Updating)
@@ -693,6 +840,19 @@ namespace LAZYSHELL
             public byte TitleY_Alt_b1 { get { return this.titleY_alt_b1; } set { this.titleY_alt_b1 = value; } }
             public byte TitleY_Alt_b2 { get { return this.titleY_alt_b2; } set { this.titleY_alt_b2 = value; } }
             //
+            private byte bannerX_b1;
+            private byte bannerX_alt_b1;
+            private byte bannerY_b1;
+            private byte bannerY_b2;
+            private byte bannerY_alt_b1;
+            private byte bannerY_alt_b2;
+            public byte BannerX_b1 { get { return this.bannerX_b1; } set { this.bannerX_b1 = value; } }
+            public byte BannerX_Alt_b1 { get { return this.bannerX_alt_b1; } set { this.bannerX_alt_b1 = value; } }
+            public byte BannerY_b1 { get { return this.bannerY_b1; } set { this.bannerY_b1 = value; } }
+            public byte BannerY_b2 { get { return this.bannerY_b2; } set { this.bannerY_b2 = value; } }
+            public byte BannerY_Alt_b1 { get { return this.bannerY_alt_b1; } set { this.bannerY_alt_b1 = value; } }
+            public byte BannerY_Alt_b2 { get { return this.bannerY_alt_b2; } set { this.bannerY_alt_b2 = value; } }
+            //
             private byte creditsX_b1;
             private byte creditsX_alt_b1;
             private byte creditsY_b1;
@@ -719,7 +879,6 @@ namespace LAZYSHELL
                 bgY = rom[0x09E66B];
                 bgY_alt = rom[0x09E68B];
                 //
-
                 titleX_b1 = (byte)(rom[0x09E9E8] & 0x1F);
                 titleY_b1 = (byte)((rom[0x09E9E8] & 0xE0) >> 2);
                 titleX_alt_b1 = (byte)(rom[0x09E9F1] & 0x1F);
@@ -728,7 +887,14 @@ namespace LAZYSHELL
                 titleY_b2 = (byte)(rom[0x09E9E9] & 0x07);
                 titleY_alt_b2 = (byte)(rom[0x09E9F2] & 0x07);
                 //
+                bannerX_b1 = (byte)(rom[0x09E818] & 0x1F);
+                bannerY_b1 = (byte)((rom[0x09E818] & 0xE0) >> 2);
+                bannerX_alt_b1 = (byte)(rom[0x09E821] & 0x1F);
+                bannerY_alt_b1 = (byte)((rom[0x09E821] & 0xE0) >> 2);
 
+                bannerY_b2 = (byte)(rom[0x09E819] & 0x07);
+                bannerY_alt_b2 = (byte)(rom[0x09E822] & 0x07);
+                //
                 creditsX_b1 = (byte)(rom[0x09E9E4] & 0x1F);
                 creditsY_b1 = (byte)((rom[0x09E9E4] & 0xE0) >> 2);
                 creditsX_alt_b1 = (byte)(rom[0x09E9ED] & 0x1F);
@@ -749,11 +915,32 @@ namespace LAZYSHELL
                 rom[0x09E9E9] = (byte)((titleY_b2 & 0x07) | 0x48);
                 rom[0x09E9F1] = (byte)((titleX_alt_b1 & 0x1F) + ((titleY_alt_b1 << 2) & 0xE0));
                 rom[0x09E9F2] = (byte)((titleY_alt_b2 & 0x07) | 0x48);
-                //
+                // 
                 rom[0x09E9E4] = (byte)((creditsX_b1 & 0x1F) + ((creditsY_b1 << 2) & 0xE0));
-                rom[0x09E9E5] = (byte)((creditsY_b2 & 0x07) | 0x50);
+                rom[0x09E9E5] = (byte)((creditsY_b2 & 0x07) | 0x50); //0x50 instead of 0x48 seems to fix the background of the credits not being transparent
                 rom[0x09E9ED] = (byte)((creditsX_alt_b1 & 0x1F) + ((creditsY_alt_b1 << 2) & 0xE0));
-                rom[0x09E9EE] = (byte)((creditsY_alt_b2 & 0x07) | 0x50);
+                rom[0x09E9EE] = (byte)((creditsY_alt_b2 & 0x07) | 0x50); //same here 0x48 -> 0x50
+                //
+                // These coordinates are for the title AFTER the intro demo ends (without the player skipping straight to the title)
+                rom[0x09EF51] = (byte)((titleX_b1 & 0x1F) + ((titleY_b1 << 2) & 0xE0));
+                rom[0x09EF52] = (byte)((titleY_b2 & 0x07) | 0x48);
+                rom[0x09EF4C] = (byte)((titleX_alt_b1 & 0x1F) + ((titleY_alt_b1 << 2) & 0xE0));
+                rom[0x09EF4D] = (byte)((titleY_alt_b2 & 0x07) | 0x48);
+                //
+                rom[0x09E818] = (byte)((bannerX_b1 & 0x1F) + ((bannerY_b1 << 2) & 0xE0));
+                rom[0x09E819] = (byte)((bannerY_b2 & 0x07) | 0x48);
+                rom[0x09E821] = (byte)((bannerX_alt_b1 & 0x1F) + ((bannerY_alt_b1 << 2) & 0xE0));
+                rom[0x09E822] = (byte)((bannerY_alt_b2 & 0x07) | 0x48);
+                //
+                rom[0x09E814] = (byte)((creditsX_b1 & 0x1F) + ((creditsY_b1 << 2) & 0xE0));
+                rom[0x09E815] = (byte)((creditsY_b2 & 0x07) | 0x50);
+                rom[0x09E81D] = (byte)((creditsX_alt_b1 & 0x1F) + ((creditsY_alt_b1 << 2) & 0xE0));
+                rom[0x09E81E] = (byte)((creditsY_alt_b2 & 0x07) | 0x50);
+
+                // These are the coordinates for the title SUPER MARIO RPG for when the event "Exor crashes into keep"
+                // Commenting these out for now
+                //rom[0x09EF56] = (byte)((titleX_b1 & 0x1F) + ((titleY_b1 << 2) & 0xE0));
+                //rom[0x09EF57] = (byte)((titleY_b2 & 0x07) | 0x48);
             }
             public void Clear()
             {

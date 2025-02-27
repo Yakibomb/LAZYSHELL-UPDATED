@@ -1759,7 +1759,7 @@ namespace LAZYSHELL
         private static Shop[] shops;
         private static Slot[] slots;
         private static Spell[] spells;
-        private static NewGame[] newGame;
+        private static NewGame newGame;
         public static Attack[] Attacks
         {
             get
@@ -1900,14 +1900,13 @@ namespace LAZYSHELL
             }
             set { spells = value; }
         }
-        public static NewGame[] NewGame
+        public static NewGame NewGame
         {
             get
             {
                 if (newGame == null)
                 {
-                    newGame = new NewGame[1];
-                    newGame[0] = new NewGame();
+                    newGame = new NewGame();
                 }
                 return newGame;
             }

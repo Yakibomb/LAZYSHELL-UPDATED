@@ -407,7 +407,7 @@ namespace LAZYSHELL
             // 
             this.openPalettesBG.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.openPalettesBG.Name = "openPalettesBG";
-            this.openPalettesBG.Size = new System.Drawing.Size(180, 22);
+            this.openPalettesBG.Size = new System.Drawing.Size(174, 22);
             this.openPalettesBG.Text = "Background Palette";
             this.openPalettesBG.Click += new System.EventHandler(this.openPalettesBG_Click);
             // 
@@ -416,7 +416,7 @@ namespace LAZYSHELL
             this.openPalettesFG.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.openPalettesFG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openPalettesFG.Name = "openPalettesFG";
-            this.openPalettesFG.Size = new System.Drawing.Size(180, 22);
+            this.openPalettesFG.Size = new System.Drawing.Size(174, 22);
             this.openPalettesFG.Text = "Foreground Palette";
             this.openPalettesFG.Click += new System.EventHandler(this.openPalettesFG_Click);
             // 
@@ -425,7 +425,7 @@ namespace LAZYSHELL
             this.openPaletteSpeakers.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.openPaletteSpeakers.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openPaletteSpeakers.Name = "openPaletteSpeakers";
-            this.openPaletteSpeakers.Size = new System.Drawing.Size(180, 22);
+            this.openPaletteSpeakers.Size = new System.Drawing.Size(174, 22);
             this.openPaletteSpeakers.Text = "Mono/Stereo Palette";
             this.openPaletteSpeakers.Click += new System.EventHandler(this.openPaletteSpeakers_Click);
             // 
@@ -434,7 +434,7 @@ namespace LAZYSHELL
             this.openPaletteCursors.Image = global::LAZYSHELL.Properties.Resources.openPalettes;
             this.openPaletteCursors.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.openPaletteCursors.Name = "openPaletteCursors";
-            this.openPaletteCursors.Size = new System.Drawing.Size(180, 22);
+            this.openPaletteCursors.Size = new System.Drawing.Size(174, 22);
             this.openPaletteCursors.Text = "Cursors Palette";
             this.openPaletteCursors.Click += new System.EventHandler(this.openPaletteCursors_Click);
             // 

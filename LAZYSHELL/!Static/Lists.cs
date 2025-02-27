@@ -4719,7 +4719,7 @@ namespace LAZYSHELL
                 0x00,0x30,0x31,0x32,0x39,0x3A,0x3B,0x3D,
                 0x3E,0x3F,0x42,0xF2,0xF3,0xF4,0xF5,0xF6,
                 0xF7,0xF8,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,
-                0xFD
+                0xFD,0xFD
             },
             new int[]   // 1
             {
@@ -4806,7 +4806,7 @@ namespace LAZYSHELL
                 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                 0x00,0x00,0x32,0x33,0x34,0x3D,0x3E,0xF0,
-                0xF9
+                0xF9,0xFA
             },
             new int[]   // 1
             {
@@ -4956,7 +4956,7 @@ namespace LAZYSHELL
                 },
                 new int[]   // 13
                 {
-                    0xF2,0xF3,0xF4,0xF4,0xF6,0xF7,0xF8,0xFD,
+                    0xF2,0xF3,0xF4,0xF5,0xF6,0xF7,0xF8,0xFD,
                     0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,0xFD,
                     0xFD,0xFD
                 },
@@ -5084,7 +5084,8 @@ namespace LAZYSHELL
                     "If object {xx} is in the air...",			// 0x3D
                     "Create NPC + event {xx} @ (x,y,z) of $7010-15...",			// 0x3E
                     "If object {xx}'s event trigger in level {xx} is...",  // 0xF0
-                    "Mario glows"			// 0xF9
+                    "Mario glowing begins",			// 0xF9
+                    "Mario glowing stops"			// 0xFA
                                         };
                 case 1:
                     return new string[] 
@@ -5327,7 +5328,7 @@ namespace LAZYSHELL
                     "Memory $7000 = coins",			// 0x59
                     "Memory $7000 = frog coins",			// 0x5A
                     "Memory $7000 = equipment {xx} of {xx} character...",			// 0x5D
-                    "Memory $70A7 = quantity of item @ memory $7000",			// 0x5E
+                    "Memory $7000 = quantity of item @ memory $70A7",			// 0x5E
                     "Memory $7000 = memory $7Fxxxx...",			// 0xAC
                     "Memory $7000 &= {xx}...",			// 0xB0
                     "Memory $7000 |= {xx}...",			// 0xB1

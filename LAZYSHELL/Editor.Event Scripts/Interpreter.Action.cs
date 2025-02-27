@@ -884,7 +884,7 @@ namespace LAZYSHELL.ScriptsEditor.Commands
             {
                 case 0x00:
                 case 0x01:
-                    vars[0] = (asc.Param1 & 1) == 1 ? "On" : "Off";
+                    vars[0] = (asc.Param1 & 1) == 1 ? "on" : "off";
                     break;
                 case 0x0F:
                     vars[0] = asc.Param2.ToString();

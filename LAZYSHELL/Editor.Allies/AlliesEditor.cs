@@ -75,7 +75,7 @@ namespace LAZYSHELL
                 c.Assemble();
             foreach (Slot s in Model.Slots)
                 s.Assemble();
-            Model.NewGame[0].Assemble();
+            Model.NewGame.Assemble();
             newGamesEditor.Modified = false;
             levelUpsEditor.Modified = false;
             charactersEditor.Modified = false;
@@ -243,7 +243,10 @@ namespace LAZYSHELL
         }
         private void clearBaseNewGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ClearElements(Model.NewGame, 0, "CLEAR NEW GAME STATUS...").ShowDialog();
+            if (MessageBox.Show("You're about to clear the New Game stats data.\n\nGo ahead with clear?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            Model.NewGame.Clear();
             newGamesEditor.RefreshSlots();
         }
 

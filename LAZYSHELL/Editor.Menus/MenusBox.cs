@@ -92,6 +92,7 @@ namespace LAZYSHELL
             Model.MenuBox[index].Menu = (byte)menus[index].SelectedIndex;
             menusParentEditor.Picture.Invalidate();
             menusParentEditor.SetTextObjects();
+            this.Modified = true;
         }
         private void menus_Click(object sender, EventArgs e)
         {

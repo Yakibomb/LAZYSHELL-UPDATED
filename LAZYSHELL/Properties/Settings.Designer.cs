@@ -421,7 +421,7 @@ namespace LAZYSHELL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public byte PreviewAllies {
             get {
                 return ((byte)(this["PreviewAllies"]));

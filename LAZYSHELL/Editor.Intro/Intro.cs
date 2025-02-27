@@ -48,7 +48,7 @@ namespace LAZYSHELL
         }
         private void Intro_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!this.Modified || !opening.Modified || !mainTitle.Modified)
+            if (!(this.Modified || opening.Modified || mainTitle.Modified))
                 goto Close;
             DialogResult result = MessageBox.Show(
                 "Opening Credits and Main Title have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",

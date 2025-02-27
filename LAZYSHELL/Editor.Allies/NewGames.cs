@@ -20,7 +20,7 @@ namespace LAZYSHELL
         private Slot slot { get { return slots[(int)slotNum.Value]; } set { slots[(int)slotNum.Value] = value; } }
         private int index { get { return parentEditor.Index; } set { parentEditor.Index = value; } }
         public int Index { get { return index; } set { index = value; } }
-        public NewGame NewGame { get { return Model.NewGame[0]; } set { Model.NewGame[0] = value; } }
+        public NewGame NewGame { get { return Model.NewGame; } set { Model.NewGame = value; } }
         //
         private AlliesEditor parentEditor;
         #endregion

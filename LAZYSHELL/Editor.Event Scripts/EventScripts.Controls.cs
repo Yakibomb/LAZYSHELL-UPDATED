@@ -1456,6 +1456,7 @@ namespace LAZYSHELL
                     esc.Param2 = (byte)evtNumA3.Value;
                     esc.Param1 = (byte)(((byte)evtNumA4.Value << 4) - 1);
                     break;
+                case 0x87:
                 case 0x8F:
                     esc.Param1 = (byte)evtNameA1.SelectedIndex;
                     esc.Param2 = (byte)evtNumA3.Value;

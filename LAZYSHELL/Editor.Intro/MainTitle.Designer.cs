@@ -26,7 +26,7 @@ namespace LAZYSHELL
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainTitle));
+            this.components = new System.ComponentModel.Container();
             this.panel67 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -39,27 +39,34 @@ namespace LAZYSHELL
             this.openSpriteGraphics = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.Panel();
+            this.syncBannerXY = new System.Windows.Forms.CheckBox();
+            this.bannerCoordinatesX = new System.Windows.Forms.NumericUpDown();
+            this.bannerCoordinatesY = new System.Windows.Forms.NumericUpDown();
+            this.labelBanner = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.titleCoordinatesX = new System.Windows.Forms.NumericUpDown();
             this.titleChoices = new System.Windows.Forms.ComboBox();
             this.creditsCoordinatesX = new System.Windows.Forms.NumericUpDown();
             this.creditsCoordinatesY = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelCredits = new System.Windows.Forms.Label();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.labelBackground = new System.Windows.Forms.Label();
             this.backgroundCoordinatesY = new System.Windows.Forms.NumericUpDown();
             this.titleCoordinatesY = new System.Windows.Forms.NumericUpDown();
-            this.label119 = new System.Windows.Forms.Label();
+            this.labelSprite = new System.Windows.Forms.Label();
             this.spriteCoordinateY = new System.Windows.Forms.NumericUpDown();
             this.spriteCoordinateX = new System.Windows.Forms.NumericUpDown();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.alternateTitle = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pictureBoxTitle = new System.Windows.Forms.PictureBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerCoordinatesX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerCoordinatesY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleCoordinatesX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.creditsCoordinatesX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.creditsCoordinatesY)).BeginInit();
@@ -69,6 +76,7 @@ namespace LAZYSHELL
             ((System.ComponentModel.ISupportInitialize)(this.spriteCoordinateX)).BeginInit();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel67
@@ -189,30 +197,95 @@ namespace LAZYSHELL
             // groupBox1
             // 
             this.groupBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.groupBox1.Controls.Add(this.syncBannerXY);
+            this.groupBox1.Controls.Add(this.bannerCoordinatesX);
+            this.groupBox1.Controls.Add(this.bannerCoordinatesY);
+            this.groupBox1.Controls.Add(this.labelBanner);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.titleCoordinatesX);
             this.groupBox1.Controls.Add(this.titleChoices);
             this.groupBox1.Controls.Add(this.creditsCoordinatesX);
             this.groupBox1.Controls.Add(this.creditsCoordinatesY);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.labelCredits);
+            this.groupBox1.Controls.Add(this.labelTitle);
+            this.groupBox1.Controls.Add(this.labelBackground);
             this.groupBox1.Controls.Add(this.backgroundCoordinatesY);
             this.groupBox1.Controls.Add(this.titleCoordinatesY);
-            this.groupBox1.Controls.Add(this.label119);
+            this.groupBox1.Controls.Add(this.labelSprite);
             this.groupBox1.Controls.Add(this.spriteCoordinateY);
             this.groupBox1.Controls.Add(this.spriteCoordinateX);
             this.groupBox1.Controls.Add(this.toolStrip2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 245);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(260, 160);
+            this.groupBox1.Size = new System.Drawing.Size(260, 181);
             this.groupBox1.TabIndex = 5;
+            // 
+            // syncBannerXY
+            // 
+            this.syncBannerXY.AutoSize = true;
+            this.syncBannerXY.Checked = true;
+            this.syncBannerXY.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.syncBannerXY.Location = new System.Drawing.Point(109, 53);
+            this.syncBannerXY.Name = "syncBannerXY";
+            this.syncBannerXY.Size = new System.Drawing.Size(15, 14);
+            this.syncBannerXY.TabIndex = 20;
+            this.syncBannerXY.UseVisualStyleBackColor = true;
+            this.syncBannerXY.CheckedChanged += new System.EventHandler(this.syncBannerXY_CheckedChanged);
+            // 
+            // bannerCoordinatesX
+            // 
+            this.bannerCoordinatesX.Enabled = false;
+            this.bannerCoordinatesX.Location = new System.Drawing.Point(127, 50);
+            this.bannerCoordinatesX.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.bannerCoordinatesX.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.bannerCoordinatesX.Name = "bannerCoordinatesX";
+            this.bannerCoordinatesX.Size = new System.Drawing.Size(65, 21);
+            this.bannerCoordinatesX.TabIndex = 19;
+            this.bannerCoordinatesX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.bannerCoordinatesX.ValueChanged += new System.EventHandler(this.bannerCoordinatesX_ValueChanged);
+            // 
+            // bannerCoordinatesY
+            // 
+            this.bannerCoordinatesY.Enabled = false;
+            this.bannerCoordinatesY.Increment = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.bannerCoordinatesY.Location = new System.Drawing.Point(192, 50);
+            this.bannerCoordinatesY.Maximum = new decimal(new int[] {
+            504,
+            0,
+            0,
+            0});
+            this.bannerCoordinatesY.Name = "bannerCoordinatesY";
+            this.bannerCoordinatesY.Size = new System.Drawing.Size(65, 21);
+            this.bannerCoordinatesY.TabIndex = 18;
+            this.bannerCoordinatesY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.bannerCoordinatesY.ValueChanged += new System.EventHandler(this.bannerCoordinatesY_ValueChanged);
+            // 
+            // labelBanner
+            // 
+            this.labelBanner.AutoSize = true;
+            this.labelBanner.Location = new System.Drawing.Point(6, 52);
+            this.labelBanner.Name = "labelBanner";
+            this.labelBanner.Size = new System.Drawing.Size(71, 13);
+            this.labelBanner.TabIndex = 17;
+            this.labelBanner.Text = "Banner (X, Y)";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 135);
+            this.label5.Location = new System.Drawing.Point(6, 156);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 15;
@@ -252,7 +325,7 @@ namespace LAZYSHELL
             "Toggleable (unaltered)",
             "Always First Bootup",
             "Always Alternate"});
-            this.titleChoices.Location = new System.Drawing.Point(83, 132);
+            this.titleChoices.Location = new System.Drawing.Point(83, 153);
             this.titleChoices.Name = "titleChoices";
             this.titleChoices.Size = new System.Drawing.Size(174, 21);
             this.titleChoices.TabIndex = 16;
@@ -261,7 +334,7 @@ namespace LAZYSHELL
             // 
             // creditsCoordinatesX
             // 
-            this.creditsCoordinatesX.Location = new System.Drawing.Point(127, 50);
+            this.creditsCoordinatesX.Location = new System.Drawing.Point(127, 72);
             this.creditsCoordinatesX.Maximum = new decimal(new int[] {
             32,
             0,
@@ -285,7 +358,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.creditsCoordinatesY.Location = new System.Drawing.Point(192, 50);
+            this.creditsCoordinatesY.Location = new System.Drawing.Point(192, 72);
             this.creditsCoordinatesY.Maximum = new decimal(new int[] {
             504,
             0,
@@ -297,32 +370,32 @@ namespace LAZYSHELL
             this.creditsCoordinatesY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.creditsCoordinatesY.ValueChanged += new System.EventHandler(this.creditsCoordinatesY_ValueChanged);
             // 
-            // label4
+            // labelCredits
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Credits (X, Y)";
+            this.labelCredits.AutoSize = true;
+            this.labelCredits.Location = new System.Drawing.Point(6, 74);
+            this.labelCredits.Name = "labelCredits";
+            this.labelCredits.Size = new System.Drawing.Size(71, 13);
+            this.labelCredits.TabIndex = 11;
+            this.labelCredits.Text = "Credits (X, Y)";
             // 
-            // label3
+            // labelTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Title (X, Y)";
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Location = new System.Drawing.Point(6, 30);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(57, 13);
+            this.labelTitle.TabIndex = 10;
+            this.labelTitle.Text = "Title (X, Y)";
             // 
-            // label2
+            // labelBackground
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Background Y ";
+            this.labelBackground.AutoSize = true;
+            this.labelBackground.Location = new System.Drawing.Point(6, 8);
+            this.labelBackground.Name = "labelBackground";
+            this.labelBackground.Size = new System.Drawing.Size(80, 13);
+            this.labelBackground.TabIndex = 7;
+            this.labelBackground.Text = "Background (Y)";
             // 
             // backgroundCoordinatesY
             // 
@@ -357,18 +430,18 @@ namespace LAZYSHELL
             this.titleCoordinatesY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.titleCoordinatesY.ValueChanged += new System.EventHandler(this.titleCoordinatesY_ValueChanged);
             // 
-            // label119
+            // labelSprite
             // 
-            this.label119.AutoSize = true;
-            this.label119.Location = new System.Drawing.Point(6, 74);
-            this.label119.Name = "label119";
-            this.label119.Size = new System.Drawing.Size(65, 13);
-            this.label119.TabIndex = 0;
-            this.label119.Text = "Sprite (X, Y)";
+            this.labelSprite.AutoSize = true;
+            this.labelSprite.Location = new System.Drawing.Point(6, 96);
+            this.labelSprite.Name = "labelSprite";
+            this.labelSprite.Size = new System.Drawing.Size(65, 13);
+            this.labelSprite.TabIndex = 0;
+            this.labelSprite.Text = "Sprite (X, Y)";
             // 
             // spriteCoordinateY
             // 
-            this.spriteCoordinateY.Location = new System.Drawing.Point(192, 72);
+            this.spriteCoordinateY.Location = new System.Drawing.Point(192, 94);
             this.spriteCoordinateY.Maximum = new decimal(new int[] {
             255,
             0,
@@ -382,7 +455,7 @@ namespace LAZYSHELL
             // 
             // spriteCoordinateX
             // 
-            this.spriteCoordinateX.Location = new System.Drawing.Point(127, 72);
+            this.spriteCoordinateX.Location = new System.Drawing.Point(127, 94);
             this.spriteCoordinateX.Maximum = new decimal(new int[] {
             255,
             0,
@@ -400,9 +473,8 @@ namespace LAZYSHELL
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip2.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alternateTitle,
-            this.toolStripButton1});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 97);
+            this.alternateTitle});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 118);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip2.Size = new System.Drawing.Size(35, 25);
@@ -420,20 +492,10 @@ namespace LAZYSHELL
             this.alternateTitle.Size = new System.Drawing.Size(23, 22);
             this.alternateTitle.Click += new System.EventHandler(this.alternateTitle_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Visible = false;
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
             // pictureBoxTitle
             // 
             this.pictureBoxTitle.BackgroundImage = global::LAZYSHELL.Properties.Resources._transparent;
+            this.pictureBoxTitle.ContextMenuStrip = this.contextMenuStrip1;
             this.pictureBoxTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBoxTitle.Location = new System.Drawing.Point(0, 21);
             this.pictureBoxTitle.Name = "pictureBoxTitle";
@@ -441,6 +503,23 @@ namespace LAZYSHELL
             this.pictureBoxTitle.TabIndex = 547;
             this.pictureBoxTitle.TabStop = false;
             this.pictureBoxTitle.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxTitle_Paint);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveImageAsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(158, 26);
+            // 
+            // saveImageAsToolStripMenuItem
+            // 
+            this.saveImageAsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportImage;
+            this.saveImageAsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
+            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.saveImageAsToolStripMenuItem.Text = "Save image as...";
+            this.saveImageAsToolStripMenuItem.Click += new System.EventHandler(this.saveImageAsToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -476,6 +555,8 @@ namespace LAZYSHELL
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerCoordinatesX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bannerCoordinatesY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleCoordinatesX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.creditsCoordinatesX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.creditsCoordinatesY)).EndInit();
@@ -486,6 +567,7 @@ namespace LAZYSHELL
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -504,22 +586,27 @@ namespace LAZYSHELL
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ToolStripMenuItem landscapeGraphicsToolStripMenuItem;
         private System.Windows.Forms.Panel groupBox1;
-        private System.Windows.Forms.Label label119;
+        private System.Windows.Forms.Label labelSprite;
         private System.Windows.Forms.NumericUpDown spriteCoordinateY;
         private System.Windows.Forms.NumericUpDown spriteCoordinateX;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton alternateTitle;
         private System.Windows.Forms.NumericUpDown creditsCoordinatesY;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelCredits;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label labelBackground;
         private System.Windows.Forms.NumericUpDown backgroundCoordinatesY;
         private System.Windows.Forms.NumericUpDown titleCoordinatesY;
         private System.Windows.Forms.PictureBox pictureBoxTitle;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem saveImageAsToolStripMenuItem;
         private System.Windows.Forms.NumericUpDown titleCoordinatesX;
         private System.Windows.Forms.NumericUpDown creditsCoordinatesX;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ComboBox titleChoices;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown bannerCoordinatesX;
+        private System.Windows.Forms.NumericUpDown bannerCoordinatesY;
+        private System.Windows.Forms.Label labelBanner;
+        private System.Windows.Forms.CheckBox syncBannerXY;
     }
 }

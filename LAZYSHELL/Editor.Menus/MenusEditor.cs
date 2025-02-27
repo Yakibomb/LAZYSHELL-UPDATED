@@ -2087,7 +2087,7 @@ namespace LAZYSHELL
         }
         private void MenusEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!this.Modified && !this.Updating)
+            if (!(this.Modified || menusBox.Modified || this.Updating))
                 goto Close;
             DialogResult result = MessageBox.Show(
                 "Menus have not been saved.\n\nWould you like to save changes?", "LAZYSHELL++",

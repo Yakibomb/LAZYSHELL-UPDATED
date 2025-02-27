@@ -513,8 +513,8 @@ namespace LAZYSHELL.ScriptsEditor.Commands
             "",			// 0xF6
             "",			// 0xF7
             "Exor crashes into keep",			// 0xF8
-            "Mario glows",			// 0xF9
-            "",			// 0xFA
+            "Mario glowing begins",			// 0xF9
+            "Mario glowing stops",			// 0xFA
             "",			// 0xFB
             "",			// 0xFC
             "",			// 0xFD

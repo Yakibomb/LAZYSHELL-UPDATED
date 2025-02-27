@@ -630,7 +630,7 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripMenuItem saveImageAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mirrorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem invertToolStripMenuItem;
-        private System.Windows.Forms.CheckBox lockEditing;
+        public System.Windows.Forms.CheckBox lockEditing;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.CheckBox autoUpdate;

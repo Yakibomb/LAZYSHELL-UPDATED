@@ -112,18 +112,18 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>264, 17</value>
   </metadata>
-  <metadata name="toolStripCommands.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStripCommands.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="animCategoryAlliesBehaviors.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhGlDQ1BJQ0MgcHJvZmlsZQAAKM+VkT1I
@@ -133,7 +133,7 @@
         mhrxDHFY1XTKFzIeq5y3OGvlKmvek78wmNNXUlynHkUMS4gjAREKqiihDBsRWnVSLCRpX+rgH3b9CXIp
         5CqBkWMBFWiQXT/4H/yerZWfnvKSghLQ/eI4H+NAYBdo1Bzn+9hxGieA/xm40lv+Sh2Y+yS91tLCR0D/
         NnBx3dKUPeByBxh6MmRTdiU/tZDPA+9n9E1ZYOAW6F3z5tbcx+kDkKZZLd8AB4fARIGy1zu8u6d9bn+e
-        cecH6QfazHLQWiasYwAAAAlwSFlzAAAOvwAADr8BOAVTJAAAAAd0SU1FB+kBHxcnDAKfxSgAAAFQSURB
+        cecH6QfazHLQWiasYwAAAAlwSFlzAAAOvgAADr4B6kKxwAAAAAd0SU1FB+kBHxcnDAKfxSgAAAFQSURB
         VDhPzZC/SsNQGMXvTWuIgtJ2iiCiDja4mKFIrSAODh0UHDPpmq6B0EIfwI6ZnfoEzoL6BII69hEcO0Yz
         XL/zNV9IBEEHwQM/cv+cc+69Uf9Omuicn22bwaCTDYcX2Xg8yoJgL6P1a+IApu9Vd57c5M54b6mZzxOT
         pimDMZhOA2NZ+oGc1iJQ1U7NP3xHwWw2KpASASXkdQmbWBRprf3E6/PJoBKYTCprUpwXPXMB6RRGGL4W
@@ -168,10 +168,10 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>361, 17</value>
   </metadata>
-  <metadata name="toolStrip4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>165, 17</value>
   </metadata>
 </root>

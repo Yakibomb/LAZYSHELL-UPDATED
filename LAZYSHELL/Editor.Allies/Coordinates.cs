@@ -51,7 +51,14 @@ namespace LAZYSHELL
                         pixels = (int[])characterImages[index].Clone();
 
                     Sprite sprite = Model.Sprites[512];
-                    int moldIndex = 2;
+                    Animation animation = Model.Animations[sprite.AnimationPacket];
+                    Sequence sequence = null;
+                    int sequenceIndex = 1;
+                    if (sequenceIndex < animation.Sequences.Count)
+                        sequence = animation.Sequences[sequenceIndex];
+                    int moldIndex = 0;
+                    if (sequence != null && sequence.Frames.Count >= 0)
+                        moldIndex = sequence.Frames[0].Mold;
                     cursor = sprite.GetPixels(true, false, moldIndex, 0, false, true, ref imgSize);
 
                     zeroCoord = -128;
@@ -140,7 +147,7 @@ namespace LAZYSHELL
                 Sprite sprite = Model.Sprites[baseSprite[i]];
                 Animation animation = Model.Animations[sprite.AnimationPacket];
                 Sequence sequence = null;
-                int sequenceIndex = Model.ROM[0x031881];
+                int sequenceIndex = 2; // Model.ROM[0x031881];
                 if (sequenceIndex < animation.Sequences.Count)
                     sequence = animation.Sequences[sequenceIndex];
                 int moldIndex = 0;
@@ -161,7 +168,7 @@ namespace LAZYSHELL
                 return;
             this.Updating = true;
 
-            this.characterTargetArrowX.Enabled = true;
+            this.characterTargetArrowX.Visible = true;
             this.characterTargetArrowX.Maximum = 255;
             this.characterTargetArrowY.Maximum = 255;
 
@@ -182,12 +189,14 @@ namespace LAZYSHELL
 
             if (currentSprite == 0)
             {
-                this.characterTargetArrowX.Enabled = false;
+                this.label119.Text = "Target (Y)";
+                this.characterTargetArrowX.Visible = false;
                 this.characterTargetArrowX.Maximum = 255;
                 this.characterTargetArrowY.Maximum = 255;
             }
             else 
             {
+                this.label119.Text = "Target (X,Y)";
                 this.characterTargetArrowX.Maximum = 15;
                 this.characterTargetArrowY.Maximum = 15;
             }

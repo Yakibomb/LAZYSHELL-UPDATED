@@ -141,8 +141,7 @@ namespace LAZYSHELL
             // 
             // toolStripCommands
             // 
-            this.toolStripCommands.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.toolStripCommands.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripCommands.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStripCommands.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripCommands.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.undo,
@@ -161,7 +160,7 @@ namespace LAZYSHELL
             this.toolStripCommands.Location = new System.Drawing.Point(0, 610);
             this.toolStripCommands.Name = "toolStripCommands";
             this.toolStripCommands.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripCommands.Size = new System.Drawing.Size(252, 25);
+            this.toolStripCommands.Size = new System.Drawing.Size(769, 25);
             this.toolStripCommands.TabIndex = 4;
             this.toolStripCommands.Text = "toolStrip2";
             // 
@@ -933,7 +932,7 @@ namespace LAZYSHELL
             this.animationsCategoryDropDownMenu,
             this.animationName,
             this.animationNum});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 26);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(769, 26);
@@ -946,14 +945,14 @@ namespace LAZYSHELL
             this.save.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.save.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(23, 23);
+            this.save.Size = new System.Drawing.Size(23, 22);
             this.save.ToolTipText = "Save";
             this.save.Click += new System.EventHandler(this.save_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 26);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // export
             // 
@@ -975,7 +974,7 @@ namespace LAZYSHELL
             this.baseConvertor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.baseConvertor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.baseConvertor.Name = "baseConvertor";
-            this.baseConvertor.Size = new System.Drawing.Size(23, 23);
+            this.baseConvertor.Size = new System.Drawing.Size(23, 22);
             this.baseConvertor.ToolTipText = "Base Converter";
             // 
             // helpTips
@@ -986,7 +985,7 @@ namespace LAZYSHELL
             this.helpTips.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.helpTips.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.helpTips.Name = "helpTips";
-            this.helpTips.Size = new System.Drawing.Size(23, 23);
+            this.helpTips.Size = new System.Drawing.Size(23, 22);
             this.helpTips.ToolTipText = "Help Tips";
             // 
             // previewer
@@ -997,7 +996,7 @@ namespace LAZYSHELL
             this.previewer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.previewer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.previewer.Name = "previewer";
-            this.previewer.Size = new System.Drawing.Size(23, 23);
+            this.previewer.Size = new System.Drawing.Size(23, 22);
             // 
             // animationCategory
             // 
@@ -1007,7 +1006,7 @@ namespace LAZYSHELL
             this.animationCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.animationCategory.DropDownWidth = 160;
             this.animationCategory.ItemHeight = 13;
-            this.animationCategory.Location = new System.Drawing.Point(84, 2);
+            this.animationCategory.Location = new System.Drawing.Point(61, 2);
             this.animationCategory.Name = "animationCategory";
             this.animationCategory.SelectedIndex = -1;
             this.animationCategory.SelectedItem = null;
@@ -1028,7 +1027,7 @@ namespace LAZYSHELL
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip4.Size = new System.Drawing.Size(769, 26);
+            this.toolStrip4.Size = new System.Drawing.Size(769, 25);
             this.toolStrip4.TabIndex = 0;
             this.toolStrip4.Text = "toolStrip4";
             // 
