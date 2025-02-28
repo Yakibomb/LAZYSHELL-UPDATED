@@ -424,12 +424,16 @@ namespace LAZYSHELL.ScriptsEditor
         // public functions
         public void UpdateAllOffsets(int delta, int conditionOffset)
         {
+            UpdateAllOffsets(delta, conditionOffset, true);
+        }
+        public void UpdateAllOffsets(int delta, int conditionOffset, bool pushOffsetTreeWrapper)
+        {
             if (this.baseOffset >= conditionOffset || conditionOffset == 0x7fffffff)
                 this.baseOffset += delta;
             if (commands == null)
                 return;
             foreach (EventCommand esc in commands)
-                esc.UpdatePointer(delta, conditionOffset);
+                esc.UpdatePointer(delta, conditionOffset, pushOffsetTreeWrapper);
         }
     }
 }

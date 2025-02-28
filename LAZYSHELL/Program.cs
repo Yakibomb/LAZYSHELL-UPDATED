@@ -521,15 +521,18 @@ namespace LAZYSHELL
                 MessageInfo = "\"Patches\" connects to an internet server, which stores SMRPG patches in one easily accessible place.\n" +
                 "You can choose to add or remove web servers it tries to connect to in the Patches window.\n\n";
             }
-            DialogResult dialogueResult = MessageBox.Show(
+            DialogResult dialogueResult = DialogResult.Cancel;
+            if (patches == null || !patches.Visible)
+            {
+                dialogueResult = MessageBox.Show(
                 MessageInfo +
                 "Do you want to connect to the patch server(s)?\nThis will attempt connection to:\n\n" +
                 patchURLs,
                 "LAZYSHELL++ - Patch Server(s) Information", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
 
-            if (dialogueResult == DialogResult.Cancel)
-                return;
-
+                if (dialogueResult == DialogResult.Cancel)
+                    return;
+            }
             if ((allies != null && allies.Visible) ||
                 (animations != null && animations.Visible) ||
                 (attacks != null && attacks.Visible) ||
@@ -568,6 +571,7 @@ namespace LAZYSHELL
                 editor.buttonPatches.Checked = true;
             }
             patches.FormClosed += new FormClosedEventHandler(editor_FormClosed);
+            patches.BringToFront();
         }
         public void CreateProjectWindow()
         {
@@ -581,6 +585,7 @@ namespace LAZYSHELL
                 editor.buttonProject.Checked = true;
             }
             project.FormClosed += new FormClosedEventHandler(editor_FormClosed);
+            project.BringToFront();
         }
         #endregion
         // editor managing

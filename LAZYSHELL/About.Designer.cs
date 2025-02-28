@@ -30,6 +30,13 @@ namespace LAZYSHELL
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.changeslog1 = new System.Windows.Forms.RichTextBox();
+            this.imageStuffToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.imageStuffButtonRight = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.imageStuffButtonLeft = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.imageStuffLabel = new System.Windows.Forms.ToolStripLabel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
@@ -38,6 +45,7 @@ namespace LAZYSHELL
             this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.imageStuffToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +67,7 @@ namespace LAZYSHELL
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panel2.Controls.Add(this.changeslog1);
+            this.panel2.Controls.Add(this.imageStuffToolStrip);
             this.panel2.Controls.Add(this.richTextBox1);
             this.panel2.Controls.Add(this.richTextBox3);
             this.panel2.Controls.Add(this.richTextBox6);
@@ -73,12 +82,106 @@ namespace LAZYSHELL
             this.changeslog1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.changeslog1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.changeslog1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changeslog1.Location = new System.Drawing.Point(0, 144);
+            this.changeslog1.Location = new System.Drawing.Point(0, 150);
             this.changeslog1.Name = "changeslog1";
             this.changeslog1.ReadOnly = true;
-            this.changeslog1.Size = new System.Drawing.Size(497, 369);
+            this.changeslog1.Size = new System.Drawing.Size(497, 363);
             this.changeslog1.TabIndex = 2;
             this.changeslog1.Text = resources.GetString("changeslog1.Text");
+            // 
+            // imageStuffToolStrip
+            // 
+            this.imageStuffToolStrip.AutoSize = false;
+            this.imageStuffToolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this.imageStuffToolStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.imageStuffToolStrip.CanOverflow = false;
+            this.imageStuffToolStrip.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imageStuffToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
+            this.imageStuffToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.imageStuffToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator3,
+            this.imageStuffButtonRight,
+            this.toolStripSeparator2,
+            this.imageStuffButtonLeft,
+            this.toolStripSeparator1,
+            this.imageStuffLabel});
+            this.imageStuffToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.imageStuffToolStrip.Location = new System.Drawing.Point(0, 123);
+            this.imageStuffToolStrip.Name = "imageStuffToolStrip";
+            this.imageStuffToolStrip.Padding = new System.Windows.Forms.Padding(0);
+            this.imageStuffToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.imageStuffToolStrip.Size = new System.Drawing.Size(497, 27);
+            this.imageStuffToolStrip.TabIndex = 320;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            // 
+            // imageStuffButtonRight
+            // 
+            this.imageStuffButtonRight.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.imageStuffButtonRight.AutoSize = false;
+            this.imageStuffButtonRight.AutoToolTip = false;
+            this.imageStuffButtonRight.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.imageStuffButtonRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.imageStuffButtonRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.imageStuffButtonRight.Enabled = false;
+            this.imageStuffButtonRight.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imageStuffButtonRight.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.imageStuffButtonRight.Image = global::LAZYSHELL.Properties.Resources.moveRight;
+            this.imageStuffButtonRight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.imageStuffButtonRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.imageStuffButtonRight.Margin = new System.Windows.Forms.Padding(0);
+            this.imageStuffButtonRight.Name = "imageStuffButtonRight";
+            this.imageStuffButtonRight.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.imageStuffButtonRight.Size = new System.Drawing.Size(64, 20);
+            this.imageStuffButtonRight.Text = " ";
+            this.imageStuffButtonRight.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.imageStuffButtonRight.Click += new System.EventHandler(this.imageStuffButtonRight_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // imageStuffButtonLeft
+            // 
+            this.imageStuffButtonLeft.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.imageStuffButtonLeft.AutoSize = false;
+            this.imageStuffButtonLeft.AutoToolTip = false;
+            this.imageStuffButtonLeft.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.imageStuffButtonLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.imageStuffButtonLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.imageStuffButtonLeft.Enabled = false;
+            this.imageStuffButtonLeft.Font = new System.Drawing.Font("Tahoma", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imageStuffButtonLeft.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.imageStuffButtonLeft.Image = global::LAZYSHELL.Properties.Resources.moveLeft;
+            this.imageStuffButtonLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.imageStuffButtonLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.imageStuffButtonLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.imageStuffButtonLeft.Name = "imageStuffButtonLeft";
+            this.imageStuffButtonLeft.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.imageStuffButtonLeft.Size = new System.Drawing.Size(64, 19);
+            this.imageStuffButtonLeft.Text = " ";
+            this.imageStuffButtonLeft.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.imageStuffButtonLeft.Click += new System.EventHandler(this.imageStuffButtonLeft_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // imageStuffLabel
+            // 
+            this.imageStuffLabel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imageStuffLabel.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.imageStuffLabel.Name = "imageStuffLabel";
+            this.imageStuffLabel.Size = new System.Drawing.Size(58, 25);
+            this.imageStuffLabel.Text = "v2.1.4";
             // 
             // richTextBox1
             // 
@@ -91,8 +194,8 @@ namespace LAZYSHELL
             this.richTextBox1.Multiline = false;
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(497, 31);
-            this.richTextBox1.TabIndex = 319;
+            this.richTextBox1.Size = new System.Drawing.Size(497, 10);
+            this.richTextBox1.TabIndex = 321;
             this.richTextBox1.Text = " Changelogs (LAZYSHELL++)";
             // 
             // richTextBox3
@@ -175,6 +278,8 @@ namespace LAZYSHELL
             this.Text = "ABOUT LAZY SHELL...";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.imageStuffToolStrip.ResumeLayout(false);
+            this.imageStuffToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -189,6 +294,13 @@ namespace LAZYSHELL
         private System.Windows.Forms.RichTextBox changeslog1;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox6;
+        private System.Windows.Forms.ToolStrip imageStuffToolStrip;
+        private System.Windows.Forms.ToolStripButton imageStuffButtonLeft;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton imageStuffButtonRight;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel imageStuffLabel;
     }
 }

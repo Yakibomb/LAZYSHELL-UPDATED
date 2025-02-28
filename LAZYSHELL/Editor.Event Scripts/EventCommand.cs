@@ -149,16 +149,20 @@ namespace LAZYSHELL.ScriptsEditor.Commands
         /// </summary>
         /// <param name="delta">The value to add/subtract from any pointers.</param>
         /// <param name="conditionOffset">The offset to compare to.</param>
-        public void UpdatePointer(int delta, int conditionOffset)
+        /// <param name="pushOffsetTreeWrapper">If true, updates the tree wrapper offsets.</param>
+        public void UpdatePointer(int delta, int conditionOffset, bool pushOffsetTreeWrapper)
         {
             ushort pointer;
-            if (this.offset >= conditionOffset || conditionOffset == 0x7FFFFFFF)
+            if (pushOffsetTreeWrapper)
             {
-                this.offset += delta;
-                this.internalOffset += delta;   // 2009-01-07
+                if (this.offset >= conditionOffset || conditionOffset == 0x7FFFFFFF)
+                {
+                    this.offset += delta;
+                    this.internalOffset += delta;
+                }
+                if ((this.Locked || this.QueueTrigger) && this.queue != null)
+                    queue.UpdateOffsets(delta, conditionOffset);
             }
-            if ((this.Locked || this.QueueTrigger) && this.queue != null)
-                queue.UpdateOffsets(delta, conditionOffset);
             conditionOffset &= 0xFFFF; // convert to pointer
             if (commandData[0] == 0x42 || commandData[0] == 0x67 || commandData[0] == 0xE9)
             {

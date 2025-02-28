@@ -162,6 +162,7 @@ namespace LAZYSHELL
             this.panelGraphicSet.Size = new System.Drawing.Size(392, 421);
             this.panelGraphicSet.TabIndex = 3;
             this.panelGraphicSet.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panelGraphicSet_Scroll);
+            this.panelGraphicSet.SizeChanged += new System.EventHandler(this.panelGraphicSet_SizeChanged);
             this.panelGraphicSet.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelGraphicSet_MouseDown);
             this.panelGraphicSet.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.panelGraphicSet_PreviewKeyDown);
             // 
@@ -571,10 +572,9 @@ namespace LAZYSHELL
             this.widthDecrease.AutoSize = false;
             this.widthDecrease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.widthDecrease.Image = ((System.Drawing.Image)(resources.GetObject("widthDecrease.Image")));
-            this.widthDecrease.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.widthDecrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.widthDecrease.Name = "widthDecrease";
-            this.widthDecrease.Size = new System.Drawing.Size(17, 17);
+            this.widthDecrease.Size = new System.Drawing.Size(23, 22);
             this.widthDecrease.ToolTipText = "Decrease Width";
             this.widthDecrease.Click += new System.EventHandler(this.widthDecrease_Click);
             // 
@@ -586,7 +586,7 @@ namespace LAZYSHELL
             this.widthIncrease.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.widthIncrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.widthIncrease.Name = "widthIncrease";
-            this.widthIncrease.Size = new System.Drawing.Size(17, 17);
+            this.widthIncrease.Size = new System.Drawing.Size(23, 22);
             this.widthIncrease.ToolTipText = "Increase Width";
             this.widthIncrease.Click += new System.EventHandler(this.widthIncrease_Click);
             // 
@@ -595,10 +595,9 @@ namespace LAZYSHELL
             this.heightDecrease.AutoSize = false;
             this.heightDecrease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.heightDecrease.Image = ((System.Drawing.Image)(resources.GetObject("heightDecrease.Image")));
-            this.heightDecrease.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.heightDecrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.heightDecrease.Name = "heightDecrease";
-            this.heightDecrease.Size = new System.Drawing.Size(17, 17);
+            this.heightDecrease.Size = new System.Drawing.Size(23, 22);
             this.heightDecrease.ToolTipText = "Decrease Height";
             this.heightDecrease.Click += new System.EventHandler(this.heightDecrease_Click);
             // 
@@ -607,10 +606,9 @@ namespace LAZYSHELL
             this.heightIncrease.AutoSize = false;
             this.heightIncrease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.heightIncrease.Image = ((System.Drawing.Image)(resources.GetObject("heightIncrease.Image")));
-            this.heightIncrease.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.heightIncrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.heightIncrease.Name = "heightIncrease";
-            this.heightIncrease.Size = new System.Drawing.Size(17, 17);
+            this.heightIncrease.Size = new System.Drawing.Size(23, 22);
             this.heightIncrease.ToolTipText = "Increase Height";
             this.heightIncrease.Click += new System.EventHandler(this.heightIncrease_Click);
             // 
@@ -638,7 +636,7 @@ namespace LAZYSHELL
             0,
             0,
             0});
-            this.brushSize.Location = new System.Drawing.Point(227, 3);
+            this.brushSize.Location = new System.Drawing.Point(251, 3);
             this.brushSize.Maximum = new decimal(new int[] {
             16,
             0,
@@ -863,6 +861,7 @@ namespace LAZYSHELL
             // 
             // toolStrip4
             // 
+            this.toolStrip4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.toolStrip4.AutoSize = false;
             this.toolStrip4.BackColor = System.Drawing.SystemColors.Control;
             this.toolStrip4.Dock = System.Windows.Forms.DockStyle.None;
@@ -874,7 +873,7 @@ namespace LAZYSHELL
             this.toolStripSeparator6,
             this.autoUpdate});
             this.toolStrip4.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.toolStrip4.Location = new System.Drawing.Point(371, 2);
+            this.toolStrip4.Location = new System.Drawing.Point(368, 2);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip4.Size = new System.Drawing.Size(59, 46);

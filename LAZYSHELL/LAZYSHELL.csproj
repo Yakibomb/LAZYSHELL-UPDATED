@@ -143,6 +143,12 @@
     <Compile Include="Editor.Audio\SPCCommand.cs" />
     <Compile Include="Editor.Audio\SPCScriptEnums.cs" />
     <Compile Include="Editor.Audio\SPCTrack.cs" />
+    <Compile Include="Editor.Event Scripts\UpdatePointer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor.Event Scripts\UpdatePointer.Designer.cs">
+      <DependentUpon>UpdatePointer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editor.Intro\Intro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -632,6 +638,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.Audio\SPCEditor.resx">
       <DependentUpon>SPCEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor.Event Scripts\UpdatePointer.resx">
+      <DependentUpon>UpdatePointer.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor.Intro\Intro.resx">
       <DependentUpon>Intro.cs</DependentUpon>

@@ -2618,7 +2618,6 @@ namespace LAZYSHELL
                 Do.Export(tilemapImage, "minecart." + minecart.Index.ToString("d2") + ".png");
         }
 
-
         private void exportToBattlefieldToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (overlay.Select.Empty)

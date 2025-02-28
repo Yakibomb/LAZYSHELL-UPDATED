@@ -1346,6 +1346,12 @@ namespace LAZYSHELL
             this.Activate();
         }
 
+
+        private void panelGraphicSet_SizeChanged(object sender, EventArgs e)
+        {
+            toolStrip4.Location = new Point(panelGraphics.Width - 32, 2);
+        }
+
         private void alwaysOnTop_CheckedChanged(object sender, EventArgs e)
         {
             this.TopMost = alwaysOnTop.Checked;

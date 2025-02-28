@@ -90,13 +90,14 @@ namespace LAZYSHELL
             // 
             // fontSize
             // 
+            this.fontSize.ContextMenuStrip = null;
             this.fontSize.Hexadecimal = false;
             this.fontSize.Increment = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.fontSize.Location = new System.Drawing.Point(189, 3);
+            this.fontSize.Location = new System.Drawing.Point(191, 3);
             this.fontSize.Maximum = new decimal(new int[] {
             20,
             0,
@@ -108,7 +109,7 @@ namespace LAZYSHELL
             0,
             0});
             this.fontSize.Name = "fontSize";
-            this.fontSize.Size = new System.Drawing.Size(39, 22);
+            this.fontSize.Size = new System.Drawing.Size(35, 22);
             this.fontSize.Text = "8";
             this.fontSize.Value = new decimal(new int[] {
             8,
@@ -186,13 +187,14 @@ namespace LAZYSHELL
             // characterHeight
             // 
             this.characterHeight.AutoSize = false;
+            this.characterHeight.ContextMenuStrip = null;
             this.characterHeight.Hexadecimal = false;
             this.characterHeight.Increment = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.characterHeight.Location = new System.Drawing.Point(130, 3);
+            this.characterHeight.Location = new System.Drawing.Point(132, 3);
             this.characterHeight.Maximum = new decimal(new int[] {
             24,
             0,
@@ -266,13 +268,14 @@ namespace LAZYSHELL
             // padding
             // 
             this.padding.AutoSize = false;
+            this.padding.ContextMenuStrip = null;
             this.padding.Hexadecimal = false;
             this.padding.Increment = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.padding.Location = new System.Drawing.Point(34, 3);
+            this.padding.Location = new System.Drawing.Point(36, 3);
             this.padding.Maximum = new decimal(new int[] {
             16,
             0,
@@ -341,7 +344,7 @@ namespace LAZYSHELL
             // shiftTableLeft
             // 
             this.shiftTableLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.shiftTableLeft.Image = global::LAZYSHELL.Properties.Resources.back;
+            this.shiftTableLeft.Image = global::LAZYSHELL.Properties.Resources.moveLeft;
             this.shiftTableLeft.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.shiftTableLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.shiftTableLeft.Name = "shiftTableLeft";
@@ -352,7 +355,7 @@ namespace LAZYSHELL
             // shiftTableRight
             // 
             this.shiftTableRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.shiftTableRight.Image = global::LAZYSHELL.Properties.Resources.foward;
+            this.shiftTableRight.Image = global::LAZYSHELL.Properties.Resources.moveRight;
             this.shiftTableRight.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.shiftTableRight.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.shiftTableRight.Name = "shiftTableRight";
@@ -421,6 +424,7 @@ namespace LAZYSHELL
             this.panel71.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
         #endregion
         private System.Windows.Forms.Panel panel65;

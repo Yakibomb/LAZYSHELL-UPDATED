@@ -83,7 +83,7 @@ namespace LAZYSHELL.ScriptsEditor
                 asc.ResetOriginalOffset();
             Populate();
         }
-        private void Populate()
+        public void Populate()
         {
             this.treeView.Nodes.Clear();
             if (!actionScript)

@@ -136,6 +136,7 @@ namespace LAZYSHELL.Patches
             // 
             // versionDisplayComboBox
             // 
+            this.versionDisplayComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.versionDisplayComboBox.Enabled = false;
             this.versionDisplayComboBox.Items.AddRange(new object[] {
             " "});
@@ -143,7 +144,7 @@ namespace LAZYSHELL.Patches
             this.versionDisplayComboBox.Name = "versionDisplayComboBox";
             this.versionDisplayComboBox.Size = new System.Drawing.Size(95, 21);
             this.versionDisplayComboBox.TabIndex = 20;
-            this.versionDisplayComboBox.Text = "Version";
+            this.versionDisplayComboBox.Visible = false;
             this.versionDisplayComboBox.SelectedIndexChanged += new System.EventHandler(this.versionDisplayComboBox_SelectedIndexChanged);
             // 
             // downloadReadmeButton
@@ -419,6 +420,7 @@ namespace LAZYSHELL.Patches
             // 
             // sortByCategoryComboBox
             // 
+            this.sortByCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortByCategoryComboBox.Enabled = false;
             this.sortByCategoryComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.sortByCategoryComboBox.Items.AddRange(new object[] {
@@ -426,11 +428,11 @@ namespace LAZYSHELL.Patches
             this.sortByCategoryComboBox.Name = "sortByCategoryComboBox";
             this.sortByCategoryComboBox.Size = new System.Drawing.Size(102, 25);
             this.sortByCategoryComboBox.Sorted = true;
-            this.sortByCategoryComboBox.Text = "All Categories";
             this.sortByCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.sortByCategoryComboBox_SelectedIndexChanged);
             // 
             // sortByAuthorComboBox
             // 
+            this.sortByAuthorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sortByAuthorComboBox.Enabled = false;
             this.sortByAuthorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.sortByAuthorComboBox.Items.AddRange(new object[] {
@@ -438,7 +440,6 @@ namespace LAZYSHELL.Patches
             this.sortByAuthorComboBox.Name = "sortByAuthorComboBox";
             this.sortByAuthorComboBox.Size = new System.Drawing.Size(102, 25);
             this.sortByAuthorComboBox.Sorted = true;
-            this.sortByAuthorComboBox.Text = "All Authors";
             this.sortByAuthorComboBox.SelectedIndexChanged += new System.EventHandler(this.sortByAuthorComboBox_SelectedIndexChanged);
             // 
             // helpTips

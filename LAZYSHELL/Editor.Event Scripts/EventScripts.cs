@@ -570,6 +570,8 @@ namespace LAZYSHELL
         private void eventPointer_UpdatePointer(object sender, EventArgs e)
         {
             //
+            State.Instance.AutoPointerUpdate = autoPointerUpdate.Checked;
+            //
             ScriptBuffer buffer = new ScriptBuffer(Bits.Copy(scriptData), 2);
                 PushCommand(buffer);
                 treeViewWrapper.RefreshScript();
@@ -1839,6 +1841,22 @@ namespace LAZYSHELL
             }
             commandTree.EndUpdate();
         }
+        // Tool: Update Pointers
+        private void updatePointerScriptsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScriptBuffer buffer = new ScriptBuffer(Bits.Copy(scriptData), treeViewWrapper.SelectedIndex);
+            //
+            object Script = !isActionScript ? (object)Model.EventScripts : (object)Model.ActionScripts;
+            UpdatePointer window = new UpdatePointer(Script, index);
+            window.ShowDialog();
+            if (window.DialogResult != DialogResult.OK)
+                return;
+            treeViewWrapper.Populate();
+            //
+            if (!Bits.Compare(buffer.OldScript, scriptData))
+                PushCommand(buffer);
+        }
+
         // context menustrip
         private void goToDialogue_Click(object sender, EventArgs e)
         {

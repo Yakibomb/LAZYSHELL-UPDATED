@@ -4930,7 +4930,7 @@ namespace LAZYSHELL
             // 
             // spaceAnalyzer
             // 
-            this.spaceAnalyzer.Image = global::LAZYSHELL.Properties.Resources.spaceAnalyzer;
+            this.spaceAnalyzer.Image = global::LAZYSHELL.Properties.Resources.statistics;
             this.spaceAnalyzer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.spaceAnalyzer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.spaceAnalyzer.Name = "spaceAnalyzer";

@@ -58,13 +58,17 @@ namespace LAZYSHELL.Patches
             imageStuffLabel.Text = "";
             GameImageDescriptions.Text = "";
             //
+            sortByCategoryComboBox.SelectedIndex = 0;
+            sortByAuthorComboBox.SelectedIndex = 0;
+            //
             this.History = new History(this);
             Do.AddShortcut(toolStrip4, Keys.F1, helpTips);
             new ToolTipLabel(this, null, helpTips);
 
             if (dialogueResult == DialogResult.Yes)
                 Startdownloading();
-            else ResetParameters(2);
+            else
+                ResetParameters(2);
         }
 
         // functions
@@ -164,6 +168,14 @@ namespace LAZYSHELL.Patches
                     UsingGitHubPath.Add(settings.PatchServerURLs[i].StartsWith("https://github.com/") ? "blob/main/" : "");
                     UsingGitHubEnd.Add(settings.PatchServerURLs[i].StartsWith("https://github.com/") ? "?raw=true" : "");
                 }
+
+                if (PatchListBox.Items.Count == 0)
+                    PatchListBox.Items.Add("(no patches available)");
+                ImagePictureBox.BackgroundImage = null;
+                ImagePictureBox.BackgroundImageLayout = 0;
+
+                this.Updating = false;
+                this.downloading = false;
             }
         }
         private bool GetWebResponse(Uri link)
@@ -201,7 +213,7 @@ namespace LAZYSHELL.Patches
                 if (response == null) return;
                 StreamReader st = new StreamReader(response);
                 string file = st.ReadToEnd();
-                DescriptionTextBox.Text = "Patches Loading In:\n" + file;
+                DescriptionTextBox.Text = "Patches Loading In:\n" + "---------------------------------------------------------------------\n" + file;
                 patchList = file.Split('\n');
                 patchListDebug = file.Split('\n');
                 patchList_ProcessedNumber = 0;
@@ -280,7 +292,7 @@ namespace LAZYSHELL.Patches
                 }
 
             }
-            DescriptionTextBox.Text = "Patches Loading In:\n";
+            DescriptionTextBox.Text = "Patches Loading In:\n" + "---------------------------------------------------------------------\n";
             foreach (string n in patchListDebug)
             {
                 if (n == "") continue;
@@ -829,6 +841,9 @@ namespace LAZYSHELL.Patches
         }
         private void GenerateCuratedList()
         {
+            if (sortByCategoryComboBox.SelectedIndex < 0) return;
+            if (sortByAuthorComboBox.SelectedIndex < 0) return;
+
             string currentCategory = sortByCategoryComboBox.Items[sortByCategoryComboBox.SelectedIndex].ToString();
             string currentAuthor = sortByAuthorComboBox.Items[sortByAuthorComboBox.SelectedIndex].ToString();
 
@@ -932,9 +947,9 @@ namespace LAZYSHELL.Patches
                 ResetParameters(1);
                 return;
             }
-        //    reloadPatchServer.Image = Resources.delete_small;
-        //    ResetParameters(2);
-        //    Startdownloading();
+            //    reloadPatchServer.Image = Resources.delete_small;
+            //    ResetParameters(2);
+            //    Startdownloading();
             Model.Program.Patches.Close();
             if (Model.Program.Patches == null || !Model.Program.Patches.Visible)
                 Model.Program.CreatePatchesWindow();

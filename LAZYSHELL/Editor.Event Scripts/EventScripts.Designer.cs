@@ -97,7 +97,6 @@ namespace LAZYSHELL
             this.helpTips = new System.Windows.Forms.ToolStripButton();
             this.baseConvertor = new System.Windows.Forms.ToolStripButton();
             this.autoPointerUpdate = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.hexEditor = new System.Windows.Forms.ToolStripButton();
             this.EventPreview = new System.Windows.Forms.ToolStripButton();
@@ -121,6 +120,7 @@ namespace LAZYSHELL
             this.EvtScrCollapseAll = new System.Windows.Forms.ToolStripButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.commandTree = new LAZYSHELL.NewTreeView();
+            this.manualPointerUpdate = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evtNumA2)).BeginInit();
@@ -770,8 +770,8 @@ namespace LAZYSHELL
             this.helpTips,
             this.baseConvertor,
             this.autoPointerUpdate,
-            this.toolStripButton1,
             this.toolStripSeparator10,
+            this.manualPointerUpdate,
             this.hexEditor,
             this.EventPreview});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
@@ -957,25 +957,13 @@ namespace LAZYSHELL
             this.autoPointerUpdate.Checked = true;
             this.autoPointerUpdate.CheckOnClick = true;
             this.autoPointerUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoPointerUpdate.Image = global::LAZYSHELL.Properties.Resources.update;
+            this.autoPointerUpdate.Image = global::LAZYSHELL.Properties.Resources.synchronize;
             this.autoPointerUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.autoPointerUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.autoPointerUpdate.Name = "autoPointerUpdate";
             this.autoPointerUpdate.Size = new System.Drawing.Size(23, 22);
             this.autoPointerUpdate.ToolTipText = "Auto Pointer Update";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.CheckOnClick = true;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::LAZYSHELL.Properties.Resources.synchronize;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Auto Update Pointer";
-            this.toolStripButton1.Visible = false;
-            this.toolStripButton1.Click += new System.EventHandler(this.eventPointer_UpdatePointer);
+            this.autoPointerUpdate.Click += new System.EventHandler(this.eventPointer_UpdatePointer);
             // 
             // toolStripSeparator10
             // 
@@ -1227,6 +1215,16 @@ namespace LAZYSHELL
             this.commandTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.commandTree_KeyDown);
             this.commandTree.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.commandTree_MouseDoubleClick);
             // 
+            // manualPointerUpdate
+            // 
+            this.manualPointerUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.manualPointerUpdate.Image = global::LAZYSHELL.Properties.Resources.tools;
+            this.manualPointerUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.manualPointerUpdate.Name = "manualPointerUpdate";
+            this.manualPointerUpdate.Size = new System.Drawing.Size(23, 22);
+            this.manualPointerUpdate.Text = "Manual Pointer Update";
+            this.manualPointerUpdate.Click += new System.EventHandler(this.updatePointerScriptsToolStripMenuItem_Click);
+            // 
             // EventScripts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1363,11 +1361,11 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripButton undo;
         private System.Windows.Forms.ToolStripButton redo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ListBox commands;
         private ToolStripNumericUpDown eventNum;
         private System.Windows.Forms.ToolStripTextBox gotoAddress;
         private NewTreeView commandTree;
+        private System.Windows.Forms.ToolStripButton manualPointerUpdate;
     }
 }

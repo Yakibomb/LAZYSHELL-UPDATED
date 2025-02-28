@@ -91,6 +91,7 @@ namespace LAZYSHELL
             this.buttonDragSolidity = new System.Windows.Forms.ToolStripButton();
             this.pictureBoxLevel = new LAZYSHELL.NewPictureBox();
             this.panelLevelPicture = new LAZYSHELL.NewPanel();
+            this.panelLevelPictureBase = new LAZYSHELL.NewPanel();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.panelOpacity.SuspendLayout();
@@ -98,6 +99,7 @@ namespace LAZYSHELL
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLevel)).BeginInit();
             this.panelLevelPicture.SuspendLayout();
+            this.panelLevelPictureBase.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -129,10 +131,10 @@ namespace LAZYSHELL
             this.toolStripSeparator23,
             this.opacityToolStripButton,
             this.toggleSolidityFlatMode});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(26, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(748, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1478, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toggleCartGrid
@@ -540,14 +542,13 @@ namespace LAZYSHELL
             // 
             // labelTileCoords
             // 
-            this.labelTileCoords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTileCoords.BackColor = System.Drawing.SystemColors.Control;
             this.labelTileCoords.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelTileCoords.Location = new System.Drawing.Point(-2, 982);
+            this.labelTileCoords.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelTileCoords.Location = new System.Drawing.Point(0, 573);
             this.labelTileCoords.Name = "labelTileCoords";
             this.labelTileCoords.Padding = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.labelTileCoords.Size = new System.Drawing.Size(1008, 24);
+            this.labelTileCoords.Size = new System.Drawing.Size(1478, 24);
             this.labelTileCoords.TabIndex = 4;
             this.labelTileCoords.Text = "(x: 0, y: 0)  Tile  |  (x: 0, y: 0) Isometric  |  (x: 0, y: 0) Pixel";
             this.labelTileCoords.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -580,10 +581,10 @@ namespace LAZYSHELL
             this.buttonZoomOut,
             this.toolStripSeparator1,
             this.buttonDragSolidity});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(26, 540);
+            this.toolStrip2.Size = new System.Drawing.Size(26, 622);
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -819,29 +820,36 @@ namespace LAZYSHELL
             // 
             // panelLevelPicture
             // 
-            this.panelLevelPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelLevelPicture.AutoScroll = true;
             this.panelLevelPicture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelLevelPicture.Controls.Add(this.labelTileCoords);
             this.panelLevelPicture.Controls.Add(this.pictureBoxLevel);
-            this.panelLevelPicture.Location = new System.Drawing.Point(29, 31);
+            this.panelLevelPicture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelLevelPicture.Location = new System.Drawing.Point(0, 0);
             this.panelLevelPicture.Name = "panelLevelPicture";
-            this.panelLevelPicture.Size = new System.Drawing.Size(743, 558);
+            this.panelLevelPicture.Size = new System.Drawing.Size(1478, 573);
             this.panelLevelPicture.TabIndex = 3;
             this.panelLevelPicture.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panelLevelPicture_Scroll);
+            // 
+            // panelLevelPictureBase
+            // 
+            this.panelLevelPictureBase.Controls.Add(this.panelLevelPicture);
+            this.panelLevelPictureBase.Controls.Add(this.labelTileCoords);
+            this.panelLevelPictureBase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelLevelPictureBase.Location = new System.Drawing.Point(26, 25);
+            this.panelLevelPictureBase.Name = "panelLevelPictureBase";
+            this.panelLevelPictureBase.Size = new System.Drawing.Size(1478, 597);
+            this.panelLevelPictureBase.TabIndex = 2;
             // 
             // TilemapEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 565);
+            this.ClientSize = new System.Drawing.Size(1504, 622);
             this.ControlBox = false;
             this.Controls.Add(this.panelOpacity);
-            this.Controls.Add(this.panelLevelPicture);
-            this.Controls.Add(this.toolStrip2);
+            this.Controls.Add(this.panelLevelPictureBase);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStrip2);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = global::LAZYSHELL.Properties.Resources.LAZYSHELL_icon;
@@ -860,6 +868,7 @@ namespace LAZYSHELL
             this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLevel)).EndInit();
             this.panelLevelPicture.ResumeLayout(false);
+            this.panelLevelPictureBase.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -903,6 +912,7 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator23;
         private LAZYSHELL.NewPictureBox pictureBoxLevel;
         private LAZYSHELL.NewPanel panelLevelPicture;
+        private LAZYSHELL.NewPanel panelLevelPictureBase;
         private System.Windows.Forms.Panel panelOpacity;
         private System.Windows.Forms.TrackBar overlayOpacity;
         private System.Windows.Forms.Label labelOverlayOpacity;
