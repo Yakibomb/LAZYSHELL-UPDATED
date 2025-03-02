@@ -289,6 +289,20 @@ namespace LAZYSHELL
                 //this.enableDebug.Checked = true;
                 this.enableDebug.Enabled = false;
             }
+            else if (behavior == EType.Effects)
+            {
+                this.Text = "PREVIEW EFFECTS - LAZYSHELL++";
+                this.label1.Text = "Effect Index #";
+                this.selectIndex.Maximum = 127;
+                this.selectIndex.Value = settings.PreviewEffects;
+                groupBox1.Enabled = false;
+                groupBox2.Enabled = true;
+                this.battleBG.Items.AddRange(Lists.Numerize(Lists.BattlefieldNames));
+                this.battleBG.Enabled = true;
+                this.battleBG.SelectedIndex = settings.PreviewBattlefield;
+                //this.enableDebug.Checked = true;
+                this.enableDebug.Enabled = false;
+            }
             else if (behavior == EType.AnimationScript)
             {
                 this.Text = "PREVIEW ANIMATION - LAZYSHELL++";

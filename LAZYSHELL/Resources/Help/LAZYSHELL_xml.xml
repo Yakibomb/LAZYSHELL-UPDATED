@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="LAZYSHELL_xsl.xsl"?>
 <LAZYSHELL form="Editor" icon="icons/main.gif" title="LAZYSHELL++  Super Mario RPG Editor">
-  <Properties version="2.1.4" date="February 28, 2025" homepage="https://github.com/Yakibomb/LAZYSHELL-UPDATED/" author="Yaki, giangurgolo and Omega" />
+  <Properties version="2.1.5" date="March 1, 2025" homepage="https://github.com/Yakibomb/LAZYSHELL-UPDATED/" author="Yaki, giangurgolo and Omega" />
   <Read>
     <header>Read this first</header>
     <introduction>If this is your first time using Lazy Shell, please take the time to read the following advice:</introduction>

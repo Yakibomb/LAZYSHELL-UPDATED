@@ -38,6 +38,9 @@ namespace LAZYSHELL
             this.export = new System.Windows.Forms.ToolStripDropDownButton();
             this.exportSPC = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMML = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tESTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clear = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.reset = new System.Windows.Forms.ToolStripButton();
@@ -289,9 +292,6 @@ namespace LAZYSHELL
             this.importMMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSPCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tESTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.decayFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.delayTime)).BeginInit();
@@ -474,6 +474,35 @@ namespace LAZYSHELL
             this.exportMML.Size = new System.Drawing.Size(139, 22);
             this.exportMML.Text = "Export MML...";
             this.exportMML.Click += new System.EventHandler(this.exportMML_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearToolStripMenuItem,
+            this.tESTToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = global::LAZYSHELL.Properties.Resources.clear_small;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Visible = false;
+            // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.clearToolStripMenuItem.Text = "Clear...";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clear_Click);
+            // 
+            // tESTToolStripMenuItem
+            // 
+            this.tESTToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
+            this.tESTToolStripMenuItem.Name = "tESTToolStripMenuItem";
+            this.tESTToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.tESTToolStripMenuItem.Text = "Clear Percussion";
+            this.tESTToolStripMenuItem.Click += new System.EventHandler(this.tESTToolStripMenuItem_Click);
             // 
             // clear
             // 
@@ -1434,7 +1463,10 @@ namespace LAZYSHELL
             this.scoreViewPicture.Size = new System.Drawing.Size(485, 768);
             this.scoreViewPicture.TabIndex = 2;
             this.scoreViewPicture.TabStop = false;
-
+            this.scoreViewPicture.Zoom = 1;
+            this.scoreViewPicture.ZoomBoxEnabled = false;
+            this.scoreViewPicture.ZoomBoxPosition = new System.Drawing.Point(32, 32);
+            this.scoreViewPicture.ZoomBoxZoom = 4;
             this.scoreViewPicture.ZoomEnabled = false;
             this.scoreViewPicture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scoreViewPicture_KeyDown);
             this.scoreViewPicture.Paint += new System.Windows.Forms.PaintEventHandler(this.scoreViewPicture_Paint);
@@ -2565,7 +2597,10 @@ namespace LAZYSHELL
             this.scoreWriterPicture.Size = new System.Drawing.Size(860, 700);
             this.scoreWriterPicture.TabIndex = 0;
             this.scoreWriterPicture.TabStop = false;
-
+            this.scoreWriterPicture.Zoom = 1;
+            this.scoreWriterPicture.ZoomBoxEnabled = false;
+            this.scoreWriterPicture.ZoomBoxPosition = new System.Drawing.Point(32, 32);
+            this.scoreWriterPicture.ZoomBoxZoom = 4;
             this.scoreWriterPicture.ZoomEnabled = false;
             this.scoreWriterPicture.KeyDown += new System.Windows.Forms.KeyEventHandler(this.scoreWriterPicture_KeyDown);
             this.scoreWriterPicture.Paint += new System.Windows.Forms.PaintEventHandler(this.scoreWriterPicture_Paint);
@@ -3643,34 +3678,6 @@ namespace LAZYSHELL
             this.exportMMLToolStripMenuItem.Name = "exportMMLToolStripMenuItem";
             this.exportMMLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportMMLToolStripMenuItem.Text = "Export MML";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearToolStripMenuItem,
-            this.tESTToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = global::LAZYSHELL.Properties.Resources.clear_small;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
-            // 
-            // clearToolStripMenuItem
-            // 
-            this.clearToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
-            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.clearToolStripMenuItem.Text = "Clear...";
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clear_Click);
-            // 
-            // tESTToolStripMenuItem
-            // 
-            this.tESTToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.clear_small;
-            this.tESTToolStripMenuItem.Name = "tESTToolStripMenuItem";
-            this.tESTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.tESTToolStripMenuItem.Text = "Clear Percussion";
-            this.tESTToolStripMenuItem.Click += new System.EventHandler(this.tESTToolStripMenuItem_Click);
             // 
             // SPCEditor
             // 

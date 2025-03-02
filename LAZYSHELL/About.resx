@@ -118,26 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="changeslog1.Text" xml:space="preserve">
-    <value>TOOLS
- - New Font Table: Updated move left and move right icons
- - Graphic Editor: Updated panelGraphic resize icons
- - Graphic Editor: Toolbar on top-right now adjusts with window resizing
+    <value>ALL EDITORS
+ - Fixed an issue where imported .dat files were "unable to find assembly", causing the file to not be recognized
+ - Fixed an issue for imported files that were unrecognized, the window will now always close.
 
-LEVELS
- - Updated spaceAnalyzer icon to Statistics icon
- - Fixed coordinates / scrollbars in tilemap editor not appearing
+AUDIO
+ - Removed a button (forgot I was testing something)
 
-ABOUT
- - Fixed VS Code breaking my changelogs
-
-PATCHES
- - Trying to open patches again after it's already open won't warn you again
- - Stop/Reload patch server button should work more consistently
- - Fixed an issue where you could type in the boxes for category, authors and versions
- - Made version box invisible during patches loading in
-
-EVENTS
- - Added Manual Jump Offset Updater. This allows for one or a range of scripts to manually adjust each "jump to" offset. This should work as a bandaid fix until the reason for why jumps are off by a few bytes sometimes.</value>
+EFFECTS
+ - Disabled access to Previewer since it's pretty pointless</value>
   </data>
   <metadata name="imageStuffToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

@@ -58,6 +58,7 @@ namespace LAZYSHELL
             this.openMolds = new System.Windows.Forms.ToolStripButton();
             this.showMain = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.hexViewer = new System.Windows.Forms.ToolStripButton();
             this.previewerButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.name = new System.Windows.Forms.ToolStripComboBox();
@@ -71,7 +72,6 @@ namespace LAZYSHELL
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelSequences = new System.Windows.Forms.Panel();
-            this.hexViewer = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.yNegShift)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xNegShift)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.e_paletteIndex)).BeginInit();
@@ -480,6 +480,16 @@ namespace LAZYSHELL
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // hexViewer
+            // 
+            this.hexViewer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.hexViewer.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
+            this.hexViewer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.hexViewer.Name = "hexViewer";
+            this.hexViewer.Size = new System.Drawing.Size(23, 22);
+            this.hexViewer.Text = "toolStripButton1";
+            this.hexViewer.Click += new System.EventHandler(this.hexViewer_Click);
+            // 
             // previewerButton
             // 
             this.previewerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -488,6 +498,7 @@ namespace LAZYSHELL
             this.previewerButton.Name = "previewerButton";
             this.previewerButton.Size = new System.Drawing.Size(23, 22);
             this.previewerButton.Text = "toolStripButton1";
+            this.previewerButton.Visible = false;
             this.previewerButton.Click += new System.EventHandler(this.previewerButton_Click);
             // 
             // toolStrip3
@@ -566,7 +577,7 @@ namespace LAZYSHELL
             this.panelMolds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMolds.Location = new System.Drawing.Point(221, 50);
             this.panelMolds.Name = "panelMolds";
-            this.panelMolds.Size = new System.Drawing.Size(571, 319);
+            this.panelMolds.Size = new System.Drawing.Size(571, 371);
             this.panelMolds.TabIndex = 2;
             // 
             // panel2
@@ -583,7 +594,7 @@ namespace LAZYSHELL
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 50);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(221, 319);
+            this.panel2.Size = new System.Drawing.Size(221, 371);
             this.panel2.TabIndex = 0;
             // 
             // groupBox1
@@ -611,26 +622,16 @@ namespace LAZYSHELL
             this.panelSequences.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panelSequences.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelSequences.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelSequences.Location = new System.Drawing.Point(0, 369);
+            this.panelSequences.Location = new System.Drawing.Point(0, 421);
             this.panelSequences.Name = "panelSequences";
             this.panelSequences.Size = new System.Drawing.Size(792, 370);
             this.panelSequences.TabIndex = 3;
-            // 
-            // hexViewer
-            // 
-            this.hexViewer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.hexViewer.Image = global::LAZYSHELL.Properties.Resources.hexEditor;
-            this.hexViewer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.hexViewer.Name = "hexViewer";
-            this.hexViewer.Size = new System.Drawing.Size(23, 22);
-            this.hexViewer.Text = "toolStripButton1";
-            this.hexViewer.Click += new System.EventHandler(this.hexViewer_Click);
             // 
             // Effects
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 739);
+            this.ClientSize = new System.Drawing.Size(792, 791);
             this.Controls.Add(this.panelMolds);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip3);

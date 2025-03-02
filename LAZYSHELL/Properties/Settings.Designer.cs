@@ -798,5 +798,17 @@ namespace LAZYSHELL.Properties {
                 this["PatchServerVerify"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int PreviewEffects {
+            get {
+                return ((int)(this["PreviewEffects"]));
+            }
+            set {
+                this["PreviewEffects"] = value;
+            }
+        }
     }
 }

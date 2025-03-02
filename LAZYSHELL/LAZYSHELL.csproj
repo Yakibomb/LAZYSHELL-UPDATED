@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LAZYSHELL</RootNamespace>
-    <AssemblyName>LAZYSHELL++</AssemblyName>
+    <AssemblyName>LAZYSHELL</AssemblyName>
     <StartupObject>LAZYSHELL.Program</StartupObject>
     <ApplicationIcon>LAZYSHELL_icon.ico</ApplicationIcon>
     <FileUpgradeFlags>

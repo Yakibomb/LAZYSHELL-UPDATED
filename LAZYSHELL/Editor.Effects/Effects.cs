@@ -287,6 +287,7 @@ namespace LAZYSHELL
                 animations[(int)imageNum.Value].Assemble();
             RefreshEffectsEditor();
             settings.LastEffect = index;
+            settings.PreviewEffects = index;
         }
         private void name_SelectedIndexChanged(object sender, EventArgs e)
         {

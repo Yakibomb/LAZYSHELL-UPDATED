@@ -1210,7 +1210,7 @@ namespace LAZYSHELL.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;LAZYSHELL_xsl.xsl&quot;?&gt;
         ///&lt;LAZYSHELL form=&quot;Editor&quot; icon=&quot;icons/main.gif&quot; title=&quot;LAZYSHELL++  Super Mario RPG Editor&quot;&gt;
-        ///  &lt;Properties version=&quot;2.0.0&quot; date=&quot;February 15, 2025&quot; homepage=&quot;https://github.com/Yakibomb/LAZYSHELL-UPDATED/&quot; author=&quot;Yaki, giangurgolo and Omega&quot; /&gt;
+        ///  &lt;Properties version=&quot;2.1.5&quot; date=&quot;February 28, 2025&quot; homepage=&quot;https://github.com/Yakibomb/LAZYSHELL-UPDATED/&quot; author=&quot;Yaki, giangurgolo and Omega&quot; /&gt;
         ///  &lt;Read&gt;
         ///    &lt;header&gt;Read this first&lt;/header&gt;
         ///    &lt;introduction&gt;If this is your first time using Lazy Shell, please take the time to read the following advice:&lt;/i [rest of string was truncated]&quot;;.
