@@ -107,4 +107,21 @@ namespace LAZYSHELL
     {
         None, Draw, Erase, Fill, FillAll, ReplaceColor, Dropper, Select
     }
+    public enum AnimScriptType
+    {
+        MonsterBehaviors = 0,
+        MonsterSpells = 1,
+        MonsterAttacks = 2,
+        MonsterEntrances = 3,
+        Items = 4,
+        AllySpells = 5,
+        WeaponAnimations = 6,
+        WeaponMissSounds = 7,
+        WeaponTimedHitSounds = 8,
+        BattleEvents = 9,
+        FlowerBonusMessages = 10,
+        ToadsTutorial = 11,
+        AllyWeaponWrapper = 12,
+        AllyBehaviors = 13
+    }
 }

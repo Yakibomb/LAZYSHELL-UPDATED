@@ -295,9 +295,6 @@
   <data name="expandAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Dock\expandAll.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exportBinary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Data\exportBinary.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="exportData" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Data\exportData.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -351,9 +348,6 @@
   </data>
   <data name="history" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Editor\history.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="importBinary" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Data\importBinary.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="importData" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Data\importData.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1299,5 +1293,11 @@
   </data>
   <data name="toggleScarecrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Toggle\toggleScarecrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="exportBinary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Data\exportBinary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="importBinary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Data\importBinary.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

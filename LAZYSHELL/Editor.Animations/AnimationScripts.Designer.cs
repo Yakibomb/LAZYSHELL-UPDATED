@@ -246,7 +246,6 @@ namespace LAZYSHELL
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            this.toolStripSeparator2.Click += new System.EventHandler(this.toolStripSeparator2_Click);
             // 
             // emptyAnimationMods
             // 
@@ -997,6 +996,7 @@ namespace LAZYSHELL
             this.previewer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.previewer.Name = "previewer";
             this.previewer.Size = new System.Drawing.Size(23, 22);
+            this.previewer.Click += new System.EventHandler(this.previewer_Click);
             // 
             // animationCategory
             // 

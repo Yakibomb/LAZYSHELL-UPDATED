@@ -90,21 +90,6 @@ namespace LAZYSHELL
                         "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            // create backup list collections BEFORE loading notes
-            Model.CreateListCollections();
-            if (settings.LoadNotes && settings.NotePathCustom != "")
-            {
-                try
-                {
-                    OpenProject(settings.NotePathCustom);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Could not load most recently used project database.\n\n" + e.Message,
-                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            
 
             // load layout
             // set defaults for layout
@@ -228,8 +213,37 @@ namespace LAZYSHELL
                 mruManager.Add(AppControl.GetPathWithoutFileName() + AppControl.GetFileNameWithoutPath());
                 settings.Save();
             }
-            if (openEditorsTray.Enabled && settings.LoadAllData)
+            if (settings.LoadAllData)
                 AppControl.LoadAll();
+
+            // create backup list collections BEFORE loading notes
+            Model.CreateListCollections();
+            if (settings.LoadNotes)
+            {
+                string NotesFilePath = "";
+                foreach (string path in settings.NotePathCustomList)
+                {
+                    filename = Model.GetNotePathCustomWithoutPathOrExtension(path);
+                    if (filename == Model.GetFileNameWithoutPath())
+                    {
+                        NotesFilePath = path;
+                        break;
+                    }
+                }
+                if (NotesFilePath != "")
+                {
+                    try
+                    {
+                        OpenProject(NotesFilePath);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Could not load most recently used project database.\n\n" + e.Message,
+                            "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
         }
         private void OpenProject(string filename)
         {
@@ -238,8 +252,6 @@ namespace LAZYSHELL
                 MessageBox.Show("Could not load last used database. The file has been moved, renamed, or no longer exists.",
                     "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Model.Project = null;
-                settings.NotePathCustom = null;
-                settings.Save();
                 return;
             }
             Stream s = File.OpenRead(filename);
@@ -260,7 +272,14 @@ namespace LAZYSHELL
             openEditorsTray.Enabled = false;
             toolStrip3.Enabled = false;
             foreach (ToolStripItem item in toolStrip4.Items)
-                if (item != recentFiles && item != openSettings && item != info)
+                if (item != recentFiles &&
+                    item != openSettings &&
+                    item != info && 
+                    item != showROMInfo &&
+                    item != hideDock &&
+                    item != layoutUpdate &&
+                    item != help &&
+                    item != history)
                     item.Enabled = false;
             this.loadRomTextBox.Text = "";
             this.romInfo.Text = "";

@@ -397,25 +397,13 @@ namespace LAZYSHELL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool LoadNotes {
             get {
                 return ((bool)(this["LoadNotes"]));
             }
             set {
                 this["LoadNotes"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string NotePathCustom {
-            get {
-                return ((string)(this["NotePathCustom"]));
-            }
-            set {
-                this["NotePathCustom"] = value;
             }
         }
         
@@ -808,6 +796,19 @@ namespace LAZYSHELL.Properties {
             }
             set {
                 this["PreviewEffects"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsd=\"http://www.w3." +
+            "org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />")]
+        public global::System.Collections.Specialized.StringCollection NotePathCustomList {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["NotePathCustomList"]));
+            }
+            set {
+                this["NotePathCustomList"] = value;
             }
         }
     }

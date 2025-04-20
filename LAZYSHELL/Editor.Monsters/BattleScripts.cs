@@ -988,7 +988,7 @@ namespace LAZYSHELL
             if (Model.Program.Animations == null || !Model.Program.Animations.Visible)
                 Model.Program.CreateAnimationsWindow();
             //
-            Model.Program.Animations.Category = 7;
+            Model.Program.Animations.Category = (int)AnimScriptType.BattleEvents;
             Model.Program.Animations.Index = num;
             Model.Program.Animations.BringToFront();
         }

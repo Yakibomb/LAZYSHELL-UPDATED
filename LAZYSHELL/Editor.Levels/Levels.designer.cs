@@ -4812,7 +4812,7 @@ namespace LAZYSHELL
             this.eventMusic.IntegralHeight = false;
             this.eventMusic.Name = "eventMusic";
             this.eventMusic.Size = new System.Drawing.Size(170, 25);
-            this.eventMusic.SelectedIndexChanged += new System.EventHandler(this.eventsMusic_SelectedIndexChanged);
+            this.eventMusic.SelectedIndexChanged += new System.EventHandler(this.eventsAreaMusic_SelectedIndexChanged);
             // 
             // hexEditor
             // 
@@ -5034,7 +5034,7 @@ namespace LAZYSHELL
             // 
             // importArchitectureToolStripMenuItem
             // 
-            this.importArchitectureToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.importBinary;
+            this.importArchitectureToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importArchitectureToolStripMenuItem.Image")));
             this.importArchitectureToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.importArchitectureToolStripMenuItem.Name = "importArchitectureToolStripMenuItem";
             this.importArchitectureToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
@@ -5048,7 +5048,7 @@ namespace LAZYSHELL
             // 
             // arraysToolStripMenuItem1
             // 
-            this.arraysToolStripMenuItem1.Image = global::LAZYSHELL.Properties.Resources.importBinary;
+            this.arraysToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("arraysToolStripMenuItem1.Image")));
             this.arraysToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.arraysToolStripMenuItem1.Name = "arraysToolStripMenuItem1";
             this.arraysToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
@@ -5057,7 +5057,7 @@ namespace LAZYSHELL
             // 
             // graphicSetsToolStripMenuItem1
             // 
-            this.graphicSetsToolStripMenuItem1.Image = global::LAZYSHELL.Properties.Resources.importBinary;
+            this.graphicSetsToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("graphicSetsToolStripMenuItem1.Image")));
             this.graphicSetsToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.graphicSetsToolStripMenuItem1.Name = "graphicSetsToolStripMenuItem1";
             this.graphicSetsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
@@ -5092,7 +5092,7 @@ namespace LAZYSHELL
             // 
             // exportArchitectureToolStripMenuItem
             // 
-            this.exportArchitectureToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportArchitectureToolStripMenuItem.Image")));
+            this.exportArchitectureToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportBinary;
             this.exportArchitectureToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exportArchitectureToolStripMenuItem.Name = "exportArchitectureToolStripMenuItem";
             this.exportArchitectureToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
@@ -5106,7 +5106,7 @@ namespace LAZYSHELL
             // 
             // arraysToolStripMenuItem
             // 
-            this.arraysToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("arraysToolStripMenuItem.Image")));
+            this.arraysToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportBinary;
             this.arraysToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.arraysToolStripMenuItem.Name = "arraysToolStripMenuItem";
             this.arraysToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
@@ -5115,7 +5115,7 @@ namespace LAZYSHELL
             // 
             // graphicSetsToolStripMenuItem
             // 
-            this.graphicSetsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("graphicSetsToolStripMenuItem.Image")));
+            this.graphicSetsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.exportBinary;
             this.graphicSetsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.graphicSetsToolStripMenuItem.Name = "graphicSetsToolStripMenuItem";
             this.graphicSetsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);

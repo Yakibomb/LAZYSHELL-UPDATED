@@ -1370,7 +1370,7 @@ namespace LAZYSHELL
         private void saveScoreFile_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = settings.NotePathCustom;
+            saveFileDialog.InitialDirectory = Model.GetPathWithoutFileName();
             saveFileDialog.Title = "Save as new score file...";
             saveFileDialog.FileName = "score.lsscore";
             saveFileDialog.Filter = "Score File (*.lsnotes)|*.lsscore";
@@ -1387,7 +1387,7 @@ namespace LAZYSHELL
         private void openScoreFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = settings.NotePathCustom;
+            openFileDialog.InitialDirectory = Model.GetPathWithoutFileName();
             openFileDialog.Title = "Open existing score file...";
             openFileDialog.Filter = "Score File (*.lsscore)|*.lsscore";
             openFileDialog.FilterIndex = 0;

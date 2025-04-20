@@ -87,11 +87,11 @@ namespace LAZYSHELL
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.openSettings = new System.Windows.Forms.ToolStripButton();
             this.help = new System.Windows.Forms.ToolStripButton();
+            this.info = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.layoutUpdate = new System.Windows.Forms.ToolStripButton();
             this.hideDock = new System.Windows.Forms.ToolStripButton();
             this.showROMInfo = new System.Windows.Forms.ToolStripButton();
-            this.info = new System.Windows.Forms.ToolStripButton();
             this.panelROMinfo.SuspendLayout();
             this.infoROM.SuspendLayout();
             this.infoROMloaded.SuspendLayout();
@@ -897,6 +897,16 @@ namespace LAZYSHELL
             this.help.Text = "Open Help Window";
             this.help.Click += new System.EventHandler(this.help_Click);
             // 
+            // info
+            // 
+            this.info.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.info.Image = global::LAZYSHELL.Properties.Resources.mainBig;
+            this.info.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.info.Name = "info";
+            this.info.Size = new System.Drawing.Size(23, 22);
+            this.info.ToolTipText = "About";
+            this.info.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -931,7 +941,6 @@ namespace LAZYSHELL
             // showROMInfo
             // 
             this.showROMInfo.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.showROMInfo.Enabled = false;
             this.showROMInfo.Image = global::LAZYSHELL.Properties.Resources.romInfo;
             this.showROMInfo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.showROMInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -939,16 +948,6 @@ namespace LAZYSHELL
             this.showROMInfo.Size = new System.Drawing.Size(23, 22);
             this.showROMInfo.ToolTipText = "Show ROM Info";
             this.showROMInfo.Click += new System.EventHandler(this.showROMInfo_Click);
-            // 
-            // info
-            // 
-            this.info.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.info.Image = global::LAZYSHELL.Properties.Resources.mainBig;
-            this.info.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.info.Name = "info";
-            this.info.Size = new System.Drawing.Size(23, 22);
-            this.info.ToolTipText = "About";
-            this.info.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // Editor
             // 

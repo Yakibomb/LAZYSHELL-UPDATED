@@ -2283,8 +2283,7 @@ namespace LAZYSHELL
             Model.OverworldStarPiecesMenuTileset = null;
             RefreshMenu();
         }
-
-        private void resetBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        private void resetAllTilemapsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to ALL tilemaps.\n\nGo ahead with reset?",
                 "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
@@ -2296,7 +2295,8 @@ namespace LAZYSHELL
         }
 
         // Graphics Reset
-        private void resetGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void resetAllGraphicsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to ALL graphics.\n\nGo ahead with reset?",
                 "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
@@ -2309,6 +2309,8 @@ namespace LAZYSHELL
             Model.MenuCursorGraphics = null;
             Reload();
         }
+
+
         private void gameSelectGraphicsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to the Game Select Graphics.\n\nGo ahead with reset?",
@@ -2359,7 +2361,7 @@ namespace LAZYSHELL
         }
 
         // Palette resets
-        private void resetPalettesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void resetAllPalettesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("You're about to undo all changes to ALL palettes.\n\nGo ahead with reset?",
                 "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)

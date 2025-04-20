@@ -19,6 +19,7 @@ namespace LAZYSHELL
     {
         #region Variables
         private Settings settings = Settings.Default;
+        private string NotesFilePath = "";
         private List<EIndex> currentIndexes;
         private EIndex currentIndex;
         private EList elist
@@ -140,32 +141,33 @@ namespace LAZYSHELL
 
             if (project == null) project = new ProjectDB();
 
-            if (settings.NotePathCustom == "")
-            {
-                project = null;
-                return;
-            }
             // load the notes
-            if (CompareNoteFileWithROMFile())
+            //if (CompareNoteFileWithROMFile())
+            foreach (string path in settings.NotePathCustomList)
             {
-                try
+                string filename = Model.GetNotePathCustomWithoutPathOrExtension(path);
+                if (filename == Model.GetFileNameWithoutPath())
                 {
-                    Stream s = File.OpenRead(settings.NotePathCustom);
-                    BinaryFormatter b = new BinaryFormatter();
-                    project = (ProjectDB)b.Deserialize(s);
-                    Model.RefreshListCollections();
-                    projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension() + ".lsproj";
-                    s.Close();
-                    InitializeFields();
+                    NotesFilePath = path;
+                    break;
                 }
-                catch
-                {
-                    MessageBox.Show("Could not load last used database. The file has been moved, renamed, or no longer exists.",
-                        "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    project = null;
-                    settings.NotePathCustom = null;
-                    settings.Save();
-                }
+            }
+            try
+            {
+                Stream s = File.OpenRead(NotesFilePath);
+                BinaryFormatter b = new BinaryFormatter();
+                project = (ProjectDB)b.Deserialize(s);
+                Model.RefreshListCollections();
+                projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension(NotesFilePath) + ".lsproj";
+                s.Close();
+                InitializeFields();
+            }
+            catch
+            {
+                MessageBox.Show("Could not load last used database. The file has been moved, renamed, or no longer exists.",
+                    "LAZYSHELL++", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                project = null;
+                if (settings.NotePathCustomList.Contains(NotesFilePath)) settings.NotePathCustomList.Remove(NotesFilePath);
             }
             //
             //
@@ -357,16 +359,15 @@ namespace LAZYSHELL
             this.Updating = false;
         }
 
-        private bool CompareNoteFileWithROMFile()
+        private bool CompareNoteFileWithROMFile(string filepath)
         {
-            if (Model.GetNotePathCustomWithoutPathOrExtension() != Model.GetFileNameWithoutPath())
+            if (Model.GetNotePathCustomWithoutPathOrExtension(filepath) != Model.GetFileNameWithoutPath())
             {
                 DialogResult result = MessageBox.Show("The note's file name does not match this ROM's file name.\n\nLoad anyway?", "LAZYSHELL++",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
                 {
                     project = null;
-                    settings.NotePathCustom = "";
                     return false;
                 }
             }
@@ -374,10 +375,8 @@ namespace LAZYSHELL
         }
         public bool LoadProject()
         {
-            if (project == null) project = new ProjectDB();
-
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = settings.NotePathCustom;
+            openFileDialog.InitialDirectory = Model.GetPathWithoutFileName();
             openFileDialog.Title = "Open existing project...";
             openFileDialog.FileName = Model.GetFileNameWithoutPath() + ".lsproj";
             openFileDialog.Filter = "Lazy Shell Project/Notes (*.lsproj; *.lsnotes)|*.lsproj;*.lsnotes";
@@ -386,7 +385,7 @@ namespace LAZYSHELL
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return false;
             //
-            if (!CompareNoteFileWithROMFile())
+            if (!CompareNoteFileWithROMFile(openFileDialog.FileName))
                 return false;
             //
             Stream s = File.OpenRead(openFileDialog.FileName);
@@ -427,15 +426,17 @@ namespace LAZYSHELL
             s.Close();
             Model.RefreshListCollections();
 
-            settings.NotePathCustom = openFileDialog.FileName;
-        //  projectFile.Text = openFileDialog.FileName;
-            projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension() + ".lsproj";
+            if (settings.NotePathCustomList.Contains(openFileDialog.FileName))
+                settings.NotePathCustomList.Remove(openFileDialog.FileName);
+            settings.NotePathCustomList.Add(openFileDialog.FileName);
+            NotesFilePath = openFileDialog.FileName;
+            projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension(NotesFilePath) + ".lsproj";
             InitializeFields();
             return true;
         }
         private bool CreateNewProject()
         {
-            if (project != null && settings.NotePathCustom != "")
+            if (project != null && NotesFilePath != "")
             {
                 DialogResult result = MessageBox.Show("Save changes to project database?",
                     "LAZYSHELL++", MessageBoxButtons.YesNo);
@@ -444,7 +445,7 @@ namespace LAZYSHELL
             }
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = settings.NotePathCustom;
+            saveFileDialog.InitialDirectory = Model.GetPathWithoutFileName();
             saveFileDialog.Title = "Create new project...";
             saveFileDialog.FileName = Model.GetFileNameWithoutPath() + ".lsproj";
             saveFileDialog.Filter = "Lazy Shell Project (*.lsproj)|*.lsproj";
@@ -453,7 +454,10 @@ namespace LAZYSHELL
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return false;
             //
-            settings.NotePathCustom = saveFileDialog.FileName;
+            if (settings.NotePathCustomList.Contains(saveFileDialog.FileName))
+                settings.NotePathCustomList.Remove(saveFileDialog.FileName);
+            settings.NotePathCustomList.Add(saveFileDialog.FileName);
+            //
             Stream s = File.Create(saveFileDialog.FileName);
             BinaryFormatter b = new BinaryFormatter();
             b.Serialize(s, new ProjectDB());
@@ -463,7 +467,8 @@ namespace LAZYSHELL
             b = new BinaryFormatter();
             project = (ProjectDB)b.Deserialize(s);
             s.Close();
-            projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension() + ".lsproj";
+            NotesFilePath = saveFileDialog.FileName;
+            projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension(NotesFilePath) + ".lsproj";
             InitializeFields();
             return true;
         }
@@ -477,13 +482,13 @@ namespace LAZYSHELL
         }
         private void SaveLoadedProject()
         {
-            if (project == null || settings.NotePathCustom == "")
+            if (project == null || NotesFilePath == "")
             {
                 SaveAsNewProject();
                 return;
             }
             Model.RefreshListCollections();
-            Stream s = File.Create(settings.NotePathCustom);
+            Stream s = File.Create(NotesFilePath);
             BinaryFormatter b = new BinaryFormatter();
             b.Serialize(s, project);
             s.Close();
@@ -498,7 +503,7 @@ namespace LAZYSHELL
         private void SaveAsNewProject()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = settings.NotePathCustom;
+            saveFileDialog.InitialDirectory = Model.GetPathWithoutFileName();
             saveFileDialog.Title = "Save as new project...";
             saveFileDialog.FileName = Model.GetFileNameWithoutPath() + ".lsproj";
             saveFileDialog.Filter = "Project DB (*.lsproj)|*.lsproj";
@@ -506,8 +511,13 @@ namespace LAZYSHELL
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
-            settings.NotePathCustom = saveFileDialog.FileName;
-            projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension() + ".lsproj";
+
+            if (settings.NotePathCustomList.Contains(saveFileDialog.FileName))
+                settings.NotePathCustomList.Remove(saveFileDialog.FileName);
+            settings.NotePathCustomList.Add(saveFileDialog.FileName);
+
+            NotesFilePath = saveFileDialog.FileName;
+            projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension(NotesFilePath) + ".lsproj";
             //
             Model.RefreshListCollections();
             Stream s = File.Create(saveFileDialog.FileName);
@@ -726,8 +736,8 @@ namespace LAZYSHELL
             foreach (NotesDB.Index index in notes.Monsters) project.Monsters.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Packs) project.Packs.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Formations) project.Formations.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.BattleEvents) project.EventScripts.Add(new EIndex(index));
-            foreach (NotesDB.Index index in notes.MonsterBehaviorAnims) project.EventScripts.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.BattleEvents) project.BattleEvents.Add(new EIndex(index));
+            foreach (NotesDB.Index index in notes.MonsterBehaviorAnims) project.MonsterBehaviorAnims.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Attacks) project.Attacks.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Spells) project.Spells.Add(new EIndex(index));
             foreach (NotesDB.Index index in notes.Sprites) project.Sprites.Add(new EIndex(index));
@@ -800,7 +810,7 @@ namespace LAZYSHELL
         #region Event Handlers
         private void Project_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (project == null || settings.NotePathCustom == "")
+            if (project == null || NotesFilePath == "")
                 return;
 
             DialogResult result = MessageBox.Show("Save changes to project database?", "LAZYSHELL++",
@@ -814,7 +824,7 @@ namespace LAZYSHELL
                 // reload notes file
                 try
                 {
-                    Stream s = File.OpenRead(settings.NotePathCustom);
+                    Stream s = File.OpenRead(NotesFilePath);
                     BinaryFormatter b = new BinaryFormatter();
                     project = (ProjectDB)b.Deserialize(s);
                     s.Close();
@@ -850,7 +860,7 @@ namespace LAZYSHELL
         private void save_Click(object sender, EventArgs e)
         {
             // Check if read only, if it is do a "Save As" routine
-            FileInfo file = new FileInfo(settings.NotePathCustom);
+            FileInfo file = new FileInfo(NotesFilePath);
             if ((file.Attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
             {
                 saveAs.PerformClick();
@@ -860,7 +870,7 @@ namespace LAZYSHELL
             FileStream fs = null;
             try
             {
-                fs = File.Open(settings.NotePathCustom, FileMode.Open);
+                fs = File.Open(NotesFilePath, FileMode.Open);
                 fs.Close();
             }
             catch
@@ -877,19 +887,19 @@ namespace LAZYSHELL
         }
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            if (project == null || settings.NotePathCustom == "")
+            if (project == null || NotesFilePath == "")
                 return;
             DialogResult result = MessageBox.Show("Reload project database?", "LAZYSHELL++",
             MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
-            else if (settings.NotePathCustom != "")
+            else if (NotesFilePath != "")
             {
                 // reload notes file
                 try
                 {
                     // now load the notes
-                    Stream s = File.OpenRead(settings.NotePathCustom);
+                    Stream s = File.OpenRead(NotesFilePath);
                     BinaryFormatter b = new BinaryFormatter();
                     project = (ProjectDB)b.Deserialize(s);
                     s.Close();
@@ -907,7 +917,7 @@ namespace LAZYSHELL
             if (MessageBox.Show("Close the project database?", "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
             project = null;
-            settings.NotePathCustom = "";
+            NotesFilePath = "";
             Model.ResetListCollections();
             Model.Program.Project.Close();
             if (Model.Program.Project == null || !Model.Program.Project.Visible)
@@ -1194,6 +1204,20 @@ namespace LAZYSHELL
                     Model.Program.Battlefields.Index = (int)indexNumber.Value;
                     Model.Program.Battlefields.BringToFront();
                     break;
+                case "Monster Behavior Animations":
+                    if (Model.Program.Animations == null || !Model.Program.Animations.Visible)
+                        Model.Program.CreateAnimationsWindow();
+                    Model.Program.Animations.Category = (int)AnimScriptType.MonsterBehaviors;
+                    Model.Program.Animations.Index = (int)indexNumber.Value;
+                    Model.Program.Animations.BringToFront();
+                    break;
+                case "Battle Events":
+                    if (Model.Program.Animations == null || !Model.Program.Animations.Visible)
+                        Model.Program.CreateAnimationsWindow();
+                    Model.Program.Animations.Category = (int)AnimScriptType.BattleEvents;
+                    Model.Program.Animations.Index = (int)indexNumber.Value;
+                    Model.Program.Animations.BringToFront();
+                    break;
                 case "Monsters":
                     if (Model.Program.Monsters == null || !Model.Program.Monsters.Visible)
                         Model.Program.CreateMonstersWindow();
@@ -1381,13 +1405,13 @@ namespace LAZYSHELL
         }
         private void projectFile_Click(object sender, EventArgs e)
         {
-            if (project == null || settings.NotePathCustom == "")
+            if (project == null || NotesFilePath == "")
                 return;
 
-            if (projectFile.Text == Model.GetNotePathCustomWithoutPathOrExtension() + ".lsproj")
-                projectFile.Text = settings.NotePathCustom;
+            if (projectFile.Text == Model.GetNotePathCustomWithoutPathOrExtension(NotesFilePath) + ".lsproj")
+                projectFile.Text = NotesFilePath;
             else
-                projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension() + ".lsproj";
+                projectFile.Text = Model.GetNotePathCustomWithoutPathOrExtension(NotesFilePath) + ".lsproj";
         }
 
         #endregion

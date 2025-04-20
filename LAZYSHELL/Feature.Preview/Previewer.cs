@@ -308,11 +308,20 @@ namespace LAZYSHELL
                 this.Text = "PREVIEW ANIMATION - LAZYSHELL++";
                 this.label1.Text = "Monster #";
                 this.selectIndex.Maximum = 255;
-                if (category == 1)
+                if (category == (int)AnimScriptType.MonsterSpells)
                     index += 64;
-                else if (category == 4)
+                else if (category == (int)AnimScriptType.Items)
                 {
                     index += 96;
+                    this.selectIndex.Value = 0;
+                    goto Finish;
+                }
+                else if (category == (int)AnimScriptType.AllySpells
+                    || category == (int)AnimScriptType.WeaponMissSounds
+                    || category == (int)AnimScriptType.WeaponTimedHitSounds
+                    || category == (int)AnimScriptType.WeaponAnimations)
+                {
+                    this.allyWeapon.Enabled = this.label135.Enabled = false;
                     this.selectIndex.Value = 0;
                     goto Finish;
                 }
@@ -671,7 +680,7 @@ namespace LAZYSHELL
                     }
                 }
                 // if previewing item, add item to inventory
-                if (behavior == EType.AnimationScript && category == 4)
+                if (behavior == EType.AnimationScript && category == (int)AnimScriptType.Items)
                     state[snes9x ? 0x30509 : 0x20495] = (byte)index;
                 // else add new game inventory
                 else
@@ -680,13 +689,35 @@ namespace LAZYSHELL
                         state[snes9x ? 0x30509 + ind.Index: 0x20495 + ind.Index] = (byte)ind.Item;
                 }
 
+                if (behavior == EType.AnimationScript && category == (int)AnimScriptType.AllySpells)
+                {
+                    foreach (Character character in Model.Characters)
+                    {
+                        offset = snes9x ? 0x30487 : 0x20413;
+                        offset += (character.Index + 1) * 20 - 4;
+                        bool[] spells = new bool[32];
+                        spells[index] = true;
+                        double p = 0;
+                        for (int i = 0; i < 32; i++, p += 0.125)
+                            Bits.SetBit(state, offset + (int)p, i & 7, spells[i]);
+                    }
+                }
+                else if (behavior == EType.AnimationScript
+                    && category == (int)AnimScriptType.WeaponMissSounds
+                    || category == (int)AnimScriptType.WeaponTimedHitSounds
+                    || category == (int)AnimScriptType.WeaponAnimations)
+                {
+                    foreach (Character character in Model.Characters)
+                    {
+                        offset = snes9x ? 0x30487 : 0x20413;
+                        offset += (character.Index + 1) * 20 - 8;
+                        state[offset] = (byte)index;
+                    }
+                }
+
                 if (behavior == EType.SPCEvent ||
                     behavior == EType.SPCBattle)
                     Buffer.BlockCopy(soundFX, 0, state, snes9x ? 0x5BDA4 : 0x33C13, 0x1600);
-                if (behavior == EType.Sprites)
-                {
-
-                }
                     //
                 offset = snes9x ? 0x53C9D : 0x41533;
                 byte allyCount = 0;
@@ -789,7 +820,8 @@ namespace LAZYSHELL
                 byte[] eventData = new byte[] { 0x4A, 0x00, 0x00, 0x00, 0xFE };
                 eventData[3] = (byte)this.battleBG.SelectedIndex;
                 eventData.CopyTo(Model.ROM, 0x1E0C00);
-                if (category == 1 || category == 2)
+                if (category == (int)AnimScriptType.MonsterSpells
+                    || category == (int)AnimScriptType.MonsterAttacks)
                 {
                     int pointer = Bits.GetShort(Model.ROM, 0x390026 + monsterNum * 2);
                     int offset = 0x390000 + pointer;
@@ -797,9 +829,9 @@ namespace LAZYSHELL
                     Model.ROM[offset + 7] = 255;
                     pointer = Bits.GetShort(Model.ROM, 0x3930AA + (monsterNum * 2));
                     offset = 0x390000 + pointer;
-                    if (category == 1)
+                    if (category == (int)AnimScriptType.MonsterSpells)
                         new byte[] { 0xEF, (byte)this.index, 0xEC, 0xFF, 0xFF }.CopyTo(Model.ROM, offset);
-                    else if (category == 2)
+                    else if (category == (int)AnimScriptType.MonsterAttacks)
                         new byte[] { (byte)this.index, 0xEC, 0xFF, 0xFF }.CopyTo(Model.ROM, offset);
                 }
             }

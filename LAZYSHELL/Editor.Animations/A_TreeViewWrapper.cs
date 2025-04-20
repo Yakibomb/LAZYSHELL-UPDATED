@@ -68,6 +68,7 @@ namespace LAZYSHELL.ScriptsEditor
                 case 0x64:
                 case 0x68:
                 case 0xA2:
+                case 0xA7:
                 case 0xCE:
                 case 0xCF:
                 case 0xD0:
@@ -122,6 +123,7 @@ namespace LAZYSHELL.ScriptsEditor
                     case 0x64:
                     case 0x68:
                     case 0xA2:
+                    case 0xA7:
                     case 0xCE:
                     case 0xCF:
                     case 0xD0:

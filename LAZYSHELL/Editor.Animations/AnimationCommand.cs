@@ -250,6 +250,7 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                 case 0x51:
                 case 0x64:
                 case 0x68:
+                case 0xA7:
                     if (offset == 0x3562C8 ||
                         offset == 0x3564FC)
                         script.AMEM = 0;
@@ -331,6 +332,7 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                 case 0x50:
                 case 0x51: 
                 case 0x5D:
+                case 0xA7:
                 case 0xCE:
                 case 0xCF:
                 case 0xD0:

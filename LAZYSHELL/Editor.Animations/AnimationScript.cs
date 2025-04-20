@@ -47,7 +47,7 @@ namespace LAZYSHELL.ScriptsEditor
         };
         private readonly int[] characterBehaviors = new int[] // character behaviors
         {
-            0x350468,0x350502,0x350ED1
+            0x350468,0x350502
         };
         //private readonly int[] behaviorOffsets_12 = new string(
         //"Enter Battle",
@@ -62,7 +62,7 @@ namespace LAZYSHELL.ScriptsEditor
                 0x350F1A,0x350F44,0x350F4A,0x350F56,0x350F6B,0x350F7A
 
         C6 05, DA 05, 90 07, 96 07, A2 07, 30 08 C6 05 35 06 90 07 96 07 E9 07 30 08 C6 05 69 06 90 07 96 07 E9 07 30 08 C6 05 A7 06 90 07 96 07 E9 07 30 08 C6 05 37 07 90 07 96 07 A2 07 6A 08 50 90 07 1A 01 20 50 2E 00 34 01 64 28 21 16 15 0A 09 D5 05 0E 0F 54 6E 3E 7F 57 3B 55 3B 56 51 FA 05 AB 59 A4 20 50 2C 00 34 01 64 FE 05 05 23 32 0E 00 98 46 09 D5 05 06 06 07 06 1E 06 1E 06 11 AB 0D 03 C1 20 C1 00 02 0E 08 E1 FF FD 00 00 11 00 12 81 4E 0E 0F 11 AB 0D 03 C1 20 C0 00 02 0E 08 E1 FF FC 00 00 19 00 12 81 4E
-        */
+        is 0x350ED1 used? Where? */
 
         // constructor
         public AnimationScript(int index, int type)

@@ -118,15 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="changeslog1.Text" xml:space="preserve">
-    <value>ALL EDITORS
- - Fixed an issue where imported .dat files were "unable to find assembly", causing the file to not be recognized
- - Fixed an issue for imported files that were unrecognized, the window will now always close.
+    <value>ANIMATIONS
+ - Removed "?" in Ally Behaviors because it was a monster script
+ - Added previewer for Ally Spells and Weapons
+ - Added undocumented command 0x9C and 0x9D, for wavy layer effects
+ - Fixed Battle Events and Monster Behaviors from not being loadable in the notes editor
 
-AUDIO
- - Removed a button (forgot I was testing something)
+NOTES
+ - Added dynamic loading notes, which allows for each ROM to have their own notes file.
+ - Fixed bug where you could add a label when notes was disabled
+ - Added Monster Behavior Animations, Battle Events
 
-EFFECTS
- - Disabled access to Previewer since it's pretty pointless</value>
+MAIN
+ - Fixed tray buttons from being disabled when no ROM was loaded
+
+ALLIES
+ - Added "Reset all components" buttons
+
+MENUS
+ - Added "Reset all components" buttons
+
+MONSTERS
+ - Fixed bug in battle scripts where right-clicking a battle event would lead to the wrong place
+
+LEVELS
+ - Actually fixed the music from not updating when that's the only thing that was changed</value>
   </data>
   <metadata name="imageStuffToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

@@ -65,6 +65,8 @@ namespace LAZYSHELL
             this.gameSelectTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.starPiecesTilesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetAllTilemapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameSelectGraphicsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,12 +74,16 @@ namespace LAZYSHELL
             this.starPiecesGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cursorsGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monoStereoGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetAllGraphicsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameSelectPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.framePaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.starPiecesPaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cursorsPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetAllPalettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetOverworldMenuListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripText = new System.Windows.Forms.ToolStrip();
@@ -513,18 +519,19 @@ namespace LAZYSHELL
             this.resetBackgroundToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gameSelectTilesetToolStripMenuItem,
             this.backgroundTilesetToolStripMenuItem,
-            this.starPiecesTilesetToolStripMenuItem});
+            this.starPiecesTilesetToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.resetAllTilemapsToolStripMenuItem});
             this.resetBackgroundToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.resetBackgroundToolStripMenuItem.Name = "resetBackgroundToolStripMenuItem";
             this.resetBackgroundToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.resetBackgroundToolStripMenuItem.Text = "Reset Tilemap";
-            this.resetBackgroundToolStripMenuItem.Click += new System.EventHandler(this.resetBackgroundToolStripMenuItem_Click);
             // 
             // gameSelectTilesetToolStripMenuItem
             // 
             this.gameSelectTilesetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.gameSelectTilesetToolStripMenuItem.Name = "gameSelectTilesetToolStripMenuItem";
-            this.gameSelectTilesetToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.gameSelectTilesetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gameSelectTilesetToolStripMenuItem.Text = "Game Select Tilemap";
             this.gameSelectTilesetToolStripMenuItem.Click += new System.EventHandler(this.gameSelectTilesetToolStripMenuItem_Click);
             // 
@@ -532,7 +539,7 @@ namespace LAZYSHELL
             // 
             this.backgroundTilesetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.backgroundTilesetToolStripMenuItem.Name = "backgroundTilesetToolStripMenuItem";
-            this.backgroundTilesetToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.backgroundTilesetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backgroundTilesetToolStripMenuItem.Text = "Background Tilemap";
             this.backgroundTilesetToolStripMenuItem.Click += new System.EventHandler(this.backgroundTilesetToolStripMenuItem_Click);
             // 
@@ -540,9 +547,22 @@ namespace LAZYSHELL
             // 
             this.starPiecesTilesetToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.starPiecesTilesetToolStripMenuItem.Name = "starPiecesTilesetToolStripMenuItem";
-            this.starPiecesTilesetToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.starPiecesTilesetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.starPiecesTilesetToolStripMenuItem.Text = "Star Pieces Tilemap";
             this.starPiecesTilesetToolStripMenuItem.Click += new System.EventHandler(this.starPiecesTilesetToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(177, 6);
+            // 
+            // resetAllTilemapsToolStripMenuItem
+            // 
+            this.resetAllTilemapsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetAllTilemapsToolStripMenuItem.Name = "resetAllTilemapsToolStripMenuItem";
+            this.resetAllTilemapsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetAllTilemapsToolStripMenuItem.Text = "Reset All Tilemaps";
+            this.resetAllTilemapsToolStripMenuItem.Click += new System.EventHandler(this.resetAllTilemapsToolStripMenuItem_Click);
             // 
             // resetGraphicsToolStripMenuItem
             // 
@@ -552,12 +572,13 @@ namespace LAZYSHELL
             this.frameGraphicsToolStripMenuItem,
             this.starPiecesGraphicsToolStripMenuItem,
             this.cursorsGraphicsToolStripMenuItem,
-            this.monoStereoGraphicsToolStripMenuItem});
+            this.monoStereoGraphicsToolStripMenuItem,
+            this.toolStripSeparator13,
+            this.resetAllGraphicsToolStripMenuItem});
             this.resetGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.resetGraphicsToolStripMenuItem.Name = "resetGraphicsToolStripMenuItem";
             this.resetGraphicsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.resetGraphicsToolStripMenuItem.Text = "Reset Graphics";
-            this.resetGraphicsToolStripMenuItem.Click += new System.EventHandler(this.resetGraphicsToolStripMenuItem_Click);
             // 
             // gameSelectGraphicsToolStripMenuItem1
             // 
@@ -607,6 +628,19 @@ namespace LAZYSHELL
             this.monoStereoGraphicsToolStripMenuItem.Text = "Mono/Stereo Graphics";
             this.monoStereoGraphicsToolStripMenuItem.Click += new System.EventHandler(this.monoStereoGraphicsToolStripMenuItem_Click);
             // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(178, 6);
+            // 
+            // resetAllGraphicsToolStripMenuItem
+            // 
+            this.resetAllGraphicsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetAllGraphicsToolStripMenuItem.Name = "resetAllGraphicsToolStripMenuItem";
+            this.resetAllGraphicsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.resetAllGraphicsToolStripMenuItem.Text = "Reset all graphics";
+            this.resetAllGraphicsToolStripMenuItem.Click += new System.EventHandler(this.resetAllGraphicsToolStripMenuItem_Click);
+            // 
             // resetPalettesToolStripMenuItem
             // 
             this.resetPalettesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -614,18 +648,19 @@ namespace LAZYSHELL
             this.backgroundPalettesToolStripMenuItem,
             this.framePaletteToolStripMenuItem,
             this.starPiecesPaletteToolStripMenuItem,
-            this.cursorsPalettesToolStripMenuItem});
+            this.cursorsPalettesToolStripMenuItem,
+            this.toolStripSeparator14,
+            this.resetAllPalettesToolStripMenuItem});
             this.resetPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.resetPalettesToolStripMenuItem.Name = "resetPalettesToolStripMenuItem";
             this.resetPalettesToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.resetPalettesToolStripMenuItem.Text = "Reset Palettes";
-            this.resetPalettesToolStripMenuItem.Click += new System.EventHandler(this.resetPalettesToolStripMenuItem_Click);
             // 
             // gameSelectPalettesToolStripMenuItem
             // 
             this.gameSelectPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.gameSelectPalettesToolStripMenuItem.Name = "gameSelectPalettesToolStripMenuItem";
-            this.gameSelectPalettesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.gameSelectPalettesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gameSelectPalettesToolStripMenuItem.Text = "Game Select Palette";
             this.gameSelectPalettesToolStripMenuItem.Click += new System.EventHandler(this.gameSelectPalettesToolStripMenuItem_Click);
             // 
@@ -633,7 +668,7 @@ namespace LAZYSHELL
             // 
             this.backgroundPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.backgroundPalettesToolStripMenuItem.Name = "backgroundPalettesToolStripMenuItem";
-            this.backgroundPalettesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.backgroundPalettesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.backgroundPalettesToolStripMenuItem.Text = "Background Palette";
             this.backgroundPalettesToolStripMenuItem.Click += new System.EventHandler(this.backgroundPalettesToolStripMenuItem_Click);
             // 
@@ -641,7 +676,7 @@ namespace LAZYSHELL
             // 
             this.framePaletteToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.framePaletteToolStripMenuItem.Name = "framePaletteToolStripMenuItem";
-            this.framePaletteToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.framePaletteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.framePaletteToolStripMenuItem.Text = "Frame Palette";
             this.framePaletteToolStripMenuItem.Click += new System.EventHandler(this.framePaletteToolStripMenuItem_Click);
             // 
@@ -649,7 +684,7 @@ namespace LAZYSHELL
             // 
             this.starPiecesPaletteToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.starPiecesPaletteToolStripMenuItem.Name = "starPiecesPaletteToolStripMenuItem";
-            this.starPiecesPaletteToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.starPiecesPaletteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.starPiecesPaletteToolStripMenuItem.Text = "Star Pieces Palette";
             this.starPiecesPaletteToolStripMenuItem.Click += new System.EventHandler(this.starPiecesPaletteToolStripMenuItem_Click);
             // 
@@ -657,9 +692,22 @@ namespace LAZYSHELL
             // 
             this.cursorsPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.cursorsPalettesToolStripMenuItem.Name = "cursorsPalettesToolStripMenuItem";
-            this.cursorsPalettesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.cursorsPalettesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cursorsPalettesToolStripMenuItem.Text = "Cursors Palette";
             this.cursorsPalettesToolStripMenuItem.Click += new System.EventHandler(this.cursorsPalettesToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(177, 6);
+            // 
+            // resetAllPalettesToolStripMenuItem
+            // 
+            this.resetAllPalettesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetAllPalettesToolStripMenuItem.Name = "resetAllPalettesToolStripMenuItem";
+            this.resetAllPalettesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetAllPalettesToolStripMenuItem.Text = "Reset all palettes";
+            this.resetAllPalettesToolStripMenuItem.Click += new System.EventHandler(this.resetAllPalettesToolStripMenuItem_Click);
             // 
             // resetTextToolStripMenuItem
             // 
@@ -1317,5 +1365,11 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripMenuItem monoStereoGraphicsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetTextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetOverworldMenuListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem resetAllTilemapsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripMenuItem resetAllGraphicsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripMenuItem resetAllPalettesToolStripMenuItem;
     }
 }

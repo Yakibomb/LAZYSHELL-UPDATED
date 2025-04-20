@@ -1232,13 +1232,6 @@ namespace LAZYSHELL
         {
             GC.Collect();
         }
-
-        private void eventsMusic_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.Refreshing)
-                return;
-            this.Modified = true;
-        }
         #endregion
     }
 }

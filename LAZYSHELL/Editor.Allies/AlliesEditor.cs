@@ -234,6 +234,36 @@ namespace LAZYSHELL
             coordinatesEditor.RefreshCharacter();
         }
 
+        private void resetAllCharacterNewGameStatusesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to ALL character's new game stats.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            for (int i = 0; i < Characters.Length; i++ )
+                Character.Disassemble(i, true, false, false);
+            charactersEditor.RefreshCharacter();
+        }
+
+        private void resetAllCharacterLevelupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the current character's level-up index.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            for (int i = 0; i < Characters.Length; i++ )
+                Character.Disassemble(i, false, true, false);
+            levelUpsEditor.RefreshLevel();
+        }
+
+        private void resetAllCharacterCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("You're about to undo all changes to the current character's coordinates data.\n\nGo ahead with reset?",
+                "LAZYSHELL++", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            for (int i = 0; i < Characters.Length; i++ )
+                Character.Disassemble(i, false, false, true);
+            coordinatesEditor.RefreshCharacter();
+        }
+
         private void clearCharactersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ClearElements(Model.Characters, index, "CLEAR CHARACTERS...").ShowDialog();

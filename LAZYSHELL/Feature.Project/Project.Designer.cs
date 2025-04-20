@@ -103,6 +103,7 @@ namespace LAZYSHELL
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newButton = new System.Windows.Forms.ToolStripButton();
             this.loadButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.save = new System.Windows.Forms.ToolStripButton();
             this.saveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -111,7 +112,6 @@ namespace LAZYSHELL
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.alwaysOnTop = new System.Windows.Forms.ToolStripButton();
             this.autoUpdate = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.indexNumber)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panelIndexNumber.SuspendLayout();
@@ -825,19 +825,21 @@ namespace LAZYSHELL
             this.elementType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.elementType.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.elementType.Items.AddRange(new object[] {
+            "Allies",
             "Levels",
             "Dialogues",
             "Memory Bits",
             "Event Scripts",
             "Action Scripts",
             "Battlefields",
+            "Battle Events",
+            "Monster Behavior Animations",
             "Monsters",
             "Formations",
             "Packs",
             "Attacks",
             "Spells",
             "Items",
-            "Allies",
             "Effects",
             "Sprites",
             "Shops"});
@@ -1007,6 +1009,11 @@ namespace LAZYSHELL
             this.loadButton.ToolTipText = "Open Project Database";
             this.loadButton.Click += new System.EventHandler(this.load_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
             // save
             // 
             this.save.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1089,11 +1096,6 @@ namespace LAZYSHELL
             this.autoUpdate.Name = "autoUpdate";
             this.autoUpdate.Size = new System.Drawing.Size(23, 22);
             this.autoUpdate.Text = "Auto-update";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // Project
             // 

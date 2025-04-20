@@ -176,8 +176,8 @@ namespace LAZYSHELL.ScriptsEditor.Commands
             "",			// 0x99
             "",			// 0x9A
             "",			// 0x9B
-            "",			// 0x9C
-            "",			// 0x9D
+            "Wavy effect for {0}: {1}, depth = {2}, intensity = {3}, speed = {4}",			// 0x9C
+            "{0} wavy effect",			// 0x9D
             "",			// 0x9E
             "",			// 0x9F
 			
@@ -188,7 +188,7 @@ namespace LAZYSHELL.ScriptsEditor.Commands
             "",			// 0xA4
             "",			// 0xA5
             "",			// 0xA6
-            "",			// 0xA7
+            "On Successfully Timed-Hit, jump to ${0}",			// 0xA7
             "",			// 0xA8
             "",			// 0xA9
             "",			// 0xAA
@@ -558,6 +558,8 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                         default: vars[1] = (asc.Param1 >> 4).ToString(); break;
                     }
                     vars[2] = asc.Param2.ToString(); break;
+                case 0xA7:
+                    goto case 0x09;
                 case 0xAB:
                 case 0xAE:
                     if (asc.Param1 < Lists.BattleSoundNames.Length)
@@ -656,6 +658,21 @@ namespace LAZYSHELL.ScriptsEditor.Commands
                     }
                     if (asc.Opcode == 0x8E)
                         vars[1] = asc.Param2.ToString();
+                    break;
+                case 0x9C:
+                    if ((asc.Param2 & 0x01) == 0x01)
+                        vars[0] = "Battlefield";
+                    else if ((asc.Param2 & 0x02) == 0x02)
+                        vars[0] = "4bpp";
+                    else if ((asc.Param2 & 0x04) == 0x04)
+                        vars[0] = "2bpp";
+                    vars[1] = (asc.Param2 & 0x80) == 0x80 ? "Vertical" : (asc.Param2 & 0x40) == 0x40 ? "Horizonal" : "{UNKNOWN}";
+                    vars[2] = Bits.GetShort(asc.CommandData, 3).ToString();
+                    vars[3] = Bits.GetShort(asc.CommandData, 5).ToString();
+                    vars[4] = Bits.GetShort(asc.CommandData, 7).ToString();
+                    break;
+                case 0x9D:
+                    vars[0] = asc.Param1 == 0x02 ? "Stop" : "{UNKOWN}";
                     break;
                 case 0xE1:
                     vars[0] = Bits.GetShort(asc.CommandData, 1).ToString();

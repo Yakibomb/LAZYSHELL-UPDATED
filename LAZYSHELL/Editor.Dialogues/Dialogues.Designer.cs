@@ -995,7 +995,7 @@ namespace LAZYSHELL
             this.Controls.Add(this.panel60);
             this.Controls.Add(this.toolStrip3);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = global::LAZYSHELL.Properties.Resources.mainDialogues_ico;
+            this.Icon = global::LAZYSHELL.Properties.Resources.mainDialogues_2_ico;
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(5, 5);
             this.Name = "Dialogues";

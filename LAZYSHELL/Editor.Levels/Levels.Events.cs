@@ -202,6 +202,7 @@ namespace LAZYSHELL
             if (this.Updating)
                 return;
             events.Music = (byte)this.eventMusic.SelectedIndex;
+            this.Modified = true;
         }
         private void eventsRunEvent_ValueChanged(object sender, EventArgs e)
         {

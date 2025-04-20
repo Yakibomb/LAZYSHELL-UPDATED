@@ -1552,7 +1552,7 @@ namespace LAZYSHELL
             {
                 if (behaviorAnimAllies == null)
                 {
-                    behaviorAnimAllies = new AnimationScript[3];
+                    behaviorAnimAllies = new AnimationScript[2];
                     for (int i = 0; i < behaviorAnimAllies.Length; i++)
                         behaviorAnimAllies[i] = new AnimationScript(i, 13);
                 }
@@ -2295,10 +2295,10 @@ namespace LAZYSHELL
             string ret = fileName.Substring(fileName.LastIndexOf('\x5c') + 1);
             return ret.Substring(0, ret.LastIndexOf('.'));
         }
-        public static string GetNotePathCustomWithoutPathOrExtension()
+        public static string GetNotePathCustomWithoutPathOrExtension(string NotesFilePath)
         {
-            if (settings.NotePathCustom == "") return "";
-            string ret = settings.NotePathCustom.Substring(settings.NotePathCustom.LastIndexOf('\x5c') + 1);
+            if (NotesFilePath == "") return "";
+            string ret = NotesFilePath.Substring(NotesFilePath.LastIndexOf('\x5c') + 1);
             return ret.Substring(0, ret.LastIndexOf('.'));
         }
         public static long GetFileSize()

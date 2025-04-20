@@ -221,8 +221,8 @@ namespace LAZYSHELL
             "{99}",			// 0x99
             "{9A}",			// 0x9A
             "{9B}",			// 0x9B
-            "{9C}",			// 0x9C
-            "{9D}",			// 0x9D
+            "Battlefield wavy effect...",			// 0x9C
+            "Stop battlefield wavy effect",			// 0x9D
             "{9E}",			// 0x9E
             "{9F}",			// 0x9F
 			
@@ -233,7 +233,7 @@ namespace LAZYSHELL
             "{A4}",			// 0xA4
             "{A5}",			// 0xA5
             "{A6}",			// 0xA6
-            "{A7}",			// 0xA7
+            "On Successfully Timed-Hit, jump to address $xxxx",			// 0xA7
             "{A8}",			// 0xA8
             "{A9}",			// 0xA9
             "{AA}",			// 0xAA
@@ -1212,7 +1212,7 @@ namespace LAZYSHELL
             "fire hit",
             "fire burn",
             "insert",
-            "?",
+            "Muku Muku~",
             "spell power up",
             "snow",
             "monster item toss",

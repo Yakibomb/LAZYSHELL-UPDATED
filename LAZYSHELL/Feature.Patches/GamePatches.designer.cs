@@ -433,6 +433,7 @@ namespace LAZYSHELL.Patches
             // sortByAuthorComboBox
             // 
             this.sortByAuthorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sortByAuthorComboBox.DropDownWidth = 160;
             this.sortByAuthorComboBox.Enabled = false;
             this.sortByAuthorComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.sortByAuthorComboBox.Items.AddRange(new object[] {

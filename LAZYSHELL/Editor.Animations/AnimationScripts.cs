@@ -64,7 +64,7 @@ namespace LAZYSHELL
         private AnimationCommand asc; public AnimationCommand ASC { get { return asc; } set { asc = value; } }
         private AnimationCommand ascCopy;
         public int Index { get { return (int)animationNum.Value; } set { animationNum.Value = value; } }
-        public int Category { get { return animationCategory.SelectedIndex; } set { animationCategory.SelectedIndex = value; } }
+        public int Category { get { return animationCategory.SelectedIndex; } set { animationCategory.SelectedIndex = value; UpdateAnimationCategory(value); } }
         private CommandStack commandStack;
         private Settings settings = Settings.Default;
         private BattleDialoguePreview battleDialoguePreview;
@@ -129,7 +129,7 @@ namespace LAZYSHELL
             if (settings.RememberLastIndex)
                 animationCategory.SelectedIndex = settings.LastAnimationCat;
             else
-                animationCategory.SelectedIndex = 12;
+                animationCategory.SelectedIndex = (int)AnimScriptType.AllyWeaponWrapper;
             RefreshEditor();
             if (settings.RememberLastIndex)
                 animationNum.Value = Math.Min((int)animationNum.Maximum, settings.LastAnimation);
@@ -140,8 +140,12 @@ namespace LAZYSHELL
         }
         private void RefreshEditor()
         {
-            animationName.ContextMenuStrip.Enabled = animationCategory.SelectedIndex == 8;
-            animationNum.ContextMenuStrip.Enabled = animationCategory.SelectedIndex == 8;
+            animationName.ContextMenuStrip.Enabled = 
+                animationCategory.SelectedIndex == (int)AnimScriptType.BattleEvents ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.MonsterBehaviors;
+            animationNum.ContextMenuStrip.Enabled = 
+                animationCategory.SelectedIndex == (int)AnimScriptType.BattleEvents ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.MonsterBehaviors;
             //
             animationScripts[(int)animationNum.Value].RefreshScript();
             switch (animationCategory.SelectedIndex)
@@ -279,13 +283,12 @@ namespace LAZYSHELL
                     this.animationName.Items.AddRange(new object[] {
                         "Ally takes damage",
                         "Ally tries to run",
-                        "?",
                     });
                     animationName.DrawMode = DrawMode.Normal;
                     animationName.BackColor = SystemColors.Window;
                     goto default;
                 default:
-                    if (animationCategory.SelectedIndex == 9)
+                    if (animationCategory.SelectedIndex == (int)AnimScriptType.BattleEvents)
                         animationName.Width = 400;
                     else
                         animationName.Width = 160;
@@ -443,6 +446,7 @@ namespace LAZYSHELL
                 case 0x50:
                 case 0x51:
                 case 0x64:
+                case 0xA7:
                     aniLabelB1.Text = "Address";
                     aniNumB1.Maximum = 0xFFFF; aniNumB1.Hexadecimal = true; aniNumB1.Enabled = true;
                     aniNumB1.Value = Bits.GetShort(asc.CommandData, 1);
@@ -790,6 +794,34 @@ namespace LAZYSHELL
                         aniNumB1.Value = asc.Param2;
                     }
                     break;
+                case 0x9C:
+                    aniLabelA1.Text = "Layer";
+                    aniLabelA2.Text = "Type";
+                    aniLabelB1.Text = "Depth";
+                    aniLabelB2.Text = "Intensity";
+                    aniLabelC1.Text = "Speed";
+                    aniNameA1.Items.AddRange(new object[] { "battlefield", "4bpp", "2bpp" }); aniNameA1.Enabled = true;
+                    aniNameA2.Items.AddRange(new object[] { "horizonal", "vertical" }); aniNameA2.Enabled = true;
+                    aniNumB1.Enabled = true;
+                    aniNumB2.Enabled = true;
+                    aniNumC1.Enabled = true;
+                    aniNameA1.SelectedIndex = (asc.Param2 & 0x07) >> 1;
+                    aniNameA2.SelectedIndex = (asc.Param2 & 0x80) == 0x80 ? 1 : 0;
+                    aniNumB1.Value = asc.Param3 + (asc.Param4 >> 8);
+                    aniNumB2.Value = asc.Param5 + (asc.Param6 >> 8);
+                    aniNumC1.Value = asc.Param7 + (asc.Param8 >> 8);
+                    //
+                    aniTitleD.Text = "Bits";
+                    aniBits.Items.AddRange(new object[] { "b3", "b4", "b5" });
+                    aniBits.Enabled = true;
+                    for (int i = 8, j = 0; j < 3; i *= 2, j++)
+                        aniBits.SetItemChecked(j, (asc.Param2 & i) == i);
+                    break;
+                case 0x9D:
+                    aniLabelA1.Text = "Effect";
+                    aniNameA1.Items.AddRange(new object[] { "Stop", "{UNKNOWN}" }); aniNameA1.Enabled = true;
+                    aniNameA1.SelectedIndex = asc.Param1 == 0x02 ? 0 : 1;
+                    break;
                 case 0xA3:
                     aniLabelA1.Text = "Effect";
                     aniNameA1.Items.AddRange(Interpreter.ScreenEffects);
@@ -1075,6 +1107,7 @@ namespace LAZYSHELL
                 case 0x50:
                 case 0x51:
                 case 0x64:
+                case 0xA7:
                     Bits.SetShort(asc.CommandData, 1, (ushort)aniNumB1.Value);
                     break;
                 case 0x0C:
@@ -1237,11 +1270,6 @@ namespace LAZYSHELL
                     asc.Param2 |= (byte)((byte)aniNumB2.Value << 4);
                     asc.Param3 = (byte)aniNumC1.Value;
                     break;
-                case 0x96:
-                    asc.Param2 = (byte)aniNumA1.Value;
-                    asc.CommandData[3] = (byte)((sbyte)aniNumB1.Value);
-                    asc.Param4 = (byte)((sbyte)aniNumB2.Value);
-                    break;
                 case 0x85:
                     asc.Param1 = (byte)(aniNameA1.SelectedIndex << 1);
                     asc.Param1 |= (byte)(aniNameA2.SelectedIndex << 4);
@@ -1255,6 +1283,24 @@ namespace LAZYSHELL
                 case 0x8E:
                     asc.Param1 = (byte)aniNameA1.SelectedIndex;
                     asc.Param2 = (byte)aniNumB1.Value;
+                    break;
+                case 0x96:
+                    asc.Param2 = (byte)aniNumA1.Value;
+                    asc.CommandData[3] = (byte)((sbyte)aniNumB1.Value);
+                    asc.Param4 = (byte)((sbyte)aniNumB2.Value);
+                    break;
+                case 0x9C:
+                    asc.Param2 = (byte)(aniNameA2.SelectedIndex == 0 ? 0x40 : 0x80);
+                    Bits.SetBit(asc.CommandData, 2, aniNameA1.SelectedIndex, true);
+                    for (int i = 8, j = 0; j < 3; i *= 2, j++)
+                        Bits.SetBit(asc.CommandData, 2, j + 3, aniBits.GetItemChecked(j));
+                    asc.CommandData[3] = (byte)((sbyte)aniNumB1.Value);
+                    Bits.SetShort(asc.CommandData, 3, (ushort)((short)aniNumB1.Value));
+                    Bits.SetShort(asc.CommandData, 5, (ushort)((short)aniNumB2.Value));
+                    Bits.SetShort(asc.CommandData, 7, (ushort)((short)aniNumC1.Value));
+                    break;
+                case 0x9D:
+                    asc.Param1 = (byte)(aniNameA1.SelectedIndex == 0 ? 0x02 : asc.Param1);
                     break;
                 case 0xA3:
                     asc.Param1 = (byte)aniNameA1.SelectedIndex;
@@ -1433,13 +1479,17 @@ namespace LAZYSHELL
         #region Event Handlers
         private void animationCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int category = animationCategory.SelectedIndex;
             previewer.Enabled =
-                animationCategory.SelectedIndex == 1 ||
-                animationCategory.SelectedIndex == 2 ||
-                animationCategory.SelectedIndex == 4 ||
-                animationCategory.SelectedIndex == 10;
-            // so it won't try to load the label editor if we haven't loaded the battle events
-            labelWindow.Disable = animationCategory.SelectedIndex != 12;
+                category == (int)AnimScriptType.MonsterSpells ||
+                category == (int)AnimScriptType.MonsterAttacks ||
+                category == (int)AnimScriptType.Items ||
+                category == (int)AnimScriptType.AllySpells ||
+                category == (int)AnimScriptType.WeaponMissSounds ||
+                category == (int)AnimScriptType.WeaponTimedHitSounds ||
+                category == (int)AnimScriptType.WeaponAnimations;
+            // so it won't try to load the label editor if we haven't loaded the battle events or monster behaviors
+            labelWindow.Disable = category != (int)AnimScriptType.BattleEvents && category != (int)AnimScriptType.MonsterBehaviors;
             if (this.Updating)
                 return;
             animationNum.Value = 0;
@@ -1453,7 +1503,7 @@ namespace LAZYSHELL
             Cursor.Current = Cursors.WaitCursor;
             animationScripts[(int)animationNum.Value].RefreshScript();
             //
-            if (animationCategory.SelectedIndex == 2)
+            if (animationCategory.SelectedIndex == (int)AnimScriptType.MonsterAttacks)
             {
                 animationName.SelectedIndex = Model.AttackNames.GetSortedIndex(Index);
                 wrapper.ChangeScript(animationScripts[(int)animationNum.Value]);
@@ -1472,7 +1522,7 @@ namespace LAZYSHELL
         }
         private void animationName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (animationCategory.SelectedIndex == 2)
+            if (animationCategory.SelectedIndex == (int)AnimScriptType.MonsterAttacks)
                 animationNum.Value = Model.AttackNames.GetUnsortedIndex(animationName.SelectedIndex);
             else
                 animationNum.Value = animationName.SelectedIndex;
@@ -1498,14 +1548,14 @@ namespace LAZYSHELL
                 case 13: if (e.Index < 0 || e.Index > 3) return; break;
             }
             int[] temp;
-            if (animationCategory.SelectedIndex == 1 ||
-                animationCategory.SelectedIndex == 2 ||
-                animationCategory.SelectedIndex == 4 ||
-                animationCategory.SelectedIndex == 5 ||
-                animationCategory.SelectedIndex == 6 ||
-                animationCategory.SelectedIndex == 7 ||
-                animationCategory.SelectedIndex == 8 ||
-                animationCategory.SelectedIndex == 12)
+            if (animationCategory.SelectedIndex == (int)AnimScriptType.MonsterSpells ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.MonsterAttacks ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.Items ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.AllySpells ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.WeaponAnimations ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.WeaponMissSounds ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.WeaponTimedHitSounds ||
+                animationCategory.SelectedIndex == (int)AnimScriptType.AllyWeaponWrapper)
             {
                 char[] name;
                 switch (animationCategory.SelectedIndex)
@@ -1554,7 +1604,7 @@ namespace LAZYSHELL
                     e.DrawBackground();
                 int[] pixels;
                 Bitmap icon;
-                if (animationCategory.SelectedIndex == 1 || animationCategory.SelectedIndex == 2)
+                if (animationCategory.SelectedIndex == (int)AnimScriptType.MonsterSpells || animationCategory.SelectedIndex == (int)AnimScriptType.MonsterAttacks)
                 {
                     pixels = new int[256 * 32];
                     for (int y = 2, c = 10; c < 32; y++, c++)
@@ -1974,27 +2024,6 @@ namespace LAZYSHELL
             Assemble();
         }
 
-        private void toolStripSeparator2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void clearActionScriptsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void reset_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void clearEventScriptsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void UpdateAnimationCategory(int index)
         {
             animationName.Visible = true;
@@ -2008,6 +2037,7 @@ namespace LAZYSHELL
                 case 0:
                     text = "Monster Behaviors";
                     image = animCategoryMonstersBehaviors.Image;
+                    labelWindow = new EditLabel(animationName, animationNum, "Monster Behavior Animations", true);
                     break;
                 case 1:
                     text = "Monster Spells";
@@ -2044,6 +2074,7 @@ namespace LAZYSHELL
                 case 9:
                     text = "Battle Events";
                     image = animCategoryBattleEvents.Image;
+                    labelWindow = new EditLabel(animationName, animationNum, "Battle Events", true);
                     break;
                 case 10:
                     text = "Flower Bonus Messages";
@@ -2069,72 +2100,72 @@ namespace LAZYSHELL
 
         private void animCategoryAlliesWeaponsWrapper_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(12);
+            UpdateAnimationCategory((int)AnimScriptType.AllyWeaponWrapper);
         }
 
         private void animCategoryAlliesWeaponsTimedHitSounds_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(8);
+            UpdateAnimationCategory((int)AnimScriptType.WeaponTimedHitSounds);
         }
 
         private void animCategoryAlliesWeaponsMissSounds_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(7);
+            UpdateAnimationCategory((int)AnimScriptType.WeaponMissSounds);
         }
 
         private void animCategoryAlliesWeaponsAnimations_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(6);
+            UpdateAnimationCategory((int)AnimScriptType.WeaponAnimations);
         }
 
         private void animCategoryAlliesSpells_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(5);
+            UpdateAnimationCategory((int)AnimScriptType.AllySpells);
         }
 
         private void animCategoryItems_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(4);
+            UpdateAnimationCategory((int)AnimScriptType.Items);
         }
 
         private void animCategoryMonstersEntrances_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(3);
+            UpdateAnimationCategory((int)AnimScriptType.MonsterEntrances);
         }
 
         private void animCategoryMonstersBehaviors_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(0);
+            UpdateAnimationCategory((int)AnimScriptType.MonsterBehaviors);
         }
 
         private void animCategoryMonstersAttacks_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(2);
+            UpdateAnimationCategory((int)AnimScriptType.MonsterAttacks);
         }
 
         private void animCategoryMonstersSpells_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(1);
+            UpdateAnimationCategory((int)AnimScriptType.MonsterSpells);
         }
 
         private void animCategoryAlliesBehaviors_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(13);
+            UpdateAnimationCategory((int)AnimScriptType.AllyBehaviors);
         }
 
         private void animCategoryToadsTutorial_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(11);
+            UpdateAnimationCategory((int)AnimScriptType.ToadsTutorial);
         }
 
         private void animCategoryBattleEvents_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(9);
+            UpdateAnimationCategory((int)AnimScriptType.BattleEvents);
         }
 
         private void animCategoryBonusFlowerMessages_Click(object sender, EventArgs e)
         {
-            UpdateAnimationCategory(10);
+            UpdateAnimationCategory((int)AnimScriptType.FlowerBonusMessages);
         }
 
 

@@ -123,6 +123,10 @@ namespace LAZYSHELL
                 case "Shops": enotes = project.Shops; break;
                 case "Spells": enotes = project.Spells; break;
                 case "Sprites": enotes = project.Sprites; break;
+                case "Battlefields": enotes = project.Battlefields; break;
+                case "Battle Events": enotes = project.BattleEvents; break;
+                case "Monster Behavior Animations": enotes = project.MonsterBehaviorAnims; break;
+                case "Allies": enotes = project.Allies; break;
             }
             elist = project.ELists.Find(delegate(EList list)
             {
@@ -200,10 +204,7 @@ namespace LAZYSHELL
             if (Model.Program.Project == null || !Model.Program.Project.Visible)
                 Model.Program.CreateProjectWindow();
             Project temp = Model.Program.Project;
-            if (Model.Project == null)
-                if (!temp.LoadProject())
-                    return;
-            if (Model.Project != null)
+            if (Model.Project != null || temp.LoadProject())
             {
                 if (elist != null && index < elist.Indexes.Length)
                     temp.AddingFromEditor(element, index, elist.Indexes[index].Label, "(no description)");

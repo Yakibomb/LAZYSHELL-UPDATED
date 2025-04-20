@@ -181,7 +181,7 @@ namespace LAZYSHELL
             this.imageStuffLabel.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.imageStuffLabel.Name = "imageStuffLabel";
             this.imageStuffLabel.Size = new System.Drawing.Size(58, 25);
-            this.imageStuffLabel.Text = "v2.1.5";
+            this.imageStuffLabel.Text = "v2.2.0";
             // 
             // richTextBox1
             // 

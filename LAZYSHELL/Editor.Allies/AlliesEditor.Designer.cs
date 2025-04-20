@@ -56,6 +56,11 @@ namespace LAZYSHELL
             this.ally3 = new System.Windows.Forms.ToolStripButton();
             this.ally4 = new System.Windows.Forms.ToolStripButton();
             this.ally5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetAllCharacterNewGameStatusesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetAllCharacterLevelupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetAllCharacterCoordinatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip3.SuspendLayout();
             this.MainDetailsPanel.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -230,9 +235,14 @@ namespace LAZYSHELL
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.resetBaseNewGameToolStripMenuItem,
+            this.toolStripSeparator3,
             this.resetNewGameStatsToolStripMenuItem,
             this.resetCurrentLevelupsToolStripMenuItem,
-            this.resetCurrentCoordinatesToolStripMenuItem});
+            this.resetCurrentCoordinatesToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.resetAllCharacterNewGameStatusesToolStripMenuItem,
+            this.resetAllCharacterLevelupsToolStripMenuItem,
+            this.resetAllCharacterCoordinatesToolStripMenuItem});
             this.toolStripButton1.Image = global::LAZYSHELL.Properties.Resources.reset;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -373,6 +383,40 @@ namespace LAZYSHELL
             this.ally5.Text = "toolStripButton1";
             this.ally5.Click += new System.EventHandler(this.ally5_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(272, 6);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(272, 6);
+            // 
+            // resetAllCharacterNewGameStatusesToolStripMenuItem
+            // 
+            this.resetAllCharacterNewGameStatusesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetAllCharacterNewGameStatusesToolStripMenuItem.Name = "resetAllCharacterNewGameStatusesToolStripMenuItem";
+            this.resetAllCharacterNewGameStatusesToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.resetAllCharacterNewGameStatusesToolStripMenuItem.Text = "Reset all character new game statuses";
+            this.resetAllCharacterNewGameStatusesToolStripMenuItem.Click += new System.EventHandler(this.resetAllCharacterNewGameStatusesToolStripMenuItem_Click);
+            // 
+            // resetAllCharacterLevelupsToolStripMenuItem
+            // 
+            this.resetAllCharacterLevelupsToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetAllCharacterLevelupsToolStripMenuItem.Name = "resetAllCharacterLevelupsToolStripMenuItem";
+            this.resetAllCharacterLevelupsToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.resetAllCharacterLevelupsToolStripMenuItem.Text = "Reset all character level-ups";
+            this.resetAllCharacterLevelupsToolStripMenuItem.Click += new System.EventHandler(this.resetAllCharacterLevelupsToolStripMenuItem_Click);
+            // 
+            // resetAllCharacterCoordinatesToolStripMenuItem
+            // 
+            this.resetAllCharacterCoordinatesToolStripMenuItem.Image = global::LAZYSHELL.Properties.Resources.reset;
+            this.resetAllCharacterCoordinatesToolStripMenuItem.Name = "resetAllCharacterCoordinatesToolStripMenuItem";
+            this.resetAllCharacterCoordinatesToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.resetAllCharacterCoordinatesToolStripMenuItem.Text = "Reset all character coordinates";
+            this.resetAllCharacterCoordinatesToolStripMenuItem.Click += new System.EventHandler(this.resetAllCharacterCoordinatesToolStripMenuItem_Click);
+            // 
             // AlliesEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -430,5 +474,10 @@ namespace LAZYSHELL
         private System.Windows.Forms.ToolStripMenuItem clearBaseNewGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearCharactersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetBaseNewGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem resetAllCharacterNewGameStatusesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetAllCharacterLevelupsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetAllCharacterCoordinatesToolStripMenuItem;
     }
 }
