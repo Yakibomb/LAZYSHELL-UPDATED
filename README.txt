@@ -1,12 +1,7 @@
 LAZYSHELL++
 Super Mario RPG Editor 
-<<<<<<< HEAD
 Version: 2.1.6
 Date: April 20, 2025
-=======
-Version: 2.1.5
-Date: March 1, 2025
->>>>>>> 9bbc7abb8fae190975268041944022fb59f96ea2
 
 LAZYSHELL++ (formerly "LAZY SHELL: UPDATED EDITION") is a fork by Yakibomb (author of this github).
 This was made from Lazy Shell 3.19.0 Source Code, which was created by Giangurgolo and Omega
